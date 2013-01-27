@@ -1,0 +1,30 @@
+#content
+{
+  display: inline;
+  margin-left: 5%;
+  
+}
+#content pre
+{
+  color: DarkSlateGrey;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 1em;
+  font-style: italic;
+  display: block;
+}
+#content pre p
+{
+  color: #75071D;
+  font-weight: bold;
+}
+.grouptext
+{
+  color: #75071D;
+  font-weight: bold;
+}
+.titletext
+{ 
+  color: #263D33;
+  display:inline;
+  font-weight: bold;
+}

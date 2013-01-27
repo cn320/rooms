@@ -1,0 +1,27 @@
+!!! 5
+%html
+  %head
+    %title ยินดีต้อนรับสู่ระบบจองห้องออนไลน์ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยธรรมศาสตร์
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+
+  %body
+    #header{:style => "background-color:#FFA500;"}
+      %h1.title ระบบจองห้องออนไลน์ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยธรรมศาสตร์
+    #menubar
+      %p=link_to 'หน้าแรก' , rooms_path
+      %br/
+      %p=link_to 'About', static_pages_about_path
+      %br/
+      %p=link_to 'จองห้อง', rooms_path
+      %br/
+      %p=link_to 'สำหรับเจ้าหน้าที่', rooms_path
+    #contentbox
+      - if flash[:notice]
+        #notice.message= flash[:notice]
+      - elsif flash[:warning]
+        #warning.message= flash[:warning]
+      =yield
+    #footer
+   

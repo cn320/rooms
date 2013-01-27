@@ -1,0 +1,148 @@
+#content
+  %h1 รายละเอียดโครงงาน
+  %pre
+    %p ชื่อโครงงาน: ระบบจัดการห้องเรียนออนไลน์
+    รายละเอียดโครงงาน
+    กลุ่มของเราได้ทำเรื่องเกี่ยวกับการจองห้องออนไลน์ของตึกคณะวิศวกรรมศาสตร์ มหาวิทยาลัยธรรมศาสตร์ เพื่อแก้ปัญหาการจองห้องแบบเดิมที่ผู้ที่ต้องการ
+    จะจองห้องจำเป็นต้องติดต่อกับทางเจ้าหน้าที่โดยตรง ทางกลุ่มเราได้คิดว่าจะแก้ปัญหาโดยการ สร้างระบบการจองห้องออนไลน์ขึ้นมา
+    ผู้ที่มีความประสงค์จะจองห้องสามารถจองห้องผ่าน internetได้โดยตรง เพื่อเป็นการลดภาระของผู้ที่จองห้องจะได้ไม่ต้องเดินทางมาติดต่อกับเจ้าหน้าที่โดยตรง
+    สามารถจองออนไลน์ได้เลยและช่วยลดภาระงานของเจ้าหน้าที่
+  %h1 รายชื่อสมาชิกกลุ่ม
+  %pre
+    1)นาย อดิเรก มุลทุลี 5310450027
+    2)นาย กิจติพงษ์ อุตสาหะ 5310610729
+    3)นส.จิณห์วรา มุลตองคะ  5310610968
+    4)นส.ณัฏฐ์ชรินทร์  ศิลาพุ่ง 5310612378
+    5)นส.พลอยไพลิน  ศิริมุจลินท์  5310612394
+      
+  %h1 สรุปความต้องการของลูกค้า
+  %pre
+    .grouptext สรุปผลความต้องการของลูกค้า (Summary The Customer Need)
+    หัวข้อที่ทางคณะผู้จัดทำโครงงานเลือกคือ ระบบการจัดการห้องเรียน ( Classroom management )
+    ผู้มีส่วนได้ส่วนเสีย ( Stakeholders ) งานโสตทัศนศึกษา คณะวิศวกรรมศาสตร์ มหาวิยาลัยธรรมศาสตร์และ ผู้มีความประสงค์จะขอใช้บริการการจองห้องเรียน
+    .grouptext ความต้องการของลูกค้า
+    1)งานโสตทัศนศึกษา คณะวิศวกรรมศาสตร์ มหาวิทยาลัยธรรมศาสตร์ ( ผู้ดูแลในส่วนระบบการจองเพื่อขอใช้ห้องเรียน )
+    2)งานโสตฯ ต้องการให้มีระบบการจองห้องเรียนล่วงหน้าผ่านระบบออนไลน์ ซึ่งมีข้อแม้ว่าต้องจองล่วงหน้าตั้งแต่ 2 วันขึ้นไปเท่านั้น เพราะทางเจ้าหน้าที่
+    ไม่สามารถอยู่เพื่อตรวจสอบข้อมูลจากผู้ใช้บริการได้ตลอดเวลา (หากต้องการจองวันต่อวัน ให้มาติดต่อที่งานโสตฯ โดยตรง)
+    3)งานโสตฯ ต้องการให้ระบบสามารถลดหย่อนปัญหาเฉพาะหน้าได้ในกรณีที่มีการจองห้องแล้วไม่ได้ใช้ห้อง หรือทำการย้ายห้องกะทันหัน
+    4)งานโสตฯ ต้องการระบบสำหรับจัดเก็บตารางเรียนในแต่ละเทอม
+    5)ผู้มีความประสงค์จะใช้บริการการจองห้องเรียน ( ผู้ใช้ในส่วนการสืบค้นข้อมูล เวลา ห้องเรียน ฯลฯ ) สามารถตรวจสอบได้ว่า
+    มีห้องเรียนใดบ้างที่ว่างในช่วงวันและเวลาที่ต้องการจอง สามารถจองห้องเรียนล่วงหน้าได้ ในวันและเวลาที่ต้องการ ผ่านระบบออนไลน์
+  %h1 User Stories
+  %pre
+    .grouptext User stories 1:
+    .titletext Feature: Adding new room
+    &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
+    &nbsp;&nbsp;&nbsp;&nbsp;So that I can add new room
+    &nbsp;&nbsp;&nbsp;&nbsp;I want to add new room in my database
+    .titletext Background: Startup with Homepage
+    &nbsp;&nbsp;&nbsp;&nbsp;Given I am at Homepage
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see the tab “สำหรับเจ้าหน้าที่”
+    &nbsp;&nbsp;&nbsp;&nbsp;When I press “สำหรับเจ้าหน้าที่”
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see the tab “กรุณากรอก username และ password”
+    
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill username and password
+    
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press accept
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “เพิ่มห้องใหม่”
+    .titletext Scenario: Add new room data that doesn’t exists in database to database
+    &nbsp;&nbsp;&nbsp;&nbsp;When I press “เพิ่มห้องใหม่ที่ยังไม่มีใน Database”
+    &nbsp;&nbsp;&nbsp;&nbsp;And I fill room data
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press “เพิ่มห้องใหม่”
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “การเพิ่มห้องสำเร็จ”
+    .titletext Scenario: Add room data that exists in database to database
+    &nbsp;&nbsp;&nbsp;&nbsp;When I press “เพิ่มห้องใหม่ที่มีข้อมูลในDatabase”
+    &nbsp;&nbsp;&nbsp;&nbsp;And I fill room data
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press “เพิ่มห้องใหม่”
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “ชื่อห้องนี้มีในDatabaseแล้ว”
+    .grouptext User stories 2:
+    .titletext Feature: Specify time to reserve room in case daily reserve
+    &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
+    &nbsp;&nbsp;&nbsp;&nbsp;So that I can reserve
+    &nbsp;&nbsp;&nbsp;&nbsp;I want to fill data and specify time to reserve to database
+    .titletext Background: Startup with Homepage
+    &nbsp;&nbsp;&nbsp;&nbsp;Given I am at Homepage
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see “link สำหรับเจ้าหน้าที่”
+    &nbsp;&nbsp;&nbsp;&nbsp;When I press “link สำหรับเจ้าหน้าที่”
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see”กรุณากรอก usernameและpassword”
+    &nbsp;&nbsp;&nbsp;&nbsp;When fill username and password
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press accept
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "จองห้อง"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I fill data
+    .titletext Scenario: Fill data and specify appropriate time to reserve room
+    &nbsp;&nbsp;&nbsp;&nbsp;When I specify appropriate time to reserve
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press “จองห้อง”
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “การจองห้องสำเร็จ”
+    .titletext Scenario: Fill data and specify inappropriate time to reserve room
+    
+    &nbsp;&nbsp;&nbsp;&nbsp;When I specify inappropriate time to reserve
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press “จองห้อง”
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “ไม่สามารถจองห้องได้เนื่องจากช่วงเวลาไม่เหมาะสม”
+    .grouptext User stories 3:
+    .titletext Feature: Modify room data
+    &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
+    &nbsp;&nbsp;&nbsp;&nbsp;So that I can modify room data
+    &nbsp;&nbsp;&nbsp;&nbsp;I want to modify room data in database
+    .titletext Scenario: Modify room data in database
+    &nbsp;&nbsp;&nbsp;&nbsp;Given I am at Homepage
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see “link สำหรับเจ้าหน้าที่”
+    &nbsp;&nbsp;&nbsp;&nbsp;When I press “link สำหรับเจ้าหน้าที่”
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see “กรุณากรอก usernameและpassword”
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill username and password
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press accept
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I Should be on “ส่วนของเจ้าหน้าที่”
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “แก้ไขข้อมูลห้อง”
+    &nbsp;&nbsp;&nbsp;&nbsp;When I press “แก้ไขข้อมูลห้อง”
+    &nbsp;&nbsp;&nbsp;&nbsp;And I modify data
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press “ตกลง”
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “การแก้ไขสำเร็จ”
+    .grouptext User stories 4:
+    .titletext Feature: Searching for room status and free time
+    &nbsp;&nbsp;&nbsp;&nbsp;As a user’s
+    &nbsp;&nbsp;&nbsp;&nbsp;So that I can see every room status
+    &nbsp;&nbsp;&nbsp;&nbsp;I want to see room details and free time from database
+    .titletext Scenario: Attempting to specify reservation time
+    &nbsp;&nbsp;&nbsp;&nbsp;Given I am at Homepage
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see “ดูสถานะห้อง”
+    &nbsp;&nbsp;&nbsp;&nbsp;When I press “ดูสถานะห้อง”
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “สถานะห้อง”
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see room status
+    .grouptext User stories 5:
+    .titletext Feature: Requesting for online reservation
+    &nbsp;&nbsp;&nbsp;&nbsp;As a user’s
+    &nbsp;&nbsp;&nbsp;&nbsp;So that I can making an online reservation
+    &nbsp;&nbsp;&nbsp;&nbsp;I want to filling reservation data and sending requests
+    .titletext Background: Startup with Homepage
+    &nbsp;&nbsp;&nbsp;&nbsp;Given I am at Homepage
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see “ปุ่มจองห้อง”
+    &nbsp;&nbsp;&nbsp;&nbsp;When I press “ปุ่มจองห้อง”
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “จองห้อง”
+    .titletext Scenario: Attempting to find available reservation time
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill reservation data and available reservation time
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press “จองห้อง”
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on Homepage
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “การจองห้องสำเร็จ”
+    .titletext Scenario: Attempting to find unavailable reservation time
+    &nbsp;&nbsp;&nbsp;&nbsp;When ฉันกรอกข้อมูลการจองห้องและ”ช่วงเวลาที่ไม่สามารถจองห้องได้”
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press “จองห้อง”
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on Homepage
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “ไม่สามารถจองห้องได้ เพราะช่วงเวลาไม่เหมาะสม”
+  %h1 Lo-Fi Mockups
+  %pre
+    %img{:alt => "lofi2", :src => "/images/lofi2.jpg", :width => "800px;"}/
+    %img{:alt => "lofi2", :src => "/images/lofi.jpg", :width => "800px;"}/
+  %h1 Storyboards
+  %pre
+    %img{:alt => "storyboard2", :src => "/images/storyboard2.jpg", :width => "800px;"}/
+    %img{:alt => "storyboard", :src => "/images/storyboard1.jpg", :width => "800px;"}/
+  %h1 ER-Diagrams
+  %pre
+    %img{:alt => "er diagram1", :src => "/images/er1.jpg", :width => "880px;"}/
