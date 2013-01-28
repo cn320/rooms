@@ -1,0 +1,4689 @@
+tag iteraion1-1
+Tagger: libertyzero <liberty_zero@hotmail.com>
+Date:   Mon Jan 28 07:07:12 2013 +0700
+
+Add Cucumber and link in About Page
+
+commit f0a65645a3cc1d95a42670cfb92ef646d5f8b550
+Author: libertyzero <liberty_zero@hotmail.com>
+Date:   Mon Jan 28 07:05:38 2013 +0700
+
+    Change About Page and Add User Story
+
+diff --git a/app/assets/stylesheets/application.css b/app/assets/stylesheets/application.css
+index dffe861..252ced6 100644
+--- a/app/assets/stylesheets/application.css
++++ b/app/assets/stylesheets/application.css
+@@ -105,6 +105,7 @@ div#contentbox
+ {
+   color: #75071D;
+   font-weight: bold;
++  margin-bottom: 0%;
+ }
+ .grouptext
+ {
+@@ -117,4 +118,8 @@ div#contentbox
+   display:inline;
+   font-weight: bold;
+ }
+-
++.notetext
++{
++  color: maroon;
++  display:inline;
++}
+diff --git a/app/assets/stylesheets/application.css~ b/app/assets/stylesheets/application.css~
+index dffe861..bc27eaa 100644
+--- a/app/assets/stylesheets/application.css~
++++ b/app/assets/stylesheets/application.css~
+@@ -105,6 +105,7 @@ div#contentbox
+ {
+   color: #75071D;
+   font-weight: bold;
++  margin-bottom: 0%
+ }
+ .grouptext
+ {
+@@ -117,4 +118,8 @@ div#contentbox
+   display:inline;
+   font-weight: bold;
+ }
+-
++.notetext
++{
++  color: maroon;
++  display:inline;
++}
+diff --git a/app/views/layouts/application.html.haml b/app/views/layouts/application.html.haml
+index 5276f99..ef0f75d 100644
+--- a/app/views/layouts/application.html.haml
++++ b/app/views/layouts/application.html.haml
+@@ -14,7 +14,7 @@
+       %br/
+       %p=link_to 'About', static_pages_about_path
+       %br/
+-      %p=link_to 'จองห้อง', rooms_path
++      %p=link_to 'จองห้อง', rooms_reserve_path
+       %br/
+       %p=link_to 'สำหรับเจ้าหน้าที่', rooms_login_path
+     #contentbox
+diff --git a/app/views/layouts/application.html.haml~ b/app/views/layouts/application.html.haml~
+index 634b868..5276f99 100644
+--- a/app/views/layouts/application.html.haml~
++++ b/app/views/layouts/application.html.haml~
+@@ -16,7 +16,7 @@
+       %br/
+       %p=link_to 'จองห้อง', rooms_path
+       %br/
+-      %p=link_to 'สำหรับเจ้าหน้าที่', rooms_path
++      %p=link_to 'สำหรับเจ้าหน้าที่', rooms_login_path
+     #contentbox
+       - if flash[:notice]
+         #notice.message= flash[:notice]
+diff --git a/app/views/rooms/reserve.html.haml b/app/views/rooms/reserve.html.haml
+index 081d5df..6db53ec 100644
+--- a/app/views/rooms/reserve.html.haml
++++ b/app/views/rooms/reserve.html.haml
+@@ -1,2 +1,8 @@
+ %h1 Rooms#reserve
+-%p Find me in app/views/rooms/reserve.html.haml
+\ No newline at end of file
++%p Find me in app/views/rooms/reserve.html.haml
++
++= form_tag rooms_staff_path, :method => :reserve do
++
++  
++
++  = submit_tag 'จองห้อง'
+diff --git a/app/views/rooms/reserve.html.haml~ b/app/views/rooms/reserve.html.haml~
+new file mode 100644
+index 0000000..6db53ec
+--- /dev/null
++++ b/app/views/rooms/reserve.html.haml~
+@@ -0,0 +1,8 @@
++%h1 Rooms#reserve
++%p Find me in app/views/rooms/reserve.html.haml
++
++= form_tag rooms_staff_path, :method => :reserve do
++
++  
++
++  = submit_tag 'จองห้อง'
+diff --git a/app/views/rooms/staff.html.haml b/app/views/rooms/staff.html.haml
+index 5d7dfdc..f8f808a 100644
+--- a/app/views/rooms/staff.html.haml
++++ b/app/views/rooms/staff.html.haml
+@@ -3,6 +3,6 @@
+ 
+ = link_to 'เพิ่มห้องใหม่', rooms_new_room_path
+ 
+-= link_to 'จองห้องว่าง', rooms_path
++= link_to 'จองห้องว่าง', rooms_reserve_path
+ 
+ 
+diff --git a/app/views/rooms/staff.html.haml~ b/app/views/rooms/staff.html.haml~
+new file mode 100644
+index 0000000..5d7dfdc
+--- /dev/null
++++ b/app/views/rooms/staff.html.haml~
+@@ -0,0 +1,8 @@
++%h1 Rooms#staff
++%p Find me in app/views/rooms/staff.html.haml
++
++= link_to 'เพิ่มห้องใหม่', rooms_new_room_path
++
++= link_to 'จองห้องว่าง', rooms_path
++
++
+diff --git a/app/views/static_pages/about.html.haml b/app/views/static_pages/about.html.haml
+old mode 100644
+new mode 100755
+index cfabef7..c84d62f
+--- a/app/views/static_pages/about.html.haml
++++ b/app/views/static_pages/about.html.haml
+@@ -2,6 +2,11 @@
+   %h1 รายละเอียดโครงงาน
+   %pre
+     %p ชื่อโครงงาน: ระบบจัดการห้องเรียนออนไลน์
++    =link_to 'เข้าสู่เว็บไซต์โปรเจค pivotaltracker', 'https://www.pivotaltracker.com/projects/731951'
++
++    =link_to 'Github Repo URL', 'https://github.com/libertyzero/project_sw.git'
++    /\
++    
+     รายละเอียดโครงงาน
+     กลุ่มของเราได้ทำเรื่องเกี่ยวกับการจองห้องออนไลน์ของตึกคณะวิศวกรรมศาสตร์ มหาวิทยาลัยธรรมศาสตร์ เพื่อแก้ปัญหาการจองห้องแบบเดิมที่ผู้ที่ต้องการ
+     จะจองห้องจำเป็นต้องติดต่อกับทางเจ้าหน้าที่โดยตรง ทางกลุ่มเราได้คิดว่าจะแก้ปัญหาโดยการ สร้างระบบการจองห้องออนไลน์ขึ้นมา
+@@ -30,111 +35,158 @@
+     มีห้องเรียนใดบ้างที่ว่างในช่วงวันและเวลาที่ต้องการจอง สามารถจองห้องเรียนล่วงหน้าได้ ในวันและเวลาที่ต้องการ ผ่านระบบออนไลน์
+   %h1 User Stories
+   %pre
++
++
+     .grouptext User stories 1:
++    
++    .notetext หมายเหตุ เพิ่มเติมจาก Iteration0 โดยดึงมาจาก User Story ของ Staff ที่มีการLog in เข้าระบบ
++
++    .titletext Feature: Log In to the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
++    &nbsp;&nbsp;&nbsp;&nbsp;So that I can log in to the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;I want to log in to the staff page with username and password
++
++    .titletext Background: Startup with Homepage
++    &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms_users exist:
++    &nbsp;&nbsp;&nbsp;&nbsp;[ username     | password ]
++    &nbsp;&nbsp;&nbsp;&nbsp;[ naideekub    | honhonhon ] 
++    &nbsp;&nbsp;&nbsp;&nbsp;[ koonnongchay | milkwarm ] 
++    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the home page
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "สำหรับเจ้าหน้าที่"
++    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "สำหรับเจ้าหน้าที่"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the log in page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "กรุณากรอก username และ password"
++  
++    .titletext Scenario: Can Log In to the staff page (Happy Path)
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Username" with "naideekub"
++    &nbsp;&nbsp;&nbsp;&nbsp;And I fill in "Password" with "honhonhon"
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "Log In"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the staff page
++
++    .titletext Scenario: Can not Log In to the staff page (Sad Path)
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Username" with "username"
++    &nbsp;&nbsp;&nbsp;&nbsp;And I fill in "Password" with "password"
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "Log In"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the log in page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "ไม่สามารถเข้าสู่ระบบได้"
++
++
++    .grouptext User stories 2:
++
++    .notetext หมายเหตุ ตัดช่วงการ Log in ไปอยู่ใน User stories 1 และปรับเปลี่ยนข้อความในScenarioในสอดคล้องกับCucumber
++
+     .titletext Feature: Adding new room
+     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
+     &nbsp;&nbsp;&nbsp;&nbsp;So that I can add new room
+     &nbsp;&nbsp;&nbsp;&nbsp;I want to add new room in my database
+-    .titletext Background: Startup with Homepage
+-    &nbsp;&nbsp;&nbsp;&nbsp;Given I am at Homepage
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see the tab “สำหรับเจ้าหน้าที่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;When I press “สำหรับเจ้าหน้าที่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see the tab “กรุณากรอก username และ password”
+-    
+-    &nbsp;&nbsp;&nbsp;&nbsp;When I fill username and password
+-    
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I press accept
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “เพิ่มห้องใหม่”
++
++    .titletext Background: Startup with Staffpage
++    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "เพิ่มห้องใหม่"
++    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "เพิ่มห้องใหม่"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the new room page
++
+     .titletext Scenario: Add new room data that doesn’t exists in database to database
+-    &nbsp;&nbsp;&nbsp;&nbsp;When I press “เพิ่มห้องใหม่ที่ยังไม่มีใน Database”
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I fill room data
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I press “เพิ่มห้องใหม่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “การเพิ่มห้องสำเร็จ”
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill data into the form
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "เพิ่มห้องใหม่"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "การเพิ่มห้องสำเร็จ"
++
+     .titletext Scenario: Add room data that exists in database to database
+-    &nbsp;&nbsp;&nbsp;&nbsp;When I press “เพิ่มห้องใหม่ที่มีข้อมูลในDatabase”
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I fill room data
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I press “เพิ่มห้องใหม่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “ชื่อห้องนี้มีในDatabaseแล้ว”
+-    .grouptext User stories 2:
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill data into the form
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "เพิ่มห้องใหม่"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the new room page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "ชื่อห้องนี้มีในDatabaseแล้ว"
++
++    .grouptext User stories 3:
++   
++    .notetext หมายเหตุ ตัดช่วงการ Log in ไปอยู่ใน User stories 1 และปรับเปลี่ยนข้อความในScenarioในสอดคล้องกับCucumber
++
+     .titletext Feature: Specify time to reserve room in case daily reserve
+     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
+-    &nbsp;&nbsp;&nbsp;&nbsp;So that I can reserve
+-    &nbsp;&nbsp;&nbsp;&nbsp;I want to fill data and specify time to reserve to database
+-    .titletext Background: Startup with Homepage
+-    &nbsp;&nbsp;&nbsp;&nbsp;Given I am at Homepage
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see “link สำหรับเจ้าหน้าที่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;When I press “link สำหรับเจ้าหน้าที่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see”กรุณากรอก usernameและpassword”
+-    &nbsp;&nbsp;&nbsp;&nbsp;When fill username and password
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I press accept
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "จองห้อง"
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I fill data
++    &nbsp;&nbsp;&nbsp;&nbsp;So that I can reserve room
++    &nbsp;&nbsp;&nbsp;&nbsp;I want to fill data and specify time to reserve room to database
++
++    .titletext Background: Startup with Staffpage
++    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "จองห้องว่าง"
++    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "จองห้องว่าง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve page
++
+     .titletext Scenario: Fill data and specify appropriate time to reserve room
+-    &nbsp;&nbsp;&nbsp;&nbsp;When I specify appropriate time to reserve
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I press “จองห้อง”
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “การจองห้องสำเร็จ”
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill data into the form
++    &nbsp;&nbsp;&nbsp;&nbsp;And I specify appropriate time to reserve
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "การจองห้องสำเร็จ"
++
+     .titletext Scenario: Fill data and specify inappropriate time to reserve room
+-    
+-    &nbsp;&nbsp;&nbsp;&nbsp;When I specify inappropriate time to reserve
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I press “จองห้อง”
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “ไม่สามารถจองห้องได้เนื่องจากช่วงเวลาไม่เหมาะสม”
+-    .grouptext User stories 3:
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill data into the form
++    &nbsp;&nbsp;&nbsp;&nbsp;And I specify inappropriate time to reserve
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "ไม่สามารถจองห้องได้เนื่องจากช่วงเวลาไม่เหมาะสม"
++
++    .grouptext User stories 4:
++
++    .notetext หมายเหตุ ตัดช่วงการ Log in ไปอยู่ใน User stories 1 และปรับเปลี่ยนข้อความในScenarioในสอดคล้องกับCucumber
++
+     .titletext Feature: Modify room data
+     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
+     &nbsp;&nbsp;&nbsp;&nbsp;So that I can modify room data
+     &nbsp;&nbsp;&nbsp;&nbsp;I want to modify room data in database
++
+     .titletext Scenario: Modify room data in database
+-    &nbsp;&nbsp;&nbsp;&nbsp;Given I am at Homepage
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see “link สำหรับเจ้าหน้าที่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;When I press “link สำหรับเจ้าหน้าที่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see “กรุณากรอก usernameและpassword”
+-    &nbsp;&nbsp;&nbsp;&nbsp;When I fill username and password
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I press accept
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I Should be on “ส่วนของเจ้าหน้าที่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “แก้ไขข้อมูลห้อง”
+-    &nbsp;&nbsp;&nbsp;&nbsp;When I press “แก้ไขข้อมูลห้อง”
++    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "แก้ไขข้อมูลห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "แก้ไขข้อมูลห้อง"
+     &nbsp;&nbsp;&nbsp;&nbsp;And I modify data
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I press “ตกลง”
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “การแก้ไขสำเร็จ”
+-    .grouptext User stories 4:
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "ตกลง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "การแก้ไขสำเร็จ"
++
++    .grouptext User stories 5:
++
++    .notetext หมายเหตุ ปรับเปลี่ยนข้อความในScenarioในสอดคล้องกับCucumber
++
+     .titletext Feature: Searching for room status and free time
+     &nbsp;&nbsp;&nbsp;&nbsp;As a user’s
+     &nbsp;&nbsp;&nbsp;&nbsp;So that I can see every room status
+     &nbsp;&nbsp;&nbsp;&nbsp;I want to see room details and free time from database
++
+     .titletext Scenario: Attempting to specify reservation time
+-    &nbsp;&nbsp;&nbsp;&nbsp;Given I am at Homepage
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see “ดูสถานะห้อง”
+-    &nbsp;&nbsp;&nbsp;&nbsp;When I press “ดูสถานะห้อง”
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “สถานะห้อง”
++    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the home page
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "ดูสถานะห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูสถานะห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the room status page
+     &nbsp;&nbsp;&nbsp;&nbsp;And I should see room status
+-    .grouptext User stories 5:
++
++    .grouptext User stories 6:
++
++    .notetext หมายเหตุ ปรับเปลี่ยนข้อความในScenarioในสอดคล้องกับCucumber
++
+     .titletext Feature: Requesting for online reservation
+     &nbsp;&nbsp;&nbsp;&nbsp;As a user’s
+     &nbsp;&nbsp;&nbsp;&nbsp;So that I can making an online reservation
+     &nbsp;&nbsp;&nbsp;&nbsp;I want to filling reservation data and sending requests
++
+     .titletext Background: Startup with Homepage
+-    &nbsp;&nbsp;&nbsp;&nbsp;Given I am at Homepage
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see “ปุ่มจองห้อง”
+-    &nbsp;&nbsp;&nbsp;&nbsp;When I press “ปุ่มจองห้อง”
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “จองห้อง”
++    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the home page
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "จองห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "จองห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the page
++
+     .titletext Scenario: Attempting to find available reservation time
+     &nbsp;&nbsp;&nbsp;&nbsp;When I fill reservation data and available reservation time
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I press “จองห้อง”
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on Homepage
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “การจองห้องสำเร็จ”
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the home page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "การจองห้องสำเร็จ"
++
+     .titletext Scenario: Attempting to find unavailable reservation time
+-    &nbsp;&nbsp;&nbsp;&nbsp;When ฉันกรอกข้อมูลการจองห้องและ”ช่วงเวลาที่ไม่สามารถจองห้องได้”
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I press “จองห้อง”
+-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on Homepage
+-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “ไม่สามารถจองห้องได้ เพราะช่วงเวลาไม่เหมาะสม”
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill reservation data and unavailable reservation time
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the home page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “ไม่สามารถจองห้องได้ เพราะช่วงเวลาไม่เหมาะสม” เพราะช่วงเวลาไม่เหมาะสม”
+   %h1 Lo-Fi Mockups
+   %pre
+     %img{:alt => "lofi2", :src => "/images/lofi2.jpg", :width => "800px;"}/
+@@ -146,3 +198,5 @@
+   %h1 ER-Diagrams
+   %pre
+     %img{:alt => "er diagram1", :src => "/images/er1.jpg", :width => "880px;"}/
++
++
+diff --git a/app/views/static_pages/about.html.haml~ b/app/views/static_pages/about.html.haml~
+new file mode 100755
+index 0000000..6d0c1ff
+--- /dev/null
++++ b/app/views/static_pages/about.html.haml~
+@@ -0,0 +1,203 @@
++#content
++  %h1 รายละเอียดโครงงาน
++  %pre
++    %p ชื่อโครงงาน: ระบบจัดการห้องเรียนออนไลน์
++    =link_to 'เข้าสู่เว็บไซต์โปรเจค pivotaltracker', 'https://www.pivotaltracker.com/projects/731951'
++
++    =link_to 'Github Repo URL', 'https://github.com/libertyzero/project_sw.git'
++    /\
++    
++    รายละเอียดโครงงาน
++    กลุ่มของเราได้ทำเรื่องเกี่ยวกับการจองห้องออนไลน์ของตึกคณะวิศวกรรมศาสตร์ มหาวิทยาลัยธรรมศาสตร์ เพื่อแก้ปัญหาการจองห้องแบบเดิมที่ผู้ที่ต้องการ
++    จะจองห้องจำเป็นต้องติดต่อกับทางเจ้าหน้าที่โดยตรง ทางกลุ่มเราได้คิดว่าจะแก้ปัญหาโดยการ สร้างระบบการจองห้องออนไลน์ขึ้นมา
++    ผู้ที่มีความประสงค์จะจองห้องสามารถจองห้องผ่าน internetได้โดยตรง เพื่อเป็นการลดภาระของผู้ที่จองห้องจะได้ไม่ต้องเดินทางมาติดต่อกับเจ้าหน้าที่โดยตรง
++    สามารถจองออนไลน์ได้เลยและช่วยลดภาระงานของเจ้าหน้าที่
++  %h1 รายชื่อสมาชิกกลุ่ม
++  %pre
++    1)นาย อดิเรก มุลทุลี 5310450027
++    2)นาย กิจติพงษ์ อุตสาหะ 5310610729
++    3)นส.จิณห์วรา มุลตองคะ  5310610968
++    4)นส.ณัฏฐ์ชรินทร์  ศิลาพุ่ง 5310612378
++    5)นส.พลอยไพลิน  ศิริมุจลินท์  5310612394
++      
++  %h1 สรุปความต้องการของลูกค้า
++  %pre
++    .grouptext สรุปผลความต้องการของลูกค้า (Summary The Customer Need)
++    หัวข้อที่ทางคณะผู้จัดทำโครงงานเลือกคือ ระบบการจัดการห้องเรียน ( Classroom management )
++    ผู้มีส่วนได้ส่วนเสีย ( Stakeholders ) งานโสตทัศนศึกษา คณะวิศวกรรมศาสตร์ มหาวิยาลัยธรรมศาสตร์และ ผู้มีความประสงค์จะขอใช้บริการการจองห้องเรียน
++    .grouptext ความต้องการของลูกค้า
++    1)งานโสตทัศนศึกษา คณะวิศวกรรมศาสตร์ มหาวิทยาลัยธรรมศาสตร์ ( ผู้ดูแลในส่วนระบบการจองเพื่อขอใช้ห้องเรียน )
++    2)งานโสตฯ ต้องการให้มีระบบการจองห้องเรียนล่วงหน้าผ่านระบบออนไลน์ ซึ่งมีข้อแม้ว่าต้องจองล่วงหน้าตั้งแต่ 2 วันขึ้นไปเท่านั้น เพราะทางเจ้าหน้าที่
++    ไม่สามารถอยู่เพื่อตรวจสอบข้อมูลจากผู้ใช้บริการได้ตลอดเวลา (หากต้องการจองวันต่อวัน ให้มาติดต่อที่งานโสตฯ โดยตรง)
++    3)งานโสตฯ ต้องการให้ระบบสามารถลดหย่อนปัญหาเฉพาะหน้าได้ในกรณีที่มีการจองห้องแล้วไม่ได้ใช้ห้อง หรือทำการย้ายห้องกะทันหัน
++    4)งานโสตฯ ต้องการระบบสำหรับจัดเก็บตารางเรียนในแต่ละเทอม
++    5)ผู้มีความประสงค์จะใช้บริการการจองห้องเรียน ( ผู้ใช้ในส่วนการสืบค้นข้อมูล เวลา ห้องเรียน ฯลฯ ) สามารถตรวจสอบได้ว่า
++    มีห้องเรียนใดบ้างที่ว่างในช่วงวันและเวลาที่ต้องการจอง สามารถจองห้องเรียนล่วงหน้าได้ ในวันและเวลาที่ต้องการ ผ่านระบบออนไลน์
++  %h1 User Stories
++  %pre
++
++
++    .grouptext User stories 1:
++    
++    .notetext หมายเหตุ เพิ่มเติมจาก Iteration0 โดยดึงมาจาก User Story ของ Staff ที่มีการLog in เข้าระบบ
++
++    .titletext Feature: Log In to the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
++    &nbsp;&nbsp;&nbsp;&nbsp;So that I can log in to the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;I want to log in to the staff page with username and password
++
++    .titletext Background: Startup with Homepage
++    &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms_users exist:
++    &nbsp;&nbsp;&nbsp;&nbsp;| username     | password |
++    %br/
++    &nbsp;&nbsp;&nbsp;&nbsp;| naideekub    | honhonhon | 
++    &nbsp;&nbsp;&nbsp;&nbsp;| koonnongchay | milkwarm | 
++    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the home page
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "สำหรับเจ้าหน้าที่"
++    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "สำหรับเจ้าหน้าที่"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the log in page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "กรุณากรอก username และ password"
++  
++    .titletext Scenario: Can Log In to the staff page (Happy Path)
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Username" with "naideekub"
++    &nbsp;&nbsp;&nbsp;&nbsp;And I fill in "Password" with "honhonhon"
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "Log In"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the staff page
++
++    .titletext Scenario: Can not Log In to the staff page (Sad Path)
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Username" with "username"
++    &nbsp;&nbsp;&nbsp;&nbsp;And I fill in "Password" with "password"
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "Log In"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the log in page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "ไม่สามารถเข้าสู่ระบบได้"
++
++
++    .grouptext User stories 2:
++
++    .notetext หมายเหตุ ตัดช่วงการ Log in ไปอยู่ใน User stories 1 และปรับเปลี่ยนข้อความในScenarioในสอดคล้องกับCucumber
++
++    .titletext Feature: Adding new room
++    &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
++    &nbsp;&nbsp;&nbsp;&nbsp;So that I can add new room
++    &nbsp;&nbsp;&nbsp;&nbsp;I want to add new room in my database
++
++    .titletext Background: Startup with Staffpage
++    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "เพิ่มห้องใหม่"
++    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "เพิ่มห้องใหม่"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the new room page
++
++    .titletext Scenario: Add new room data that doesn’t exists in database to database
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill data into the form
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "เพิ่มห้องใหม่"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "การเพิ่มห้องสำเร็จ"
++
++    .titletext Scenario: Add room data that exists in database to database
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill data into the form
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "เพิ่มห้องใหม่"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the new room page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "ชื่อห้องนี้มีในDatabaseแล้ว"
++
++    .grouptext User stories 3:
++   
++    .notetext หมายเหตุ ตัดช่วงการ Log in ไปอยู่ใน User stories 1 และปรับเปลี่ยนข้อความในScenarioในสอดคล้องกับCucumber
++
++    .titletext Feature: Specify time to reserve room in case daily reserve
++    &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
++    &nbsp;&nbsp;&nbsp;&nbsp;So that I can reserve room
++    &nbsp;&nbsp;&nbsp;&nbsp;I want to fill data and specify time to reserve room to database
++
++    .titletext Background: Startup with Staffpage
++    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "จองห้องว่าง"
++    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "จองห้องว่าง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve page
++
++    .titletext Scenario: Fill data and specify appropriate time to reserve room
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill data into the form
++    &nbsp;&nbsp;&nbsp;&nbsp;And I specify appropriate time to reserve
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "การจองห้องสำเร็จ"
++
++    .titletext Scenario: Fill data and specify inappropriate time to reserve room
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill data into the form
++    &nbsp;&nbsp;&nbsp;&nbsp;And I specify inappropriate time to reserve
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "ไม่สามารถจองห้องได้เนื่องจากช่วงเวลาไม่เหมาะสม"
++
++    .grouptext User stories 4:
++
++    .notetext หมายเหตุ ตัดช่วงการ Log in ไปอยู่ใน User stories 1 และปรับเปลี่ยนข้อความในScenarioในสอดคล้องกับCucumber
++
++    .titletext Feature: Modify room data
++    &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
++    &nbsp;&nbsp;&nbsp;&nbsp;So that I can modify room data
++    &nbsp;&nbsp;&nbsp;&nbsp;I want to modify room data in database
++
++    .titletext Scenario: Modify room data in database
++    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "แก้ไขข้อมูลห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "แก้ไขข้อมูลห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;And I modify data
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "ตกลง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the staff page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "การแก้ไขสำเร็จ"
++
++    .grouptext User stories 5:
++
++    .notetext หมายเหตุ ปรับเปลี่ยนข้อความในScenarioในสอดคล้องกับCucumber
++
++    .titletext Feature: Searching for room status and free time
++    &nbsp;&nbsp;&nbsp;&nbsp;As a user’s
++    &nbsp;&nbsp;&nbsp;&nbsp;So that I can see every room status
++    &nbsp;&nbsp;&nbsp;&nbsp;I want to see room details and free time from database
++
++    .titletext Scenario: Attempting to specify reservation time
++    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the home page
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "ดูสถานะห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูสถานะห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the room status page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see room status
++
++    .grouptext User stories 6:
++
++    .notetext หมายเหตุ ปรับเปลี่ยนข้อความในScenarioในสอดคล้องกับCucumber
++
++    .titletext Feature: Requesting for online reservation
++    &nbsp;&nbsp;&nbsp;&nbsp;As a user’s
++    &nbsp;&nbsp;&nbsp;&nbsp;So that I can making an online reservation
++    &nbsp;&nbsp;&nbsp;&nbsp;I want to filling reservation data and sending requests
++
++    .titletext Background: Startup with Homepage
++    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the home page
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "จองห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "จองห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the page
++
++    .titletext Scenario: Attempting to find available reservation time
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill reservation data and available reservation time
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the home page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "การจองห้องสำเร็จ"
++
++    .titletext Scenario: Attempting to find unavailable reservation time
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill reservation data and unavailable reservation time
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the home page
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “ไม่สามารถจองห้องได้ เพราะช่วงเวลาไม่เหมาะสม” เพราะช่วงเวลาไม่เหมาะสม”
++  %h1 Lo-Fi Mockups
++  %pre
++    %img{:alt => "lofi2", :src => "/images/lofi2.jpg", :width => "800px;"}/
++    %img{:alt => "lofi2", :src => "/images/lofi.jpg", :width => "800px;"}/
++  %h1 Storyboards
++  %pre
++    %img{:alt => "storyboard2", :src => "/images/storyboard2.jpg", :width => "800px;"}/
++    %img{:alt => "storyboard", :src => "/images/storyboard1.jpg", :width => "800px;"}/
++  %h1 ER-Diagrams
++  %pre
++    %img{:alt => "er diagram1", :src => "/images/er1.jpg", :width => "880px;"}/
++
++
+diff --git a/config/routes.rb b/config/routes.rb
+index 327dfc9..50ffc33 100644
+--- a/config/routes.rb
++++ b/config/routes.rb
+@@ -2,16 +2,17 @@ RoomManagement::Application.routes.draw do
+   get "rooms/reserve"
+ 
+   get "rooms/login"
+-
++  post "rooms/login"
+   get "rooms/staff"
+-
++  post "rooms/staff"
+   get "rooms/new_room"
+-
++  post "rooms/new_room"
+   get "static_pages/about"
+ 
+   resources :rooms
+ 
+   match '/' => 'static_pages#about', :as => :about
++  #match "/movies/same_director/:id" => "movies#same_director" , :as=>:same_director , :via=>:get
+   # The priority is based upon order of creation:
+   # first created -> highest priority.
+ 
+diff --git a/config/routes.rb~ b/config/routes.rb~
+index 877a4ef..5218013 100644
+--- a/config/routes.rb~
++++ b/config/routes.rb~
+@@ -1,9 +1,18 @@
+ RoomManagement::Application.routes.draw do
++  get "rooms/reserve"
++
++  get "rooms/login"
++
++  get "rooms/staff"
++
++  get "rooms/new_room"
++
+   get "static_pages/about"
+ 
+   resources :rooms
+ 
+   match '/' => 'static_pages#about', :as => :about
++  #match "/movies/same_director/:id" => "movies#same_director" , :as=>:same_director , :via=>:get
+   # The priority is based upon order of creation:
+   # first created -> highest priority.
+ 
+diff --git a/db/schema.rb b/db/schema.rb
+new file mode 100644
+index 0000000..a57e24f
+--- /dev/null
++++ b/db/schema.rb
+@@ -0,0 +1,21 @@
++# encoding: UTF-8
++# This file is auto-generated from the current state of the database. Instead
++# of editing this file, please use the migrations feature of Active Record to
++# incrementally modify your database, and then regenerate this schema definition.
++#
++# Note that this schema.rb definition is the authoritative source for your
++# database schema. If you need to create the application database on another
++# system, you should be using db:schema:load, not running all the migrations
++# from scratch. The latter is a flawed and unsustainable approach (the more migrations
++# you'll amass, the slower it'll run and the greater likelihood for issues).
++#
++# It's strongly recommended to check this file into your version control system.
++
++ActiveRecord::Schema.define(:version => 20130127000917) do
++
++  create_table "rooms", :force => true do |t|
++    t.datetime "created_at", :null => false
++    t.datetime "updated_at", :null => false
++  end
++
++end
+diff --git a/features/staff_user_story01.feature b/features/staff_user_story01.feature
+old mode 100644
+new mode 100755
+index 474922a..6ea4708
+--- a/features/staff_user_story01.feature
++++ b/features/staff_user_story01.feature
+@@ -14,11 +14,9 @@ Background: Startup with Homepage
+   Then I should see "สำหรับเจ้าหน้าที่"
+   When I follow "สำหรับเจ้าหน้าที่"
+   Then I should be on the log in page
+-
++  And I should see "กรุณากรอก username และ password"
+   
+ Scenario: Can Log In to the staff page (Happy Path)
+-  When I am on the log in page
+-  And I should see "กรุณากรอก username และ password"
+   When I fill in "Username" with "naideekub"
+   And I fill in "Password" with "honhonhon"
+   And I press "Log In"
+@@ -26,8 +24,6 @@ Scenario: Can Log In to the staff page (Happy Path)
+ 
+ 
+ Scenario: Can not Log In to the staff page (Sad Path)
+-  When I am on the log in page
+-  And I should see "กรุณากรอก username และ password"
+   When I fill in "Username" with "username"
+   And I fill in "Password" with "password"
+   And I press "Log In"
+diff --git a/features/staff_user_story02.feature b/features/staff_user_story02.feature
+old mode 100644
+new mode 100755
+index 423e284..1f9f5b3
+--- a/features/staff_user_story02.feature
++++ b/features/staff_user_story02.feature
+@@ -4,23 +4,21 @@ Feature: Adding new room
+   So that I can add new room
+   I want to add new room in my database
+ 
+-Background: Startup with Homepage
++Background: Startup with Staffpage
+ 
+   Given I am on the staff page
+   And I should see "เพิ่มห้องใหม่"
+-  
+-Scenario: Add new room data that doesn’t exists in database to database
+   When I follow "เพิ่มห้องใหม่"
+   Then I should be on the new room page
++  
++Scenario: Add new room data that doesn’t exists in database to database
+   When I fill data into the form
+   And I press "เพิ่มห้องใหม่"
+   Then I should be on the staff page
+   And I should see "การเพิ่มห้องสำเร็จ"
+ 
+ Scenario: Add room data that exists in database to database
+-  When I follow "เพิ่มห้องใหม่"
+-  Then I should be on the new room page
+-  And I fill data into the form
++  When I fill data into the form
+   And I press "เพิ่มห้องใหม่"
+   Then I should be on the new room page
+   And I should see "ชื่อห้องนี้มีในDatabaseแล้ว"
+diff --git a/features/staff_user_story03.feature b/features/staff_user_story03.feature
+old mode 100644
+new mode 100755
+index 62c3cad..ba05acc
+--- a/features/staff_user_story03.feature
++++ b/features/staff_user_story03.feature
+@@ -1,15 +1,15 @@
+ Feature: Specify time to reserve room in case daily reserve
+ 
+   As an audiovisual education, faculty of Engineering, Thammasat university
+-  So that I can reserve
+-  I want to fill data and specify time to reserve to database
++  So that I can reserve room
++  I want to fill data and specify time to reserve room to database
+ 
+-Background: Startup with Homepage
++Background: Startup with Staffpage
+ 
+   Given I am on the staff page
+   And I should see "จองห้องว่าง"
+   When I follow "จองห้องว่าง"
+-  Then I should be on the page
++  Then I should be on the reserve page
+ 
+ Scenario: Fill data and specify appropriate time to reserve room
+   When I fill data into the form
+@@ -22,7 +22,7 @@ Scenario: Fill data and specify inappropriate time to reserve room
+   When I fill data into the form
+   And I specify inappropriate time to reserve
+   And I press "จองห้อง"
+-  Then I should be on the page
++  Then I should be on the reserve page
+   And I should see "ไม่สามารถจองห้องได้เนื่องจากช่วงเวลาไม่เหมาะสม"
+ 
+ 
+diff --git a/features/staff_user_story03.feature~ b/features/staff_user_story03.feature~
+new file mode 100755
+index 0000000..bd285ae
+--- /dev/null
++++ b/features/staff_user_story03.feature~
+@@ -0,0 +1,30 @@
++Feature: Specify time to reserve room in case daily reserve
++
++  As an audiovisual education, faculty of Engineering, Thammasat university
++  So that I can reserve room
++  I want to fill data and specify time to reserve room to database
++
++Background: Startup with Staffpage
++
++  Given I am on the staff page
++  And I should see "จองห้องว่าง"
++  When I follow "จองห้องว่าง"
++  Then I should be on the reserve page
++
++Scenario: Fill data and specify appropriate time to reserve room
++  Given I am on the reserve page
++  When I fill data into the form
++  And I specify appropriate time to reserve
++  And I press "จองห้อง"
++  Then I should be on the staff page
++  And I should see "การจองห้องสำเร็จ"
++
++Scenario: Fill data and specify inappropriate time to reserve room
++  When I fill data into the form
++  And I specify inappropriate time to reserve
++  And I press "จองห้อง"
++  Then I should be on the reserve page
++  And I should see "ไม่สามารถจองห้องได้เนื่องจากช่วงเวลาไม่เหมาะสม"
++
++
++
+diff --git a/features/staff_user_story04.feature b/features/staff_user_story04.feature
+old mode 100644
+new mode 100755
+diff --git a/features/step_definitions/room_steps.rb b/features/step_definitions/room_steps.rb
+index c494d51..922a7ed 100644
+--- a/features/step_definitions/room_steps.rb
++++ b/features/step_definitions/room_steps.rb
+@@ -47,3 +47,6 @@ end
+ 
+ Then /I modify data/ do
+ end
++
++Then /I fill reservation data and (un)?available reservation time/ do |arg|
++end
+diff --git a/features/step_definitions/room_steps.rb~ b/features/step_definitions/room_steps.rb~
+new file mode 100644
+index 0000000..c494d51
+--- /dev/null
++++ b/features/step_definitions/room_steps.rb~
+@@ -0,0 +1,49 @@
++# Add a declarative step here for populating the DB with movies.
++
++Given /the following rooms_users exist/ do |rooms_table|
++  rooms_table.hashes.each do |movie|
++    # each returned element will be a hash whose key is the table header.
++    # you should arrange to add that movie to the database here.
++  end
++  #flunk "Unimplemented" # remove when done
++end
++
++Given /the following rooms_table exist/ do |rooms_table|
++  rooms_table.hashes.each do |movie|
++  end
++end
++# Make sure that one string (regexp) occurs before or after another one
++#   on the same page
++
++Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
++  #  ensure that that e1 occurs before e2.
++  #  page.body is the entire content of the page as a string.
++  #flunk "Unimplemented" # remove when done
++end
++
++# Make it easier to express checking or unchecking several boxes at once
++#  "When I uncheck the following ratings: PG, G, R"
++#  "When I check the following ratings: G"
++
++When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
++  # HINT: use String#split to split up the rating_list, then
++  #   iterate over the ratings and reuse the "When I check..." or
++  #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
++end
++
++Then /I should see all the movies/ do
++  # use page.body
++  page.body
++  rows = str_html.scan(/<tr>/).size
++  rows.should == 11
++  
++end
++
++Then /I fill data into the form/ do
++end
++
++Then /I specify (in)?appropriate time to reserve/ do |arg|
++end
++
++Then /I modify data/ do
++end
+diff --git a/features/support/paths.rb b/features/support/paths.rb
+index a5aad26..9130bdb 100644
+--- a/features/support/paths.rb
++++ b/features/support/paths.rb
+@@ -21,6 +21,8 @@ module NavigationHelpers
+       rooms_staff_path
+     when /^the new room page$/
+       rooms_new_room_path
++    when /^the reserve page$/
++      rooms_reserve_path
+ 
+     # Add more mappings here.
+     # Here is an example that pulls values out of the Regexp:
+diff --git a/features/support/paths.rb~ b/features/support/paths.rb~
+index 290543c..a5aad26 100644
+--- a/features/support/paths.rb~
++++ b/features/support/paths.rb~
+@@ -13,8 +13,14 @@ module NavigationHelpers
+   def path_to(page_name)
+     case page_name
+ 
+-    when /^the home\s?page$/
+-      '/'
++    when /^the home page$/
++      rooms_path
++    when /^the log in page$/
++      rooms_login_path
++    when /^the staff page$/
++      rooms_staff_path
++    when /^the new room page$/
++      rooms_new_room_path
+ 
+     # Add more mappings here.
+     # Here is an example that pulls values out of the Regexp:
+diff --git a/features/users_user_story1.feature b/features/users_user_story1.feature
+old mode 100644
+new mode 100755
+diff --git a/features/users_user_story2.feature b/features/users_user_story2.feature
+old mode 100644
+new mode 100755
+index 3e48986..234f42f
+--- a/features/users_user_story2.feature
++++ b/features/users_user_story2.feature
+@@ -7,7 +7,7 @@ Background: Startup with Homepage
+   Given I am on the home page
+   Then I should see "จองห้อง"
+   When I follow "จองห้อง"
+-  Then I should be on the page
++  Then I should be on the reserve page
+ 
+ Scenario: Attempting to find available reservation time
+   When I fill reservation data and available reservation time
+@@ -16,7 +16,7 @@ Scenario: Attempting to find available reservation time
+   And I should see "การจองห้องสำเร็จ"
+ 
+ Scenario: Attempting to find unavailable reservation time
+-  When ฉันกรอกข้อมูลการจองห้องและ”ช่วงเวลาที่ไม่สามารถจองห้องได้”
++  When I fill reservation data and unavailable reservation time
+   And I press "จองห้อง"
+-  Then I should be on the homepage
++  Then I should be on the home page
+   And I should see “ไม่สามารถจองห้องได้ เพราะช่วงเวลาไม่เหมาะสม”
+diff --git a/features/users_user_story2.feature~ b/features/users_user_story2.feature~
+new file mode 100755
+index 0000000..1aea733
+--- /dev/null
++++ b/features/users_user_story2.feature~
+@@ -0,0 +1,22 @@
++Feature: Requesting for online reservation
++  As a user’s
++  So that I can making an online reservation
++  I want to filling reservation data and sending requests
++
++Background: Startup with Homepage
++  Given I am on the home page
++  Then I should see "จองห้อง"
++  When I follow "จองห้อง"
++  Then I should be on the page
++
++Scenario: Attempting to find available reservation time
++  When I fill reservation data and available reservation time
++  And I press "จองห้อง"
++  Then I should be on the home page
++  And I should see "การจองห้องสำเร็จ"
++
++Scenario: Attempting to find unavailable reservation time
++  When I fill reservation data and unavailable reservation time
++  And I press "จองห้อง"
++  Then I should be on the home page
++  And I should see “ไม่สามารถจองห้องได้ เพราะช่วงเวลาไม่เหมาะสม”
+diff --git a/public/images/er1.jpg b/public/images/er1.jpg
+new file mode 100644
+index 0000000..4b1cc20
+Binary files /dev/null and b/public/images/er1.jpg differ
+diff --git a/public/images/lofi.jpg b/public/images/lofi.jpg
+new file mode 100644
+index 0000000..914098c
+Binary files /dev/null and b/public/images/lofi.jpg differ
+diff --git a/public/images/lofi2.jpg b/public/images/lofi2.jpg
+new file mode 100644
+index 0000000..0d6e4b7
+Binary files /dev/null and b/public/images/lofi2.jpg differ
+diff --git a/public/images/rails.png b/public/images/rails.png
+new file mode 100644
+index 0000000..d5edc04
+Binary files /dev/null and b/public/images/rails.png differ
+diff --git a/public/images/storyboard1.jpg b/public/images/storyboard1.jpg
+new file mode 100644
+index 0000000..62e0294
+Binary files /dev/null and b/public/images/storyboard1.jpg differ
+diff --git a/public/images/storyboard2.jpg b/public/images/storyboard2.jpg
+new file mode 100644
+index 0000000..cdc8b55
+Binary files /dev/null and b/public/images/storyboard2.jpg differ
+diff --git a/public/javascripts/.gitkeep b/public/javascripts/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/public/javascripts/application.js b/public/javascripts/application.js
+new file mode 100644
+index 0000000..e69de29
+diff --git a/public/stylesheets/.gitkeep b/public/stylesheets/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/public/stylesheets/general.css b/public/stylesheets/general.css
+new file mode 100644
+index 0000000..3523d43
+--- /dev/null
++++ b/public/stylesheets/general.css
+@@ -0,0 +1,117 @@
++html, body {
++  margin: 0;
++  padding: 0;
++  background: White;
++  color: DarkSlateGrey;
++  font-family: Tahoma, Verdana, sans-serif;
++  font-size: 10pt;
++}
++h2 {
++  margin: 1em 0 .5em;
++  padding: 0;
++  background: transparent;
++  color: maroon;
++  font-size: 1.5em;
++}
++.odd {
++  background: white;
++}
++.even {
++  background: wheat;
++}
++a {
++  background: transparent;
++  color: maroon;
++  text-decoration: underline;
++  font-weight: bold;
++}
++h1 {
++  margin: 0 0 1em;
++  padding: 10px;
++  background-color: orange;
++  color: white;
++  border-bottom: 4px solid gold;
++  font-size: 2em;
++}
++h1 a {
++  text-decoration: none;
++  background: transparent;
++  color: white;
++}
++table#movies {
++  border-collapse: collapse;
++  width: 100%;
++  border-bottom: 2px solid black;
++}
++table#movies th {
++  border: 2px solid black;
++  font-weight: bold;
++}
++table#movies th, table#movies td {
++  padding: 4px;
++  text-align: left;
++}
++em {
++  font-weight: bold;
++  font-style: normal;
++}
++div#body {
++  margin: 0;
++  padding: 0 20px 20px;
++}
++.errorExplanation {
++  padding: 0 10px;
++  margin: 1em 2px;
++  border: 2px solid red;
++  background: #fcb;
++}
++.errorExplanation h2 {
++  font-size: 1.1em;
++  color: red;
++}
++.errorExplanation ul {
++  list-style: disc inside;
++}
++div.fieldWithErrors {
++  display: inline;
++}
++.fieldWithErrors input, .fieldWithErrors textarea, .fieldWithErrors select {
++  background: #fcb;
++}
++#flash_notice {
++  background: rosybrown;
++  margin: 1em 0;
++  padding: 4px;
++}
++#flash_error {
++  background: pink;
++  margin: 1em 0;
++  padding: 4px;
++}
++ul#page_nav {
++  margin: 2em 0 0;
++  padding: 0;
++  list-style: none;
++}
++ul#page_nav li {
++  margin: 1em 0;
++  padding: 0;
++}
++form ul {
++  margin: 10px;
++  padding: 0;
++  list-style: none;
++}
++form li {
++  margin: 1em 0;
++  padding: 0;
++}
++form label {
++  display: inline-block;
++  width: 150px;
++  vertical-align: top;
++  line-height: 25px;
++}
++form #submit {
++  margin-left: 150px;
++}
+
+commit e28945ca0635139ce4c1ce336b2fa5a1e64cb73d
+Author: libertyzero <liberty_zero@hotmail.com>
+Date:   Sun Jan 27 09:39:15 2013 +0700
+
+    Initial commit , This is complete for Iteration0 and feature/folder
+
+diff --git a/.gitignore b/.gitignore
+new file mode 100644
+index 0000000..eb3489a
+--- /dev/null
++++ b/.gitignore
+@@ -0,0 +1,15 @@
++# See http://help.github.com/ignore-files/ for more about ignoring files.
++#
++# If you find yourself ignoring temporary files generated by your text editor
++# or operating system, you probably want to add a global ignore instead:
++#   git config --global core.excludesfile ~/.gitignore_global
++
++# Ignore bundler config
++/.bundle
++
++# Ignore the default SQLite database.
++/db/*.sqlite3
++
++# Ignore all logfiles and tempfiles.
++/log/*.log
++/tmp
+diff --git a/.rspec b/.rspec
+new file mode 100644
+index 0000000..53607ea
+--- /dev/null
++++ b/.rspec
+@@ -0,0 +1 @@
++--colour
+diff --git a/Gemfile b/Gemfile
+new file mode 100644
+index 0000000..55880bb
+--- /dev/null
++++ b/Gemfile
+@@ -0,0 +1,43 @@
++source 'http://rubygems.org'
++
++gem 'rails', '3.2.11'
++
++# Bundle edge Rails instead:
++# gem 'rails',     :git => 'git://github.com/rails/rails.git'
++
++group :development, :test do
++  gem 'sqlite3'
++  gem 'debugger'
++  gem 'cucumber', ">= 1.1.9"
++  gem 'cucumber-rails', 'require' => false
++  gem 'cucumber-rails-training-wheels'
++  gem 'database_cleaner'
++  gem 'capybara'
++  gem 'launchy'
++  gem "rspec-rails", "~> 2.12.2"
++  gem 'simplecov'
++  gem 'factory_girl_rails'
++end
++group :production do
++  gem 'pg'
++end
++
++# Gems used only for assets and not required
++# in production environments by default.
++group :assets do
++  gem 'therubyracer'
++  gem 'sass-rails', "  ~> 3.2.0"
++  gem 'coffee-rails', "~> 3.2.0"
++  gem 'uglifier'
++end
++
++gem 'jquery-rails'
++
++# Use unicorn as the web server
++# gem 'unicorn'
++
++# Deploy with Capistrano
++# gem 'capistrano'
++
++# To use debugger
++gem 'haml-rails'
+diff --git a/Gemfile.lock b/Gemfile.lock
+new file mode 100644
+index 0000000..92aeb30
+--- /dev/null
++++ b/Gemfile.lock
+@@ -0,0 +1,203 @@
++GEM
++  remote: http://rubygems.org/
++  specs:
++    actionmailer (3.2.11)
++      actionpack (= 3.2.11)
++      mail (~> 2.4.4)
++    actionpack (3.2.11)
++      activemodel (= 3.2.11)
++      activesupport (= 3.2.11)
++      builder (~> 3.0.0)
++      erubis (~> 2.7.0)
++      journey (~> 1.0.4)
++      rack (~> 1.4.0)
++      rack-cache (~> 1.2)
++      rack-test (~> 0.6.1)
++      sprockets (~> 2.2.1)
++    activemodel (3.2.11)
++      activesupport (= 3.2.11)
++      builder (~> 3.0.0)
++    activerecord (3.2.11)
++      activemodel (= 3.2.11)
++      activesupport (= 3.2.11)
++      arel (~> 3.0.2)
++      tzinfo (~> 0.3.29)
++    activeresource (3.2.11)
++      activemodel (= 3.2.11)
++      activesupport (= 3.2.11)
++    activesupport (3.2.11)
++      i18n (~> 0.6)
++      multi_json (~> 1.0)
++    addressable (2.3.2)
++    arel (3.0.2)
++    builder (3.0.4)
++    capybara (2.0.2)
++      mime-types (>= 1.16)
++      nokogiri (>= 1.3.3)
++      rack (>= 1.0.0)
++      rack-test (>= 0.5.4)
++      selenium-webdriver (~> 2.0)
++      xpath (~> 1.0.0)
++    childprocess (0.3.7)
++      ffi (~> 1.0, >= 1.0.6)
++    coffee-rails (3.2.2)
++      coffee-script (>= 2.2.0)
++      railties (~> 3.2.0)
++    coffee-script (2.2.0)
++      coffee-script-source
++      execjs
++    coffee-script-source (1.4.0)
++    columnize (0.3.6)
++    cucumber (1.2.1)
++      builder (>= 2.1.2)
++      diff-lcs (>= 1.1.3)
++      gherkin (~> 2.11.0)
++      json (>= 1.4.6)
++    cucumber-rails (1.3.0)
++      capybara (>= 1.1.2)
++      cucumber (>= 1.1.8)
++      nokogiri (>= 1.5.0)
++    cucumber-rails-training-wheels (1.0.0)
++      cucumber-rails (>= 1.1.1)
++    database_cleaner (0.9.1)
++    debugger (1.2.4)
++      columnize (>= 0.3.1)
++      debugger-linecache (~> 1.1.1)
++      debugger-ruby_core_source (~> 1.1.7)
++    debugger-linecache (1.1.2)
++      debugger-ruby_core_source (>= 1.1.1)
++    debugger-ruby_core_source (1.1.7)
++    diff-lcs (1.1.3)
++    erubis (2.7.0)
++    execjs (1.4.0)
++      multi_json (~> 1.0)
++    factory_girl (4.2.0)
++      activesupport (>= 3.0.0)
++    factory_girl_rails (4.2.0)
++      factory_girl (~> 4.2.0)
++      railties (>= 3.0.0)
++    ffi (1.3.1)
++    gherkin (2.11.5)
++      json (>= 1.4.6)
++    haml (3.1.7)
++    haml-rails (0.3.5)
++      actionpack (>= 3.1, < 4.1)
++      activesupport (>= 3.1, < 4.1)
++      haml (~> 3.1)
++      railties (>= 3.1, < 4.1)
++    hike (1.2.1)
++    i18n (0.6.1)
++    journey (1.0.4)
++    jquery-rails (2.2.0)
++      railties (>= 3.0, < 5.0)
++      thor (>= 0.14, < 2.0)
++    json (1.7.6)
++    launchy (2.1.2)
++      addressable (~> 2.3)
++    libv8 (3.11.8.13)
++    mail (2.4.4)
++      i18n (>= 0.4.0)
++      mime-types (~> 1.16)
++      treetop (~> 1.4.8)
++    mime-types (1.19)
++    multi_json (1.5.0)
++    nokogiri (1.5.6)
++    pg (0.14.1)
++    polyglot (0.3.3)
++    rack (1.4.4)
++    rack-cache (1.2)
++      rack (>= 0.4)
++    rack-ssl (1.3.2)
++      rack
++    rack-test (0.6.2)
++      rack (>= 1.0)
++    rails (3.2.11)
++      actionmailer (= 3.2.11)
++      actionpack (= 3.2.11)
++      activerecord (= 3.2.11)
++      activeresource (= 3.2.11)
++      activesupport (= 3.2.11)
++      bundler (~> 1.0)
++      railties (= 3.2.11)
++    railties (3.2.11)
++      actionpack (= 3.2.11)
++      activesupport (= 3.2.11)
++      rack-ssl (~> 1.3.2)
++      rake (>= 0.8.7)
++      rdoc (~> 3.4)
++      thor (>= 0.14.6, < 2.0)
++    rake (10.0.3)
++    rdoc (3.12)
++      json (~> 1.4)
++    ref (1.0.2)
++    rspec-core (2.12.2)
++    rspec-expectations (2.12.1)
++      diff-lcs (~> 1.1.3)
++    rspec-mocks (2.12.1)
++    rspec-rails (2.12.2)
++      actionpack (>= 3.0)
++      activesupport (>= 3.0)
++      railties (>= 3.0)
++      rspec-core (~> 2.12.0)
++      rspec-expectations (~> 2.12.0)
++      rspec-mocks (~> 2.12.0)
++    rubyzip (0.9.9)
++    sass (3.2.5)
++    sass-rails (3.2.6)
++      railties (~> 3.2.0)
++      sass (>= 3.1.10)
++      tilt (~> 1.3)
++    selenium-webdriver (2.29.0)
++      childprocess (>= 0.2.5)
++      multi_json (~> 1.0)
++      rubyzip
++      websocket (~> 1.0.4)
++    simplecov (0.7.1)
++      multi_json (~> 1.0)
++      simplecov-html (~> 0.7.1)
++    simplecov-html (0.7.1)
++    sprockets (2.2.2)
++      hike (~> 1.2)
++      multi_json (~> 1.0)
++      rack (~> 1.0)
++      tilt (~> 1.1, != 1.3.0)
++    sqlite3 (1.3.7)
++    therubyracer (0.11.3)
++      libv8 (~> 3.11.8.12)
++      ref
++    thor (0.17.0)
++    tilt (1.3.3)
++    treetop (1.4.12)
++      polyglot
++      polyglot (>= 0.3.1)
++    tzinfo (0.3.35)
++    uglifier (1.3.0)
++      execjs (>= 0.3.0)
++      multi_json (~> 1.0, >= 1.0.2)
++    websocket (1.0.6)
++    xpath (1.0.0)
++      nokogiri (~> 1.3)
++
++PLATFORMS
++  ruby
++
++DEPENDENCIES
++  capybara
++  coffee-rails (~> 3.2.0)
++  cucumber (>= 1.1.9)
++  cucumber-rails
++  cucumber-rails-training-wheels
++  database_cleaner
++  debugger
++  factory_girl_rails
++  haml-rails
++  jquery-rails
++  launchy
++  pg
++  rails (= 3.2.11)
++  rspec-rails (~> 2.12.2)
++  sass-rails (~> 3.2.0)
++  simplecov
++  sqlite3
++  therubyracer
++  uglifier
+diff --git a/Gemfile~ b/Gemfile~
+new file mode 100644
+index 0000000..04c02d2
+--- /dev/null
++++ b/Gemfile~
+@@ -0,0 +1,43 @@
++source 'http://rubygems.org'
++
++gem 'rails', '3.2.11'
++
++# Bundle edge Rails instead:
++# gem 'rails',     :git => 'git://github.com/rails/rails.git'
++
++group :development, :test do
++  gem 'sqlite3'
++  gem 'debugger'
++  gem 'cucumber', ">= 1.1.9"
++  gem 'cucumber-rails', 'require' => false
++  gem 'cucumber-rails-training-wheels'
++  gem 'database_cleaner'
++  gem 'capybara'
++  gem 'launchy'
++  gem 'rspec-rails'
++  gem 'simplecov'
++  gem 'factory_girl_rails'
++end
++group :production do
++  gem 'pg'
++end
++
++# Gems used only for assets and not required
++# in production environments by default.
++group :assets do
++  gem 'therubyracer'
++  gem 'sass-rails', "  ~> 3.2.0"
++  gem 'coffee-rails', "~> 3.2.0"
++  gem 'uglifier'
++end
++
++gem 'jquery-rails'
++
++# Use unicorn as the web server
++# gem 'unicorn'
++
++# Deploy with Capistrano
++# gem 'capistrano'
++
++# To use debugger
++gem 'haml-rails'
+diff --git a/README.rdoc b/README.rdoc
+new file mode 100644
+index 0000000..7c36f23
+--- /dev/null
++++ b/README.rdoc
+@@ -0,0 +1,261 @@
++== Welcome to Rails
++
++Rails is a web-application framework that includes everything needed to create
++database-backed web applications according to the Model-View-Control pattern.
++
++This pattern splits the view (also called the presentation) into "dumb"
++templates that are primarily responsible for inserting pre-built data in between
++HTML tags. The model contains the "smart" domain objects (such as Account,
++Product, Person, Post) that holds all the business logic and knows how to
++persist themselves to a database. The controller handles the incoming requests
++(such as Save New Account, Update Product, Show Post) by manipulating the model
++and directing data to the view.
++
++In Rails, the model is handled by what's called an object-relational mapping
++layer entitled Active Record. This layer allows you to present the data from
++database rows as objects and embellish these data objects with business logic
++methods. You can read more about Active Record in
++link:files/vendor/rails/activerecord/README.html.
++
++The controller and view are handled by the Action Pack, which handles both
++layers by its two parts: Action View and Action Controller. These two layers
++are bundled in a single package due to their heavy interdependence. This is
++unlike the relationship between the Active Record and Action Pack that is much
++more separate. Each of these packages can be used independently outside of
++Rails. You can read more about Action Pack in
++link:files/vendor/rails/actionpack/README.html.
++
++
++== Getting Started
++
++1. At the command prompt, create a new Rails application:
++       <tt>rails new myapp</tt> (where <tt>myapp</tt> is the application name)
++
++2. Change directory to <tt>myapp</tt> and start the web server:
++       <tt>cd myapp; rails server</tt> (run with --help for options)
++
++3. Go to http://localhost:3000/ and you'll see:
++       "Welcome aboard: You're riding Ruby on Rails!"
++
++4. Follow the guidelines to start developing your application. You can find
++the following resources handy:
++
++* The Getting Started Guide: http://guides.rubyonrails.org/getting_started.html
++* Ruby on Rails Tutorial Book: http://www.railstutorial.org/
++
++
++== Debugging Rails
++
++Sometimes your application goes wrong. Fortunately there are a lot of tools that
++will help you debug it and get it back on the rails.
++
++First area to check is the application log files. Have "tail -f" commands
++running on the server.log and development.log. Rails will automatically display
++debugging and runtime information to these files. Debugging info will also be
++shown in the browser on requests from 127.0.0.1.
++
++You can also log your own messages directly into the log file from your code
++using the Ruby logger class from inside your controllers. Example:
++
++  class WeblogController < ActionController::Base
++    def destroy
++      @weblog = Weblog.find(params[:id])
++      @weblog.destroy
++      logger.info("#{Time.now} Destroyed Weblog ID ##{@weblog.id}!")
++    end
++  end
++
++The result will be a message in your log file along the lines of:
++
++  Mon Oct 08 14:22:29 +1000 2007 Destroyed Weblog ID #1!
++
++More information on how to use the logger is at http://www.ruby-doc.org/core/
++
++Also, Ruby documentation can be found at http://www.ruby-lang.org/. There are
++several books available online as well:
++
++* Programming Ruby: http://www.ruby-doc.org/docs/ProgrammingRuby/ (Pickaxe)
++* Learn to Program: http://pine.fm/LearnToProgram/ (a beginners guide)
++
++These two books will bring you up to speed on the Ruby language and also on
++programming in general.
++
++
++== Debugger
++
++Debugger support is available through the debugger command when you start your
++Mongrel or WEBrick server with --debugger. This means that you can break out of
++execution at any point in the code, investigate and change the model, and then,
++resume execution! You need to install ruby-debug to run the server in debugging
++mode. With gems, use <tt>sudo gem install ruby-debug</tt>. Example:
++
++  class WeblogController < ActionController::Base
++    def index
++      @posts = Post.all
++      debugger
++    end
++  end
++
++So the controller will accept the action, run the first line, then present you
++with a IRB prompt in the server window. Here you can do things like:
++
++  >> @posts.inspect
++  => "[#<Post:0x14a6be8
++          @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>,
++       #<Post:0x14a6620
++          @attributes={"title"=>"Rails", "body"=>"Only ten..", "id"=>"2"}>]"
++  >> @posts.first.title = "hello from a debugger"
++  => "hello from a debugger"
++
++...and even better, you can examine how your runtime objects actually work:
++
++  >> f = @posts.first
++  => #<Post:0x13630c4 @attributes={"title"=>nil, "body"=>nil, "id"=>"1"}>
++  >> f.
++  Display all 152 possibilities? (y or n)
++
++Finally, when you're ready to resume execution, you can enter "cont".
++
++
++== Console
++
++The console is a Ruby shell, which allows you to interact with your
++application's domain model. Here you'll have all parts of the application
++configured, just like it is when the application is running. You can inspect
++domain models, change values, and save to the database. Starting the script
++without arguments will launch it in the development environment.
++
++To start the console, run <tt>rails console</tt> from the application
++directory.
++
++Options:
++
++* Passing the <tt>-s, --sandbox</tt> argument will rollback any modifications
++  made to the database.
++* Passing an environment name as an argument will load the corresponding
++  environment. Example: <tt>rails console production</tt>.
++
++To reload your controllers and models after launching the console run
++<tt>reload!</tt>
++
++More information about irb can be found at:
++link:http://www.rubycentral.org/pickaxe/irb.html
++
++
++== dbconsole
++
++You can go to the command line of your database directly through <tt>rails
++dbconsole</tt>. You would be connected to the database with the credentials
++defined in database.yml. Starting the script without arguments will connect you
++to the development database. Passing an argument will connect you to a different
++database, like <tt>rails dbconsole production</tt>. Currently works for MySQL,
++PostgreSQL and SQLite 3.
++
++== Description of Contents
++
++The default directory structure of a generated Ruby on Rails application:
++
++  |-- app
++  |   |-- assets
++  |       |-- images
++  |       |-- javascripts
++  |       `-- stylesheets
++  |   |-- controllers
++  |   |-- helpers
++  |   |-- mailers
++  |   |-- models
++  |   `-- views
++  |       `-- layouts
++  |-- config
++  |   |-- environments
++  |   |-- initializers
++  |   `-- locales
++  |-- db
++  |-- doc
++  |-- lib
++  |   `-- tasks
++  |-- log
++  |-- public
++  |-- script
++  |-- test
++  |   |-- fixtures
++  |   |-- functional
++  |   |-- integration
++  |   |-- performance
++  |   `-- unit
++  |-- tmp
++  |   |-- cache
++  |   |-- pids
++  |   |-- sessions
++  |   `-- sockets
++  `-- vendor
++      |-- assets
++          `-- stylesheets
++      `-- plugins
++
++app
++  Holds all the code that's specific to this particular application.
++
++app/assets
++  Contains subdirectories for images, stylesheets, and JavaScript files.
++
++app/controllers
++  Holds controllers that should be named like weblogs_controller.rb for
++  automated URL mapping. All controllers should descend from
++  ApplicationController which itself descends from ActionController::Base.
++
++app/models
++  Holds models that should be named like post.rb. Models descend from
++  ActiveRecord::Base by default.
++
++app/views
++  Holds the template files for the view that should be named like
++  weblogs/index.html.erb for the WeblogsController#index action. All views use
++  eRuby syntax by default.
++
++app/views/layouts
++  Holds the template files for layouts to be used with views. This models the
++  common header/footer method of wrapping views. In your views, define a layout
++  using the <tt>layout :default</tt> and create a file named default.html.erb.
++  Inside default.html.erb, call <% yield %> to render the view using this
++  layout.
++
++app/helpers
++  Holds view helpers that should be named like weblogs_helper.rb. These are
++  generated for you automatically when using generators for controllers.
++  Helpers can be used to wrap functionality for your views into methods.
++
++config
++  Configuration files for the Rails environment, the routing map, the database,
++  and other dependencies.
++
++db
++  Contains the database schema in schema.rb. db/migrate contains all the
++  sequence of Migrations for your schema.
++
++doc
++  This directory is where your application documentation will be stored when
++  generated using <tt>rake doc:app</tt>
++
++lib
++  Application specific libraries. Basically, any kind of custom code that
++  doesn't belong under controllers, models, or helpers. This directory is in
++  the load path.
++
++public
++  The directory available for the web server. Also contains the dispatchers and the
++  default HTML files. This should be set as the DOCUMENT_ROOT of your web
++  server.
++
++script
++  Helper scripts for automation and generation.
++
++test
++  Unit and functional tests along with fixtures. When using the rails generate
++  command, template test files will be generated for you and placed in this
++  directory.
++
++vendor
++  External libraries that the application depends on. Also includes the plugins
++  subdirectory. If the app has frozen rails, those gems also go here, under
++  vendor/rails/. This directory is in the load path.
+diff --git a/Rakefile b/Rakefile
+new file mode 100644
+index 0000000..9d0d138
+--- /dev/null
++++ b/Rakefile
+@@ -0,0 +1,7 @@
++#!/usr/bin/env rake
++# Add your own tasks in files placed in lib/tasks ending in .rake,
++# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
++
++require File.expand_path('../config/application', __FILE__)
++
++RoomManagement::Application.load_tasks
+diff --git a/app/assets/images/rails.png b/app/assets/images/rails.png
+new file mode 100644
+index 0000000..d5edc04
+Binary files /dev/null and b/app/assets/images/rails.png differ
+diff --git a/app/assets/javascripts/application.js b/app/assets/javascripts/application.js
+new file mode 100644
+index 0000000..37c7bfc
+--- /dev/null
++++ b/app/assets/javascripts/application.js
+@@ -0,0 +1,9 @@
++// This is a manifest file that'll be compiled into including all the files listed below.
++// Add new JavaScript/Coffee code in separate files in this directory and they'll automatically
++// be included in the compiled file accessible from http://example.com/assets/application.js
++// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
++// the compiled file.
++//
++//= require jquery
++//= require jquery_ujs
++//= require_tree .
+diff --git a/app/assets/javascripts/rooms.js.coffee b/app/assets/javascripts/rooms.js.coffee
+new file mode 100644
+index 0000000..7615679
+--- /dev/null
++++ b/app/assets/javascripts/rooms.js.coffee
+@@ -0,0 +1,3 @@
++# Place all the behaviors and hooks related to the matching controller here.
++# All this logic will automatically be available in application.js.
++# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+diff --git a/app/assets/javascripts/static_pages.js.coffee b/app/assets/javascripts/static_pages.js.coffee
+new file mode 100644
+index 0000000..7615679
+--- /dev/null
++++ b/app/assets/javascripts/static_pages.js.coffee
+@@ -0,0 +1,3 @@
++# Place all the behaviors and hooks related to the matching controller here.
++# All this logic will automatically be available in application.js.
++# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+diff --git a/app/assets/stylesheets/application.css b/app/assets/stylesheets/application.css
+new file mode 100644
+index 0000000..dffe861
+--- /dev/null
++++ b/app/assets/stylesheets/application.css
+@@ -0,0 +1,120 @@
++html, body {
++  margin: 0;
++  padding: 0;
++  background: #348781;
++  color: DarkSlateGrey;
++  font-family: Tahoma, Verdana, sans-serif;
++  font-size: 10pt;
++}
++div#main {
++  margin: 0;
++  padding: 0 20px 20px;
++}
++a {
++  background: transparent;
++  color: maroon;
++  text-decoration: underline;
++  font-weight: bold;
++}
++h1 {
++  color: maroon;
++  font-size: 150%;
++  font-style: italic;
++  display: block;
++  border-bottom: 2px solid DarkSlateGrey;
++}
++h1.title {
++  margin: 0 0 1em;
++  padding: 40px;
++  background-color: #5B0509;
++  color: white;
++  border-bottom: 6px solid #FABC1E;
++  font-size: 1.5em;
++  font-style: normal;
++}
++table#movies {
++  margin: 10px;
++  border-collapse: collapse;
++  width: 100%;
++  border-bottom: 2px solid black;
++}
++table#movies th {
++  border: 2px solid white;
++  font-weight: bold;
++  background-color: wheat;
++}
++table#movies th, table#movies td {
++  padding: 4px;
++  text-align: left;
++}
++table#movies th.hilite {
++  background-color: yellow;
++}
++#notice #warning {
++  background: rosybrown;
++  margin: 1em 0;
++  padding: 4px;
++}
++form label {
++  display: block;
++  line-height: 25px;
++  font-weight: bold;
++  color: maroon;
++}
++div#menubar{
++  background-color: #E1F6FE;
++  margin-left: 2%;
++  height:300px;
++  width:15%;
++  float:left;
++  border: 10px solid #B4DAE7;
++  text-align: center;
++}
++div#menubar p a{
++  color: #3B9C9C;
++  font-weight: bold;
++  text-decoration: none;
++  padding-bottom: 20px;
++  border-bottom: 2px dashed black;
++}
++div#contentbox
++{
++  margin-left: 2%;
++  background-color:#DBE5DF;
++  width:74%;
++  float:left;
++  border: 3px solid white;
++  margin-bottom: 50px;
++  
++}
++#content
++{
++  display: inline;
++  margin-left: 5%;
++  
++}
++#content pre
++{
++  color: DarkSlateGrey;
++  font-family: Tahoma, Verdana, sans-serif;
++  font-size: 1em;
++  font-style: italic;
++  display: block;
++}
++#content pre p
++{
++  color: #75071D;
++  font-weight: bold;
++}
++.grouptext
++{
++  color: #75071D;
++  font-weight: bold;
++}
++.titletext
++{ 
++  color: #263D33;
++  display:inline;
++  font-weight: bold;
++}
++
+diff --git a/app/assets/stylesheets/application.css~ b/app/assets/stylesheets/application.css~
+new file mode 100644
+index 0000000..dffe861
+--- /dev/null
++++ b/app/assets/stylesheets/application.css~
+@@ -0,0 +1,120 @@
++html, body {
++  margin: 0;
++  padding: 0;
++  background: #348781;
++  color: DarkSlateGrey;
++  font-family: Tahoma, Verdana, sans-serif;
++  font-size: 10pt;
++}
++div#main {
++  margin: 0;
++  padding: 0 20px 20px;
++}
++a {
++  background: transparent;
++  color: maroon;
++  text-decoration: underline;
++  font-weight: bold;
++}
++h1 {
++  color: maroon;
++  font-size: 150%;
++  font-style: italic;
++  display: block;
++  border-bottom: 2px solid DarkSlateGrey;
++}
++h1.title {
++  margin: 0 0 1em;
++  padding: 40px;
++  background-color: #5B0509;
++  color: white;
++  border-bottom: 6px solid #FABC1E;
++  font-size: 1.5em;
++  font-style: normal;
++}
++table#movies {
++  margin: 10px;
++  border-collapse: collapse;
++  width: 100%;
++  border-bottom: 2px solid black;
++}
++table#movies th {
++  border: 2px solid white;
++  font-weight: bold;
++  background-color: wheat;
++}
++table#movies th, table#movies td {
++  padding: 4px;
++  text-align: left;
++}
++table#movies th.hilite {
++  background-color: yellow;
++}
++#notice #warning {
++  background: rosybrown;
++  margin: 1em 0;
++  padding: 4px;
++}
++form label {
++  display: block;
++  line-height: 25px;
++  font-weight: bold;
++  color: maroon;
++}
++div#menubar{
++  background-color: #E1F6FE;
++  margin-left: 2%;
++  height:300px;
++  width:15%;
++  float:left;
++  border: 10px solid #B4DAE7;
++  text-align: center;
++}
++div#menubar p a{
++  color: #3B9C9C;
++  font-weight: bold;
++  text-decoration: none;
++  padding-bottom: 20px;
++  border-bottom: 2px dashed black;
++}
++div#contentbox
++{
++  margin-left: 2%;
++  background-color:#DBE5DF;
++  width:74%;
++  float:left;
++  border: 3px solid white;
++  margin-bottom: 50px;
++  
++}
++#content
++{
++  display: inline;
++  margin-left: 5%;
++  
++}
++#content pre
++{
++  color: DarkSlateGrey;
++  font-family: Tahoma, Verdana, sans-serif;
++  font-size: 1em;
++  font-style: italic;
++  display: block;
++}
++#content pre p
++{
++  color: #75071D;
++  font-weight: bold;
++}
++.grouptext
++{
++  color: #75071D;
++  font-weight: bold;
++}
++.titletext
++{ 
++  color: #263D33;
++  display:inline;
++  font-weight: bold;
++}
++
+diff --git a/app/assets/stylesheets/rooms.css.scss b/app/assets/stylesheets/rooms.css.scss
+new file mode 100644
+index 0000000..e69de29
+diff --git a/app/assets/stylesheets/rooms.css.scss~ b/app/assets/stylesheets/rooms.css.scss~
+new file mode 100644
+index 0000000..dd3b38a
+--- /dev/null
++++ b/app/assets/stylesheets/rooms.css.scss~
+@@ -0,0 +1,30 @@
++#content
++{
++  display: inline;
++  margin-left: 5%;
++  
++}
++#content pre
++{
++  color: DarkSlateGrey;
++  font-family: Tahoma, Verdana, sans-serif;
++  font-size: 1em;
++  font-style: italic;
++  display: block;
++}
++#content pre p
++{
++  color: #75071D;
++  font-weight: bold;
++}
++.grouptext
++{
++  color: #75071D;
++  font-weight: bold;
++}
++.titletext
++{ 
++  color: #263D33;
++  display:inline;
++  font-weight: bold;
++}
+diff --git a/app/assets/stylesheets/scaffolds.css.scss b/app/assets/stylesheets/scaffolds.css.scss
+new file mode 100644
+index 0000000..6ec6a8f
+--- /dev/null
++++ b/app/assets/stylesheets/scaffolds.css.scss
+@@ -0,0 +1,69 @@
++body {
++  background-color: #fff;
++  color: #333;
++  font-family: verdana, arial, helvetica, sans-serif;
++  font-size: 13px;
++  line-height: 18px;
++}
++
++p, ol, ul, td {
++  font-family: verdana, arial, helvetica, sans-serif;
++  font-size: 13px;
++  line-height: 18px;
++}
++
++pre {
++  background-color: #eee;
++  padding: 10px;
++  font-size: 11px;
++}
++
++a {
++  color: #000;
++  &:visited {
++    color: #666;
++  }
++  &:hover {
++    color: #fff;
++    background-color: #000;
++  }
++}
++
++div {
++  &.field, &.actions {
++    margin-bottom: 10px;
++  }
++}
++
++#notice {
++  color: green;
++}
++
++.field_with_errors {
++  padding: 2px;
++  background-color: red;
++  display: table;
++}
++
++#error_explanation {
++  width: 450px;
++  border: 2px solid red;
++  padding: 7px;
++  padding-bottom: 0;
++  margin-bottom: 20px;
++  background-color: #f0f0f0;
++  h2 {
++    text-align: left;
++    font-weight: bold;
++    padding: 5px 5px 5px 15px;
++    font-size: 12px;
++    margin: -7px;
++    margin-bottom: 0px;
++    background-color: #c00;
++    color: #fff;
++  }
++  ul li {
++    font-size: 12px;
++    list-style: square;
++  }
++}
+diff --git a/app/assets/stylesheets/scaffolds.css.scss~ b/app/assets/stylesheets/scaffolds.css.scss~
+new file mode 100644
+index 0000000..e69de29
+diff --git a/app/assets/stylesheets/static_pages.css.scss b/app/assets/stylesheets/static_pages.css.scss
+new file mode 100644
+index 0000000..d55836c
+--- /dev/null
++++ b/app/assets/stylesheets/static_pages.css.scss
+@@ -0,0 +1,3 @@
++// Place all the styles related to the StaticPages controller here.
++// They will automatically be included in application.css.
++// You can use Sass (SCSS) here: http://sass-lang.com/
+diff --git a/app/controllers/application_controller.rb b/app/controllers/application_controller.rb
+new file mode 100644
+index 0000000..e8065d9
+--- /dev/null
++++ b/app/controllers/application_controller.rb
+@@ -0,0 +1,3 @@
++class ApplicationController < ActionController::Base
++  protect_from_forgery
++end
+diff --git a/app/controllers/rooms_controller.rb b/app/controllers/rooms_controller.rb
+new file mode 100644
+index 0000000..9753f31
+--- /dev/null
++++ b/app/controllers/rooms_controller.rb
+@@ -0,0 +1,83 @@
++class RoomsController < ApplicationController
++  # GET /rooms
++  # GET /rooms.json
++  def index
++    @rooms = Room.all
++
++    respond_to do |format|
++      format.html # index.html.erb
++      format.json { render json: @rooms }
++    end
++  end
++
++  # GET /rooms/1
++  # GET /rooms/1.json
++  def show
++    @room = Room.find(params[:id])
++
++    respond_to do |format|
++      format.html # show.html.erb
++      format.json { render json: @room }
++    end
++  end
++
++  # GET /rooms/new
++  # GET /rooms/new.json
++  def new
++    @room = Room.new
++
++    respond_to do |format|
++      format.html # new.html.erb
++      format.json { render json: @room }
++    end
++  end
++
++  # GET /rooms/1/edit
++  def edit
++    @room = Room.find(params[:id])
++  end
++
++  # POST /rooms
++  # POST /rooms.json
++  def create
++    @room = Room.new(params[:room])
++
++    respond_to do |format|
++      if @room.save
++        format.html { redirect_to @room, notice: 'Room was successfully created.' }
++        format.json { render json: @room, status: :created, location: @room }
++      else
++        format.html { render action: "new" }
++        format.json { render json: @room.errors, status: :unprocessable_entity }
++      end
++    end
++  end
++
++  # PUT /rooms/1
++  # PUT /rooms/1.json
++  def update
++    @room = Room.find(params[:id])
++
++    respond_to do |format|
++      if @room.update_attributes(params[:room])
++        format.html { redirect_to @room, notice: 'Room was successfully updated.' }
++        format.json { head :no_content }
++      else
++        format.html { render action: "edit" }
++        format.json { render json: @room.errors, status: :unprocessable_entity }
++      end
++    end
++  end
++
++  # DELETE /rooms/1
++  # DELETE /rooms/1.json
++  def destroy
++    @room = Room.find(params[:id])
++    @room.destroy
++
++    respond_to do |format|
++      format.html { redirect_to rooms_url }
++      format.json { head :no_content }
++    end
++  end
++end
+diff --git a/app/controllers/static_pages_controller.rb b/app/controllers/static_pages_controller.rb
+new file mode 100644
+index 0000000..6fd914a
+--- /dev/null
++++ b/app/controllers/static_pages_controller.rb
+@@ -0,0 +1,4 @@
++class StaticPagesController < ApplicationController
++  def about
++  end
++end
+diff --git a/app/helpers/application_helper.rb b/app/helpers/application_helper.rb
+new file mode 100644
+index 0000000..de6be79
+--- /dev/null
++++ b/app/helpers/application_helper.rb
+@@ -0,0 +1,2 @@
++module ApplicationHelper
++end
+diff --git a/app/helpers/rooms_helper.rb b/app/helpers/rooms_helper.rb
+new file mode 100644
+index 0000000..1d0f4c7
+--- /dev/null
++++ b/app/helpers/rooms_helper.rb
+@@ -0,0 +1,2 @@
++module RoomsHelper
++end
+diff --git a/app/helpers/static_pages_helper.rb b/app/helpers/static_pages_helper.rb
+new file mode 100644
+index 0000000..2d63e79
+--- /dev/null
++++ b/app/helpers/static_pages_helper.rb
+@@ -0,0 +1,2 @@
++module StaticPagesHelper
++end
+diff --git a/app/mailers/.gitkeep b/app/mailers/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/app/models/.gitkeep b/app/models/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/app/models/room.rb b/app/models/room.rb
+new file mode 100644
+index 0000000..11be8ab
+--- /dev/null
++++ b/app/models/room.rb
+@@ -0,0 +1,3 @@
++class Room < ActiveRecord::Base
++  # attr_accessible :title, :body
++end
+diff --git a/app/views/layouts/application.html.erb~ b/app/views/layouts/application.html.erb~
+new file mode 100644
+index 0000000..942f272
+--- /dev/null
++++ b/app/views/layouts/application.html.erb~
+@@ -0,0 +1,17 @@
++<!DOCTYPE html>
++<html>
++<head>
++  <title>RoomManagement</title>
++  <%= stylesheet_link_tag    "application", :media => "all" %>
++  <%= stylesheet_link_tag    "rooms", :media => "all" %>
++  <%= javascript_include_tag "application" %>
++  <%= csrf_meta_tags %>
++</head>
++<body>
++<div id ="header"><h1 class="title">AAAAAA</h1></div>
++<div id="menubar"></div>
++<div id = "contentbox">
++<%= yield %>
++</div>
++</body>
++</html>
+diff --git a/app/views/layouts/application.html.haml b/app/views/layouts/application.html.haml
+new file mode 100644
+index 0000000..5276f99
+--- /dev/null
++++ b/app/views/layouts/application.html.haml
+@@ -0,0 +1,27 @@
++!!! 5
++%html
++  %head
++    %title ยินดีต้อนรับสู่ระบบจองห้องออนไลน์ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยธรรมศาสตร์
++    = stylesheet_link_tag 'application'
++    = javascript_include_tag 'application'
++    = csrf_meta_tags
++
++  %body
++    #header{:style => "background-color:#FFA500;"}
++      %h1.title ระบบจองห้องออนไลน์ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยธรรมศาสตร์
++    #menubar
++      %p=link_to 'หน้าแรก' , rooms_path
++      %br/
++      %p=link_to 'About', static_pages_about_path
++      %br/
++      %p=link_to 'จองห้อง', rooms_path
++      %br/
++      %p=link_to 'สำหรับเจ้าหน้าที่', rooms_login_path
++    #contentbox
++      - if flash[:notice]
++        #notice.message= flash[:notice]
++      - elsif flash[:warning]
++        #warning.message= flash[:warning]
++      =yield
++    #footer
++   
+diff --git a/app/views/layouts/application.html.haml~ b/app/views/layouts/application.html.haml~
+new file mode 100644
+index 0000000..634b868
+--- /dev/null
++++ b/app/views/layouts/application.html.haml~
+@@ -0,0 +1,27 @@
++!!! 5
++%html
++  %head
++    %title ยินดีต้อนรับสู่ระบบจองห้องออนไลน์ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยธรรมศาสตร์
++    = stylesheet_link_tag 'application'
++    = javascript_include_tag 'application'
++    = csrf_meta_tags
++
++  %body
++    #header{:style => "background-color:#FFA500;"}
++      %h1.title ระบบจองห้องออนไลน์ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยธรรมศาสตร์
++    #menubar
++      %p=link_to 'หน้าแรก' , rooms_path
++      %br/
++      %p=link_to 'About', static_pages_about_path
++      %br/
++      %p=link_to 'จองห้อง', rooms_path
++      %br/
++      %p=link_to 'สำหรับเจ้าหน้าที่', rooms_path
++    #contentbox
++      - if flash[:notice]
++        #notice.message= flash[:notice]
++      - elsif flash[:warning]
++        #warning.message= flash[:warning]
++      =yield
++    #footer
++   
+diff --git a/app/views/rooms/_form.html.haml b/app/views/rooms/_form.html.haml
+new file mode 100644
+index 0000000..91894b0
+--- /dev/null
++++ b/app/views/rooms/_form.html.haml
+@@ -0,0 +1,10 @@
++= form_for @room do |f|
++  - if @room.errors.any?
++    #error_explanation
++      %h2= "#{pluralize(@room.errors.count, "error")} prohibited this room from being saved:"
++      %ul
++        - @room.errors.full_messages.each do |msg|
++          %li= msg
++
++  .actions
++    = f.submit 'Save'
+diff --git a/app/views/rooms/edit.html.haml b/app/views/rooms/edit.html.haml
+new file mode 100644
+index 0000000..7fd47fe
+--- /dev/null
++++ b/app/views/rooms/edit.html.haml
+@@ -0,0 +1,9 @@
++%h1 Editing room
++
++= render 'form'
++
++= link_to 'Show', @room
++\|
++= link_to 'Back', rooms_path
++
++= link_to 'ตกลง', rooms_path
+diff --git a/app/views/rooms/index.html.haml b/app/views/rooms/index.html.haml
+new file mode 100644
+index 0000000..267aa65
+--- /dev/null
++++ b/app/views/rooms/index.html.haml
+@@ -0,0 +1,3 @@
++#content{:align => "center"}
++  %h1 ยินดีต้อนรับเข้าสู่ ระบบจองห้องออนไลน์
++  %h3 คณะวิศวกรรมศาสตร์  มหาวิทยาลัยธรรมศาสตร์
+diff --git a/app/views/rooms/login.html.haml b/app/views/rooms/login.html.haml
+new file mode 100644
+index 0000000..62edea4
+--- /dev/null
++++ b/app/views/rooms/login.html.haml
+@@ -0,0 +1,14 @@
++%h1 Rooms#login
++%p Find me in app/views/rooms/login.html.haml
++
++%h1 กรุณากรอก username และ password
++
++= form_tag rooms_staff_path, :method => :login do
++
++  = label :room,:username,'Username'
++  = text_field :room, 'username'
++
++  = label :room,:password, 'Password'
++  = text_field :room, 'password'
++
++  = submit_tag 'Log In'
+diff --git a/app/views/rooms/new.html.haml b/app/views/rooms/new.html.haml
+new file mode 100644
+index 0000000..9de6891
+--- /dev/null
++++ b/app/views/rooms/new.html.haml
+@@ -0,0 +1,5 @@
++%h1 New room
++
++= render 'form'
++
++= link_to 'Back', rooms_path
+diff --git a/app/views/rooms/new_room.html.haml b/app/views/rooms/new_room.html.haml
+new file mode 100644
+index 0000000..ab63f02
+--- /dev/null
++++ b/app/views/rooms/new_room.html.haml
+@@ -0,0 +1,8 @@
++%h1 Rooms#new_room
++%p Find me in app/views/rooms/new_room.html.haml
++
++= form_tag rooms_staff_path, :method => :add_new_room do
++
++  
++
++  = submit_tag 'เพิ่มห้องใหม่'
+diff --git a/app/views/rooms/reserve.html.haml b/app/views/rooms/reserve.html.haml
+new file mode 100644
+index 0000000..081d5df
+--- /dev/null
++++ b/app/views/rooms/reserve.html.haml
+@@ -0,0 +1,2 @@
++%h1 Rooms#reserve
++%p Find me in app/views/rooms/reserve.html.haml
+\ No newline at end of file
+diff --git a/app/views/rooms/show.html.haml b/app/views/rooms/show.html.haml
+new file mode 100644
+index 0000000..71d2763
+--- /dev/null
++++ b/app/views/rooms/show.html.haml
+@@ -0,0 +1,6 @@
++%p#notice= notice
++
++
++= link_to 'Edit', edit_room_path(@room)
++\|
++= link_to 'Back', rooms_path
+diff --git a/app/views/rooms/staff.html.haml b/app/views/rooms/staff.html.haml
+new file mode 100644
+index 0000000..5d7dfdc
+--- /dev/null
++++ b/app/views/rooms/staff.html.haml
+@@ -0,0 +1,8 @@
++%h1 Rooms#staff
++%p Find me in app/views/rooms/staff.html.haml
++
++= link_to 'เพิ่มห้องใหม่', rooms_new_room_path
++
++= link_to 'จองห้องว่าง', rooms_path
++
++
+diff --git a/app/views/static_pages/about.html.haml b/app/views/static_pages/about.html.haml
+new file mode 100644
+index 0000000..cfabef7
+--- /dev/null
++++ b/app/views/static_pages/about.html.haml
+@@ -0,0 +1,148 @@
++#content
++  %h1 รายละเอียดโครงงาน
++  %pre
++    %p ชื่อโครงงาน: ระบบจัดการห้องเรียนออนไลน์
++    รายละเอียดโครงงาน
++    กลุ่มของเราได้ทำเรื่องเกี่ยวกับการจองห้องออนไลน์ของตึกคณะวิศวกรรมศาสตร์ มหาวิทยาลัยธรรมศาสตร์ เพื่อแก้ปัญหาการจองห้องแบบเดิมที่ผู้ที่ต้องการ
++    จะจองห้องจำเป็นต้องติดต่อกับทางเจ้าหน้าที่โดยตรง ทางกลุ่มเราได้คิดว่าจะแก้ปัญหาโดยการ สร้างระบบการจองห้องออนไลน์ขึ้นมา
++    ผู้ที่มีความประสงค์จะจองห้องสามารถจองห้องผ่าน internetได้โดยตรง เพื่อเป็นการลดภาระของผู้ที่จองห้องจะได้ไม่ต้องเดินทางมาติดต่อกับเจ้าหน้าที่โดยตรง
++    สามารถจองออนไลน์ได้เลยและช่วยลดภาระงานของเจ้าหน้าที่
++  %h1 รายชื่อสมาชิกกลุ่ม
++  %pre
++    1)นาย อดิเรก มุลทุลี 5310450027
++    2)นาย กิจติพงษ์ อุตสาหะ 5310610729
++    3)นส.จิณห์วรา มุลตองคะ  5310610968
++    4)นส.ณัฏฐ์ชรินทร์  ศิลาพุ่ง 5310612378
++    5)นส.พลอยไพลิน  ศิริมุจลินท์  5310612394
++      
++  %h1 สรุปความต้องการของลูกค้า
++  %pre
++    .grouptext สรุปผลความต้องการของลูกค้า (Summary The Customer Need)
++    หัวข้อที่ทางคณะผู้จัดทำโครงงานเลือกคือ ระบบการจัดการห้องเรียน ( Classroom management )
++    ผู้มีส่วนได้ส่วนเสีย ( Stakeholders ) งานโสตทัศนศึกษา คณะวิศวกรรมศาสตร์ มหาวิยาลัยธรรมศาสตร์และ ผู้มีความประสงค์จะขอใช้บริการการจองห้องเรียน
++    .grouptext ความต้องการของลูกค้า
++    1)งานโสตทัศนศึกษา คณะวิศวกรรมศาสตร์ มหาวิทยาลัยธรรมศาสตร์ ( ผู้ดูแลในส่วนระบบการจองเพื่อขอใช้ห้องเรียน )
++    2)งานโสตฯ ต้องการให้มีระบบการจองห้องเรียนล่วงหน้าผ่านระบบออนไลน์ ซึ่งมีข้อแม้ว่าต้องจองล่วงหน้าตั้งแต่ 2 วันขึ้นไปเท่านั้น เพราะทางเจ้าหน้าที่
++    ไม่สามารถอยู่เพื่อตรวจสอบข้อมูลจากผู้ใช้บริการได้ตลอดเวลา (หากต้องการจองวันต่อวัน ให้มาติดต่อที่งานโสตฯ โดยตรง)
++    3)งานโสตฯ ต้องการให้ระบบสามารถลดหย่อนปัญหาเฉพาะหน้าได้ในกรณีที่มีการจองห้องแล้วไม่ได้ใช้ห้อง หรือทำการย้ายห้องกะทันหัน
++    4)งานโสตฯ ต้องการระบบสำหรับจัดเก็บตารางเรียนในแต่ละเทอม
++    5)ผู้มีความประสงค์จะใช้บริการการจองห้องเรียน ( ผู้ใช้ในส่วนการสืบค้นข้อมูล เวลา ห้องเรียน ฯลฯ ) สามารถตรวจสอบได้ว่า
++    มีห้องเรียนใดบ้างที่ว่างในช่วงวันและเวลาที่ต้องการจอง สามารถจองห้องเรียนล่วงหน้าได้ ในวันและเวลาที่ต้องการ ผ่านระบบออนไลน์
++  %h1 User Stories
++  %pre
++    .grouptext User stories 1:
++    .titletext Feature: Adding new room
++    &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
++    &nbsp;&nbsp;&nbsp;&nbsp;So that I can add new room
++    &nbsp;&nbsp;&nbsp;&nbsp;I want to add new room in my database
++    .titletext Background: Startup with Homepage
++    &nbsp;&nbsp;&nbsp;&nbsp;Given I am at Homepage
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see the tab “สำหรับเจ้าหน้าที่”
++    &nbsp;&nbsp;&nbsp;&nbsp;When I press “สำหรับเจ้าหน้าที่”
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see the tab “กรุณากรอก username และ password”
++    
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill username and password
++    
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press accept
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “เพิ่มห้องใหม่”
++    .titletext Scenario: Add new room data that doesn’t exists in database to database
++    &nbsp;&nbsp;&nbsp;&nbsp;When I press “เพิ่มห้องใหม่ที่ยังไม่มีใน Database”
++    &nbsp;&nbsp;&nbsp;&nbsp;And I fill room data
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press “เพิ่มห้องใหม่”
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “การเพิ่มห้องสำเร็จ”
++    .titletext Scenario: Add room data that exists in database to database
++    &nbsp;&nbsp;&nbsp;&nbsp;When I press “เพิ่มห้องใหม่ที่มีข้อมูลในDatabase”
++    &nbsp;&nbsp;&nbsp;&nbsp;And I fill room data
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press “เพิ่มห้องใหม่”
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “ชื่อห้องนี้มีในDatabaseแล้ว”
++    .grouptext User stories 2:
++    .titletext Feature: Specify time to reserve room in case daily reserve
++    &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
++    &nbsp;&nbsp;&nbsp;&nbsp;So that I can reserve
++    &nbsp;&nbsp;&nbsp;&nbsp;I want to fill data and specify time to reserve to database
++    .titletext Background: Startup with Homepage
++    &nbsp;&nbsp;&nbsp;&nbsp;Given I am at Homepage
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see “link สำหรับเจ้าหน้าที่”
++    &nbsp;&nbsp;&nbsp;&nbsp;When I press “link สำหรับเจ้าหน้าที่”
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see”กรุณากรอก usernameและpassword”
++    &nbsp;&nbsp;&nbsp;&nbsp;When fill username and password
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press accept
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "จองห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
++    &nbsp;&nbsp;&nbsp;&nbsp;And I fill data
++    .titletext Scenario: Fill data and specify appropriate time to reserve room
++    &nbsp;&nbsp;&nbsp;&nbsp;When I specify appropriate time to reserve
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press “จองห้อง”
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “การจองห้องสำเร็จ”
++    .titletext Scenario: Fill data and specify inappropriate time to reserve room
++    
++    &nbsp;&nbsp;&nbsp;&nbsp;When I specify inappropriate time to reserve
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press “จองห้อง”
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “ไม่สามารถจองห้องได้เนื่องจากช่วงเวลาไม่เหมาะสม”
++    .grouptext User stories 3:
++    .titletext Feature: Modify room data
++    &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
++    &nbsp;&nbsp;&nbsp;&nbsp;So that I can modify room data
++    &nbsp;&nbsp;&nbsp;&nbsp;I want to modify room data in database
++    .titletext Scenario: Modify room data in database
++    &nbsp;&nbsp;&nbsp;&nbsp;Given I am at Homepage
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see “link สำหรับเจ้าหน้าที่”
++    &nbsp;&nbsp;&nbsp;&nbsp;When I press “link สำหรับเจ้าหน้าที่”
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see “กรุณากรอก usernameและpassword”
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill username and password
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press accept
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I Should be on “ส่วนของเจ้าหน้าที่”
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “แก้ไขข้อมูลห้อง”
++    &nbsp;&nbsp;&nbsp;&nbsp;When I press “แก้ไขข้อมูลห้อง”
++    &nbsp;&nbsp;&nbsp;&nbsp;And I modify data
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press “ตกลง”
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “ส่วนของเจ้าหน้าที่”
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “การแก้ไขสำเร็จ”
++    .grouptext User stories 4:
++    .titletext Feature: Searching for room status and free time
++    &nbsp;&nbsp;&nbsp;&nbsp;As a user’s
++    &nbsp;&nbsp;&nbsp;&nbsp;So that I can see every room status
++    &nbsp;&nbsp;&nbsp;&nbsp;I want to see room details and free time from database
++    .titletext Scenario: Attempting to specify reservation time
++    &nbsp;&nbsp;&nbsp;&nbsp;Given I am at Homepage
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see “ดูสถานะห้อง”
++    &nbsp;&nbsp;&nbsp;&nbsp;When I press “ดูสถานะห้อง”
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “สถานะห้อง”
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see room status
++    .grouptext User stories 5:
++    .titletext Feature: Requesting for online reservation
++    &nbsp;&nbsp;&nbsp;&nbsp;As a user’s
++    &nbsp;&nbsp;&nbsp;&nbsp;So that I can making an online reservation
++    &nbsp;&nbsp;&nbsp;&nbsp;I want to filling reservation data and sending requests
++    .titletext Background: Startup with Homepage
++    &nbsp;&nbsp;&nbsp;&nbsp;Given I am at Homepage
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see “ปุ่มจองห้อง”
++    &nbsp;&nbsp;&nbsp;&nbsp;When I press “ปุ่มจองห้อง”
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on “จองห้อง”
++    .titletext Scenario: Attempting to find available reservation time
++    &nbsp;&nbsp;&nbsp;&nbsp;When I fill reservation data and available reservation time
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press “จองห้อง”
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on Homepage
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “การจองห้องสำเร็จ”
++    .titletext Scenario: Attempting to find unavailable reservation time
++    &nbsp;&nbsp;&nbsp;&nbsp;When ฉันกรอกข้อมูลการจองห้องและ”ช่วงเวลาที่ไม่สามารถจองห้องได้”
++    &nbsp;&nbsp;&nbsp;&nbsp;And I press “จองห้อง”
++    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on Homepage
++    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “ไม่สามารถจองห้องได้ เพราะช่วงเวลาไม่เหมาะสม”
++  %h1 Lo-Fi Mockups
++  %pre
++    %img{:alt => "lofi2", :src => "/images/lofi2.jpg", :width => "800px;"}/
++    %img{:alt => "lofi2", :src => "/images/lofi.jpg", :width => "800px;"}/
++  %h1 Storyboards
++  %pre
++    %img{:alt => "storyboard2", :src => "/images/storyboard2.jpg", :width => "800px;"}/
++    %img{:alt => "storyboard", :src => "/images/storyboard1.jpg", :width => "800px;"}/
++  %h1 ER-Diagrams
++  %pre
++    %img{:alt => "er diagram1", :src => "/images/er1.jpg", :width => "880px;"}/
+diff --git a/autotest/discover.rb b/autotest/discover.rb
+new file mode 100644
+index 0000000..f421dc5
+--- /dev/null
++++ b/autotest/discover.rb
+@@ -0,0 +1,2 @@
++Autotest.add_discovery { "rails" }
++Autotest.add_discovery { "rspec2" }
+diff --git a/config.ru b/config.ru
+new file mode 100644
+index 0000000..85333d2
+--- /dev/null
++++ b/config.ru
+@@ -0,0 +1,4 @@
++# This file is used by Rack-based servers to start the application.
++
++require ::File.expand_path('../config/environment',  __FILE__)
++run RoomManagement::Application
+diff --git a/config/application.rb b/config/application.rb
+new file mode 100644
+index 0000000..d19d06f
+--- /dev/null
++++ b/config/application.rb
+@@ -0,0 +1,62 @@
++require File.expand_path('../boot', __FILE__)
++
++require 'rails/all'
++
++if defined?(Bundler)
++  # If you precompile assets before deploying to production, use this line
++  Bundler.require(*Rails.groups(:assets => %w(development test)))
++  # If you want your assets lazily compiled in production, use this line
++  # Bundler.require(:default, :assets, Rails.env)
++end
++
++module RoomManagement
++  class Application < Rails::Application
++    # Settings in config/environments/* take precedence over those specified here.
++    # Application configuration should go into files in config/initializers
++    # -- all .rb files in that directory are automatically loaded.
++
++    # Custom directories with classes and modules you want to be autoloadable.
++    # config.autoload_paths += %W(#{config.root}/extras)
++
++    # Only load the plugins named here, in the order given (default is alphabetical).
++    # :all can be used as a placeholder for all plugins not explicitly named.
++    # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
++
++    # Activate observers that should always be running.
++    # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
++
++    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
++    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
++    # config.time_zone = 'Central Time (US & Canada)'
++
++    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
++    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
++    # config.i18n.default_locale = :de
++
++    # Configure the default encoding used in templates for Ruby 1.9.
++    config.encoding = "utf-8"
++
++    # Configure sensitive parameters which will be filtered from the log file.
++    config.filter_parameters += [:password]
++
++    # Enable escaping HTML in JSON.
++    config.active_support.escape_html_entities_in_json = true
++
++    # Use SQL instead of Active Record's schema dumper when creating the database.
++    # This is necessary if your schema can't be completely dumped by the schema dumper,
++    # like if you have constraints or database-specific column types
++    # config.active_record.schema_format = :sql
++
++    # Enforce whitelist mode for mass assignment.
++    # This will create an empty whitelist of attributes available for mass-assignment for all models
++    # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
++    # parameters by using an attr_accessible or attr_protected declaration.
++    config.active_record.whitelist_attributes = true
++
++    # Enable the asset pipeline
++    config.assets.enabled = true
++
++    # Version of your assets, change this if you want to expire all your assets
++    config.assets.version = '1.0'
++  end
++end
+diff --git a/config/boot.rb b/config/boot.rb
+new file mode 100644
+index 0000000..4489e58
+--- /dev/null
++++ b/config/boot.rb
+@@ -0,0 +1,6 @@
++require 'rubygems'
++
++# Set up gems listed in the Gemfile.
++ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
++
++require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
+diff --git a/config/cucumber.yml b/config/cucumber.yml
+new file mode 100644
+index 0000000..19b288d
+--- /dev/null
++++ b/config/cucumber.yml
+@@ -0,0 +1,8 @@
++<%
++rerun = File.file?('rerun.txt') ? IO.read('rerun.txt') : ""
++rerun_opts = rerun.to_s.strip.empty? ? "--format #{ENV['CUCUMBER_FORMAT'] || 'progress'} features" : "--format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} #{rerun}"
++std_opts = "--format #{ENV['CUCUMBER_FORMAT'] || 'pretty'} --strict --tags ~@wip"
++%>
++default: <%= std_opts %> features
++wip: --tags @wip:3 --wip features
++rerun: <%= rerun_opts %> --format rerun --out rerun.txt --strict --tags ~@wip
+diff --git a/config/database.yml b/config/database.yml
+new file mode 100644
+index 0000000..09cc85a
+--- /dev/null
++++ b/config/database.yml
+@@ -0,0 +1,28 @@
++# SQLite version 3.x
++#   gem install sqlite3
++#
++#   Ensure the SQLite 3 gem is defined in your Gemfile
++#   gem 'sqlite3'
++development:
++  adapter: sqlite3
++  database: db/development.sqlite3
++  pool: 5
++  timeout: 5000
++
++# Warning: The database defined as "test" will be erased and
++# re-generated from your development database when you run "rake".
++# Do not set this db to the same as development or production.
++test: &test
++  adapter: sqlite3
++  database: db/test.sqlite3
++  pool: 5
++  timeout: 5000
++
++production:
++  adapter: sqlite3
++  database: db/production.sqlite3
++  pool: 5
++  timeout: 5000
++
++cucumber:
++  <<: *test
+\ No newline at end of file
+diff --git a/config/environment.rb b/config/environment.rb
+new file mode 100644
+index 0000000..e8daee0
+--- /dev/null
++++ b/config/environment.rb
+@@ -0,0 +1,5 @@
++# Load the rails application
++require File.expand_path('../application', __FILE__)
++
++# Initialize the rails application
++RoomManagement::Application.initialize!
+diff --git a/config/environments/development.rb b/config/environments/development.rb
+new file mode 100644
+index 0000000..0549630
+--- /dev/null
++++ b/config/environments/development.rb
+@@ -0,0 +1,37 @@
++RoomManagement::Application.configure do
++  # Settings specified here will take precedence over those in config/application.rb
++
++  # In the development environment your application's code is reloaded on
++  # every request. This slows down response time but is perfect for development
++  # since you don't have to restart the web server when you make code changes.
++  config.cache_classes = false
++
++  # Log error messages when you accidentally call methods on nil.
++  config.whiny_nils = true
++
++  # Show full error reports and disable caching
++  config.consider_all_requests_local       = true
++  config.action_controller.perform_caching = false
++
++  # Don't care if the mailer can't send
++  config.action_mailer.raise_delivery_errors = false
++
++  # Print deprecation notices to the Rails logger
++  config.active_support.deprecation = :log
++
++  # Only use best-standards-support built into browsers
++  config.action_dispatch.best_standards_support = :builtin
++
++  # Raise exception on mass assignment protection for Active Record models
++  config.active_record.mass_assignment_sanitizer = :strict
++
++  # Log the query plan for queries taking more than this (works
++  # with SQLite, MySQL, and PostgreSQL)
++  config.active_record.auto_explain_threshold_in_seconds = 0.5
++
++  # Do not compress assets
++  config.assets.compress = false
++
++  # Expands the lines which load the assets
++  config.assets.debug = true
++end
+diff --git a/config/environments/production.rb b/config/environments/production.rb
+new file mode 100644
+index 0000000..f96d964
+--- /dev/null
++++ b/config/environments/production.rb
+@@ -0,0 +1,67 @@
++RoomManagement::Application.configure do
++  # Settings specified here will take precedence over those in config/application.rb
++
++  # Code is not reloaded between requests
++  config.cache_classes = true
++
++  # Full error reports are disabled and caching is turned on
++  config.consider_all_requests_local       = false
++  config.action_controller.perform_caching = true
++
++  # Disable Rails's static asset server (Apache or nginx will already do this)
++  config.serve_static_assets = false
++
++  # Compress JavaScripts and CSS
++  config.assets.compress = true
++
++  # Don't fallback to assets pipeline if a precompiled asset is missed
++  config.assets.compile = false
++
++  # Generate digests for assets URLs
++  config.assets.digest = true
++
++  # Defaults to nil and saved in location specified by config.assets.prefix
++  # config.assets.manifest = YOUR_PATH
++
++  # Specifies the header that your server uses for sending files
++  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
++  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
++
++  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
++  # config.force_ssl = true
++
++  # See everything in the log (default is :info)
++  # config.log_level = :debug
++
++  # Prepend all log lines with the following tags
++  # config.log_tags = [ :subdomain, :uuid ]
++
++  # Use a different logger for distributed setups
++  # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
++
++  # Use a different cache store in production
++  # config.cache_store = :mem_cache_store
++
++  # Enable serving of images, stylesheets, and JavaScripts from an asset server
++  # config.action_controller.asset_host = "http://assets.example.com"
++
++  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
++  # config.assets.precompile += %w( search.js )
++
++  # Disable delivery errors, bad email addresses will be ignored
++  # config.action_mailer.raise_delivery_errors = false
++
++  # Enable threaded mode
++  # config.threadsafe!
++
++  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
++  # the I18n.default_locale when a translation can not be found)
++  config.i18n.fallbacks = true
++
++  # Send deprecation notices to registered listeners
++  config.active_support.deprecation = :notify
++
++  # Log the query plan for queries taking more than this (works
++  # with SQLite, MySQL, and PostgreSQL)
++  # config.active_record.auto_explain_threshold_in_seconds = 0.5
++end
+diff --git a/config/environments/test.rb b/config/environments/test.rb
+new file mode 100644
+index 0000000..e6ac5e7
+--- /dev/null
++++ b/config/environments/test.rb
+@@ -0,0 +1,37 @@
++RoomManagement::Application.configure do
++  # Settings specified here will take precedence over those in config/application.rb
++
++  # The test environment is used exclusively to run your application's
++  # test suite. You never need to work with it otherwise. Remember that
++  # your test database is "scratch space" for the test suite and is wiped
++  # and recreated between test runs. Don't rely on the data there!
++  config.cache_classes = true
++
++  # Configure static asset server for tests with Cache-Control for performance
++  config.serve_static_assets = true
++  config.static_cache_control = "public, max-age=3600"
++
++  # Log error messages when you accidentally call methods on nil
++  config.whiny_nils = true
++
++  # Show full error reports and disable caching
++  config.consider_all_requests_local       = true
++  config.action_controller.perform_caching = false
++
++  # Raise exceptions instead of rendering exception templates
++  config.action_dispatch.show_exceptions = false
++
++  # Disable request forgery protection in test environment
++  config.action_controller.allow_forgery_protection    = false
++
++  # Tell Action Mailer not to deliver emails to the real world.
++  # The :test delivery method accumulates sent emails in the
++  # ActionMailer::Base.deliveries array.
++  config.action_mailer.delivery_method = :test
++
++  # Raise exception on mass assignment protection for Active Record models
++  config.active_record.mass_assignment_sanitizer = :strict
++
++  # Print deprecation notices to the stderr
++  config.active_support.deprecation = :stderr
++end
+diff --git a/config/initializers/backtrace_silencers.rb b/config/initializers/backtrace_silencers.rb
+new file mode 100644
+index 0000000..59385cd
+--- /dev/null
++++ b/config/initializers/backtrace_silencers.rb
+@@ -0,0 +1,7 @@
++# Be sure to restart your server when you modify this file.
++
++# You can add backtrace silencers for libraries that you're using but don't wish to see in your backtraces.
++# Rails.backtrace_cleaner.add_silencer { |line| line =~ /my_noisy_library/ }
++
++# You can also remove all the silencers if you're trying to debug a problem that might stem from framework code.
++# Rails.backtrace_cleaner.remove_silencers!
+diff --git a/config/initializers/inflections.rb b/config/initializers/inflections.rb
+new file mode 100644
+index 0000000..5d8d9be
+--- /dev/null
++++ b/config/initializers/inflections.rb
+@@ -0,0 +1,15 @@
++# Be sure to restart your server when you modify this file.
++
++# Add new inflection rules using the following format
++# (all these examples are active by default):
++# ActiveSupport::Inflector.inflections do |inflect|
++#   inflect.plural /^(ox)$/i, '\1en'
++#   inflect.singular /^(ox)en/i, '\1'
++#   inflect.irregular 'person', 'people'
++#   inflect.uncountable %w( fish sheep )
++# end
++#
++# These inflection rules are supported but not enabled by default:
++# ActiveSupport::Inflector.inflections do |inflect|
++#   inflect.acronym 'RESTful'
++# end
+diff --git a/config/initializers/mime_types.rb b/config/initializers/mime_types.rb
+new file mode 100644
+index 0000000..72aca7e
+--- /dev/null
++++ b/config/initializers/mime_types.rb
+@@ -0,0 +1,5 @@
++# Be sure to restart your server when you modify this file.
++
++# Add new mime types for use in respond_to blocks:
++# Mime::Type.register "text/richtext", :rtf
++# Mime::Type.register_alias "text/html", :iphone
+diff --git a/config/initializers/secret_token.rb b/config/initializers/secret_token.rb
+new file mode 100644
+index 0000000..f31eda6
+--- /dev/null
++++ b/config/initializers/secret_token.rb
+@@ -0,0 +1,7 @@
++# Be sure to restart your server when you modify this file.
++
++# Your secret key for verifying the integrity of signed cookies.
++# If you change this key, all old signed cookies will become invalid!
++# Make sure the secret is at least 30 characters and all random,
++# no regular words or you'll be exposed to dictionary attacks.
++RoomManagement::Application.config.secret_token = 'f465ff1e913eb94313bb2bfecc87b1315fc9fd937b0b05c7d7668365fb442336c4a15f7a3f89a719b9da9510f230532751f376ddf709481f4b94d07bb4620c4f'
+diff --git a/config/initializers/session_store.rb b/config/initializers/session_store.rb
+new file mode 100644
+index 0000000..c93dc21
+--- /dev/null
++++ b/config/initializers/session_store.rb
+@@ -0,0 +1,8 @@
++# Be sure to restart your server when you modify this file.
++
++RoomManagement::Application.config.session_store :cookie_store, key: '_RoomManagement_session'
++
++# Use the database for sessions instead of the cookie-based default,
++# which shouldn't be used to store highly confidential information
++# (create the session table with "rails generate session_migration")
++# RoomManagement::Application.config.session_store :active_record_store
+diff --git a/config/initializers/wrap_parameters.rb b/config/initializers/wrap_parameters.rb
+new file mode 100644
+index 0000000..999df20
+--- /dev/null
++++ b/config/initializers/wrap_parameters.rb
+@@ -0,0 +1,14 @@
++# Be sure to restart your server when you modify this file.
++#
++# This file contains settings for ActionController::ParamsWrapper which
++# is enabled by default.
++
++# Enable parameter wrapping for JSON. You can disable this by setting :format to an empty array.
++ActiveSupport.on_load(:action_controller) do
++  wrap_parameters format: [:json]
++end
++
++# Disable root element in JSON by default.
++ActiveSupport.on_load(:active_record) do
++  self.include_root_in_json = false
++end
+diff --git a/config/locales/en.yml b/config/locales/en.yml
+new file mode 100644
+index 0000000..179c14c
+--- /dev/null
++++ b/config/locales/en.yml
+@@ -0,0 +1,5 @@
++# Sample localization file for English. Add more files in this directory for other locales.
++# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
++
++en:
++  hello: "Hello world"
+diff --git a/config/routes.rb b/config/routes.rb
+new file mode 100644
+index 0000000..327dfc9
+--- /dev/null
++++ b/config/routes.rb
+@@ -0,0 +1,71 @@
++RoomManagement::Application.routes.draw do
++  get "rooms/reserve"
++
++  get "rooms/login"
++
++  get "rooms/staff"
++
++  get "rooms/new_room"
++
++  get "static_pages/about"
++
++  resources :rooms
++
++  match '/' => 'static_pages#about', :as => :about
++  # The priority is based upon order of creation:
++  # first created -> highest priority.
++
++  # Sample of regular route:
++  #   match 'products/:id' => 'catalog#view'
++  # Keep in mind you can assign values other than :controller and :action
++
++  # Sample of named route:
++  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
++  # This route can be invoked with purchase_url(:id => product.id)
++
++  # Sample resource route (maps HTTP verbs to controller actions automatically):
++  #   resources :products
++
++  # Sample resource route with options:
++  #   resources :products do
++  #     member do
++  #       get 'short'
++  #       post 'toggle'
++  #     end
++  #
++  #     collection do
++  #       get 'sold'
++  #     end
++  #   end
++
++  # Sample resource route with sub-resources:
++  #   resources :products do
++  #     resources :comments, :sales
++  #     resource :seller
++  #   end
++
++  # Sample resource route with more complex sub-resources
++  #   resources :products do
++  #     resources :comments
++  #     resources :sales do
++  #       get 'recent', :on => :collection
++  #     end
++  #   end
++
++  # Sample resource route within a namespace:
++  #   namespace :admin do
++  #     # Directs /admin/products/* to Admin::ProductsController
++  #     # (app/controllers/admin/products_controller.rb)
++  #     resources :products
++  #   end
++
++  # You can have the root of your site routed with "root"
++  # just remember to delete public/index.html.
++  # root :to => 'welcome#index'
++
++  # See how all your routes lay out with "rake routes"
++
++  # This is a legacy wild controller route that's not recommended for RESTful applications.
++  # Note: This route will make all actions in every controller accessible via GET requests.
++  # match ':controller(/:action(/:id))(.:format)'
++end
+diff --git a/config/routes.rb~ b/config/routes.rb~
+new file mode 100644
+index 0000000..877a4ef
+--- /dev/null
++++ b/config/routes.rb~
+@@ -0,0 +1,63 @@
++RoomManagement::Application.routes.draw do
++  get "static_pages/about"
++
++  resources :rooms
++
++  match '/' => 'static_pages#about', :as => :about
++  # The priority is based upon order of creation:
++  # first created -> highest priority.
++
++  # Sample of regular route:
++  #   match 'products/:id' => 'catalog#view'
++  # Keep in mind you can assign values other than :controller and :action
++
++  # Sample of named route:
++  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
++  # This route can be invoked with purchase_url(:id => product.id)
++
++  # Sample resource route (maps HTTP verbs to controller actions automatically):
++  #   resources :products
++
++  # Sample resource route with options:
++  #   resources :products do
++  #     member do
++  #       get 'short'
++  #       post 'toggle'
++  #     end
++  #
++  #     collection do
++  #       get 'sold'
++  #     end
++  #   end
++
++  # Sample resource route with sub-resources:
++  #   resources :products do
++  #     resources :comments, :sales
++  #     resource :seller
++  #   end
++
++  # Sample resource route with more complex sub-resources
++  #   resources :products do
++  #     resources :comments
++  #     resources :sales do
++  #       get 'recent', :on => :collection
++  #     end
++  #   end
++
++  # Sample resource route within a namespace:
++  #   namespace :admin do
++  #     # Directs /admin/products/* to Admin::ProductsController
++  #     # (app/controllers/admin/products_controller.rb)
++  #     resources :products
++  #   end
++
++  # You can have the root of your site routed with "root"
++  # just remember to delete public/index.html.
++  # root :to => 'welcome#index'
++
++  # See how all your routes lay out with "rake routes"
++
++  # This is a legacy wild controller route that's not recommended for RESTful applications.
++  # Note: This route will make all actions in every controller accessible via GET requests.
++  # match ':controller(/:action(/:id))(.:format)'
++end
+diff --git a/db/migrate/20130127000917_create_rooms.rb b/db/migrate/20130127000917_create_rooms.rb
+new file mode 100644
+index 0000000..5a16f04
+--- /dev/null
++++ b/db/migrate/20130127000917_create_rooms.rb
+@@ -0,0 +1,8 @@
++class CreateRooms < ActiveRecord::Migration
++  def change
++    create_table :rooms do |t|
++
++      t.timestamps
++    end
++  end
++end
+diff --git a/db/seeds.rb b/db/seeds.rb
+new file mode 100644
+index 0000000..4edb1e8
+--- /dev/null
++++ b/db/seeds.rb
+@@ -0,0 +1,7 @@
++# This file should contain all the record creation needed to seed the database with its default values.
++# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
++#
++# Examples:
++#
++#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
++#   Mayor.create(name: 'Emanuel', city: cities.first)
+diff --git a/doc/README_FOR_APP b/doc/README_FOR_APP
+new file mode 100644
+index 0000000..fe41f5c
+--- /dev/null
++++ b/doc/README_FOR_APP
+@@ -0,0 +1,2 @@
++Use this README file to introduce your application and point to useful places in the API for learning more.
++Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+diff --git a/features/staff_user_story01.feature b/features/staff_user_story01.feature
+new file mode 100644
+index 0000000..474922a
+--- /dev/null
++++ b/features/staff_user_story01.feature
+@@ -0,0 +1,37 @@
++Feature: Log In to the staff page
++
++  As an audiovisual education, faculty of Engineering, Thammasat university
++  So that I can log in to the staff page
++
++Background: Startup with Homepage
++
++  Given the following rooms_users exist:
++  | username     | password |
++  | naideekub    | honhonhon |
++  | koonnongchay | milkwarm |
++
++  And I am on the home page
++  Then I should see "สำหรับเจ้าหน้าที่"
++  When I follow "สำหรับเจ้าหน้าที่"
++  Then I should be on the log in page
++
++  
++Scenario: Can Log In to the staff page (Happy Path)
++  When I am on the log in page
++  And I should see "กรุณากรอก username และ password"
++  When I fill in "Username" with "naideekub"
++  And I fill in "Password" with "honhonhon"
++  And I press "Log In"
++  Then I should be on the staff page
++
++
++Scenario: Can not Log In to the staff page (Sad Path)
++  When I am on the log in page
++  And I should see "กรุณากรอก username และ password"
++  When I fill in "Username" with "username"
++  And I fill in "Password" with "password"
++  And I press "Log In"
++  Then I should be on the log in page
++  And I should see "ไม่สามารถเข้าสู่ระบบได้"
++
++
+diff --git a/features/staff_user_story02.feature b/features/staff_user_story02.feature
+new file mode 100644
+index 0000000..423e284
+--- /dev/null
++++ b/features/staff_user_story02.feature
+@@ -0,0 +1,28 @@
++Feature: Adding new room
++
++  As an audiovisual education, faculty of Engineering, Thammasat university
++  So that I can add new room
++  I want to add new room in my database
++
++Background: Startup with Homepage
++
++  Given I am on the staff page
++  And I should see "เพิ่มห้องใหม่"
++  
++Scenario: Add new room data that doesn’t exists in database to database
++  When I follow "เพิ่มห้องใหม่"
++  Then I should be on the new room page
++  When I fill data into the form
++  And I press "เพิ่มห้องใหม่"
++  Then I should be on the staff page
++  And I should see "การเพิ่มห้องสำเร็จ"
++
++Scenario: Add room data that exists in database to database
++  When I follow "เพิ่มห้องใหม่"
++  Then I should be on the new room page
++  And I fill data into the form
++  And I press "เพิ่มห้องใหม่"
++  Then I should be on the new room page
++  And I should see "ชื่อห้องนี้มีในDatabaseแล้ว"
++
++
+diff --git a/features/staff_user_story03.feature b/features/staff_user_story03.feature
+new file mode 100644
+index 0000000..62c3cad
+--- /dev/null
++++ b/features/staff_user_story03.feature
+@@ -0,0 +1,29 @@
++Feature: Specify time to reserve room in case daily reserve
++
++  As an audiovisual education, faculty of Engineering, Thammasat university
++  So that I can reserve
++  I want to fill data and specify time to reserve to database
++
++Background: Startup with Homepage
++
++  Given I am on the staff page
++  And I should see "จองห้องว่าง"
++  When I follow "จองห้องว่าง"
++  Then I should be on the page
++
++Scenario: Fill data and specify appropriate time to reserve room
++  When I fill data into the form
++  And I specify appropriate time to reserve
++  And I press "จองห้อง"
++  Then I should be on the staff page
++  And I should see "การจองห้องสำเร็จ"
++
++Scenario: Fill data and specify inappropriate time to reserve room
++  When I fill data into the form
++  And I specify inappropriate time to reserve
++  And I press "จองห้อง"
++  Then I should be on the page
++  And I should see "ไม่สามารถจองห้องได้เนื่องจากช่วงเวลาไม่เหมาะสม"
++
++
++
+diff --git a/features/staff_user_story04.feature b/features/staff_user_story04.feature
+new file mode 100644
+index 0000000..3f87f98
+--- /dev/null
++++ b/features/staff_user_story04.feature
+@@ -0,0 +1,13 @@
++Feature: Modify room data
++  As an audiovisual education, faculty of Engineering, Thammasat university
++  So that I can modify room data
++  I want to modify room data in database
++
++Scenario: Modify room data in database
++  Given I am on the staff page
++  Then I should see "แก้ไขข้อมูลห้อง"
++  When I follow "แก้ไขข้อมูลห้อง"
++  And I modify data
++  And I press "ตกลง"
++  Then I should be on the staff page
++  And I should see "การแก้ไขสำเร็จ"
+diff --git a/features/step_definitions/room_steps.rb b/features/step_definitions/room_steps.rb
+new file mode 100644
+index 0000000..c494d51
+--- /dev/null
++++ b/features/step_definitions/room_steps.rb
+@@ -0,0 +1,49 @@
++# Add a declarative step here for populating the DB with movies.
++
++Given /the following rooms_users exist/ do |rooms_table|
++  rooms_table.hashes.each do |movie|
++    # each returned element will be a hash whose key is the table header.
++    # you should arrange to add that movie to the database here.
++  end
++  #flunk "Unimplemented" # remove when done
++end
++
++Given /the following rooms_table exist/ do |rooms_table|
++  rooms_table.hashes.each do |movie|
++  end
++end
++# Make sure that one string (regexp) occurs before or after another one
++#   on the same page
++
++Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
++  #  ensure that that e1 occurs before e2.
++  #  page.body is the entire content of the page as a string.
++  #flunk "Unimplemented" # remove when done
++end
++
++# Make it easier to express checking or unchecking several boxes at once
++#  "When I uncheck the following ratings: PG, G, R"
++#  "When I check the following ratings: G"
++
++When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
++  # HINT: use String#split to split up the rating_list, then
++  #   iterate over the ratings and reuse the "When I check..." or
++  #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
++end
++
++Then /I should see all the movies/ do
++  # use page.body
++  page.body
++  rows = str_html.scan(/<tr>/).size
++  rows.should == 11
++  
++end
++
++Then /I fill data into the form/ do
++end
++
++Then /I specify (in)?appropriate time to reserve/ do |arg|
++end
++
++Then /I modify data/ do
++end
+diff --git a/features/step_definitions/web_steps.rb b/features/step_definitions/web_steps.rb
+new file mode 100644
+index 0000000..4d9aab6
+--- /dev/null
++++ b/features/step_definitions/web_steps.rb
+@@ -0,0 +1,254 @@
++# TL;DR: YOU SHOULD DELETE THIS FILE
++#
++# This file was generated by Cucumber-Rails and is only here to get you a head start
++# These step definitions are thin wrappers around the Capybara/Webrat API that lets you
++# visit pages, interact with widgets and make assertions about page content.
++#
++# If you use these step definitions as basis for your features you will quickly end up
++# with features that are:
++#
++# * Hard to maintain
++# * Verbose to read
++#
++# A much better approach is to write your own higher level step definitions, following
++# the advice in the following blog posts:
++#
++# * http://benmabey.com/2008/05/19/imperative-vs-declarative-scenarios-in-user-stories.html
++# * http://dannorth.net/2011/01/31/whose-domain-is-it-anyway/
++# * http://elabs.se/blog/15-you-re-cuking-it-wrong
++#
++
++
++require 'uri'
++require 'cgi'
++require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
++require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "selectors"))
++
++module WithinHelpers
++  def with_scope(locator)
++    locator ? within(*selector_for(locator)) { yield } : yield
++  end
++end
++World(WithinHelpers)
++
++# Single-line step scoper
++When /^(.*) within (.*[^:])$/ do |step, parent|
++  with_scope(parent) { When step }
++end
++
++# Multi-line step scoper
++When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
++  with_scope(parent) { When "#{step}:", table_or_string }
++end
++
++Given /^(?:|I )am on (.+)$/ do |page_name|
++  visit path_to(page_name)
++end
++
++When /^(?:|I )go to (.+)$/ do |page_name|
++  visit path_to(page_name)
++end
++
++When /^(?:|I )press "([^"]*)"$/ do |button|
++  click_button(button)
++end
++
++When /^(?:|I )follow "([^"]*)"$/ do |link|
++  click_link(link)
++end
++
++When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
++  fill_in(field, :with => value)
++end
++
++When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
++  fill_in(field, :with => value)
++end
++
++# Use this to fill in an entire form with data from a table. Example:
++#
++#   When I fill in the following:
++#     | Account Number | 5002       |
++#     | Expiry date    | 2009-11-01 |
++#     | Note           | Nice guy   |
++#     | Wants Email?   |            |
++#
++# TODO: Add support for checkbox, select or option
++# based on naming conventions.
++#
++When /^(?:|I )fill in the following:$/ do |fields|
++  fields.rows_hash.each do |name, value|
++    When %{I fill in "#{name}" with "#{value}"}
++  end
++end
++
++When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
++  select(value, :from => field)
++end
++
++When /^(?:|I )check "([^"]*)"$/ do |field|
++  check(field)
++end
++
++When /^(?:|I )uncheck "([^"]*)"$/ do |field|
++  uncheck(field)
++end
++
++When /^(?:|I )choose "([^"]*)"$/ do |field|
++  choose(field)
++end
++
++When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
++  attach_file(field, File.expand_path(path))
++end
++
++Then /^(?:|I )should see "([^"]*)"$/ do |text|
++  if page.respond_to? :should
++    page.should have_content(text)
++  else
++    assert page.has_content?(text)
++  end
++end
++
++Then /^(?:|I )should see \/([^\/]*)\/$/ do |regexp|
++  regexp = Regexp.new(regexp)
++
++  if page.respond_to? :should
++    page.should have_xpath('//*', :text => regexp)
++  else
++    assert page.has_xpath?('//*', :text => regexp)
++  end
++end
++
++Then /^(?:|I )should not see "([^"]*)"$/ do |text|
++  if page.respond_to? :should
++    page.should have_no_content(text)
++  else
++    assert page.has_no_content?(text)
++  end
++end
++
++Then /^(?:|I )should not see \/([^\/]*)\/$/ do |regexp|
++  regexp = Regexp.new(regexp)
++
++  if page.respond_to? :should
++    page.should have_no_xpath('//*', :text => regexp)
++  else
++    assert page.has_no_xpath?('//*', :text => regexp)
++  end
++end
++
++Then /^the "([^"]*)" field(?: within (.*))? should contain "([^"]*)"$/ do |field, parent, value|
++  with_scope(parent) do
++    field = find_field(field)
++    field_value = (field.tag_name == 'textarea') ? field.text : field.value
++    if field_value.respond_to? :should
++      field_value.should =~ /#{value}/
++    else
++      assert_match(/#{value}/, field_value)
++    end
++  end
++end
++
++Then /^the "([^"]*)" field(?: within (.*))? should not contain "([^"]*)"$/ do |field, parent, value|
++  with_scope(parent) do
++    field = find_field(field)
++    field_value = (field.tag_name == 'textarea') ? field.text : field.value
++    if field_value.respond_to? :should_not
++      field_value.should_not =~ /#{value}/
++    else
++      assert_no_match(/#{value}/, field_value)
++    end
++  end
++end
++
++Then /^the "([^"]*)" field should have the error "([^"]*)"$/ do |field, error_message|
++  element = find_field(field)
++  classes = element.find(:xpath, '..')[:class].split(' ')
++
++  form_for_input = element.find(:xpath, 'ancestor::form[1]')
++  using_formtastic = form_for_input[:class].include?('formtastic')
++  error_class = using_formtastic ? 'error' : 'field_with_errors'
++
++  if classes.respond_to? :should
++    classes.should include(error_class)
++  else
++    assert classes.include?(error_class)
++  end
++
++  if page.respond_to?(:should)
++    if using_formtastic
++      error_paragraph = element.find(:xpath, '../*[@class="inline-errors"][1]')
++      error_paragraph.should have_content(error_message)
++    else
++      page.should have_content("#{field.titlecase} #{error_message}")
++    end
++  else
++    if using_formtastic
++      error_paragraph = element.find(:xpath, '../*[@class="inline-errors"][1]')
++      assert error_paragraph.has_content?(error_message)
++    else
++      assert page.has_content?("#{field.titlecase} #{error_message}")
++    end
++  end
++end
++
++Then /^the "([^"]*)" field should have no error$/ do |field|
++  element = find_field(field)
++  classes = element.find(:xpath, '..')[:class].split(' ')
++  if classes.respond_to? :should
++    classes.should_not include('field_with_errors')
++    classes.should_not include('error')
++  else
++    assert !classes.include?('field_with_errors')
++    assert !classes.include?('error')
++  end
++end
++
++Then /^the "([^"]*)" checkbox(?: within (.*))? should be checked$/ do |label, parent|
++  with_scope(parent) do
++    field_checked = find_field(label)['checked']
++    if field_checked.respond_to? :should
++      field_checked.should be_true
++    else
++      assert field_checked
++    end
++  end
++end
++
++Then /^the "([^"]*)" checkbox(?: within (.*))? should not be checked$/ do |label, parent|
++  with_scope(parent) do
++    field_checked = find_field(label)['checked']
++    if field_checked.respond_to? :should
++      field_checked.should be_false
++    else
++      assert !field_checked
++    end
++  end
++end
++ 
++Then /^(?:|I )should be on (.+)$/ do |page_name|
++  current_path = URI.parse(current_url).path
++  if current_path.respond_to? :should
++    current_path.should == path_to(page_name)
++  else
++    assert_equal path_to(page_name), current_path
++  end
++end
++
++Then /^(?:|I )should have the following query string:$/ do |expected_pairs|
++  query = URI.parse(current_url).query
++  actual_params = query ? CGI.parse(query) : {}
++  expected_params = {}
++  expected_pairs.rows_hash.each_pair{|k,v| expected_params[k] = v.split(',')} 
++  
++  if actual_params.respond_to? :should
++    actual_params.should == expected_params
++  else
++    assert_equal expected_params, actual_params
++  end
++end
++
++Then /^show me the page$/ do
++  save_and_open_page
++end
+diff --git a/features/support/env.rb b/features/support/env.rb
+new file mode 100644
+index 0000000..29f204c
+--- /dev/null
++++ b/features/support/env.rb
+@@ -0,0 +1,59 @@
++# IMPORTANT: This file is generated by cucumber-rails - edit at your own peril.
++# It is recommended to regenerate this file in the future when you upgrade to a 
++# newer version of cucumber-rails. Consider adding your own code to a new file 
++# instead of editing this one. Cucumber will automatically load all features/**/*.rb
++# files.
++
++require 'cucumber/rails'
++
++# Capybara defaults to XPath selectors rather than Webrat's default of CSS3. In
++# order to ease the transition to Capybara we set the default here. If you'd
++# prefer to use XPath just remove this line and adjust any selectors in your
++# steps to use the XPath syntax.
++Capybara.default_selector = :css
++
++# By default, any exception happening in your Rails application will bubble up
++# to Cucumber so that your scenario will fail. This is a different from how 
++# your application behaves in the production environment, where an error page will 
++# be rendered instead.
++#
++# Sometimes we want to override this default behaviour and allow Rails to rescue
++# exceptions and display an error page (just like when the app is running in production).
++# Typical scenarios where you want to do this is when you test your error pages.
++# There are two ways to allow Rails to rescue exceptions:
++#
++# 1) Tag your scenario (or feature) with @allow-rescue
++#
++# 2) Set the value below to true. Beware that doing this globally is not
++# recommended as it will mask a lot of errors for you!
++#
++ActionController::Base.allow_rescue = false
++
++# Remove/comment out the lines below if your app doesn't have a database.
++# For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
++begin
++  DatabaseCleaner.strategy = :transaction
++rescue NameError
++  raise "You need to add database_cleaner to your Gemfile (in the :test group) if you wish to use it."
++end
++
++# You may also want to configure DatabaseCleaner to use different strategies for certain features and scenarios.
++# See the DatabaseCleaner documentation for details. Example:
++#
++#   Before('@no-txn,@selenium,@culerity,@celerity,@javascript') do
++#     # { :except => [:widgets] } may not do what you expect here
++#     # as tCucumber::Rails::Database.javascript_strategy overrides
++#     # this setting.
++#     DatabaseCleaner.strategy = :truncation
++#   end
++#
++#   Before('~@no-txn', '~@selenium', '~@culerity', '~@celerity', '~@javascript') do
++#     DatabaseCleaner.strategy = :transaction
++#   end
++#
++
++# Possible values are :truncation and :transaction
++# The :transaction strategy is faster, but might give you threading problems.
++# See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
++Cucumber::Rails::Database.javascript_strategy = :truncation
++
+diff --git a/features/support/paths.rb b/features/support/paths.rb
+new file mode 100644
+index 0000000..a5aad26
+--- /dev/null
++++ b/features/support/paths.rb
+@@ -0,0 +1,44 @@
++# TL;DR: YOU SHOULD DELETE THIS FILE
++#
++# This file is used by web_steps.rb, which you should also delete
++#
++# You have been warned
++module NavigationHelpers
++  # Maps a name to a path. Used by the
++  #
++  #   When /^I go to (.+)$/ do |page_name|
++  #
++  # step definition in web_steps.rb
++  #
++  def path_to(page_name)
++    case page_name
++
++    when /^the home page$/
++      rooms_path
++    when /^the log in page$/
++      rooms_login_path
++    when /^the staff page$/
++      rooms_staff_path
++    when /^the new room page$/
++      rooms_new_room_path
++
++    # Add more mappings here.
++    # Here is an example that pulls values out of the Regexp:
++    #
++    #   when /^(.*)'s profile page$/i
++    #     user_profile_path(User.find_by_login($1))
++
++    else
++      begin
++        page_name =~ /^the (.*) page$/
++        path_components = $1.split(/\s+/)
++        self.send(path_components.push('path').join('_').to_sym)
++      rescue NoMethodError, ArgumentError
++        raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
++          "Now, go and add a mapping in #{__FILE__}"
++      end
++    end
++  end
++end
++
++World(NavigationHelpers)
+diff --git a/features/support/paths.rb~ b/features/support/paths.rb~
+new file mode 100644
+index 0000000..290543c
+--- /dev/null
++++ b/features/support/paths.rb~
+@@ -0,0 +1,38 @@
++# TL;DR: YOU SHOULD DELETE THIS FILE
++#
++# This file is used by web_steps.rb, which you should also delete
++#
++# You have been warned
++module NavigationHelpers
++  # Maps a name to a path. Used by the
++  #
++  #   When /^I go to (.+)$/ do |page_name|
++  #
++  # step definition in web_steps.rb
++  #
++  def path_to(page_name)
++    case page_name
++
++    when /^the home\s?page$/
++      '/'
++
++    # Add more mappings here.
++    # Here is an example that pulls values out of the Regexp:
++    #
++    #   when /^(.*)'s profile page$/i
++    #     user_profile_path(User.find_by_login($1))
++
++    else
++      begin
++        page_name =~ /^the (.*) page$/
++        path_components = $1.split(/\s+/)
++        self.send(path_components.push('path').join('_').to_sym)
++      rescue NoMethodError, ArgumentError
++        raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
++          "Now, go and add a mapping in #{__FILE__}"
++      end
++    end
++  end
++end
++
++World(NavigationHelpers)
+diff --git a/features/support/selectors.rb b/features/support/selectors.rb
+new file mode 100644
+index 0000000..33bebc1
+--- /dev/null
++++ b/features/support/selectors.rb
+@@ -0,0 +1,44 @@
++# TL;DR: YOU SHOULD DELETE THIS FILE
++#
++# This file is used by web_steps.rb, which you should also delete
++#
++# You have been warned
++module HtmlSelectorsHelpers
++  # Maps a name to a selector. Used primarily by the
++  #
++  #   When /^(.+) within (.+)$/ do |step, scope|
++  #
++  # step definitions in web_steps.rb
++  #
++  def selector_for(locator)
++    case locator
++
++    when "the page"
++      "html > body"
++
++    # Add more mappings here.
++    # Here is an example that pulls values out of the Regexp:
++    #
++    #  when /^the (notice|error|info) flash$/
++    #    ".flash.#{$1}"
++
++    # You can also return an array to use a different selector
++    # type, like:
++    #
++    #  when /the header/
++    #    [:xpath, "//header"]
++
++    # This allows you to provide a quoted selector as the scope
++    # for "within" steps as was previously the default for the
++    # web steps:
++    when /^"(.+)"$/
++      $1
++
++    else
++      raise "Can't find mapping from \"#{locator}\" to a selector.\n" +
++        "Now, go and add a mapping in #{__FILE__}"
++    end
++  end
++end
++
++World(HtmlSelectorsHelpers)
+diff --git a/features/users_user_story1.feature b/features/users_user_story1.feature
+new file mode 100644
+index 0000000..9d42d76
+--- /dev/null
++++ b/features/users_user_story1.feature
+@@ -0,0 +1,10 @@
++Feature: Searching for room status and free time
++  As a user’s
++  So that I can see every room status
++  I want to see room details and free time from database
++Scenario: Attempting to specify reservation time
++  Given I am on the home page
++  Then I should see "ดูสถานะห้อง"
++  When I follow "ดูสถานะห้อง"
++  Then I should be on the room status page
++  And I should see room status
+diff --git a/features/users_user_story2.feature b/features/users_user_story2.feature
+new file mode 100644
+index 0000000..3e48986
+--- /dev/null
++++ b/features/users_user_story2.feature
+@@ -0,0 +1,22 @@
++Feature: Requesting for online reservation
++  As a user’s
++  So that I can making an online reservation
++  I want to filling reservation data and sending requests
++
++Background: Startup with Homepage
++  Given I am on the home page
++  Then I should see "จองห้อง"
++  When I follow "จองห้อง"
++  Then I should be on the page
++
++Scenario: Attempting to find available reservation time
++  When I fill reservation data and available reservation time
++  And I press "จองห้อง"
++  Then I should be on the home page
++  And I should see "การจองห้องสำเร็จ"
++
++Scenario: Attempting to find unavailable reservation time
++  When ฉันกรอกข้อมูลการจองห้องและ”ช่วงเวลาที่ไม่สามารถจองห้องได้”
++  And I press "จองห้อง"
++  Then I should be on the homepage
++  And I should see “ไม่สามารถจองห้องได้ เพราะช่วงเวลาไม่เหมาะสม”
+diff --git a/lib/assets/.gitkeep b/lib/assets/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/lib/tasks/.gitkeep b/lib/tasks/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/lib/tasks/cucumber.rake b/lib/tasks/cucumber.rake
+new file mode 100644
+index 0000000..83f7947
+--- /dev/null
++++ b/lib/tasks/cucumber.rake
+@@ -0,0 +1,65 @@
++# IMPORTANT: This file is generated by cucumber-rails - edit at your own peril.
++# It is recommended to regenerate this file in the future when you upgrade to a 
++# newer version of cucumber-rails. Consider adding your own code to a new file 
++# instead of editing this one. Cucumber will automatically load all features/**/*.rb
++# files.
++
++
++unless ARGV.any? {|a| a =~ /^gems/} # Don't load anything when running the gems:* tasks
++
++vendored_cucumber_bin = Dir["#{Rails.root}/vendor/{gems,plugins}/cucumber*/bin/cucumber"].first
++$LOAD_PATH.unshift(File.dirname(vendored_cucumber_bin) + '/../lib') unless vendored_cucumber_bin.nil?
++
++begin
++  require 'cucumber/rake/task'
++
++  namespace :cucumber do
++    Cucumber::Rake::Task.new({:ok => 'db:test:prepare'}, 'Run features that should pass') do |t|
++      t.binary = vendored_cucumber_bin # If nil, the gem's binary is used.
++      t.fork = true # You may get faster startup if you set this to false
++      t.profile = 'default'
++    end
++
++    Cucumber::Rake::Task.new({:wip => 'db:test:prepare'}, 'Run features that are being worked on') do |t|
++      t.binary = vendored_cucumber_bin
++      t.fork = true # You may get faster startup if you set this to false
++      t.profile = 'wip'
++    end
++
++    Cucumber::Rake::Task.new({:rerun => 'db:test:prepare'}, 'Record failing features and run only them if any exist') do |t|
++      t.binary = vendored_cucumber_bin
++      t.fork = true # You may get faster startup if you set this to false
++      t.profile = 'rerun'
++    end
++
++    desc 'Run all features'
++    task :all => [:ok, :wip]
++
++    task :statsetup do
++      require 'rails/code_statistics'
++      ::STATS_DIRECTORIES << %w(Cucumber\ features features) if File.exist?('features')
++      ::CodeStatistics::TEST_TYPES << "Cucumber features" if File.exist?('features')
++    end
++  end
++  desc 'Alias for cucumber:ok'
++  task :cucumber => 'cucumber:ok'
++
++  task :default => :cucumber
++
++  task :features => :cucumber do
++    STDERR.puts "*** The 'features' task is deprecated. See rake -T cucumber ***"
++  end
++
++  # In case we don't have ActiveRecord, append a no-op task that we can depend upon.
++  task 'db:test:prepare' do
++  end
++
++  task :stats => 'cucumber:statsetup'
++rescue LoadError
++  desc 'cucumber rake task not available (cucumber not installed)'
++  task :cucumber do
++    abort 'Cucumber rake task is not available. Be sure to install cucumber as a gem or plugin'
++  end
++end
++
++end
+diff --git a/log/.gitkeep b/log/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/public/404.html b/public/404.html
+new file mode 100644
+index 0000000..9a48320
+--- /dev/null
++++ b/public/404.html
+@@ -0,0 +1,26 @@
++<!DOCTYPE html>
++<html>
++<head>
++  <title>The page you were looking for doesn't exist (404)</title>
++  <style type="text/css">
++    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
++    div.dialog {
++      width: 25em;
++      padding: 0 4em;
++      margin: 4em auto 0 auto;
++      border: 1px solid #ccc;
++      border-right-color: #999;
++      border-bottom-color: #999;
++    }
++    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
++  </style>
++</head>
++
++<body>
++  <!-- This file lives in public/404.html -->
++  <div class="dialog">
++    <h1>The page you were looking for doesn't exist.</h1>
++    <p>You may have mistyped the address or the page may have moved.</p>
++  </div>
++</body>
++</html>
+diff --git a/public/422.html b/public/422.html
+new file mode 100644
+index 0000000..83660ab
+--- /dev/null
++++ b/public/422.html
+@@ -0,0 +1,26 @@
++<!DOCTYPE html>
++<html>
++<head>
++  <title>The change you wanted was rejected (422)</title>
++  <style type="text/css">
++    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
++    div.dialog {
++      width: 25em;
++      padding: 0 4em;
++      margin: 4em auto 0 auto;
++      border: 1px solid #ccc;
++      border-right-color: #999;
++      border-bottom-color: #999;
++    }
++    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
++  </style>
++</head>
++
++<body>
++  <!-- This file lives in public/422.html -->
++  <div class="dialog">
++    <h1>The change you wanted was rejected.</h1>
++    <p>Maybe you tried to change something you didn't have access to.</p>
++  </div>
++</body>
++</html>
+diff --git a/public/500.html b/public/500.html
+new file mode 100644
+index 0000000..f3648a0
+--- /dev/null
++++ b/public/500.html
+@@ -0,0 +1,25 @@
++<!DOCTYPE html>
++<html>
++<head>
++  <title>We're sorry, but something went wrong (500)</title>
++  <style type="text/css">
++    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
++    div.dialog {
++      width: 25em;
++      padding: 0 4em;
++      margin: 4em auto 0 auto;
++      border: 1px solid #ccc;
++      border-right-color: #999;
++      border-bottom-color: #999;
++    }
++    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
++  </style>
++</head>
++
++<body>
++  <!-- This file lives in public/500.html -->
++  <div class="dialog">
++    <h1>We're sorry, but something went wrong.</h1>
++  </div>
++</body>
++</html>
+diff --git a/public/favicon.ico b/public/favicon.ico
+new file mode 100644
+index 0000000..e69de29
+diff --git a/public/robots.txt b/public/robots.txt
+new file mode 100644
+index 0000000..085187f
+--- /dev/null
++++ b/public/robots.txt
+@@ -0,0 +1,5 @@
++# See http://www.robotstxt.org/wc/norobots.html for documentation on how to use the robots.txt file
++#
++# To ban all spiders from the entire site uncomment the next two lines:
++# User-Agent: *
++# Disallow: /
+diff --git a/script/cucumber b/script/cucumber
+new file mode 100755
+index 0000000..7fa5c92
+--- /dev/null
++++ b/script/cucumber
+@@ -0,0 +1,10 @@
++#!/usr/bin/env ruby
++
++vendored_cucumber_bin = Dir["#{File.dirname(__FILE__)}/../vendor/{gems,plugins}/cucumber*/bin/cucumber"].first
++if vendored_cucumber_bin
++  load File.expand_path(vendored_cucumber_bin)
++else
++  require 'rubygems' unless ENV['NO_RUBYGEMS']
++  require 'cucumber'
++  load Cucumber::BINARY
++end
+diff --git a/script/rails b/script/rails
+new file mode 100755
+index 0000000..f8da2cf
+--- /dev/null
++++ b/script/rails
+@@ -0,0 +1,6 @@
++#!/usr/bin/env ruby
++# This command will automatically be run when you run "rails" with Rails 3 gems installed from the root of your application.
++
++APP_PATH = File.expand_path('../../config/application',  __FILE__)
++require File.expand_path('../../config/boot',  __FILE__)
++require 'rails/commands'
+diff --git a/spec/controllers/rooms_controller_spec.rb b/spec/controllers/rooms_controller_spec.rb
+new file mode 100644
+index 0000000..3811054
+--- /dev/null
++++ b/spec/controllers/rooms_controller_spec.rb
+@@ -0,0 +1,127 @@
++require 'spec_helper'
++
++describe RoomsController do
++
++  def mock_room(stubs={})
++    (@mock_room ||= mock_model(Room).as_null_object).tap do |room|
++      room.stub(stubs) unless stubs.empty?
++    end
++  end
++
++  describe "GET index" do
++    it "assigns all rooms as @rooms" do
++      Room.stub(:all) { [mock_room] }
++      get :index
++      assigns(:rooms).should eq([mock_room])
++    end
++  end
++
++  describe "GET show" do
++    it "assigns the requested room as @room" do
++      Room.stub(:find).with("37") { mock_room }
++      get :show, :id => "37"
++      assigns(:room).should be(mock_room)
++    end
++  end
++
++  describe "GET new" do
++    it "assigns a new room as @room" do
++      Room.stub(:new) { mock_room }
++      get :new
++      assigns(:room).should be(mock_room)
++    end
++  end
++
++  describe "GET edit" do
++    it "assigns the requested room as @room" do
++      Room.stub(:find).with("37") { mock_room }
++      get :edit, :id => "37"
++      assigns(:room).should be(mock_room)
++    end
++  end
++
++  describe "POST create" do
++
++    describe "with valid params" do
++      it "assigns a newly created room as @room" do
++        Room.stub(:new).with({'these' => 'params'}) { mock_room(:save => true) }
++        post :create, :room => {'these' => 'params'}
++        assigns(:room).should be(mock_room)
++      end
++
++      it "redirects to the created room" do
++        Room.stub(:new) { mock_room(:save => true) }
++        post :create, :room => {}
++        response.should redirect_to(room_url(mock_room))
++      end
++    end
++
++    describe "with invalid params" do
++      it "assigns a newly created but unsaved room as @room" do
++        Room.stub(:new).with({'these' => 'params'}) { mock_room(:save => false) }
++        post :create, :room => {'these' => 'params'}
++        assigns(:room).should be(mock_room)
++      end
++
++      it "re-renders the 'new' template" do
++        Room.stub(:new) { mock_room(:save => false) }
++        post :create, :room => {}
++        response.should render_template("new")
++      end
++    end
++
++  end
++
++  describe "PUT update" do
++
++    describe "with valid params" do
++      it "updates the requested room" do
++        Room.should_receive(:find).with("37") { mock_room }
++        mock_room.should_receive(:update_attributes).with({'these' => 'params'})
++        put :update, :id => "37", :room => {'these' => 'params'}
++      end
++
++      it "assigns the requested room as @room" do
++        Room.stub(:find) { mock_room(:update_attributes => true) }
++        put :update, :id => "1"
++        assigns(:room).should be(mock_room)
++      end
++
++      it "redirects to the room" do
++        Room.stub(:find) { mock_room(:update_attributes => true) }
++        put :update, :id => "1"
++        response.should redirect_to(room_url(mock_room))
++      end
++    end
++
++    describe "with invalid params" do
++      it "assigns the room as @room" do
++        Room.stub(:find) { mock_room(:update_attributes => false) }
++        put :update, :id => "1"
++        assigns(:room).should be(mock_room)
++      end
++
++      it "re-renders the 'edit' template" do
++        Room.stub(:find) { mock_room(:update_attributes => false) }
++        put :update, :id => "1"
++        response.should render_template("edit")
++      end
++    end
++
++  end
++
++  describe "DELETE destroy" do
++    it "destroys the requested room" do
++      Room.should_receive(:find).with("37") { mock_room }
++      mock_room.should_receive(:destroy)
++      delete :destroy, :id => "37"
++    end
++
++    it "redirects to the rooms list" do
++      Room.stub(:find) { mock_room }
++      delete :destroy, :id => "1"
++      response.should redirect_to(rooms_url)
++    end
++  end
++
++end
+diff --git a/spec/controllers/static_pages_controller_spec.rb b/spec/controllers/static_pages_controller_spec.rb
+new file mode 100644
+index 0000000..f332f4c
+--- /dev/null
++++ b/spec/controllers/static_pages_controller_spec.rb
+@@ -0,0 +1,12 @@
++require 'spec_helper'
++
++describe StaticPagesController do
++
++  describe "GET 'about'" do
++    it "should be successful" do
++      get 'about'
++      response.should be_success
++    end
++  end
++
++end
+diff --git a/spec/factories/rooms.rb b/spec/factories/rooms.rb
+new file mode 100644
+index 0000000..f27987e
+--- /dev/null
++++ b/spec/factories/rooms.rb
+@@ -0,0 +1,6 @@
++# Read about factories at https://github.com/thoughtbot/factory_girl
++
++FactoryGirl.define do
++  factory :room do
++  end
++end
+diff --git a/spec/helpers/rooms_helper_spec.rb b/spec/helpers/rooms_helper_spec.rb
+new file mode 100644
+index 0000000..173aa84
+--- /dev/null
++++ b/spec/helpers/rooms_helper_spec.rb
+@@ -0,0 +1,15 @@
++require 'spec_helper'
++
++# Specs in this file have access to a helper object that includes
++# the RoomsHelper. For example:
++#
++# describe RoomsHelper do
++#   describe "string concat" do
++#     it "concats two strings with spaces" do
++#       helper.concat_strings("this","that").should == "this that"
++#     end
++#   end
++# end
++describe RoomsHelper do
++  pending "add some examples to (or delete) #{__FILE__}"
++end
+diff --git a/spec/helpers/static_pages_helper_spec.rb b/spec/helpers/static_pages_helper_spec.rb
+new file mode 100644
+index 0000000..bb67275
+--- /dev/null
++++ b/spec/helpers/static_pages_helper_spec.rb
+@@ -0,0 +1,15 @@
++require 'spec_helper'
++
++# Specs in this file have access to a helper object that includes
++# the StaticPagesHelper. For example:
++#
++# describe StaticPagesHelper do
++#   describe "string concat" do
++#     it "concats two strings with spaces" do
++#       helper.concat_strings("this","that").should == "this that"
++#     end
++#   end
++# end
++describe StaticPagesHelper do
++  pending "add some examples to (or delete) #{__FILE__}"
++end
+diff --git a/spec/models/room_spec.rb b/spec/models/room_spec.rb
+new file mode 100644
+index 0000000..ebabd3d
+--- /dev/null
++++ b/spec/models/room_spec.rb
+@@ -0,0 +1,5 @@
++require 'spec_helper'
++
++describe Room do
++  pending "add some examples to (or delete) #{__FILE__}"
++end
+diff --git a/spec/requests/rooms_spec.rb b/spec/requests/rooms_spec.rb
+new file mode 100644
+index 0000000..9c315f8
+--- /dev/null
++++ b/spec/requests/rooms_spec.rb
+@@ -0,0 +1,9 @@
++require 'spec_helper'
++
++describe "Rooms" do
++  describe "GET /rooms" do
++    it "works! (now write some real specs)" do
++      get rooms_path
++    end
++  end
++end
+diff --git a/spec/routing/rooms_routing_spec.rb b/spec/routing/rooms_routing_spec.rb
+new file mode 100644
+index 0000000..bafc503
+--- /dev/null
++++ b/spec/routing/rooms_routing_spec.rb
+@@ -0,0 +1,35 @@
++require "spec_helper"
++
++describe RoomsController do
++  describe "routing" do
++
++    it "recognizes and generates #index" do
++      { :get => "/rooms" }.should route_to(:controller => "rooms", :action => "index")
++    end
++
++    it "recognizes and generates #new" do
++      { :get => "/rooms/new" }.should route_to(:controller => "rooms", :action => "new")
++    end
++
++    it "recognizes and generates #show" do
++      { :get => "/rooms/1" }.should route_to(:controller => "rooms", :action => "show", :id => "1")
++    end
++
++    it "recognizes and generates #edit" do
++      { :get => "/rooms/1/edit" }.should route_to(:controller => "rooms", :action => "edit", :id => "1")
++    end
++
++    it "recognizes and generates #create" do
++      { :post => "/rooms" }.should route_to(:controller => "rooms", :action => "create")
++    end
++
++    it "recognizes and generates #update" do
++      { :put => "/rooms/1" }.should route_to(:controller => "rooms", :action => "update", :id => "1")
++    end
++
++    it "recognizes and generates #destroy" do
++      { :delete => "/rooms/1" }.should route_to(:controller => "rooms", :action => "destroy", :id => "1")
++    end
++
++  end
++end
+diff --git a/spec/spec_helper.rb b/spec/spec_helper.rb
+new file mode 100644
+index 0000000..9b8b02c
+--- /dev/null
++++ b/spec/spec_helper.rb
+@@ -0,0 +1,27 @@
++# This file is copied to spec/ when you run 'rails generate rspec:install'
++ENV["RAILS_ENV"] ||= 'test'
++require File.expand_path("../../config/environment", __FILE__)
++require 'rspec/rails'
++
++# Requires supporting ruby files with custom matchers and macros, etc,
++# in spec/support/ and its subdirectories.
++Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
++
++RSpec.configure do |config|
++  # == Mock Framework
++  #
++  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
++  #
++  # config.mock_with :mocha
++  # config.mock_with :flexmock
++  # config.mock_with :rr
++  config.mock_with :rspec
++
++  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
++  config.fixture_path = "#{::Rails.root}/spec/fixtures"
++
++  # If you're not using ActiveRecord, or you'd prefer not to run each of your
++  # examples within a transaction, remove the following line or assign false
++  # instead of true.
++  config.use_transactional_fixtures = true
++end
+diff --git a/spec/views/rooms/edit.html.haml_spec.rb b/spec/views/rooms/edit.html.haml_spec.rb
+new file mode 100644
+index 0000000..c37b00c
+--- /dev/null
++++ b/spec/views/rooms/edit.html.haml_spec.rb
+@@ -0,0 +1,17 @@
++require 'spec_helper'
++
++describe "rooms/edit.html.haml" do
++  before(:each) do
++    @room = assign(:room, stub_model(Room,
++      :new_record? => false
++    ))
++  end
++
++  it "renders the edit room form" do
++    render
++
++    # Run the generator again with the --webrat-matchers flag if you want to use webrat matchers
++    assert_select "form", :action => room_path(@room), :method => "post" do
++    end
++  end
++end
+diff --git a/spec/views/rooms/index.html.haml_spec.rb b/spec/views/rooms/index.html.haml_spec.rb
+new file mode 100644
+index 0000000..f0c333f
+--- /dev/null
++++ b/spec/views/rooms/index.html.haml_spec.rb
+@@ -0,0 +1,14 @@
++require 'spec_helper'
++
++describe "rooms/index.html.haml" do
++  before(:each) do
++    assign(:rooms, [
++      stub_model(Room),
++      stub_model(Room)
++    ])
++  end
++
++  it "renders a list of rooms" do
++    render
++  end
++end
+diff --git a/spec/views/rooms/login.html.haml_spec.rb b/spec/views/rooms/login.html.haml_spec.rb
+new file mode 100644
+index 0000000..3506f09
+--- /dev/null
++++ b/spec/views/rooms/login.html.haml_spec.rb
+@@ -0,0 +1,5 @@
++require 'spec_helper'
++
++describe "rooms/login.html.haml" do
++  pending "add some examples to (or delete) #{__FILE__}"
++end
+diff --git a/spec/views/rooms/new.html.haml_spec.rb b/spec/views/rooms/new.html.haml_spec.rb
+new file mode 100644
+index 0000000..bd63869
+--- /dev/null
++++ b/spec/views/rooms/new.html.haml_spec.rb
+@@ -0,0 +1,15 @@
++require 'spec_helper'
++
++describe "rooms/new.html.haml" do
++  before(:each) do
++    assign(:room, stub_model(Room).as_new_record)
++  end
++
++  it "renders new room form" do
++    render
++
++    # Run the generator again with the --webrat-matchers flag if you want to use webrat matchers
++    assert_select "form", :action => rooms_path, :method => "post" do
++    end
++  end
++end
+diff --git a/spec/views/rooms/new_room.html.haml_spec.rb b/spec/views/rooms/new_room.html.haml_spec.rb
+new file mode 100644
+index 0000000..fabe0f8
+--- /dev/null
++++ b/spec/views/rooms/new_room.html.haml_spec.rb
+@@ -0,0 +1,5 @@
++require 'spec_helper'
++
++describe "rooms/new_room.html.haml" do
++  pending "add some examples to (or delete) #{__FILE__}"
++end
+diff --git a/spec/views/rooms/reserve.html.haml_spec.rb b/spec/views/rooms/reserve.html.haml_spec.rb
+new file mode 100644
+index 0000000..5f5c0d1
+--- /dev/null
++++ b/spec/views/rooms/reserve.html.haml_spec.rb
+@@ -0,0 +1,5 @@
++require 'spec_helper'
++
++describe "rooms/reserve.html.haml" do
++  pending "add some examples to (or delete) #{__FILE__}"
++end
+diff --git a/spec/views/rooms/show.html.haml_spec.rb b/spec/views/rooms/show.html.haml_spec.rb
+new file mode 100644
+index 0000000..f637c94
+--- /dev/null
++++ b/spec/views/rooms/show.html.haml_spec.rb
+@@ -0,0 +1,11 @@
++require 'spec_helper'
++
++describe "rooms/show.html.haml" do
++  before(:each) do
++    @room = assign(:room, stub_model(Room))
++  end
++
++  it "renders attributes in <p>" do
++    render
++  end
++end
+diff --git a/spec/views/rooms/staff.html.haml_spec.rb b/spec/views/rooms/staff.html.haml_spec.rb
+new file mode 100644
+index 0000000..9d6fdd5
+--- /dev/null
++++ b/spec/views/rooms/staff.html.haml_spec.rb
+@@ -0,0 +1,5 @@
++require 'spec_helper'
++
++describe "rooms/staff.html.haml" do
++  pending "add some examples to (or delete) #{__FILE__}"
++end
+diff --git a/spec/views/static_pages/about.html.haml_spec.rb b/spec/views/static_pages/about.html.haml_spec.rb
+new file mode 100644
+index 0000000..b9fb5bf
+--- /dev/null
++++ b/spec/views/static_pages/about.html.haml_spec.rb
+@@ -0,0 +1,5 @@
++require 'spec_helper'
++
++describe "static_pages/about.html.haml" do
++  pending "add some examples to (or delete) #{__FILE__}"
++end
+diff --git a/test/fixtures/.gitkeep b/test/fixtures/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/test/functional/.gitkeep b/test/functional/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/test/integration/.gitkeep b/test/integration/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/test/performance/browsing_test.rb b/test/performance/browsing_test.rb
+new file mode 100644
+index 0000000..3fea27b
+--- /dev/null
++++ b/test/performance/browsing_test.rb
+@@ -0,0 +1,12 @@
++require 'test_helper'
++require 'rails/performance_test_help'
++
++class BrowsingTest < ActionDispatch::PerformanceTest
++  # Refer to the documentation for all available options
++  # self.profile_options = { :runs => 5, :metrics => [:wall_time, :memory]
++  #                          :output => 'tmp/performance', :formats => [:flat] }
++
++  def test_homepage
++    get '/'
++  end
++end
+diff --git a/test/test_helper.rb b/test/test_helper.rb
+new file mode 100644
+index 0000000..8bf1192
+--- /dev/null
++++ b/test/test_helper.rb
+@@ -0,0 +1,13 @@
++ENV["RAILS_ENV"] = "test"
++require File.expand_path('../../config/environment', __FILE__)
++require 'rails/test_help'
++
++class ActiveSupport::TestCase
++  # Setup all fixtures in test/fixtures/*.(yml|csv) for all tests in alphabetical order.
++  #
++  # Note: You'll currently still have to declare fixtures explicitly in integration tests
++  # -- they do not yet inherit this setting
++  fixtures :all
++
++  # Add more helper methods to be used by all tests here...
++end
+diff --git a/test/unit/.gitkeep b/test/unit/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/vendor/assets/javascripts/.gitkeep b/vendor/assets/javascripts/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/vendor/assets/stylesheets/.gitkeep b/vendor/assets/stylesheets/.gitkeep
+new file mode 100644
+index 0000000..e69de29
+diff --git a/vendor/plugins/.gitkeep b/vendor/plugins/.gitkeep
+new file mode 100644
+index 0000000..e69de29
