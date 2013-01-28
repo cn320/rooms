@@ -2,16 +2,17 @@ RoomManagement::Application.routes.draw do
   get "rooms/reserve"
 
   get "rooms/login"
-
+  post "rooms/login"
   get "rooms/staff"
-
+  post "rooms/staff"
   get "rooms/new_room"
-
+  post "rooms/new_room"
   get "static_pages/about"
 
   resources :rooms
 
   match '/' => 'static_pages#about', :as => :about
+  #match "/movies/same_director/:id" => "movies#same_director" , :as=>:same_director , :via=>:get
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

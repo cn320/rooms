@@ -12,6 +12,7 @@ Background: Startup with Staffpage
   Then I should be on the reserve page
 
 Scenario: Fill data and specify appropriate time to reserve room
+  Given I am on the reserve page
   When I fill data into the form
   And I specify appropriate time to reserve
   And I press "จองห้อง"

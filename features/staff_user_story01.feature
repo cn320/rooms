@@ -14,11 +14,9 @@ Background: Startup with Homepage
   Then I should see "สำหรับเจ้าหน้าที่"
   When I follow "สำหรับเจ้าหน้าที่"
   Then I should be on the log in page
-
+  And I should see "กรุณากรอก username และ password"
   
 Scenario: Can Log In to the staff page (Happy Path)
-  When I am on the log in page
-  And I should see "กรุณากรอก username และ password"
   When I fill in "Username" with "naideekub"
   And I fill in "Password" with "honhonhon"
   And I press "Log In"
@@ -26,8 +24,6 @@ Scenario: Can Log In to the staff page (Happy Path)
 
 
 Scenario: Can not Log In to the staff page (Sad Path)
-  When I am on the log in page
-  And I should see "กรุณากรอก username และ password"
   When I fill in "Username" with "username"
   And I fill in "Password" with "password"
   And I press "Log In"

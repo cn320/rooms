@@ -21,6 +21,8 @@ module NavigationHelpers
       rooms_staff_path
     when /^the new room page$/
       rooms_new_room_path
+    when /^the reserve page$/
+      rooms_reserve_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

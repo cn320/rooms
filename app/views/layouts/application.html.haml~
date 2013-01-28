@@ -16,7 +16,7 @@
       %br/
       %p=link_to 'จองห้อง', rooms_path
       %br/
-      %p=link_to 'สำหรับเจ้าหน้าที่', rooms_path
+      %p=link_to 'สำหรับเจ้าหน้าที่', rooms_login_path
     #contentbox
       - if flash[:notice]
         #notice.message= flash[:notice]

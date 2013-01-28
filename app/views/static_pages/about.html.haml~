@@ -48,9 +48,10 @@
 
     .titletext Background: Startup with Homepage
     &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms_users exist:
-    &nbsp;&nbsp;&nbsp;&nbsp;[ username     | password ]
-    &nbsp;&nbsp;&nbsp;&nbsp;[ naideekub    | honhonhon ] 
-    &nbsp;&nbsp;&nbsp;&nbsp;[ koonnongchay | milkwarm ] 
+    &nbsp;&nbsp;&nbsp;&nbsp;| username     | password |
+    %br/
+    &nbsp;&nbsp;&nbsp;&nbsp;| naideekub    | honhonhon | 
+    &nbsp;&nbsp;&nbsp;&nbsp;| koonnongchay | milkwarm | 
     &nbsp;&nbsp;&nbsp;&nbsp;And I am on the home page
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "สำหรับเจ้าหน้าที่"
     &nbsp;&nbsp;&nbsp;&nbsp;When I follow "สำหรับเจ้าหน้าที่"
