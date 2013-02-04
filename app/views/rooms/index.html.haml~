@@ -1,14 +1,36 @@
-#content{:align => "center"}
-  %h1 ยินดีต้อนรับเข้าสู่ ระบบจองห้องออนไลน์
-  %h3 คณะวิศวกรรมศาสตร์  มหาวิทยาลัยธรรมศาสตร์
 
-%table#rooms
-  %thead
-    %tr
-      %th room_id
-      %th status
-  %tbody
-    - @rooms.each do |room|
-      %tr
-        %td= room.room_id
-        %td= link_to "ดูสถานะห้อง #{room.room_id}", room_path(room)
+/ - body section
+.container-fluid
+  .well
+    .row-fluid
+      / Sidebar content
+      .span3
+        %form
+          %fieldset
+            %legend
+              %i.icon-search
+              Search Room
+            %input{:placeholder => "Date…", :type => "text"}
+              %br
+                %input{:placeholder => "Room…", :type => "text"}
+                  %br
+                    .alert.alert-success{:style => "width:170px;"} Example: วศ.301
+                    %button.btn.btn-primary{:type => "button"} Search...
+      / Sidebar content
+      / Body content
+      %table#rooms
+        %thead
+          %tr
+            %th room_id
+            %th status
+        %tbody
+          - @rooms.each do |room|
+            %tr
+              %td= room.room_id
+              %td= link_to "ดูสถานะห้อง #{room.room_id}", room_path(room)
+
+      .span9
+        .hero-unit
+          %h1 Room Reservation Online
+          %p Faculty of Engineering , Thammasat University
+      / Body content

@@ -39,7 +39,7 @@
 
     .grouptext User stories 1:
     
-    .notetext หมายเหตุ เพิ่มเติมจาก Iteration0 โดยดึงมาจาก User Story ของ Staff ที่มีการLog in เข้าระบบ
+    .notetext หมายเหตุ เพิ่มฐานข้อมลจำลองและเพิ่มการเช็คการล็อคอิน
 
     .titletext Feature: Log In to the staff page
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
@@ -49,7 +49,7 @@
     .titletext Background: Startup with Homepage
     &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms_users exist:
     &nbsp;&nbsp;&nbsp;&nbsp;[ username     | password ]
-    &nbsp;&nbsp;&nbsp;&nbsp;[ naideekub    | honhonhon ] 
+    &nbsp;&nbsp;&nbsp;&nbsp;[ naidkub      | honhon ] 
     &nbsp;&nbsp;&nbsp;&nbsp;[ koonnongchay | milkwarm ] 
     &nbsp;&nbsp;&nbsp;&nbsp;And I am on the home page
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "สำหรับเจ้าหน้าที่"
@@ -58,8 +58,8 @@
     &nbsp;&nbsp;&nbsp;&nbsp;And I should see "กรุณากรอก username และ password"
   
     .titletext Scenario: Can Log In to the staff page (Happy Path)
-    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Username" with "naideekub"
-    &nbsp;&nbsp;&nbsp;&nbsp;And I fill in "Password" with "honhonhon"
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Username" with "naidkub"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I fill in "Password" with "honhon"
     &nbsp;&nbsp;&nbsp;&nbsp;And I press "Log In"
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the staff page
 
@@ -73,7 +73,7 @@
 
     .grouptext User stories 2:
 
-    .notetext หมายเหตุ ตัดช่วงการ Log in ไปอยู่ใน User stories 1 และปรับเปลี่ยนข้อความในScenarioในสอดคล้องกับCucumber
+    .notetext หมายเหตุ ข้อมูลของการเพิ่มห้องยังไม่ครบถ้วน ทดสอบตามที่ทำได้
 
     .titletext Feature: Adding new room
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
@@ -100,7 +100,7 @@
 
     .grouptext User stories 3:
    
-    .notetext หมายเหตุ ตัดช่วงการ Log in ไปอยู่ใน User stories 1 และปรับเปลี่ยนข้อความในScenarioในสอดคล้องกับCucumber
+    .notetext หมายเหตุ เนื่องจากการจองห้อง ข้อมูลยังไม่เพียงพอและไม่แน่นอน จึงยังไม่สามารถทดสอบได้เท่าที่ควร
 
     .titletext Feature: Specify time to reserve room in case daily reserve
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
@@ -129,7 +129,7 @@
 
     .grouptext User stories 4:
 
-    .notetext หมายเหตุ ตัดช่วงการ Log in ไปอยู่ใน User stories 1 และปรับเปลี่ยนข้อความในScenarioในสอดคล้องกับCucumber
+    .notetext หมายเหตุ มีรายละเอียดบางส่วนยังไม่แน่นอน จึงทดสอบได้ตามสมควร
 
     .titletext Feature: Modify room data
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
@@ -147,23 +147,27 @@
 
     .grouptext User stories 5:
 
-    .notetext หมายเหตุ ปรับเปลี่ยนข้อความในScenarioในสอดคล้องกับCucumber
+    .notetext หมายเหตุ ปรับเปลี่ยนpathและเพิ่มตารางจำลองเพื่อทดสอบการทำงาน
 
     .titletext Feature: Searching for room status and free time
     &nbsp;&nbsp;&nbsp;&nbsp;As a user’s
     &nbsp;&nbsp;&nbsp;&nbsp;So that I can see every room status
     &nbsp;&nbsp;&nbsp;&nbsp;I want to see room details and free time from database
-
+    .titletext Background: Startup with Homepage
+     &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms exist:
+   &nbsp;&nbsp;&nbsp;&nbsp;[ room_id      | status      ]
+   &nbsp;&nbsp;&nbsp;&nbsp;[ engr303      | available   ]
+   &nbsp;&nbsp;&nbsp;&nbsp;[ engr313      | unavailable ]
     .titletext Scenario: Attempting to specify reservation time
     &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the home page
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "ดูสถานะห้อง"
-    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูสถานะห้อง"
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the room status page
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "ดูสถานะห้อง engr303"
+    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูสถานะห้อง engr303"
+    &nbsp;&nbsp;&nbsp;&nbsp;hen I should be on the room "engr303" status page
     &nbsp;&nbsp;&nbsp;&nbsp;And I should see room status
 
     .grouptext User stories 6:
 
-    .notetext หมายเหตุ ปรับเปลี่ยนข้อความในScenarioในสอดคล้องกับCucumber
+    .notetext หมายเหตุ เนื่องจากการจองห้อง ข้อมูลยังไม่เพียงพอและไม่แน่นอน จึงยังไม่สามารถทดสอบได้เท่าที่ควร
 
     .titletext Feature: Requesting for online reservation
     &nbsp;&nbsp;&nbsp;&nbsp;As a user’s

@@ -41,3 +41,8 @@ gem 'jquery-rails'
 
 # To use debugger
 gem 'haml-rails'
+
+gem 'bootstrap-sass'
+
+gem "therubyracer"
+gem "less-rails"

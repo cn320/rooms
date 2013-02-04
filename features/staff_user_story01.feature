@@ -7,7 +7,7 @@ Background: Startup with Homepage
 
   Given the following staff exist:
   | username     | password |
-  | naidkub    | honhon |
+  | naidkub      | honhon   |
   | koonnongchay | milkwarm |
 
   And I am on the home page
