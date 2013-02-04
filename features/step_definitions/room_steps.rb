@@ -1,15 +1,8 @@
 # Add a declarative step here for populating the DB with movies.
 
-Given /the following rooms_users exist/ do |rooms_table|
-  rooms_table.hashes.each do |movie|
-    # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that movie to the database here.
-  end
-  #flunk "Unimplemented" # remove when done
-end
-
-Given /the following rooms_table exist/ do |rooms_table|
-  rooms_table.hashes.each do |movie|
+Given /the following rooms exist/ do |rooms_table|
+  rooms_table.hashes.each do |att|
+    Room.create!(att)
   end
 end
 # Make sure that one string (regexp) occurs before or after another one
@@ -49,4 +42,7 @@ Then /I modify data/ do
 end
 
 Then /I fill reservation data and (un)?available reservation time/ do |arg|
+end
+
+Then /I should see room status/ do
 end

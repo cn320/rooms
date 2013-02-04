@@ -1,0 +1,14 @@
+%h1 Rooms#login
+%p Find me in app/views/rooms/login.html.haml
+
+%h1 กรุณากรอก username และ password
+
+= form_tag staffs_path, :method => :login do
+
+  = label :room,:username,'Username'
+  = text_field :room, 'username'
+
+  = label :room,:password, 'Password'
+  = text_field :room, 'password'
+
+  = submit_tag 'Log In'

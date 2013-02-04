@@ -1,4 +1,15 @@
 RoomManagement::Application.routes.draw do
+  
+  
+  resources :staffs do
+    collection do
+      post 'submit'
+    end
+  end
+  #post "staffs/submit"
+
+  get "staffs/login"
+
   get "rooms/reserve"
 
   get "rooms/login"
@@ -8,10 +19,13 @@ RoomManagement::Application.routes.draw do
   get "rooms/new_room"
   post "rooms/new_room"
   get "static_pages/about"
+ 
 
   resources :rooms
-
+  #match '/staffs/submit' => 'staffs#submit', :as => :submit
   match '/' => 'static_pages#about', :as => :about
+  match '/login' => 'staffs#login', :as => :login , :via=>:get
+ # match "/movies/same_director/:id" => "movies#same_director" , :as=>:same_director , :via=>:get
   #match "/movies/same_director/:id" => "movies#same_director" , :as=>:same_director , :via=>:get
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -26,7 +40,7 @@ RoomManagement::Application.routes.draw do
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-
+  
   # Sample resource route with options:
   #   resources :products do
   #     member do
@@ -44,7 +58,7 @@ RoomManagement::Application.routes.draw do
   #     resources :comments, :sales
   #     resource :seller
   #   end
-
+  
   # Sample resource route with more complex sub-resources
   #   resources :products do
   #     resources :comments

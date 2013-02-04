@@ -16,11 +16,15 @@ module NavigationHelpers
     when /^the home page$/
       rooms_path
     when /^the log in page$/
-      rooms_login_path
+      login_path
     when /^the staff page$/
-      rooms_staff_path
+      staffs_path
     when /^the new room page$/
       rooms_new_room_path
+    when /^the reserve page$/
+      rooms_reserve_path
+    when /^the room "(.*)" status page/
+      room_path(Room.find_by_room_id($1))
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Login:
+  = @staff.login
+
+= link_to 'Edit', edit_staff_path(@staff)
+\|
+= link_to 'Back', staffs_path
