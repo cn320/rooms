@@ -7,8 +7,10 @@
     %tr
       %th room_id
       %th status
+      %th more info
   %tbody
     - @rooms.each do |room|
       %tr
         %td= room.room_id
+        %td= room.status
         %td= link_to "ดูสถานะห้อง #{room.room_id}", room_path(room)

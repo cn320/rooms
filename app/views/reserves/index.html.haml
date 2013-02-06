@@ -1,0 +1,17 @@
+%h1 Listing reserves
+
+%table
+  %tr
+    %th name
+    %th room_id
+    %th more info
+
+  - @reserves.each do |reserf|
+    %tr
+      %td= reserf.name
+      %td= reserf.room_id
+      %td= link_to "ดูรายละเอียดเพิ่มเติม", reserf_path(reserf)
+
+%br
+
+= link_to 'New Reserve', new_reserf_path

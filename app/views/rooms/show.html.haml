@@ -4,8 +4,8 @@
 
 %h2 Details about #{@room.room_id}
 
+%p Status : #{@room.status}
 
-= link_to 'Edit', edit_room_path(@room)
-= button_to 'Delete', room_path(@room), :method => :delete, :confirm => 'Are you sure?'
+= link_to 'จองห้อง', new_reserve_path(@room)
 = link_to 'Back to room list', rooms_path
 

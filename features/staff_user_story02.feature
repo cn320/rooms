@@ -27,7 +27,7 @@ Scenario: Add room data that exists in database to database
   When I fill in "Room_id" with "engr303"
   And I fill in "Status" with "available"
   And I press "เพิ่มห้องใหม่"
-  Then I should be on the new room page
+  Then I should be on the staff page
   And I should see "can not add new room"
 
 

@@ -1,8 +1,10 @@
 %h1 Rooms#reserve
 %p Find me in app/views/rooms/reserve.html.haml
 
-= form_tag rooms_staff_path, :method => :reserve do
+%h2 Reserve #{@room.room_id}
 
-  
 
-  = submit_tag 'จองห้อง'
+
+= link_to 'ยืนยันการจองห้อง', room_reserve_path(@room)
+
+

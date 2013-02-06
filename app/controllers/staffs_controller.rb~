@@ -2,34 +2,36 @@ class StaffsController < ApplicationController
   # GET /staffs
   # GET /staffs.json
   def index
-   
+    @rooms = Room.all
   end
 
   # GET /staffs/1
   # GET /staffs/1.json
   def show
-    @staff = Staff.find(params[:id])
+    @room = Room.find(params[:id])
+   # @staff = Staff.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @staff }
-    end
+    #respond_to do |format|
+     # format.html # show.html.erb
+      #format.json { render json: @staff }
+    #end
   end
 
   # GET /staffs/new
   # GET /staffs/new.json
   def new
-    @staff = Staff.new
+    #@staff = Staff.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @staff }
-    end
+    #respond_to do |format|
+      #format.html # new.html.erb
+     # format.json { render json: @staff }
+    #end
   end
 
   # GET /staffs/1/edit
   def edit
-    @staff = Staff.find(params[:id])
+    @room = Room.find(params[:id])
+    #@staff = Staff.find(params[:id])
   end
 
   # POST /staffs
@@ -51,6 +53,17 @@ class StaffsController < ApplicationController
   # PUT /staffs/1
   # PUT /staffs/1.json
   def update
+    @room = Room.find(params[:id])
+
+    respond_to do |format|
+      if @room.update_attributes(params[:room])
+        format.html { redirect_to @staff, notice: 'Room was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @room.errors, status: :unprocessable_entity }
+      end
+    end
    # @staff = Staff.find(params[:id])
 
     #respond_to do |format|
@@ -86,11 +99,12 @@ class StaffsController < ApplicationController
   
     if @user["username"]==""
       redirect_to login_path
-    elsif @uname == nil
+    end
+    if @uname == nil || @uname.password != @user["password"]
       flash[:notice] = "can not login"
       redirect_to login_path
     else
-      flash[:notice] = "ppp"
+      flash[:notice] = "can login"
       redirect_to staffs_path
     end
   end

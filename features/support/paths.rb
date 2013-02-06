@@ -25,6 +25,10 @@ module NavigationHelpers
       rooms_reserve_path
     when /^the room "(.*)" status page/
       room_path(Room.find_by_room_id($1))
+    when /^the "(.*)" status page for staff/
+      staff_path(Room.find_by_room_id($1))
+    when /^the edit room "(.*)" page/
+      edit_staff_path(Room.find_by_room_id($1))
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

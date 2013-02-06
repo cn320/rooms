@@ -1,6 +1,18 @@
 RoomManagement::Application.routes.draw do
   
   
+
+  resources :news
+
+
+  resources :tools
+
+
+  resources :reserves
+
+
+  get "staffs/reserve"
+
   resources :staffs do
     collection do
       post 'submit'
@@ -10,14 +22,9 @@ RoomManagement::Application.routes.draw do
 
   get "staffs/login"
 
-  get "rooms/reserve"
+  
 
-  get "rooms/login"
-  post "rooms/login"
-  get "rooms/staff"
-  post "rooms/staff"
-  get "rooms/new_room"
-  post "rooms/new_room"
+  
   get "static_pages/about"
  
 
@@ -25,6 +32,7 @@ RoomManagement::Application.routes.draw do
   #match '/staffs/submit' => 'staffs#submit', :as => :submit
   match '/' => 'static_pages#about', :as => :about
   match '/login' => 'staffs#login', :as => :login , :via=>:get
+  match "/reserves/new/:id" => "reserves#new" , :as=>:new_reserve , :via=>:get
  # match "/movies/same_director/:id" => "movies#same_director" , :as=>:same_director , :via=>:get
   #match "/movies/same_director/:id" => "movies#same_director" , :as=>:same_director , :via=>:get
   # The priority is based upon order of creation:

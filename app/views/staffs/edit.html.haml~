@@ -1,0 +1,12 @@
+%h1 Editing Staff
+
+= form_tag staff_path(@room), :method => :put do
+
+  = label :room, :room_id, 'Room_id'
+  = text_field :room, 'room_id'
+
+  = label :room, :status, 'Rating'
+  = select :room, :status, ["available","unavailable"]
+
+  = submit_tag 'ยืนยันการแก้ไขข้อมูลห้อง'
+

@@ -1,0 +1,10 @@
+%p#notice= notice
+
+%h2 Details about #{@reserf.room_id}
+
+%p Name : #{@reserf.name}
+
+
+= link_to 'Destroy', reserf, method: :delete, data: { confirm: 'Are you sure?' }
+
+= link_to 'Back', reserves_path

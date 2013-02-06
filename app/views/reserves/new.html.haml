@@ -1,0 +1,15 @@
+%h1 New reserf
+
+%h2 Reserve #{@room.room_id}
+
+
+= form_tag reserves_path do
+
+  = label :reserf, :name, 'Name'
+  = text_field :reserf, 'name'
+
+  = label :reserf, :room_id, 'Room_id'
+  = text_field :reserf, 'room_id'
+
+  = submit_tag 'ยืนยันการจองห้อง'
+= link_to 'Back', reserves_path
