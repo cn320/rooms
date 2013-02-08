@@ -8,6 +8,12 @@
 
 res = [{:name => 'litu' , :room_id => 'engr313'}]
 
+user = [{:username => 'naidkub' , :password => 'honhon'}]
+
 res.each do |r|
   Reserve.create!(r)
+end
+
+user.each do |u|
+  Staff.create!(u)
 end
