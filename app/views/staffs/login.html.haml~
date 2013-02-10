@@ -3,7 +3,7 @@
 
 %h1 กรุณากรอก username และ password
 
-= form_tag staffs_submit_path, :method => :submit do
+= form_tag submit_staffs_path, :method => :submit do
 
   = label :staff,:username,'Username'
   = text_field :staff, 'username'
@@ -12,3 +12,4 @@
   = text_field :staff, 'password'
 
   = submit_tag 'Log In'
+  = link_to 'Back to room list', rooms_path

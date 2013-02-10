@@ -57,7 +57,7 @@ class StaffsController < ApplicationController
 
     respond_to do |format|
       if @room.update_attributes(params[:room])
-        format.html { redirect_to @staff, notice: 'Room was successfully updated.' }
+        format.html { redirect_to staff_path(@room), notice: 'Room was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -101,10 +101,10 @@ class StaffsController < ApplicationController
       redirect_to login_path
     end
     if @uname == nil || @uname.password != @user["password"]
-      flash[:notice] = "can not login"
+      flash[:notice] = "login successfully"
       redirect_to login_path
     else
-      flash[:notice] = "can login"
+      flash[:notice] = "can not login"
       redirect_to staffs_path
     end
   end

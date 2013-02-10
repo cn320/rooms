@@ -104,7 +104,7 @@ class StaffsController < ApplicationController
       flash[:notice] = "can not login"
       redirect_to login_path
     else
-      flash[:notice] = "can login"
+      flash[:notice] = "login successfully"
       redirect_to staffs_path
     end
   end

@@ -1,9 +1,10 @@
 Feature: Modify room data
+
   As an audiovisual education, faculty of Engineering, Thammasat university
   So that I can modify room data
   I want to modify room data in database
 
-Background: Startup with Homepage
+Scenario: Modify room data in database 
 
   Given the following rooms exist:
   | room_id      | status      |
@@ -17,8 +18,6 @@ Background: Startup with Homepage
   And I should see "แก้ไขข้อมูลห้อง"
   When I follow "แก้ไขข้อมูลห้อง"
   Then I should be on the edit room "engr303" page
-
-Scenario: Modify room data in database 
   When I fill in "Room_id" with "engr304"
   And I press "ยืนยันการแก้ไขข้อมูลห้อง"
   Then I should be on the "engr304" status page for staff
