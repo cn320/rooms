@@ -8,9 +8,9 @@ Feature: see room status
 Scenario: can see room status for each room in database
 
  Given the following rooms exist:
-  | room_id      | status      | more info |
-  | engr303      | available   | ดูสถานะห้อง engr303 |
-  | engr313      | unavailable | ดูสถานะห้อง engr313 |
+  | room_id      | status      |
+  | engr303      | available   |
+  | engr313      | unavailable |
 
   And I am on the staff page
   Then I should see "ดูสถานะห้อง engr303"

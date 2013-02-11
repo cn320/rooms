@@ -8,9 +8,9 @@ Feature: delete room data
 Scenario: can delete room data that want to delete
 
   Given the following rooms exist:
-  | room_id      | status      | more info |
-  | engr303      | available   | ดูสถานะห้อง engr303 |
-  | engr313      | unavailable | ดูสถานะห้อง engr313 |
+  | room_id      | status      |
+  | engr303      | available   |
+  | engr313      | unavailable |
 
   And I am on the room "engr303" status page
   Then I should see "Delete"

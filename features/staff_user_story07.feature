@@ -5,11 +5,9 @@ Feature: see all detail of user who reserve room
   I want to see all detail of user who reserve room in database
 
 Scenario: can see all detail of user who reserve room
-
   Given the following user exist:
-  | name         | room_id  | more info  |
-  | litu         | engr313  | ดูรายละเอียดเพิ่มเติม |
-
+  | name         | room_id  |
+  | litu         | engr313  |
   And I am on the staff page
   Then I should see "ดูรายละเอียดการจอง"
   When I follow "ดูรายละเอียดการจอง"

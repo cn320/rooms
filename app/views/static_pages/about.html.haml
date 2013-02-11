@@ -62,13 +62,14 @@
     &nbsp;&nbsp;&nbsp;&nbsp;And I fill in "Password" with "honhon"
     &nbsp;&nbsp;&nbsp;&nbsp;And I press "Log In"
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the staff page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "login successfully"
 
     .titletext Scenario: Can not Log In to the staff page (Sad Path)
     &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Username" with "username"
     &nbsp;&nbsp;&nbsp;&nbsp;And I fill in "Password" with "password"
     &nbsp;&nbsp;&nbsp;&nbsp;And I press "Log In"
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the log in page
-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "ไม่สามารถเข้าสู่ระบบได้"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "can not login"
 
 
     .grouptext User stories 2:
@@ -81,22 +82,28 @@
     &nbsp;&nbsp;&nbsp;&nbsp;I want to add new room in my database
 
     .titletext Background: Startup with Staffpage
-    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the staff page
+    &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms exist:
+    &nbsp;&nbsp;&nbsp;&nbsp;[ room_id    | status ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr303    | available ] 
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr313    | unavailable ] 
+    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the staff page
     &nbsp;&nbsp;&nbsp;&nbsp;And I should see "เพิ่มห้องใหม่"
     &nbsp;&nbsp;&nbsp;&nbsp;When I follow "เพิ่มห้องใหม่"
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the new room page
 
     .titletext Scenario: Add new room data that doesn’t exists in database to database
-    &nbsp;&nbsp;&nbsp;&nbsp;When I fill data into the form
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Room_id" with "engr707"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I fill in "Status" with "available"
     &nbsp;&nbsp;&nbsp;&nbsp;And I press "เพิ่มห้องใหม่"
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the staff page
-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "การเพิ่มห้องสำเร็จ"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the room "engr707" status page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "Room was successfully created."
 
     .titletext Scenario: Add room data that exists in database to database
-    &nbsp;&nbsp;&nbsp;&nbsp;When I fill data into the form
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Room_id" with "engr303"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I fill in "Status" with "available"
     &nbsp;&nbsp;&nbsp;&nbsp;And I press "เพิ่มห้องใหม่"
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the new room page
-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "ชื่อห้องนี้มีในDatabaseแล้ว"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "can not add new room"
 
     .grouptext User stories 3:
    
@@ -137,15 +144,104 @@
     &nbsp;&nbsp;&nbsp;&nbsp;I want to modify room data in database
 
     .titletext Scenario: Modify room data in database
-    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the staff page
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "แก้ไขข้อมูลห้อง"
+    &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms exist:
+    &nbsp;&nbsp;&nbsp;&nbsp;[ room_id    | status ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr303    | available ] 
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr313    | unavailable ] 
+    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the staff page
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "ดูสถานะห้อง engr303"
+    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูสถานะห้อง engr303"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the "engr303" status page for staff
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "แก้ไขข้อมูลห้อง"
     &nbsp;&nbsp;&nbsp;&nbsp;When I follow "แก้ไขข้อมูลห้อง"
-    &nbsp;&nbsp;&nbsp;&nbsp;And I modify data
-    &nbsp;&nbsp;&nbsp;&nbsp;And I press "ตกลง"
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the staff page
-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "การแก้ไขสำเร็จ"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the edit room "engr303" page
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Room_id" with "engr304"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press "ยืนยันการแก้ไขข้อมูลห้อง"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the "engr304" status page for staff
+
 
     .grouptext User stories 5:
+    
+    .notetext หมายเหตุ เพิ่มฐานข้อมลจำลองและเพิ่มการเช็คการล็อคอิน
+
+    .titletext Feature: see room status
+    &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
+    &nbsp;&nbsp;&nbsp;&nbsp;So that I can see room status
+    &nbsp;&nbsp;&nbsp;&nbsp;I want to see room status
+
+    .titletext Scenario: can see room status for each room in database
+
+    &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms exist:
+    &nbsp;&nbsp;&nbsp;&nbsp;[ room_id      | status      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr303      | available   ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr313      | unavailable ]
+    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the staff page
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "ดูสถานะห้อง engr303"
+    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูสถานะห้อง engr303"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the room "engr303" status page
+  
+    .grouptext User stories 6:
+    
+    .notetext หมายเหตุ เพิ่มฐานข้อมลจำลองและเพิ่มการเช็คการล็อคอิน
+
+    .titletext Feature: delete room data
+    &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
+    &nbsp;&nbsp;&nbsp;&nbsp;So that I can delete room data
+    &nbsp;&nbsp;&nbsp;&nbsp;I want to delete room data
+  
+    .titletext Scenario: can delete room data that want to delete
+    &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms exist:
+    &nbsp;&nbsp;&nbsp;&nbsp;[ room_id      | status      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr303      | available   ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr313      | unavailable ]
+    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the room "engr303" status page
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "Delete"
+    &nbsp;&nbsp;&nbsp;&nbsp;When I press "Delete"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "Are you sure?"
+    &nbsp;&nbsp;&nbsp;&nbsp;When I press "ok"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on staff page 
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "Room "engr303" was successfully deleted."
+
+    .grouptext User stories 7:
+    
+    .notetext หมายเหตุ เพิ่มฐานข้อมลจำลองและเพิ่มการเช็คการล็อคอิน
+
+    .titletext Feature: see all detail of user who reserve room
+    &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
+    &nbsp;&nbsp;&nbsp;&nbsp;So that I see all detail of user who reserve room
+    &nbsp;&nbsp;&nbsp;&nbsp;I want to see all detail of user who reserve room in database
+
+    .titletext Scenario: can see all detail of user who reserve room
+    &nbsp;&nbsp;&nbsp;&nbsp;Given the following user exist:
+    &nbsp;&nbsp;&nbsp;&nbsp;[ name         | room_id  ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ litu         | engr313  ]
+    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the staff page
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "ดูรายละเอียดการจอง"
+    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูรายละเอียดการจอง"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve detail page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "litu" and "engr313"
+
+
+    .grouptext User stories 8:
+    
+    .notetext หมายเหตุ เพิ่มฐานข้อมลจำลองและเพิ่มการเช็คการล็อคอิน
+
+    .titletext Feature: see detail of each user who reserve room 
+    &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
+    &nbsp;&nbsp;&nbsp;&nbsp;So that I see detail of each user who reserve room
+    &nbsp;&nbsp;&nbsp;&nbsp;I want to see detail of each user who reserve room in database
+
+    .titletext Scenario: can see all detail of user who reserve room
+    &nbsp;&nbsp;&nbsp;&nbsp;Given the following user exist:
+    &nbsp;&nbsp;&nbsp;&nbsp;[ name         | room_id  ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ litu         | engr313  ]
+    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the reserve detail page
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "ดูรายละเอียดเพิ่มเติม"
+    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูรายละเอียดเพิ่มเติม"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve detail user "litu" page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "Details about litu"
+
+    .grouptext User stories 9:
 
     .notetext หมายเหตุ ปรับเปลี่ยนpathและเพิ่มตารางจำลองเพื่อทดสอบการทำงาน
 
@@ -153,19 +249,19 @@
     &nbsp;&nbsp;&nbsp;&nbsp;As a user’s
     &nbsp;&nbsp;&nbsp;&nbsp;So that I can see every room status
     &nbsp;&nbsp;&nbsp;&nbsp;I want to see room details and free time from database
-    .titletext Background: Startup with Homepage
+
+    .titletext Scenario: Attempting to specify reservation time
     &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms exist:
     &nbsp;&nbsp;&nbsp;&nbsp;[ room_id      | status      ]
     &nbsp;&nbsp;&nbsp;&nbsp;[ engr303      | available   ]
     &nbsp;&nbsp;&nbsp;&nbsp;[ engr313      | unavailable ]
-    .titletext Scenario: Attempting to specify reservation time
-    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the home page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the home page
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "ดูสถานะห้อง engr303"
     &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูสถานะห้อง engr303"
-    &nbsp;&nbsp;&nbsp;&nbsp;hen I should be on the room "engr303" status page
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the room "engr303" status page
     &nbsp;&nbsp;&nbsp;&nbsp;And I should see room status
 
-    .grouptext User stories 6:
+    .grouptext User stories 10:
 
     .notetext หมายเหตุ เนื่องจากการจองห้อง ข้อมูลยังไม่เพียงพอและไม่แน่นอน จึงยังไม่สามารถทดสอบได้เท่าที่ควร
 
@@ -178,7 +274,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the home page
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "จองห้อง"
     &nbsp;&nbsp;&nbsp;&nbsp;When I follow "จองห้อง"
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the page
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve page
 
     .titletext Scenario: Attempting to find available reservation time
     &nbsp;&nbsp;&nbsp;&nbsp;When I fill reservation data and available reservation time
@@ -190,7 +286,8 @@
     &nbsp;&nbsp;&nbsp;&nbsp;When I fill reservation data and unavailable reservation time
     &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the home page
-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “ไม่สามารถจองห้องได้ เพราะช่วงเวลาไม่เหมาะสม” เพราะช่วงเวลาไม่เหมาะสม”
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “ไม่สามารถจองห้องได้ เพราะช่วงเวลาไม่เหมาะสม”
+
   %h1 Lo-Fi Mockups
   %pre
     %img{:alt => "lofi2", :src => "/images/lofi2.jpg", :width => "800px;"}/

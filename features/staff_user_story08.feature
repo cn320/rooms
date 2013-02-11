@@ -7,8 +7,8 @@ Feature: see detail of each user who reserve room
 Scenario: can see all detail of user who reserve room
 
   Given the following user exist:
-  | name         | room_id  | more info  |
-  | litu         | engr313  | ดูรายละเอียดเพิ่มเติม |
+  | name         | room_id  |
+  | litu         | engr313  |
 
   And I am on the reserve detail page
   Then I should see "ดูรายละเอียดเพิ่มเติม"
