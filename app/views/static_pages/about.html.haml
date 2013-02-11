@@ -39,7 +39,7 @@
 
     .grouptext User stories 1:
     
-    .notetext หมายเหตุ เพิ่มฐานข้อมลจำลองและเพิ่มการเช็คการล็อคอิน
+    .notetext หมายเหตุ เช็คการล็อคอิน ทั้งusername,passwordที่มีในฐานข้อมูลและไม่มีในฐานข้อมูล
 
     .titletext Feature: Log In to the staff page
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
@@ -74,7 +74,7 @@
 
     .grouptext User stories 2:
 
-    .notetext หมายเหตุ ข้อมูลของการเพิ่มห้องยังไม่ครบถ้วน ทดสอบตามที่ทำได้
+    .notetext หมายเหตุ สร้างฐานข้อมูลจำลอง ทดสอบการเพิ่มห้องโดยที่room_idจะต้องไม่มีค่าซ้ำกัน
 
     .titletext Feature: Adding new room
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
@@ -107,7 +107,7 @@
 
     .grouptext User stories 3:
    
-    .notetext หมายเหตุ เนื่องจากการจองห้อง ข้อมูลยังไม่เพียงพอและไม่แน่นอน จึงยังไม่สามารถทดสอบได้เท่าที่ควร
+    .notetext หมายเหตุ เนื่องจากยังไม่ได้ทำsearch จึงยังไม่สามารถทดสอบได้มากนัก
 
     .titletext Feature: Specify time to reserve room in case daily reserve
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
@@ -136,7 +136,7 @@
 
     .grouptext User stories 4:
 
-    .notetext หมายเหตุ มีรายละเอียดบางส่วนยังไม่แน่นอน จึงทดสอบได้ตามสมควร
+    .notetext หมายเหตุ Staffสามารถแก้ไขข้อมูลห้องได้
 
     .titletext Feature: Modify room data
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
@@ -162,7 +162,7 @@
 
     .grouptext User stories 5:
     
-    .notetext หมายเหตุ เพิ่มฐานข้อมลจำลองและเพิ่มการเช็คการล็อคอิน
+    .notetext หมายเหตุ เพิ่มเข้ามาใหม่ใน Iteration2-1
 
     .titletext Feature: see room status
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
@@ -182,7 +182,7 @@
   
     .grouptext User stories 6:
     
-    .notetext หมายเหตุ เพิ่มฐานข้อมลจำลองและเพิ่มการเช็คการล็อคอิน
+    .notetext หมายเหตุ เพิ่มเข้ามาใหม่ใน Iteration2-1
 
     .titletext Feature: delete room data
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
@@ -204,7 +204,7 @@
 
     .grouptext User stories 7:
     
-    .notetext หมายเหตุ เพิ่มฐานข้อมลจำลองและเพิ่มการเช็คการล็อคอิน
+    .notetext หมายเหตุ เพิ่มเข้ามาใหม่ใน Iteration2-1
 
     .titletext Feature: see all detail of user who reserve room
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
@@ -212,7 +212,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;I want to see all detail of user who reserve room in database
 
     .titletext Scenario: can see all detail of user who reserve room
-    &nbsp;&nbsp;&nbsp;&nbsp;Given the following user exist:
+    &nbsp;&nbsp;&nbsp;&nbsp;Given the following reserves exist:
     &nbsp;&nbsp;&nbsp;&nbsp;[ name         | room_id  ]
     &nbsp;&nbsp;&nbsp;&nbsp;[ litu         | engr313  ]
     &nbsp;&nbsp;&nbsp;&nbsp;And I am on the staff page
@@ -224,7 +224,7 @@
 
     .grouptext User stories 8:
     
-    .notetext หมายเหตุ เพิ่มฐานข้อมลจำลองและเพิ่มการเช็คการล็อคอิน
+    .notetext หมายเหตุ เพิ่มเข้ามาใหม่ใน Iteration2-1
 
     .titletext Feature: see detail of each user who reserve room 
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
@@ -232,7 +232,7 @@
     &nbsp;&nbsp;&nbsp;&nbsp;I want to see detail of each user who reserve room in database
 
     .titletext Scenario: can see all detail of user who reserve room
-    &nbsp;&nbsp;&nbsp;&nbsp;Given the following user exist:
+    &nbsp;&nbsp;&nbsp;&nbsp;Given the following reserves exist:
     &nbsp;&nbsp;&nbsp;&nbsp;[ name         | room_id  ]
     &nbsp;&nbsp;&nbsp;&nbsp;[ litu         | engr313  ]
     &nbsp;&nbsp;&nbsp;&nbsp;And I am on the reserve detail page
