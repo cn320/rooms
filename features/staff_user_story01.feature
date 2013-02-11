@@ -2,6 +2,7 @@ Feature: Log In to the staff page
 
   As an audiovisual education, faculty of Engineering, Thammasat university
   So that I can log in to the staff page
+  I want to log in to the staff page with username and password
 
 Background: Startup with Homepage
 
@@ -17,17 +18,18 @@ Background: Startup with Homepage
   And I should see "กรุณากรอก username และ password"
   
 Scenario: Can Log In to the staff page (Happy Path)
-  When I fill in "Username" with "naidkub"
-  And I fill in "Password" with "honhon"
-  And I press "Log In"
-  Then I should be on the staff page
+   When I fill in "Username" with "naidkub"
+   And I fill in "Password" with "honhon"
+   And I press "Log In"
+   Then I should be on the staff page
+   And I should see "login successfully"
 
 
 Scenario: Can not Log In to the staff page (Sad Path)
-  When I fill in "Username" with "username"
-  And I fill in "Password" with "password"
-  And I press "Log In"
-  Then I should be on the log in page
-  And I should see "can not login"
+   When I fill in "Username" with "username"
+   And I fill in "Password" with "password"
+   And I press "Log In"
+   Then I should be on the log in page
+   And I should see "can not login"
 
 

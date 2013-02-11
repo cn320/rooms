@@ -54,7 +54,7 @@ class RoomsController < ApplicationController
       end
     else
       flash[:notice] = "can not add new room"
-      redirect_to staffs_path
+      redirect_to new_room_path
     end
   end
 

@@ -7,8 +7,8 @@
   = text_field :room, 'room_id'
 
   = label :room, :status, 'Status'
-  = text_field :room, 'status'
+  = select :room, :status, ["available","unavailable"]
 
   = submit_tag 'เพิ่มห้องใหม่'
 
-= link_to 'Back', rooms_path
+= link_to 'Back', staffs_path
