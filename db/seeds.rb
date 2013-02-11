@@ -14,12 +14,6 @@ res.each do |r|
   Reserve.create!(r)
 end
 
-<<<<<<< HEAD
 user.each do |u|
-=======
-users=[{:username => 'naidkub',:password => 'honhon'}]
-
-users.each do |u|
->>>>>>> litu-cucumber
   Staff.create!(u)
 end
