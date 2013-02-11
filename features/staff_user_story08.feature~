@@ -6,7 +6,7 @@ Feature: see detail of each user who reserve room
 
 Scenario: can see all detail of user who reserve room
 
-  Given the following reserves exist:
+  Given the following user exist:
   | name         | room_id  |
   | litu         | engr313  |
 
