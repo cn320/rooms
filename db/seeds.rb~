@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-users = [{:username => 'naidkub' , :password => 'honhon'}]
+res = [{:name => 'litu' , :room_id => 'engr313'}]
 
-users.each do |user|
-  Staff.create!(user)
+res.each do |r|
+  Reserve.create!(r)
 end
