@@ -1,5 +1,5 @@
 Feature: Searching for room status and free time
-  As a user’s
+  As a user’s and staff
   So that I can see every room status
   I want to see room details and free time from database
 

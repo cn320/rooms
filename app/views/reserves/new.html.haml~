@@ -5,11 +5,11 @@
 
 = form_tag reserves_path do
 
-  = label :reserve, :name, 'Name'
-  = text_field :reserve, 'name'
+  = label :reserf, :name, 'Name'
+  = text_field :reserf, 'name'
 
-  = label :reserve, :room_id, 'Room_id'
-  = text_field :reserve, 'room_id'
+  = label :reserf, :room_id, 'Room_id'
+  = text_field :reserf, :value => @room.room_id
 
   = submit_tag 'ยืนยันการจองห้อง'
 = link_to 'Back', reserves_path

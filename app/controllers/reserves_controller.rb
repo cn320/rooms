@@ -40,7 +40,9 @@ class ReservesController < ApplicationController
   # POST /reserves
   # POST /reserves.json
   def create
-    @reserf = Reserve.new(params[:reserf])
+    temp = params[:reserf]
+    temp["room_id"] = params[:room]["room_id"]
+    @reserf = Reserve.new(temp)
 
     respond_to do |format|
       if @reserf.save

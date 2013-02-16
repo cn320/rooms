@@ -9,7 +9,7 @@
   = text_field :reserf, 'name'
 
   = label :reserf, :room_id, 'Room_id'
-  = text_field :reserf, 'room_id'
+  = text_field :room, :room_id, :value => @room.room_id
 
   = submit_tag 'ยืนยันการจองห้อง'
 = link_to 'Back', reserves_path

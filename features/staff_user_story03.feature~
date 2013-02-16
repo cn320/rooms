@@ -19,10 +19,9 @@ Background: Startup with Staffpage
 
 Scenario: Fill data and specify appropriate time to reserve room
   When I fill in "Room_id" with "engr303"
-  And I specify appropriate time to reserve
-  And I press "จองห้อง"
-  Then I should be on the staff page
-  And I should see "การจองห้องสำเร็จ"
+  And I press "ค้นหา"
+  Then I should be on the search_result page
+  And I should see "engr303"
 
 Scenario: Fill data and specify inappropriate time to reserve room
   When I fill data into the form
@@ -30,6 +29,4 @@ Scenario: Fill data and specify inappropriate time to reserve room
   And I press "จองห้อง"
   Then I should be on the reserve page
   And I should see "ไม่สามารถจองห้องได้เนื่องจากช่วงเวลาไม่เหมาะสม"
-
-
 

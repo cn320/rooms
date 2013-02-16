@@ -1,42 +1,28 @@
-Feature: Searching for room status and free time
+Feature: See status of available room
   As a user’s
-  So that I can see every room status
-  I want to see room details and free time from database
+  So that I can making an online reservation
+  I want to filling reservation data and sending requests
 
 Background: Startup with Homepage
-
- Given the following rooms exist:
+  Given the following rooms exist:
   | room_id      | status      |  volume  |
   | engr303      | available   |  30      |
   | engr304      | available   |  30      |
   | engr305      | unavailable |  30      |
   | engr313      | unavailable |  50      |
 
-  And I am on the home page
-  And I should see "ค้นหาห้องว่าง"
-  When I follow "ค้นหาห้องว่าง"
-  Then I should be on the search page
+  And I am on the search page
 
-Scenario: Search base on volume
   When I fill in "Volume" with "20"
   And I press "ค้นหา"
   Then I should be on the search_result page
   And I should see "engr303"
-  And I should see "engr304"
+  And I should see "ดูสถานะห้อง engr303"
 
-Scenario: Not fill all data
-  When I fill in "Volume" with ""
-  And I fill in "Room_id" with ""
-  And I press "ค้นหา"
-  Then I should be on the search page
-  And I should see "please insert room name or volume"
-
-Scenario: Not found room with match volume
-  When I fill in "Volume" with "100"
-  And I fill in "Room_id" with ""
-  And I press "ค้นหา"
-  Then I should be on the search page
-  And I should see "Not found"
-
-
+Scenario: See the engr303 status
+  When I follow "ดูสถานะห้อง engr303"
+  Then I should be on the room "engr303" status page
+  And I should see "engr303"
+  And I should see "Status : available"
+  And I should see "Volume : 30"
 

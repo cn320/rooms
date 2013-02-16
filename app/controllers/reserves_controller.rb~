@@ -25,7 +25,7 @@ class ReservesController < ApplicationController
   # GET /reserves/new.json
   def new
     @room = Room.find(params[:id])
-
+    @reserf = Reserve.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @reserf }
@@ -40,6 +40,8 @@ class ReservesController < ApplicationController
   # POST /reserves
   # POST /reserves.json
   def create
+    temp = params[:reserf]
+    temp["room_id"] = params[:room]["room_id"]
     @reserf = Reserve.new(params[:reserf])
 
     respond_to do |format|
