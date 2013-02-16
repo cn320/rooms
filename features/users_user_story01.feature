@@ -12,23 +12,31 @@ Background: Startup with Homepage
   | engr305      | unavailable |  30      |
   | engr313      | unavailable |  50      |
 
-  And I am on the staff page
+  And I am on the home page
   And I should see "ค้นหาห้องว่าง"
   When I follow "ค้นหาห้องว่าง"
   Then I should be on the search page
 
-Scenario: Fill data and specify appropriate time to reserve room
-  When I fill in "Room_id" with "engr303"
+Scenario: Search base on volume
+  When I fill in "Volume" with "20"
   And I press "ค้นหา"
   Then I should be on the search_result page
   And I should see "engr303"
+  And I should see "engr304"
 
-Scenario: Fill data and specify inappropriate time to reserve room
-  When I fill data into the form
-  And I specify inappropriate time to reserve
-  And I press "จองห้อง"
-  Then I should be on the reserve page
-  And I should see "ไม่สามารถจองห้องได้เนื่องจากช่วงเวลาไม่เหมาะสม"
+Scenario: Not fill all data
+  When I fill in "Volume" with ""
+  And I fill in "Room_id" with ""
+  And I press "ค้นหา"
+  Then I should be on the search page
+  And I should see "please insert room name or volume"
+
+Scenario: Not found room with match volume
+  When I fill in "Volume" with "60"
+  And I fill in "Room_id" with ""
+  And I press "ค้นหา"
+  Then I should be on the search page
+  And I should see "Not found"
 
 
 

@@ -100,8 +100,28 @@ class RoomsController < ApplicationController
 
   def search_result
     room = params[:room]
-    @rooms = Room.find_all_by_volume(room["volume"])
-    
+    size = room["volume"]
+    all_avai = Room.find_all_by_status("available")
+    all_avai.sort_by! {|i| i.volume }
+    @rooms=[]
+    max = size.to_i
+    all_avai.each do |room|
+      if @rooms != [] && room.volume > max
+        break
+      end
+      if size.to_i <= room.volume
+        @rooms.push(room)
+        max = room.volume
+      end
+    end
+    if (room["room_id"]=="" && room["volume"]=="")
+      flash[:notice] = "please insert room name or volume"
+      redirect_to search_path
+    elsif @rooms.length == 0
+      flash[:notice] = "Not found"
+      redirect_to search_path
+    else
+    end
   end
 
 end
