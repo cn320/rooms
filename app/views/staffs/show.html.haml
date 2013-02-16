@@ -4,6 +4,8 @@
 
 %p Status : #{@room.status}
 
+%p Volume : #{@room.volume}
+
 = link_to 'แก้ไขข้อมูลห้อง', edit_staff_path(@room)
 = link_to 'จองห้อง', new_reserve_path(@room)
 = button_to 'Delete', room_path(@room), :method => :delete, :confirm => 'Are you sure?'

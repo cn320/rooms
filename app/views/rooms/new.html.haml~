@@ -7,7 +7,7 @@
   = text_field :room, 'room_id'
 
   = label :room, :status, 'Status'
-  = text_field :room, 'status'
+  = select :room, :status, ["available","unavailable"]
 
   = submit_tag 'เพิ่มห้องใหม่'
 

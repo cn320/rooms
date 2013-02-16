@@ -14,7 +14,7 @@
       %br/
       %p=link_to 'About', static_pages_about_path
       %br/
-      %p=link_to 'จองห้อง', reserve_rooms_path
+      %p=link_to 'ค้นหาห้องว่าง', search_rooms_path
       %br/
       %p=link_to 'สำหรับเจ้าหน้าที่', login_path
     #contentbox

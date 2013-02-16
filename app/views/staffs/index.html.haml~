@@ -15,8 +15,6 @@
 
 = link_to 'เพิ่มห้องใหม่', new_room_path
 
-= link_to 'จองห้องว่าง', staffs_reserve_path
-
 = link_to 'ดูรายละเอียดการจอง', reserves_path
 
 

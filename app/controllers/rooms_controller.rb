@@ -61,21 +61,15 @@ class RoomsController < ApplicationController
   # PUT /rooms/1
   # PUT /rooms/1.json
   def update
-    room = params[:room]
-    if Room.find_by_room_id(room["room_id"]) == nil
-      @room = Room.find(params[:id])
-      respond_to do |format|
-        if @room.update_attributes(params[:room])
-          format.html { redirect_to staff_path(@room.id), notice: 'Room was successfully updated.' }
-          format.json { head :no_content }
-        else
-          format.html { render action: "edit" }
-          format.json { render json: staff_path(@room.id).errors, status: :unprocessable_entity }
-        end
+    @room = Room.find(params[:id])
+    respond_to do |format|
+      if @room.update_attributes(params[:room])
+        format.html { redirect_to staff_path(@room.id), notice: 'Room was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: staff_path(@room.id).errors, status: :unprocessable_entity }
       end
-    else
-      flash[:notice] = "can not modify room"
-      redirect_to staffs_path
     end
   end
 
@@ -95,7 +89,19 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     
   end
+
   def submit_reserve
     redirect_to result_path
   end
+
+  def search
+    
+  end
+
+  def search_result
+    room = params[:room]
+    @rooms = Room.find_all_by_volume(room["volume"])
+    
+  end
+
 end

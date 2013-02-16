@@ -29,6 +29,10 @@ module NavigationHelpers
       staff_path(Room.find_by_room_id($1))
     when /^the edit room "(.*)" page/
       edit_staff_path(Room.find_by_room_id($1))
+    when /^the search page$/
+      search_path
+    when /^the search_result page$/
+      search_result_path
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

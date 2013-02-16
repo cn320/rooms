@@ -7,9 +7,11 @@ Feature: Modify room data
 Scenario: Modify room data in database 
 
   Given the following rooms exist:
-  | room_id      | status      |
-  | engr303      | available   |
-  | engr313      | unavailable |
+  | room_id      | status      |  volume  |
+  | engr303      | available   |  30      |
+  | engr304      | available   |  30      |
+  | engr305      | unavailable |  30      |
+  | engr313      | unavailable |  50      |
 
   And I am on the staff page
   Then I should see "ดูสถานะห้อง engr303"

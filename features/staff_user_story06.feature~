@@ -14,7 +14,7 @@ Scenario: can delete room data that want to delete
   | engr305      | unavailable |  30      |
   | engr313      | unavailable |  50      |
 
-  And I am on the room "engr303" status page for staff
+  And I am on the room "engr303" status page
   Then I should see "Delete"
   When I press "Delete"
   Then I should see "Are you sure?"

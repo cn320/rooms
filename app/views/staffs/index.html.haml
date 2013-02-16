@@ -4,12 +4,14 @@
   %thead
     %tr
       %th room_id
+      %th volume
       %th status
       %th more info
   %tbody
     - @rooms.each do |room|
       %tr
         %td= room.room_id
+        %td= room.volume
         %td= room.status
         %td= link_to "ดูสถานะห้อง #{room.room_id}", staff_path(room)
 

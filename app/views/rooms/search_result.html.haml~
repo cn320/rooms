@@ -1,6 +1,6 @@
-#content{:align => "center"}
-  %h1 ยินดีต้อนรับเข้าสู่ ระบบจองห้องออนไลน์
-  %h3 คณะวิศวกรรมศาสตร์  มหาวิทยาลัยธรรมศาสตร์
+%h1 Show Available room
+
+%p แสดงผล
 
 %table#rooms
   %thead
@@ -16,3 +16,5 @@
         %td= room.status
         %td= room.volume
         %td= link_to "ดูสถานะห้อง #{room.room_id}", room_path(room)
+
+= link_to 'Back', rooms_path
