@@ -32,7 +32,7 @@ Scenario: Not fill all data
   And I should see "please insert room name or volume"
 
 Scenario: Not found room with match volume
-  When I fill in "Volume" with "60"
+  When I fill in "Volume" with "100"
   And I fill in "Room_id" with ""
   And I press "ค้นหา"
   Then I should be on the search page

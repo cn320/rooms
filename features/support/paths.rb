@@ -21,8 +21,8 @@ module NavigationHelpers
       staffs_path
     when /^the new room page$/
       new_room_path
-    when /^the reserve page$/
-      rooms_reserve_path
+    when /^the reserve page for "(.*)" room$/
+      new_reserf_path(Room.find_by_room_id($1))
     when /^the room "(.*)" status page/
       room_path(Room.find_by_room_id($1))
     when /^the "(.*)" status page for staff/

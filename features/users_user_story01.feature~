@@ -22,7 +22,9 @@ Scenario: Search base on volume
   And I press "ค้นหา"
   Then I should be on the search_result page
   And I should see "engr303"
+  And I should see "ดูสถานะห้อง engr303"
   And I should see "engr304"
+  And I should see "ดูสถานะห้อง engr304"
 
 Scenario: Not fill all data
   When I fill in "Volume" with ""
@@ -32,7 +34,7 @@ Scenario: Not fill all data
   And I should see "please insert room name or volume"
 
 Scenario: Not found room with match volume
-  When I fill in "Volume" with "99"
+  When I fill in "Volume" with "100"
   And I fill in "Room_id" with ""
   And I press "ค้นหา"
   Then I should be on the search page
