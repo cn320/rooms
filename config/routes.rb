@@ -29,6 +29,7 @@ RoomManagement::Application.routes.draw do
   #match '/staffs/submit' => 'staffs#submit', :as => :submit
   match '/search' => 'rooms#search',:via=>:get
   match '/search_result' => 'rooms#search_result',:via=>:get
+  match '/result/:id' => 'reserves#result',:via=>:get ,:as=>:result
   match '/' => 'static_pages#about', :as => :about
   match '/login' => 'staffs#login', :as => :login , :via=>:get
   match "/reserves/new/:id" => "reserves#new" , :as=>:new_reserve , :via=>:get

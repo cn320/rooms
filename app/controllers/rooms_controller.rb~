@@ -114,10 +114,10 @@ class RoomsController < ApplicationController
         max = room.volume
       end
     end
-    if room["room_id"]=="" && room["volume"]==""
+    if (room["room_id"]=="" && room["volume"]=="")
       flash[:notice] = "please insert room name or volume"
       redirect_to search_path
-    elsif size >60
+    elsif @rooms.length == 0
       flash[:notice] = "Not found"
       redirect_to search_path
     else

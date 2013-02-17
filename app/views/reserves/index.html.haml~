@@ -10,7 +10,7 @@
     %tr
       %td= reserf.name
       %td= reserf.room_id
-      %td= link_to "ดูรายละเอียดเพิ่มเติม", reserves_path(reserf)
+      %td= link_to "ดูรายละเอียดการจองห้อง {reserf.room_id} โดย #{reserf.name}", reserf_path(reserf)
 
 %br
 

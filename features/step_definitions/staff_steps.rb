@@ -4,8 +4,3 @@ Given /the following staff exist/ do |staffs_table|
   end
 end
 
-Given /the following reserves exist/ do |reserves_table|
-  reserves_table.hashes.each do |att|
-    Reserve.create!(att)
-  end
-end

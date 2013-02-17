@@ -20,3 +20,5 @@ Scenario: See the engr303 status
   Then I should be on the reserve page for "engr303" room
   When I fill in "Name" with "koonoath"
   And I press "จองห้อง"
+  Then I should be on the reserve submit for "engr303" page
+  And I should see "koonoath"

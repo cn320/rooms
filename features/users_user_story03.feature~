@@ -17,5 +17,5 @@ Background: Startup with Homepage
 
 Scenario: See the engr303 status
   When I follow "จองห้อง"
-  Then I should be on the reserve page
+  Then I should be on the reserve page for "engr303" room
   

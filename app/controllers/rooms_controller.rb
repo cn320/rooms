@@ -80,7 +80,7 @@ class RoomsController < ApplicationController
     @room.destroy
 
     respond_to do |format|
-      format.html { redirect_to staffs_path }
+      format.html { redirect_to staffs_path, notice: 'Room was successfully deleted.'  }
       format.json { head :no_content }
     end
   end

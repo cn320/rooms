@@ -1,0 +1,8 @@
+%p#notice= notice
+
+%h2 Result
+
+%p Name : #{@reserf.name}
+
+
+= link_to 'Back', reserves_path

@@ -23,9 +23,9 @@ module NavigationHelpers
       new_room_path
     when /^the reserve page for "(.*)" room$/
       new_reserve_path(Room.find_by_room_id($1))
-    when /^the room "(.*)" status page/
+    when /^the room "(.*)" status page$/
       room_path(Room.find_by_room_id($1))
-    when /^the "(.*)" status page for staff/
+    when /^the room "(.*)" status page for staff$/
       staff_path(Room.find_by_room_id($1))
     when /^the edit room "(.*)" page/
       edit_staff_path(Room.find_by_room_id($1))
@@ -33,6 +33,12 @@ module NavigationHelpers
       search_path
     when /^the search_result page$/
       search_result_path
+    when /^the reserve detail page$/
+      reserves_path
+    when /^the reserve detail for "(.*)" page$/
+      reserf_path(Reserve.find_by_room_id($1))
+    when /^the reserve submit for "(.*)" page$/
+      result_path(Reserve.find_by_room_id($1))
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
