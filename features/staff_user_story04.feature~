@@ -16,13 +16,13 @@ Scenario: Modify room data in database
   And I am on the staff page
   Then I should see "ดูสถานะห้อง engr303"
   When I follow "ดูสถานะห้อง engr303"
-  Then I should be on the "engr303" status page for staff
+  Then I should be on the room "engr303" status page for staff
   And I should see "แก้ไขข้อมูลห้อง"
   When I follow "แก้ไขข้อมูลห้อง"
   Then I should be on the edit room "engr303" page
   When I fill in "Room_id" with "engr304"
   And I press "ยืนยันการแก้ไขข้อมูลห้อง"
-  Then I should be on the "engr304" status page for staff
+  Then I should be on the room "engr304" status page for staff
 
 
   

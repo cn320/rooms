@@ -39,7 +39,6 @@
 
     .grouptext User stories 1:
     
-    .notetext หมายเหตุ เพิ่มฐานข้อมลจำลองและเพิ่มการเช็คการล็อคอิน
 
     .titletext Feature: Log In to the staff page
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
@@ -74,8 +73,6 @@
 
     .grouptext User stories 2:
 
-    .notetext หมายเหตุ ข้อมูลของการเพิ่มห้องยังไม่ครบถ้วน ทดสอบตามที่ทำได้
-
     .titletext Feature: Adding new room
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
     &nbsp;&nbsp;&nbsp;&nbsp;So that I can add new room
@@ -107,7 +104,7 @@
 
     .grouptext User stories 3:
    
-    .notetext หมายเหตุ เนื่องจากการจองห้อง ข้อมูลยังไม่เพียงพอและไม่แน่นอน จึงยังไม่สามารถทดสอบได้เท่าที่ควร
+    .notetext หมายเหตุ กำหนดช่วงเวลาสำหรับการจองห้อง (Staffสามารถจองวันนี้และวันอื่นๆได้)
 
     .titletext Feature: Specify time to reserve room in case daily reserve
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
@@ -115,41 +112,55 @@
     &nbsp;&nbsp;&nbsp;&nbsp;I want to fill data and specify time to reserve room to database
 
     .titletext Background: Startup with Staffpage
-    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the staff page
-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "จองห้องว่าง"
+    &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms exist:
+    &nbsp;&nbsp;&nbsp;&nbsp;[ room_id      | status      |  volume  ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr303      | available   |  30      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr304      | available   |  30      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr305      | unavailable |  30      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr313      | unavailable |  50      ]
+
+    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the room "engr303" status page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "จองห้อง"
     &nbsp;&nbsp;&nbsp;&nbsp;When I follow "จองห้องว่าง"
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve page
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve page for "engr303" room
 
-    .titletext Scenario: Fill data and specify appropriate time to reserve room
-    &nbsp;&nbsp;&nbsp;&nbsp;When I fill data into the form
-    &nbsp;&nbsp;&nbsp;&nbsp;And I specify appropriate time to reserve
+    .titletext Scenario: reserve the engr303 with day is not today
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Name" with "koonoath"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I select "2013" from "year"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I select "March" from "month"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I select "13" from "day"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I check "08.00-09.30"
     &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the staff page
-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "การจองห้องสำเร็จ"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve submit for "engr303" page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "koonoath"
 
-    .titletext Scenario: Fill data and specify inappropriate time to reserve room
-    &nbsp;&nbsp;&nbsp;&nbsp;When I fill data into the form
-    &nbsp;&nbsp;&nbsp;&nbsp;And I specify inappropriate time to reserve
+    .titletext Scenario: reserve the engr303 with day is today
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Name" with "koonoath"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I select "2013" from "year"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I select "March" from "month"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I select "13" from "day"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I check "08.00-09.30"
     &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve page
-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "ไม่สามารถจองห้องได้เนื่องจากช่วงเวลาไม่เหมาะสม"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve submit for "engr303" page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "koonoath"
+
 
     .grouptext User stories 4:
-
-    .notetext หมายเหตุ มีรายละเอียดบางส่วนยังไม่แน่นอน จึงทดสอบได้ตามสมควร
 
     .titletext Feature: Modify room data
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
     &nbsp;&nbsp;&nbsp;&nbsp;So that I can modify room data
     &nbsp;&nbsp;&nbsp;&nbsp;I want to modify room data in database
 
-    .titletext Scenario: Modify room data in database
+    .titletext Background: Startup with Staffpage
     &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms exist:
     &nbsp;&nbsp;&nbsp;&nbsp;[ room_id    | status ]
     &nbsp;&nbsp;&nbsp;&nbsp;[ engr303    | available ] 
     &nbsp;&nbsp;&nbsp;&nbsp;[ engr313    | unavailable ] 
     &nbsp;&nbsp;&nbsp;&nbsp;And I am on the staff page
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "ดูสถานะห้อง engr303"
+    
+    .titletext Scenario: Modify room data in database
     &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูสถานะห้อง engr303"
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the "engr303" status page for staff
     &nbsp;&nbsp;&nbsp;&nbsp;And I should see "แก้ไขข้อมูลห้อง"
@@ -161,132 +172,212 @@
 
 
     .grouptext User stories 5:
-    
-    .notetext หมายเหตุ เพิ่มฐานข้อมลจำลองและเพิ่มการเช็คการล็อคอิน
 
     .titletext Feature: see room status
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
     &nbsp;&nbsp;&nbsp;&nbsp;So that I can see room status
     &nbsp;&nbsp;&nbsp;&nbsp;I want to see room status
 
-    .titletext Scenario: can see room status for each room in database
+    .titletext Background: Startup with Homepage
 
     &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms exist:
     &nbsp;&nbsp;&nbsp;&nbsp;[ room_id      | status      ]
     &nbsp;&nbsp;&nbsp;&nbsp;[ engr303      | available   ]
     &nbsp;&nbsp;&nbsp;&nbsp;[ engr313      | unavailable ]
-    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the staff page
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "ดูสถานะห้อง engr303"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the search page
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Volume" with "20"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press "ค้นหา"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the search_result page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "engr303"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "ดูสถานะห้อง engr303"
+    
+    .titletext Scenario: See the engr303 status
     &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูสถานะห้อง engr303"
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the room "engr303" status page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "engr303"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "Status : available"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "Volume : 30"
   
     .grouptext User stories 6:
     
-    .notetext หมายเหตุ เพิ่มฐานข้อมลจำลองและเพิ่มการเช็คการล็อคอิน
-
     .titletext Feature: delete room data
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
     &nbsp;&nbsp;&nbsp;&nbsp;So that I can delete room data
     &nbsp;&nbsp;&nbsp;&nbsp;I want to delete room data
   
-    .titletext Scenario: can delete room data that want to delete
+    .titletext Background: Startup with Homepage
+    &nbsp;&nbsp;&nbsp;&nbsp;Background: Startup with Homepage
     &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms exist:
-    &nbsp;&nbsp;&nbsp;&nbsp;[ room_id      | status      ]
-    &nbsp;&nbsp;&nbsp;&nbsp;[ engr303      | available   ]
-    &nbsp;&nbsp;&nbsp;&nbsp;[ engr313      | unavailable ]
-    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the room "engr303" status page
+    &nbsp;&nbsp;&nbsp;&nbsp;[ room_id      | status      |  volume  ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr303      | available   |  30      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr304      | available   |  30      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr305      | unavailable |  30      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr313      | unavailable |  50      ]
+
+    .titletext Scenario: can delete room data that want to delete
+    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the room "engr303" status page for staff
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "Delete"
-    &nbsp;&nbsp;&nbsp;&nbsp;When I press "Delete"
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "Are you sure?"
-    &nbsp;&nbsp;&nbsp;&nbsp;When I press "ok"
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on staff page 
-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "Room "engr303" was successfully deleted."
+    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "Delete"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the staff page 
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "Room was successfully deleted."
 
     .grouptext User stories 7:
-    
-    .notetext หมายเหตุ เพิ่มฐานข้อมลจำลองและเพิ่มการเช็คการล็อคอิน
 
     .titletext Feature: see all detail of user who reserve room
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
     &nbsp;&nbsp;&nbsp;&nbsp;So that I see all detail of user who reserve room
     &nbsp;&nbsp;&nbsp;&nbsp;I want to see all detail of user who reserve room in database
 
-    .titletext Scenario: can see all detail of user who reserve room
+    .titletext Background: Startup with Homepage
     &nbsp;&nbsp;&nbsp;&nbsp;Given the following reserves exist:
     &nbsp;&nbsp;&nbsp;&nbsp;[ name         | room_id  ]
     &nbsp;&nbsp;&nbsp;&nbsp;[ litu         | engr313  ]
-    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the staff page
+    &nbsp;&nbsp;&nbsp;&nbsp;[ naidkub      | engr303  ]
+
+    .titletext Scenario: can see all detail of user who reserve room
+    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the staff page
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "ดูรายละเอียดการจอง"
     &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูรายละเอียดการจอง"
     &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve detail page
-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "litu" and "engr313"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "litu" and "engr313" in reserve list
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "naidkub" and "engr303" in reserve list
 
 
     .grouptext User stories 8:
-    
-    .notetext หมายเหตุ เพิ่มฐานข้อมลจำลองและเพิ่มการเช็คการล็อคอิน
 
     .titletext Feature: see detail of each user who reserve room 
     &nbsp;&nbsp;&nbsp;&nbsp;As an audiovisual education, faculty of Engineering, Thammasat university
     &nbsp;&nbsp;&nbsp;&nbsp;So that I see detail of each user who reserve room
     &nbsp;&nbsp;&nbsp;&nbsp;I want to see detail of each user who reserve room in database
 
-    .titletext Scenario: can see all detail of user who reserve room
+    .titletext Background: Startup with Staff page
     &nbsp;&nbsp;&nbsp;&nbsp;Given the following reserves exist:
     &nbsp;&nbsp;&nbsp;&nbsp;[ name         | room_id  ]
     &nbsp;&nbsp;&nbsp;&nbsp;[ litu         | engr313  ]
-    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the reserve detail page
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "ดูรายละเอียดเพิ่มเติม"
-    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูรายละเอียดเพิ่มเติม"
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve detail user "litu" page
-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "Details about litu"
+    &nbsp;&nbsp;&nbsp;&nbsp;[ naidkub      | engr303  ]
+  
+    .titletext Scenario: can see all detail of user who reserve room
+    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the reserve detail page
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "ดูรายละเอียดการจองห้อง engr313 โดย litu"
+    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูรายละเอียดการจองห้อง engr313 โดย litu"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve detail for "engr313" page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "Details about engr313"
 
     .grouptext User stories 9:
 
-    .notetext หมายเหตุ ปรับเปลี่ยนpathและเพิ่มตารางจำลองเพื่อทดสอบการทำงาน
+    .notetext หมายเหตุ เพิ่มเข้ามาใหม่ใน Iteration3-1
 
     .titletext Feature: Searching for room status and free time
-    &nbsp;&nbsp;&nbsp;&nbsp;As a user’s
+    &nbsp;&nbsp;&nbsp;&nbsp;As a user’s and staff
     &nbsp;&nbsp;&nbsp;&nbsp;So that I can see every room status
     &nbsp;&nbsp;&nbsp;&nbsp;I want to see room details and free time from database
 
-    .titletext Scenario: Attempting to specify reservation time
-    &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms exist:
-    &nbsp;&nbsp;&nbsp;&nbsp;[ room_id      | status      ]
-    &nbsp;&nbsp;&nbsp;&nbsp;[ engr303      | available   ]
-    &nbsp;&nbsp;&nbsp;&nbsp;[ engr313      | unavailable ]
-    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the home page
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "ดูสถานะห้อง engr303"
-    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูสถานะห้อง engr303"
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the room "engr303" status page
-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see room status
+    .titletext Background: Startup with Homepage
 
+    &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms exist:
+    &nbsp;&nbsp;&nbsp;&nbsp;[ room_id      | status      |  volume  ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr303      | available   |  30      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr304      | available   |  30      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr305      | unavailable |  30      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr313      | unavailable |  50      ]
+
+    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the home page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "ค้นหาห้องว่าง"
+    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ค้นหาห้องว่าง"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the search page
+
+    .titletext Scenario: Search base on volume
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Volume" with "20"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press "ค้นหา"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the search_result page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "engr303"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "engr304"
+
+    .titletext Scenario: Not fill all data
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Volume" with ""
+    &nbsp;&nbsp;&nbsp;&nbsp;And I fill in "Room_id" with ""
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press "ค้นหา"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the search page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "please insert room name or volume"
+
+    .titletext Scenario: Not found room with match volume
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Volume" with "100"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I fill in "Room_id" with ""
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press "ค้นหา"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the search page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "Not found"
+
+    
     .grouptext User stories 10:
 
-    .notetext หมายเหตุ เนื่องจากการจองห้อง ข้อมูลยังไม่เพียงพอและไม่แน่นอน จึงยังไม่สามารถทดสอบได้เท่าที่ควร
-
-    .titletext Feature: Requesting for online reservation
+    .titletext Feature: See status of available room
     &nbsp;&nbsp;&nbsp;&nbsp;As a user’s
     &nbsp;&nbsp;&nbsp;&nbsp;So that I can making an online reservation
     &nbsp;&nbsp;&nbsp;&nbsp;I want to filling reservation data and sending requests
 
     .titletext Background: Startup with Homepage
-    &nbsp;&nbsp;&nbsp;&nbsp;Given I am on the home page
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should see "จองห้อง"
+    &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms exist:
+    &nbsp;&nbsp;&nbsp;&nbsp;[ room_id      | status      |  volume  ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr303      | available   |  30      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr304      | available   |  30      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr305      | unavailable |  30      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr313      | unavailable |  50      ]
+
+    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the search page
+
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Volume" with "20"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I press "ค้นหา"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the search_result page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "engr303"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "ดูสถานะห้อง engr303"
+
+    .titletext Scenario: See the engr303 status
+    &nbsp;&nbsp;&nbsp;&nbsp;When I follow "ดูสถานะห้อง engr303"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the room "engr303" status page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "engr303"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "Status : available"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "Volume : 30"
+
+    .grouptext User stories 11:
+
+    .notetext หมายเหตุ กำหนดช่วงเวลาสำหรับการจองห้อง (Userไม่สามารถจองวันนี้แต่สามารถจองวันอื่นๆได้)
+    .titletext Feature: User can reserve available room
+    &nbsp;&nbsp;&nbsp;&nbsp;As a user’s
+    &nbsp;&nbsp;&nbsp;&nbsp;So that I can making an online reservation
+    &nbsp;&nbsp;&nbsp;&nbsp;I want to filling reservation data and sending requests
+
+    .titletext Background: Startup with Homepage
+    &nbsp;&nbsp;&nbsp;&nbsp;Given the following rooms exist:
+    &nbsp;&nbsp;&nbsp;&nbsp;[ room_id      | status      |  volume  ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr303      | available   |  30      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr304      | available   |  30      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr305      | unavailable |  30      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;[ engr313      | unavailable |  50      ]
+    &nbsp;&nbsp;&nbsp;&nbsp;And I am on the room "engr303" status page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "จองห้อง"
     &nbsp;&nbsp;&nbsp;&nbsp;When I follow "จองห้อง"
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve page
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve page for "engr303" room
 
-    .titletext Scenario: Attempting to find available reservation time
-    &nbsp;&nbsp;&nbsp;&nbsp;When I fill reservation data and available reservation time
+    .titletext Scenario: reserve the engr303 with day is not today
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Name" with "koonoath"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I select "2013" from "year"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I select "March" from "month"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I select "13" from "day"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I check "08.00-09.30"
     &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the home page
-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "การจองห้องสำเร็จ"
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve submit for "engr303" page
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "koonoath"
 
-    .titletext Scenario: Attempting to find unavailable reservation time
-    &nbsp;&nbsp;&nbsp;&nbsp;When I fill reservation data and unavailable reservation time
+    .titletext Scenario: reserve the engr303 with date is today
+    &nbsp;&nbsp;&nbsp;&nbsp;When I fill in "Name" with "koonoath"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I select "2013" from "year"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I select "March" from "month"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I select "10" from "day"
+    &nbsp;&nbsp;&nbsp;&nbsp;And I check "08.00-09.30"
     &nbsp;&nbsp;&nbsp;&nbsp;And I press "จองห้อง"
-    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the home page
-    &nbsp;&nbsp;&nbsp;&nbsp;And I should see “ไม่สามารถจองห้องได้ เพราะช่วงเวลาไม่เหมาะสม”
+    &nbsp;&nbsp;&nbsp;&nbsp;Then I should be on the reserve page for "engr303" room
+    &nbsp;&nbsp;&nbsp;&nbsp;And I should see "Cannot reserve room for today, please contact staff"
+
 
   %h1 Lo-Fi Mockups
   %pre

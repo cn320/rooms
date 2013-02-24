@@ -1,21 +1,23 @@
-Feature: User can reserve available room
-  As a user’s
-  So that I can making an online reservation
-  I want to filling reservation data and sending requests
+Feature: delete reserve data
+
+  As an audiovisual education, faculty of Engineering, Thammasat university
+  So that I can delete room data
+  I want to delete room data
 
 Background: Startup with Homepage
-  Given the following rooms exist:
-  | room_id      | status      |  volume  |
-  | engr303      | available   |  30      |
-  | engr304      | available   |  30      |
-  | engr305      | unavailable |  30      |
-  | engr313      | unavailable |  50      |
+  Given the following reserves exist:
+  | name         | room_id  |
+  | litu         | engr313  |
+  | naidkub      | engr303  |
+Scenario: can delete room data that want to delete
 
-  And I am on the room "engr303" status page
+  Given I am on the reserve detail for "engr313" page
+  Then I should see "Delete"
+  When I follow "Delete"
+  Then I should be on the reserve detail page
+  And I should see "Reserve was successfully deleted."
 
-  And I should see "จองห้อง"
 
-Scenario: See the engr303 status
-  When I follow "จองห้อง"
-  Then I should be on the reserve page for "engr303" room
-  
+
+
+

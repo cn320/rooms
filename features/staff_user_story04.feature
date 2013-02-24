@@ -4,8 +4,7 @@ Feature: Modify room data
   So that I can modify room data
   I want to modify room data in database
 
-Scenario: Modify room data in database 
-
+Background: Startup with Staffpage
   Given the following rooms exist:
   | room_id      | status      |  volume  |
   | engr303      | available   |  30      |
@@ -15,6 +14,8 @@ Scenario: Modify room data in database
 
   And I am on the staff page
   Then I should see "ดูสถานะห้อง engr303"
+
+Scenario: Modify room data in database 
   When I follow "ดูสถานะห้อง engr303"
   Then I should be on the room "engr303" status page for staff
   And I should see "แก้ไขข้อมูลห้อง"

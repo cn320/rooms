@@ -26,6 +26,7 @@ class ReservesController < ApplicationController
   def new
     @room = Room.find(params[:id])
     @reserf = Reserve.new
+    @timescope = ["08.00-09.30","09.30-11.00","11.00-12.30","13.30-15.00"]
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @reserf }

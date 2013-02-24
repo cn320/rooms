@@ -10,6 +10,13 @@
 
   = label :reserf, :room_id, 'Room_id'
   = text_field :room, :room_id, :value => @room.room_id
-
+  %br
+  = date_select("Date", "method", :prompt => {:day => 'Choose day', :month => 'Choose month', :year => 'Choose year'},:start_year => 2013)
+  %br
+  - @timescope.each do |rating|
+    = rating
+    = check_box_tag "timescope[#{rating}]" , @timescope[rating.to_i]
+    %br
+  %br
   = submit_tag 'ยืนยันการจองห้อง'
 = link_to 'Back', reserves_path
