@@ -1,4 +1,4 @@
-%h1 Listing staffs
+%h1 Staff #{@admin}
 
 %table#rooms
   %thead
@@ -18,6 +18,8 @@
 = link_to 'เพิ่มห้องใหม่', new_room_path
 
 = link_to 'ดูรายละเอียดการจอง', reserves_path
+
+= link_to 'Log out', logout_path
 
 
 

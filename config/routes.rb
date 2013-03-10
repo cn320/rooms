@@ -21,7 +21,7 @@ RoomManagement::Application.routes.draw do
   #post "staffs/submit"
 
   get "staffs/login"
-
+  get "staffs/logout"
   get "static_pages/about"
  
 
@@ -32,7 +32,9 @@ RoomManagement::Application.routes.draw do
   match '/result/:id' => 'reserves#result',:via=>:get ,:as=>:result
   match '/' => 'static_pages#about', :as => :about
   match '/login' => 'staffs#login', :as => :login , :via=>:get
+  match '/logout' => 'staffs#logout', :as => :logout , :via=>:get
   match "/reserves/new/:id" => "reserves#new" , :as=>:new_reserve , :via=>:get
+  
  # match "/movies/same_director/:id" => "movies#same_director" , :as=>:same_director , :via=>:get
   #match "/movies/same_director/:id" => "movies#same_director" , :as=>:same_director , :via=>:get
   # The priority is based upon order of creation:

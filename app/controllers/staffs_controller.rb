@@ -2,13 +2,22 @@ class StaffsController < ApplicationController
   # GET /staffs
   # GET /staffs.json
   def index
-    @rooms = Room.all
+    if session[:admin] == nil
+      redirect_to rooms_path
+    else   
+      @rooms = Room.all
+      @admin = session[:admin]
+    end
   end
 
   # GET /staffs/1
   # GET /staffs/1.json
   def show
-    @room = Room.find(params[:id])
+    if session[:admin] == nil
+      redirect_to rooms_path
+    else
+      @room = Room.find(params[:id])
+    end
    # @staff = Staff.find(params[:id])
 
     #respond_to do |format|
@@ -20,6 +29,7 @@ class StaffsController < ApplicationController
   # GET /staffs/new
   # GET /staffs/new.json
   def new
+   
     #@staff = Staff.new
 
     #respond_to do |format|
@@ -30,7 +40,11 @@ class StaffsController < ApplicationController
 
   # GET /staffs/1/edit
   def edit
-    @room = Room.find(params[:id])
+    if session[:admin] == nil
+      redirect_to rooms_path
+    else   
+      @room = Room.find(params[:id])
+    end
     #@staff = Staff.find(params[:id])
   end
 
@@ -53,17 +67,7 @@ class StaffsController < ApplicationController
   # PUT /staffs/1
   # PUT /staffs/1.json
   def update
-    @room = Room.find(params[:id])
-
-    respond_to do |format|
-      if @room.update_attributes(params[:room])
-        format.html { redirect_to staff_path(@room), notice: 'Room was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @room.errors, status: :unprocessable_entity }
-      end
-    end
+   
    # @staff = Staff.find(params[:id])
 
     #respond_to do |format|
@@ -90,8 +94,11 @@ class StaffsController < ApplicationController
   end
   
   def login
-    
+    if session[:admin] != nil
+      redirect_to staffs_path
+    end    
   end
+
   def submit
     #@uname = Staff.find_by_username(params[:username])
     @user = params[:staff]
@@ -104,9 +111,15 @@ class StaffsController < ApplicationController
       flash[:notice] = "can not login"
       redirect_to login_path
     else
+      session[:admin] = @uname.username
       flash[:notice] = "login successfully"
       redirect_to staffs_path
     end
+  end
+  
+  def logout
+    session[:admin] = nil
+    redirect_to rooms_path
   end
 
 end

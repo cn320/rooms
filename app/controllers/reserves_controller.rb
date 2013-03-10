@@ -2,11 +2,15 @@ class ReservesController < ApplicationController
   # GET /reserves
   # GET /reserves.json
   def index
-    @reserves = Reserve.all
+    if session[:admin] == nil
+      redirect_to rooms_path
+    else
+      @reserves = Reserve.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @reserves }
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @reserves }
+      end
     end
   end
 

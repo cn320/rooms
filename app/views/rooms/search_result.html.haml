@@ -15,6 +15,10 @@
         %td= room.room_id
         %td= room.volume
         %td= room.status
-        %td= link_to "ดูสถานะห้อง #{room.room_id}", room_path(room)
+        - if @admin == nil
+          %td= link_to "ดูสถานะห้อง #{room.room_id}", room_path(room)
+        - else
+          %td= link_to "ดูสถานะห้อง #{room.room_id}", staff_path(room)
+        
 
 = link_to 'Back', rooms_path

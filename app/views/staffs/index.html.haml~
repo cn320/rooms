@@ -1,21 +1,25 @@
-%h1 Listing staffs
+%h1 Staff #{@admin}
 
 %table#rooms
   %thead
     %tr
       %th room_id
+      %th volume
       %th status
       %th more info
   %tbody
     - @rooms.each do |room|
       %tr
         %td= room.room_id
+        %td= room.volume
         %td= room.status
         %td= link_to "ดูสถานะห้อง #{room.room_id}", staff_path(room)
 
 = link_to 'เพิ่มห้องใหม่', new_room_path
 
 = link_to 'ดูรายละเอียดการจอง', reserves_path
+
+= link_to 'Log out', staffs_logout_path
 
 
 

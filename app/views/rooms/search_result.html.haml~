@@ -13,8 +13,12 @@
     - @rooms.each do |room|
       %tr
         %td= room.room_id
-        %td= room.status
         %td= room.volume
-        %td= link_to "ดูสถานะห้อง #{room.room_id}", room_path(room)
+        %td= room.status
+        - if @admin == nil
+          %td= link_to "ดูสถานะห้อง #{room.room_id}", room_path(room)
+        - else
+          %td= link_to "ดูสถานะห้อง #{room.room_id}", staff_path(room)
+        end
 
 = link_to 'Back', rooms_path
