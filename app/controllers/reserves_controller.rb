@@ -17,11 +17,15 @@ class ReservesController < ApplicationController
   # GET /reserves/1
   # GET /reserves/1.json
   def show
-    @reserf = Reserve.find(params[:id])
+    if session[:admin] == nil
+      redirect_to rooms_path
+    else
+      @reserf = Reserve.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @reserf }
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json { render json: @reserf }
+      end
     end
   end
 
@@ -79,16 +83,25 @@ class ReservesController < ApplicationController
   # DELETE /reserves/1
   # DELETE /reserves/1.json
   def destroy
-    @reserf = Reserve.find(params[:id])
-    @reserf.destroy
+    if session[:admin] == nil
+      redirect_to rooms_path
+    else
+      @reserf = Reserve.find(params[:id])
+      @reserf.destroy
 
-    respond_to do |format|
-      format.html { redirect_to reserves_url, notice: 'Reserve was successfully deleted.' }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to reserves_url, notice: 'Reserve was successfully deleted.' }
+        format.json { head :no_content }
+      end
     end
   end
 
   def result
-    @reserf = Reserve.find(params[:id])
+    if session[:admin] == nil
+      redirect_to rooms_path
+    else
+      @reserf = Reserve.find(params[:id])
+    end
   end
+
 end
