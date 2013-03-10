@@ -52,7 +52,7 @@ class RoomsController < ApplicationController
       redirect_to rooms_path
     else
       room = params[:room]
-      if Room.find_by_room_id(room["room_id"]) == nil
+      if Room.find_by_room_name(room["room_name"]) == nil
         @room = Room.new(params[:room])
         respond_to do |format|
           if @room.save
@@ -111,6 +111,7 @@ class RoomsController < ApplicationController
   end
 
   def search_result
+    @admin = session[:admin]
     room = params[:room]
     size = room["volume"]
     all_avai = Room.find_all_by_status("available")

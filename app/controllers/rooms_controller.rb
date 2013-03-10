@@ -52,7 +52,7 @@ class RoomsController < ApplicationController
       redirect_to rooms_path
     else
       room = params[:room]
-      if Room.find_by_room_id(room["room_id"]) == nil
+      if Room.find_by_roomname(room["roomname"]) == nil
         @room = Room.new(params[:room])
         respond_to do |format|
           if @room.save

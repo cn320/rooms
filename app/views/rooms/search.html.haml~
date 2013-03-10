@@ -7,6 +7,7 @@
 
   = label :room, :room_id, 'Volume'
   = text_field :room, 'volume'
+
   = submit_tag 'ค้นหา'
 
 = link_to 'Back', search_result_path

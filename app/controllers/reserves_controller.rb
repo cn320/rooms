@@ -50,7 +50,7 @@ class ReservesController < ApplicationController
   # POST /reserves.json
   def create
     temp = params[:reserf]
-    temp["room_id"] = params[:room]["room_id"]
+    temp["roomname"] = params[:room]["roomname"]
     @reserf = Reserve.new(temp)
 
     respond_to do |format|

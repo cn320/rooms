@@ -5,6 +5,6 @@ class CreateReserves < ActiveRecord::Migration
       t.timestamps
     end
     add_column :reserves, :name , :string
-    add_column :reserves, :room_id, :string
+    add_column :reserves, :roomname, :string
   end
 end

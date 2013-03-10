@@ -6,6 +6,8 @@
 
 %p Status : #{@room.status}
 
+%p Volume : #{@room.volume}
+
 = link_to 'จองห้อง', new_reserve_path(@room)
 = link_to 'Back to room list', staffs_path
 

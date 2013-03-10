@@ -19,7 +19,7 @@
 
 = link_to 'ดูรายละเอียดการจอง', reserves_path
 
-= link_to 'Log out', staffs_logout_path
+= link_to 'Log out', logout_path
 
 
 

@@ -22,18 +22,19 @@ ActiveRecord::Schema.define(:version => 20130310144604) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "name"
-    t.string   "roomname"
+    t.string   "room_id"
     t.string   "section"
     t.integer  "time"
   end
 
   create_table "rooms", :force => true do |t|
-    t.string   "roomname"
-    t.integer  "volume"
+    t.string   "room_id"
+    t.string   "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "volume"
     t.string   "first"
-    t.string   "second"
+    t.string   "secound"
     t.string   "third"
     t.string   "fourth"
     t.string   "fifth"

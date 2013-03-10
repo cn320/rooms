@@ -3,17 +3,33 @@
 %table#rooms
   %thead
     %tr
-      %th room_id
+      %th roomname
       %th volume
-      %th status
+      %th{:class => "hilite"} day
+      %th 8.00-9.30
+      %th 9.30-11.00
+      %th 11.00-12.30
+      %th 12.30-13.00
+      %th 13.30-15.00
+      %th 15.00-16.30
+      %th 16.30-18.00
+      %th 18.00-21.00
       %th more info
   %tbody
     - @rooms.each do |room|
       %tr
-        %td= room.room_id
+        %td= room.roomname
         %td= room.volume
-        %td= room.status
-        %td= link_to "ดูสถานะห้อง #{room.room_id}", staff_path(room)
+        %td= room.day
+        %td= room.first
+        %td= room.second
+        %td= room.third
+        %td= room.fourth
+        %td= room.fifth
+        %td= room.sixth
+        %td= room.seventh
+        %td= room.eighth
+        %td= link_to "ดูสถานะห้อง #{room.roomname}", room_path(room)
 
 = link_to 'เพิ่มห้องใหม่', new_room_path
 
