@@ -2,11 +2,14 @@
 
 = form_tag search_result_path(@rooms) ,:method=>:get do
 
-  = label :room, :room_id, 'Room_id'
-  = text_field :room, 'room_id'
-
-  = label :room, :room_id, 'Volume'
+  = label :room, :volume,'Volume'
   = text_field :room, 'volume'
+
+  = label :room, :day, 'Day'
+  = text_field :room, @day_list
+
+  = label :section, 'Section'
+  = select :room, :section, @section
 
   = submit_tag 'ค้นหา'
 

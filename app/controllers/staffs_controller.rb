@@ -100,19 +100,14 @@ class StaffsController < ApplicationController
   end
 
   def submit
-    #@uname = Staff.find_by_username(params[:username])
-    @user = params[:staff]
-    @uname = Staff.find_by_username(@user["username"])
-  
-    if @user["username"]==""
+    @user = Staff.find_by_username(params[:username])
+    if params[:username] =="" || @user == nil
       redirect_to login_path
-    end
-    if @uname == nil || @uname.password != @user["password"]
+    elsif @user.password != params[:password]
       flash[:notice] = "can not login"
       redirect_to login_path
-    else
-      session[:admin] = @uname.username
-      flash[:notice] = "login successfully"
+    else   
+      session[:admin] = @user.username
       redirect_to staffs_path
     end
   end

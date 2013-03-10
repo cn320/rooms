@@ -5,7 +5,7 @@ describe StaffsController do
   describe "Can login" do
     before :each do
        @user = mock("Staff", :username => "naidkub", :password=>"honhon")
-       Staff.stub(:find_by_username).and_return(@user)
+       Staff.stub(:find_by_username)
     end
     it "should " do
       Staff.stub(:find_by_username).with("naidkub").and_return(@user)

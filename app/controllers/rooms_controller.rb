@@ -107,35 +107,33 @@ class RoomsController < ApplicationController
   
   
   def search
-    
+  @section = Room.all_sections
+  @section.push("All Free Time")
+  @day_list = Room.all_days
   end
 
   def search_result
     @admin = session[:admin]
     room = params[:room]
-    size = room["volume"]
-    all_avai = Room.find_all_by_status("available")
-    all_avai.sort_by! {|i| i.volume }
+    avai_in_day = Room.find_all_by_day(room["day"])
+    if room["section"]!="All Free Time"
+      avai_in_day = avai_in_day.find_all{|i| i[room["section"]]=="free"}
+    end
+    avai_in_day.sort_by! {|i| i.volume }
     @rooms=[]
-    max = size.to_i
-    all_avai.each do |room|
-      if @rooms != [] && room.volume > max
-        break
-      end
-      if size.to_i <= room.volume
-        @rooms.push(room)
-        max = room.volume
-      end
-    end
-    if (room["room_id"]=="" && room["volume"]=="")
-      #flash[:notice] = "please insert room name or volume"
-      @rooms = all_avai
-      #redirect_to search_path
-    end
-    if @rooms.length == 0
-      flash[:notice] = "Not found"
-      redirect_to search_path
+    if room["volume"]==""
+      @rooms =  Room.find_all_by_day(room["day"])
     else
+      size=room["volume"]
+      avai_in_day.each do |room|
+        if @rooms != [] && room.volume > max
+          break
+        end
+        if size.to_i <= room.volume
+          @rooms.push(room)
+          max = room.volume
+        end
+      end
     end
   end
 

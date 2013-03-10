@@ -5,20 +5,18 @@
 %table#rooms
   %thead
     %tr
-      %th room_id
+      %th roomname
       %th volume
-      %th status
       %th more info
   %tbody
     - @rooms.each do |room|
       %tr
         %td= room.room_id
         %td= room.volume
-        %td= room.status
         - if @admin == nil
-          %td= link_to "ดูสถานะห้อง #{room.room_id}", room_path(room)
+          %td= link_to "ดูสถานะห้อง #{room.roomname}", room_path(room)
         - else
-          %td= link_to "ดูสถานะห้อง #{room.room_id}", staff_path(room)
+          %td= link_to "ดูสถานะห้อง #{room.roomname}", staff_path(room)
         
 
 = link_to 'Back', rooms_path
