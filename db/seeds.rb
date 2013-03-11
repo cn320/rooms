@@ -6,8 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-res = [{:name => 'litu' , :roomname => 'engr313', :section => '1' ,:time => 120}]
+detail = [{:roomname => "ENGR301", :amount => 30},{:roomname => "ENGR302", :amount => 30},{:roomname => "ENGR303", :amount => 50},{:roomname => "ENGR304", :amount => 50}]
+detail.each do |d|
+  DetailRoom.create!(d)
+end
+res = [{:name => 'litu' , :roomname => 'engr313', :section => '8.00-9.30'}]
 
 user = [{:username => 'naidkub' , :password => 'honhon'}]
 

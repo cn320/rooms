@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130310144604) do
+ActiveRecord::Schema.define(:version => 20130310184527) do
+
+  create_table "detail_rooms", :id => false, :force => true do |t|
+    t.string   "roomname",   :null => false
+    t.integer  "amount"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "news", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -24,12 +31,10 @@ ActiveRecord::Schema.define(:version => 20130310144604) do
     t.string   "name"
     t.string   "roomname"
     t.string   "section"
-    t.integer  "time"
   end
 
   create_table "rooms", :force => true do |t|
     t.string   "roomname"
-    t.integer  "volume"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "first"

@@ -9,5 +9,6 @@ class AddToRoom < ActiveRecord::Migration
     add_column :rooms, :seventh, :string
     add_column :rooms, :eighth, :string
     add_column :rooms, :day, :string
+    
   end
 end

@@ -6,7 +6,7 @@
   = text_field :room, 'volume'
 
   = label :room, :day, 'Day'
-  = text_field :room, @day_list
+  = select :room, :day, @day_list
 
   = label :section, 'Section'
   = select :room, :section, @section

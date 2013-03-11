@@ -6,11 +6,18 @@
   = label :room, :roomname, 'Roomname'
   = text_field :room, 'roomname'
 
-  = label :room, :volume, 'Volume'
-  = text_field :room, 'volume'
-
-  = label :room, :status, 'Status'
-  = select :room, :status, ["available","unavailable"]
+  = label :detail_rooms, :amount, 'Amount'
+  = text_field :detail_rooms, 'Amount'
+  %br
+  - @day_list.each do |day|
+    = day
+    %br
+    - @section.each do |time|
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      = time
+      = hidden_field_tag "#{day}[#{time}]",0
+      = check_box_tag "#{day}[#{time}]",1
+    %br  
 
   = submit_tag 'เพิ่มห้องใหม่'
 

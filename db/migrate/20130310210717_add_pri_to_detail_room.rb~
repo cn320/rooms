@@ -1,0 +1,5 @@
+class AddPriToDetailRoom < ActiveRecord::Migration
+  def change
+    add_foreign_key_contrraint(:rooms,:roomname, :detail_room, :roomname)
+  end
+end

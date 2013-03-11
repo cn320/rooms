@@ -22,7 +22,7 @@
       %tr
         %td= room.roomname
         %td= room.volume
-        %td{:class => "hilite"}= room.day
+        %td= room.day
         %td= room.first
         %td= room.second
         %td= room.third

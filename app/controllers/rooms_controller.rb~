@@ -27,6 +27,8 @@ class RoomsController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else
+      @section = Room.all_times
+      @day_list = Room.all_days
       @room = Room.new
 
       respond_to do |format|
@@ -53,16 +55,41 @@ class RoomsController < ApplicationController
     else
       room = params[:room]
       if Room.find_by_roomname(room["roomname"]) == nil
-        @room = Room.new(params[:room])
-        respond_to do |format|
-          if @room.save
-            format.html { redirect_to @room, notice: 'Room was successfully created.' }
-            format.json { render json: @room, status: :created, location: @room }
-          else
-            format.html { render action: "new" }
-            format.json { render json: @room.errors, status: :unprocessable_entity }
+        room = []
+        day_list = Room.all_days
+        temp_room = room
+        temp_room["amount"] = params[:detail_rooms]["Amount"].to_i
+        @detail_room_obj = DetailRoom.new(temp_room)     
+        all_time = Room.all_times
+        day_list.each do |d|
+          room["roomname"] = params[:room]["roomname"]
+          room["day"] = d
+          day = params[day]
+          all_time.each do |t|
+            val = day[t]
+            if val == 1
+              room[t] = "free"
+            else
+              room[t] = "busy"
+            end
+          end
+          @room_obj = Room.new(room)
+          respond_to do |format|
+            if !@room_obj.save
+              format.html { render action: "new" }
+              format.json { render json: @room.errors, status: :unprocessable_entity }
+            end
           end
         end
+        respond_to do |format|
+      if @detail_room_obj.save
+        format.html { redirect_to @room, notice: 'Room was successfully created.' }
+        format.json { render json: @room, status: :created, location: @room }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @room.errors, status: :unprocessable_entity }
+      end
+    end
       else
         flash[:notice] = "can not add new room"
         redirect_to new_room_path
@@ -107,8 +134,8 @@ class RoomsController < ApplicationController
   
   
   def search
-  @section = Room.all_sections
-  @section.push("All Free Time")
+  @time = Room.all_times
+  @time.push("All Free Time")
   @day_list = Room.all_days
   end
 
@@ -122,16 +149,19 @@ class RoomsController < ApplicationController
     avai_in_day.sort_by! {|i| i.volume }
     @rooms=[]
     if room["volume"]==""
-      @rooms = avai_in_day
+      @rooms =  Room.find_all_by_day(room["day"])
     else
       size=room["volume"]
+      max=30
       avai_in_day.each do |room|
-        if @rooms != [] && room.volume > max
+        amount = DetailRoom.find_by_roomname(room.roomname)
+ 
+        if @rooms != [] && amount > max
           break
         end
-        if size.to_i <= room.volume
+        if size.to_i <= amount
           @rooms.push(room)
-          max = room.volume
+          max = amount
         end
       end
     end
