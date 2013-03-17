@@ -149,9 +149,24 @@ class RoomsController < ApplicationController
     @time.push("All Free Time")
     @day_list = Room.all_days
     @admin = session[:admin]
-    free_rooms = Room.find_all_by_day(params[:day])
-    if params(:amount) != "All Free Time"
-      free_rooms = 
+    @time_select = Room.time_to_section[0][params[:section][0]]
+    @day_select = params[:day][0]
+    @size_select = params[:amount][0]
+    @free_rooms = Room.find_all_by_day(@day_select)
+    if @time_select != nil
+      @free_rooms = Room.find_with_day_and_time(@day_select,@time_select)
+    else 
+      @time_select = "All Free Time"
+    end
+    if @size_select != ""
+      @free_rooms = Room.find_with_amount(@free_rooms,@size_select)
+    else
+      @size_select = "Undefine"
+    end
+    @free_rooms.each do |room|
+      size = DetailRoom.find_by_roomname(room.roomname).amount
+      room["amount"] = size
+    end
   end
 
 end

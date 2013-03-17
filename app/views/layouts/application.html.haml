@@ -87,10 +87,10 @@
                 %legend
                   %i.icon-search
                   Search Room
-                = form_tag search_result_path(@rooms) ,:method=>:get do
+                = form_tag search_result_path ,:method=>:get do
 
                   = label :amount, nil, 'Amount'
-                  = text_field :amount, nil
+                  = text_field :amount, 'amount'
 
                   = label :day, nil, 'Day'
                   = select :day, nil, @day_list

@@ -24,11 +24,11 @@ RoomManagement::Application.routes.draw do
   get "staffs/logout"
   get "static_pages/about"
  
-
+  
   resources :rooms
   #match '/staffs/submit' => 'staffs#submit', :as => :submit
   match '/search' => 'rooms#search',:via=>:get
-  match '/search_result' => 'rooms#search_result',:via=>:get
+  match '/search_result' => 'rooms#search_result',:via=>:get ,:as => :search_result
   match '/result/:id' => 'reserves#result',:via=>:get ,:as=>:result
   match '/' => 'static_pages#about', :as => :about
   match '/login' => 'staffs#login', :as => :login , :via=>:get

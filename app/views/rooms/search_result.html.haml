@@ -1,18 +1,18 @@
-%h1 Show Available room
+%h1 Show search room
 
-%p แสดงผล
+%p แสดงผล time : #{@time_select} , day : #{@day_select} ,amount : #{@size_select}
 
 %table#rooms
   %thead
     %tr
       %th roomname
-      %th volume
+      %th amount
       %th more info
   %tbody
-    - @rooms.each do |room|
+    - @free_rooms.each do |room|
       %tr
         %td= room.roomname
-        %td= room.roomname
+        %td= room.amount
         - if @admin == nil
           %td= link_to "ดูสถานะห้อง #{room.roomname}", room_path(room)
         - else

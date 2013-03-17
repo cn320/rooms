@@ -1,16 +1,16 @@
 %h1 Search room
 
-= form_tag search_result_path(@rooms) ,:method=>:get do
+= form_tag search_result_path ,:method=>:get do
 
-  = label :room, :volume,'Volume'
-  = text_field :room, 'volume'
+  = label :amount, nil, 'Amount'
+  = text_field :amount, nil
 
-  = label :room, :day, 'Day'
-  = select :room, :day, @day_list
+  = label :day, nil, 'Day'
+  = select :day, nil, @day_list
 
   = label :section, 'Section'
-  = select :room, :section, @time
+  = select :section, nil, @time
 
   = submit_tag 'ค้นหา'
 
-= link_to 'Back', search_result_path
+= link_to 'Back', rooms_path

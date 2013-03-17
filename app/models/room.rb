@@ -15,7 +15,8 @@ class Room < ActiveRecord::Base
     ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
   end
 
-  def self.find_with_day_and_time(free_day,time)
+  def self.find_with_day_and_time(day,time)
+    free_day = Room.find_all_by_day(day)
     free_result = []
     free_day.each_with_index do |item,i|
       if free_day[i][time] == "free"
@@ -26,11 +27,16 @@ class Room < ActiveRecord::Base
   end
 
   def self.find_with_amount(free,amount)
-    
+    max = 0
     free_result = []
-    free.each_with_index do |item,i|
-      if free[i][time] == "free"
-        free_result.push(free[i])
+    free.each do |i|
+      s = DetailRoom.find_by_roomname(i["roomname"]).amount
+      if free_result!= [] && s>max
+        break 
+      end
+      if s >= amount.to_i
+        free_result.push(i)
+        max = s
       end
     end
     return free_result
