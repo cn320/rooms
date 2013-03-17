@@ -1,0 +1,14 @@
+%h1 Room List
+
+%table#rooms
+  %thead
+    %tr
+      %th roomname
+      %th amount
+      %th more info
+  %tbody
+    - @rooms.each do |room|
+      %tr
+        %td= room.roomname
+        %td= room.amount
+        %td= link_to "ดูสถานะห้อง #{room.roomname}", room_path(room)

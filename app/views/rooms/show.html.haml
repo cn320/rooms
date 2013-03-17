@@ -3,10 +3,12 @@
 -# in app/views/movies/show.html.haml
 
 %h2 Details about #{@room.roomname}
-
-
-%p Volume : #{@room.volume}
+%h1 Staff #{@admin}
 
 = link_to 'จองห้อง', new_reserve_path(@room)
-= link_to 'Back to room list', staffs_path
-
+- if @admin != nil
+  = link_to 'แก้ไขข้อมูลห้อง', edit_staff_path(@room)
+  = link_to 'Delete', room_path(@room), method: :delete, data: { confirm: 'Are you sure?' }
+  = link_to 'Back to room list', staffs_path
+- else
+  = link_to 'Back to room list', rooms_path

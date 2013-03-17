@@ -1,6 +1,6 @@
 class Room < ActiveRecord::Base
   # attr_accessible :title, :body
-  attr_accessible :roomname, :volume,  :first, :second, :third, :fourth, :fifth, :sixth, :day, :seventh, :eighth
+  attr_accessible :roomname, :first, :second, :third, :fourth, :fifth, :sixth, :day, :seventh, :eighth
   belongs_to :detail_rooms
   
   def self.all_times
@@ -34,7 +34,7 @@ class Room < ActiveRecord::Base
       if free_result!= [] && s>max
         break 
       end
-      if s >= amount
+      if s >= amount.to_i
         free_result.push(i)
         max = s
       end

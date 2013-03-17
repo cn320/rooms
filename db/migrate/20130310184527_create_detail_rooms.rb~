@@ -5,7 +5,7 @@ class CreateDetailRooms < ActiveRecord::Migration
       t.integer :amount
       t.timestamps
     end
-    execute "ALTER TABLE 'detail_rooms' ADD PRIMARY KEY (roomname);"
+   
   end
 
   def down

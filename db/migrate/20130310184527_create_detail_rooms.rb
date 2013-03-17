@@ -1,7 +1,7 @@
 class CreateDetailRooms < ActiveRecord::Migration
   def up
-    create_table :detail_rooms, {:id=>false} do |t|
-      t.string :roomname , :null => false ,:primary_key => true
+    create_table :detail_rooms do |t|
+      t.string :roomname , :null => false 
       t.integer :amount
       t.timestamps
     end

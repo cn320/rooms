@@ -1,10 +1,11 @@
-%h1 Index Staff
-
-
+%h1 ยินดีต้อนรับสู่ระบบจัดการการจองห้อง คณะวิศวกรรมศาสตร์
+%h1 Staff #{@admin}
 
 = link_to 'เพิ่มห้องใหม่', new_room_path
 
 = link_to 'ดูรายละเอียดการจอง', reserves_path
+
+= link_to 'Room list', room_list_path
 
 = link_to 'Log out', logout_path
 

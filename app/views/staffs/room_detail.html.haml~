@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%h2 Details about #{@droom.roomname} : size = #{@droom.amount}
+%h1 Staff #{@admin}
+
+
+= link_to 'Delete', room_path(@room), method: :delete, data: { confirm: 'Are you sure?' }
+= link_to 'Back to room list', staffs_path
+

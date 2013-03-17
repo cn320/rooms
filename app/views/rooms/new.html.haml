@@ -12,7 +12,7 @@
   - @day_list.each do |day|
     = day
     %br
-    - @section.each do |time|
+    - @box_times.each do |time|
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       = time
       = hidden_field_tag "#{day}[#{time}]",0

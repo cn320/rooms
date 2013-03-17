@@ -4,8 +4,12 @@ class StaffsController < ApplicationController
   def index
     if session[:admin] == nil
       redirect_to rooms_path
-    else   
+    else  
       @rooms = Room.all
+      @rooms.each do |room|
+        size = DetailRoom.find_by_roomname(room.roomname).amount
+        room["amount"] = size
+      end
       @admin = session[:admin]
       @time = Room.all_times
       @time.push("All Free Time")
@@ -22,7 +26,8 @@ class StaffsController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else
-      @room = Room.find(params[:id])
+      @droom = DetailRoom.find(params[:id])
+      @rooms = Room.find_all_by_roomname(@droom.roomname)
     end
    # @staff = Staff.find(params[:id])
 
@@ -130,4 +135,16 @@ class StaffsController < ApplicationController
     redirect_to rooms_path
   end
 
+  def room_list
+    @time = Room.all_times
+    @time.push("All Free Time")
+    @day_list = Room.all_days
+    if session[:admin] == nil
+      redirect_to rooms_path
+    end
+    @admin = session[:admin] 
+    @rooms = DetailRoom.all   
+  end
+
+  
 end

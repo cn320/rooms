@@ -19,6 +19,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+    @admin = session[:admin]
     @room = Room.find(params[:id])
     @time = Room.all_times
     @time.push("All Free Time")
@@ -35,7 +36,7 @@ class RoomsController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else
-      @section = Room.all_times
+      @box_times = Room.all_times
       @time = Room.all_times
       @time.push("All Free Time")
       @day_list = Room.all_days
@@ -53,10 +54,12 @@ class RoomsController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else
-      @room = Room.find(params[:id])
+      @droom = DetailRoom.find(params[:id])
+      @rooms= Room.find_all_by_roomname(@droom.roomname)
       @time = Room.all_times
       @time.push("All Free Time")
       @day_list = Room.all_days
+      @box_times = Room.time_to_section
     end
   end
 
@@ -108,15 +111,37 @@ class RoomsController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else
-      @room = Room.find(params[:id])
-      respond_to do |format|
-        if @room.update_attributes(params[:room])
-          format.html { redirect_to staff_path(@room.id), notice: 'Room was successfully updated.' }
-          format.json { head :no_content }
-        else
-          format.html { render action: "edit" }
-          format.json { render json: staff_path(@room.id).errors, status: :unprocessable_entity }
+      @time = Room.all_times
+      @time.push("All Free Time")
+      @day_list = Room.all_days
+      @box_times = Room.time_to_section
+      @droom = DetailRoom.find(params[:id])
+      old_name = DetailRoom.find(params[:id]).roomname
+      #if DetailRoom.find_by_roomname(params[:droom]["roomname"]) == nil
+      if true
+        #@droom.update_attributes!(params[:droom])
+        @day_list.each do |day|
+          temp_room = {}
+          temp_room["roomname"] = params[:droom]["roomname"]
+          temp_room["day"] = day
+          @box_times[0].each do |time|
+            if params[day][time[1]] == "1"
+              temp_room[time[1]] = "busy"
+            else
+              temp_room[time[1]] = "free"
+            end
+          end
+          res = Room.find_all_by_roomname(old_name)
+          @room = res.select do |r|  r.day == day  end
+          @room[0].update_attributes!(temp_room)
+          ##@room = temp_room
         end
+        @droom.update_attributes!(params[:droom])
+        flash[:notice] = "#{old_name} can update room---#{@room}"
+        redirect_to staff_path(@droom)
+      else
+        flash[:notice] = "can not update room"
+        redirect_to staffs_path
       end
     end
   end
@@ -127,13 +152,19 @@ class RoomsController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else
-      @room = Room.find(params[:id])
-      @room.destroy
-
-      respond_to do |format|
-        format.html { redirect_to staffs_path, notice: 'Room was successfully deleted.'  }
-        format.json { head :no_content }
+      @time = Room.all_times
+      @time.push("All Free Time")
+      @day_list = Room.all_days
+      @droom = DetailRoom.find(params[:id])
+      roomname = @droom.roomname
+      @day_list.each do |day|
+        @room = Room.find_all_by_roomname(@droom.roomname)
+        @room = @room.select do |i| i.day==day end
+        @room[0].destroy
       end
+      @droom.destroy
+      flash[:notice] = "Delete room #{roomname} success"
+      redirect_to room_list_staffs_path
     end
   end
   
@@ -148,7 +179,6 @@ class RoomsController < ApplicationController
     @time = Room.all_times
     @time.push("All Free Time")
     @day_list = Room.all_days
-    @admin = session[:admin]
     @time_select = Room.time_to_section[0][params[:section][0]]
     @day_select = params[:day][0]
     @size_select = params[:amount][0]
@@ -169,4 +199,5 @@ class RoomsController < ApplicationController
     end
   end
 
+  
 end

@@ -1,7 +1,7 @@
 %h1 New room
 
 
-= form_tag staffs_path do
+= form_tag rooms_path do
 
   = label :room, :roomname, 'Roomname'
   = text_field :room, 'roomname'

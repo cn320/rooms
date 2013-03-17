@@ -1,14 +1,30 @@
-%p#notice= notice
+%h2 DetailRoom : #{@droom.roomname} size : #{@droom.amount}
 
-%h2 Details about #{@room.room_id}
-
-%p Status : #{@room.status}
-
-%p Volume : #{@room.volume}
-
-= link_to 'แก้ไขข้อมูลห้อง', edit_staff_path(@room)
-= link_to 'จองห้อง', new_reserve_path(@room)
-= link_to 'Delete', room_path(@room), :method => :delete, :confirm => 'Are you sure?'
-= link_to 'Back to room list', staffs_path
-
-
+%table#rooms
+  %thead
+    %tr
+      %th day
+      %th 8.00-9.30
+      %th 9.30-11.00
+      %th 11.00-12.30
+      %th 12.30-13.00
+      %th 13.30-15.00
+      %th 15.00-16.30
+      %th 16.30-18.00
+      %th 18.00-21.00
+      %th reserve
+  %tbody
+    - @rooms.each do |room|
+      %tr
+        %td= room.day
+        %td= room.first
+        %td= room.second
+        %td= room.third
+        %td= room.fourth
+        %td= room.fifth
+        %td= room.sixth
+        %td= room.seventh
+        %td= room.eighth
+        %td=link_to "reserve", room_path(room)
+       
+= link_to "edit", edit_room_path(@droom)

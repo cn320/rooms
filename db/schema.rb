@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(:version => 20130310184527) do
 
-  create_table "detail_rooms", :id => false, :force => true do |t|
+  create_table "detail_rooms", :force => true do |t|
     t.string   "roomname",   :null => false
     t.integer  "amount"
     t.datetime "created_at", :null => false
