@@ -11,7 +11,7 @@
   %tbody
     - @rooms.each do |room|
       %tr
-        %td= room.room_id
+        %td= room.roomname
         %td= room.volume
         - if @admin == nil
           %td= link_to "ดูสถานะห้อง #{room.roomname}", room_path(room)

@@ -7,12 +7,18 @@ class StaffsController < ApplicationController
     else   
       @rooms = Room.all
       @admin = session[:admin]
+      @time = Room.all_times
+      @time.push("All Free Time")
+      @day_list = Room.all_days
     end
   end
 
   # GET /staffs/1
   # GET /staffs/1.json
   def show
+    @time = Room.all_times
+    @time.push("All Free Time")
+    @day_list = Room.all_days
     if session[:admin] == nil
       redirect_to rooms_path
     else
@@ -94,6 +100,9 @@ class StaffsController < ApplicationController
   end
   
   def login
+    @time = Room.all_times
+    @time.push("All Free Time")
+    @day_list = Room.all_days
     if session[:admin] != nil
       redirect_to staffs_path
     end    

@@ -7,11 +7,10 @@ Feature: Adding new room
 Background: Startup with Staffpage
 
   Given the following rooms exist:
-  | room_id      | status      |  volume  |
-  | engr303      | available   |  30      |
-  | engr304      | available   |  30      |
-  | engr305      | unavailable |  30      |
-  | engr313      | unavailable |  50      |
+  | roomname     | first  |  day      |
+  | engr303      | 1      |  monday   |
+  | engr304      | 0      |  monday   |
+  
 
   And I am on the staff page
   And I should see "เพิ่มห้องใหม่"

@@ -6,7 +6,7 @@
   %thead
     %tr
       %th roomname
-      %th volume
+      %th amount
       %th{:class => "hilite"} day
       %th 8.00-9.30
       %th 9.30-11.00
@@ -21,7 +21,7 @@
     - @rooms.each do |room|
       %tr
         %td= room.roomname
-        %td= room.roomname
+        %td= room.amount
         %td= room.day
         %td= room.first
         %td= room.second

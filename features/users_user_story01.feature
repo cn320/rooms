@@ -5,12 +5,9 @@ Feature: See status of available room
 
 Background: Startup with Homepage
   Given the following rooms exist:
-  | room_id      | status      |  volume  |
-  | engr303      | available   |  30      |
-  | engr304      | available   |  30      |
-  | engr305      | unavailable |  30      |
-  | engr313      | unavailable |  50      |
-
+  | roomname     | first  |  day      |
+  | engr303      | 1      |  monday   |
+  | engr304      | 0      |  monday   |
   And I am on the search page
 
   When I fill in "Volume" with "20"
@@ -23,6 +20,4 @@ Scenario: See the engr303 status
   When I follow "ดูสถานะห้อง engr303"
   Then I should be on the room "engr303" status page
   And I should see "engr303"
-  And I should see "Status : available"
-  And I should see "Volume : 30"
-
+  

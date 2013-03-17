@@ -1,7 +1,7 @@
 %h1 New room
 
 
-= form_tag rooms_path do
+= form_tag staffs_path do
 
   = label :room, :roomname, 'Roomname'
   = text_field :room, 'roomname'
@@ -15,8 +15,8 @@
     - @section.each do |time|
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       = time
-      = hidden_field_tag "#{day}[#{time}]"
-      = check_box_tag "#{day}[#{time}]"
+      = hidden_field_tag "#{day}[#{time}]",0
+      = check_box_tag "#{day}[#{time}]",1
     %br  
 
   = submit_tag 'เพิ่มห้องใหม่'

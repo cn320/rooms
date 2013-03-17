@@ -1,0 +1,50 @@
+@import "bootstrap";
+@import "bootstrap-responsive";
+
+div.navbar-inner{
+	border-radius: 0px;
+}
+div.span3{
+	padding: 5px;
+	
+}
+div.span9{
+	/*padding-left:10px;*/
+}
+legend{
+	padding: 0;
+	font-size: 16px;
+	margin: 10px;
+}
+div.navbar{
+	margin:0px;
+}
+ul.breadcrumb{
+	margin-bottom:0;
+}
+div.container-fluid{
+	padding-top: 15px;
+}
+.brand{
+   font-size:16px;
+}
+#footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:20px;
+   width:100%;
+   background:#262626;
+   color: #afafaf;
+   font-size: 11px;
+   padding-left: 5px;
+}
+.breadcrumb{
+   border-radius: 0px;
+   height:20px;
+}
+/* IE 6 */
+* html #footer {
+   position:absolute;
+   top:expression((0-(footer.offsetHeight)+(document.documentElement.clientHeight ? document.documentElement.clientHeight : document.body.clientHeight)+(ignoreMe = document.documentElement.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop))+'px');
+}

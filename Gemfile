@@ -5,6 +5,7 @@ gem 'simplecov', :require => false, :group => :test
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
+
 group :development, :test do
   gem 'sqlite3'
   gem 'debugger'
@@ -29,6 +30,7 @@ group :assets do
   gem 'sass-rails', "  ~> 3.2.0"
   gem 'coffee-rails', "~> 3.2.0"
   gem 'uglifier'
+  gem 'twitter-bootstrap-rails'
 end
 
 gem 'jquery-rails'
@@ -42,7 +44,8 @@ gem 'jquery-rails'
 # To use debugger
 gem 'haml-rails'
 
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', '~> 2.2.2.0'
 
 gem "therubyracer"
 gem "less-rails"
+gem 'less-rails-bootstrap'
