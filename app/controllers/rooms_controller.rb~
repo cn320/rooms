@@ -160,7 +160,7 @@ class RoomsController < ApplicationController
       @day_list.each do |day|
         @room = Room.find_all_by_roomname(@droom.roomname)
         @room = @room.select do |i| i.day==day end
-        @room.destroy
+        @room[0].destroy
       end
       @droom.destroy
       flash[:notice] = "Delete room #{roomname} success"

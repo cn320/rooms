@@ -27,7 +27,7 @@ class StaffsController < ApplicationController
       redirect_to rooms_path
     else
       @droom = DetailRoom.find(params[:id])
-      @rooms = Room.find_by_roomname(@droom.roomname)
+      @rooms = Room.find_all_by_roomname(@droom.roomname)
     end
    # @staff = Staff.find(params[:id])
 
