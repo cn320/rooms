@@ -1,7 +1,4 @@
-%h1 Staffs#login
-%p Find me in app/views/staffs/login.html.haml
-
-%h1 กรุณากรอก username และ password
+%h3 กรุณากรอก username และ password สำหรับผู้ดูแลระบบ
 
 = form_tag submit_staffs_path, :method => :submit do
 
@@ -10,6 +7,5 @@
 
   = label :staff,:password, 'Password'
   = text_field :staff, 'password'
-
+  %br
   = submit_tag 'Log In'
-  = link_to 'Back to home page', rooms_path

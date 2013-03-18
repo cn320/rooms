@@ -11,7 +11,7 @@ class CreateTools < ActiveRecord::Migration
       t.integer :voice_recorder, :default => 0
       t.integer :video_recorder, :default => 0
       t.integer :visualizer, :default => 0
-      t.integer :loudspeaker, :default => 0
+      t.integre :loudspeaker, :default => 0
       t.timestamps
     end
   end

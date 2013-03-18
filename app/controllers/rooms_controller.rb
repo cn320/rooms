@@ -189,12 +189,13 @@ class RoomsController < ApplicationController
     if @size_select != ""
       @free_rooms = Room.find_with_amount(@free_rooms,@size_select)
     else
-      @size_select = "Undefine"
+      @size_select = "-"
     end
     @size = []
     @free_rooms.each_with_index do |room,i|
       @size[i] = DetailRoom.find_by_roomname(room.roomname).amount
     end
+    @time_select = params[:section][0]
   end
 
   

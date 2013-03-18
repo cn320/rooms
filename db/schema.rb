@@ -11,13 +11,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130310184527) do
+ActiveRecord::Schema.define(:version => 20130318173630) do
 
   create_table "detail_rooms", :force => true do |t|
     t.string   "roomname",   :null => false
     t.integer  "amount"
+    t.string   "type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "forms", :force => true do |t|
+    t.string   "position"
+    t.string   "name"
+    t.string   "surname"
+    t.string   "institution"
+    t.string   "tel"
+    t.string   "email"
+    t.string   "roomtype"
+    t.string   "roomname"
+    t.date     "date_to_reverse"
+    t.string   "start_time"
+    t.string   "finish_time"
+    t.string   "because"
+    t.string   "subject"
+    t.integer  "amount_of_people"
+    t.string   "require_tool"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "news", :force => true do |t|
@@ -26,11 +47,16 @@ ActiveRecord::Schema.define(:version => 20130310184527) do
   end
 
   create_table "reserves", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "name"
-    t.string   "roomname"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.string   "section"
+    t.string   "roomname"
+    t.date     "day_to_reserve"
+    t.string   "strat_time"
+    t.string   "finish_time"
+    t.string   "tel"
+    t.string   "email"
+    t.boolean  "status"
   end
 
   create_table "rooms", :force => true do |t|
@@ -66,8 +92,19 @@ ActiveRecord::Schema.define(:version => 20130310184527) do
   end
 
   create_table "tools", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "roomname",           :default => "0"
+    t.integer  "amplifier",          :default => 0
+    t.integer  "microphone",         :default => 0
+    t.integer  "computer",           :default => 0
+    t.integer  "overhead_projector", :default => 0
+    t.integer  "lcd_projector",      :default => 0
+    t.integer  "television",         :default => 0
+    t.integer  "voice_recorder",     :default => 0
+    t.integer  "video_recorder",     :default => 0
+    t.integer  "visualizer",         :default => 0
+    t.integer  "loudspeaker",        :default => 0
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
   end
 
 end

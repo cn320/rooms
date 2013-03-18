@@ -62,7 +62,7 @@
         %ul.breadcrumb
           %li.active
             %i.icon-home.icon-white
-            =link_to 'หน้าแรก' , '/'
+            =link_to 'หน้าแรก' , '/rooms'
             %span.divider |
           %li
             %i.icon-wrench
@@ -87,7 +87,7 @@
                 %legend
                   %i.icon-search
                   Search Room
-                = form_tag rooms_search_result_path ,:method=>:get do
+                = form_tag search_result_path ,:method=>:get do
 
                   = label :amount, nil, 'Amount'
                   = text_field :amount, 'amount'
