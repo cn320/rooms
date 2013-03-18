@@ -134,7 +134,7 @@ class RoomsController < ApplicationController
           @room[0].update_attributes!(temp_room)
         end
         @droom.update_attributes!(params[:droom])
-        flash[:notice] = "#{old_name} can update room---#{@room}"
+        flash[:notice] = "update room sucessfully"
         redirect_to staff_path(@droom)
       else
         flash[:notice] = "can not update room"
@@ -160,7 +160,7 @@ class RoomsController < ApplicationController
         @room[0].destroy
       end
       @droom.destroy
-      flash[:notice] = "Delete room #{roomname} success"
+      flash[:notice] = "Delete success"
       redirect_to room_list_staffs_path
     end
   end

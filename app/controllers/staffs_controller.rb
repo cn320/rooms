@@ -5,11 +5,7 @@ class StaffsController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else  
-      @rooms = Room.all
-      @rooms.each do |room|
-        size = DetailRoom.find_by_roomname(room.roomname).amount
-        room["amount"] = size
-      end
+      
       @admin = session[:admin]
       @time = Room.all_times
       @time.push("All Free Time")

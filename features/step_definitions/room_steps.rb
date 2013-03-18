@@ -5,6 +5,12 @@ Given /the following rooms exist/ do |rooms_table|
     Room.create!(att)
   end
 end
+
+Given /the following detail_rooms exist/ do |rooms_table|
+  rooms_table.hashes.each do |att|
+    DetailRoom.create!(att)
+  end
+end
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
 

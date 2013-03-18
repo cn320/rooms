@@ -43,3 +43,6 @@ end
 
 Then /I fill reservation data and (un)?available reservation time/ do |arg|
 end
+
+Then /I should see room status/ do
+end

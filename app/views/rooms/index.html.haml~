@@ -21,7 +21,7 @@
     - @rooms.each do |room|
       %tr
         %td= room.roomname
-        %td= room.amount
+        %td= @size
         %td= room.day
         %td= room.first
         %td= room.second

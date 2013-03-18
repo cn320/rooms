@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
-  # GET /rooms
-  # GET /rooms.json
+  
+  # welcome page 
   def index
     @rooms = Room.all
     @rooms.each do |room|
@@ -16,8 +16,7 @@ class RoomsController < ApplicationController
     end
   end
 
-  # GET /rooms/1
-  # GET /rooms/1.json
+  #show one room from search_result page
   def show
     @admin = session[:admin]
     @room = Room.find(params[:id])
@@ -30,8 +29,7 @@ class RoomsController < ApplicationController
     end
   end
 
-  # GET /rooms/new
-  # GET /rooms/new.json
+  #new room page
   def new
     if session[:admin] == nil
       redirect_to rooms_path
@@ -49,7 +47,7 @@ class RoomsController < ApplicationController
     end
   end
 
-  # GET /rooms/1/edit
+  # edit room page
   def edit
     if session[:admin] == nil
       redirect_to rooms_path
@@ -63,8 +61,8 @@ class RoomsController < ApplicationController
     end
   end
 
-  # POST /rooms
-  # POST /rooms.json
+  
+  # Add new room
   def create
     if session[:admin] == nil
       redirect_to rooms_path
@@ -105,8 +103,8 @@ class RoomsController < ApplicationController
   end
 
  
-  # PUT /rooms/1
-  # PUT /rooms/1.json
+  
+  # update room
   def update
     if session[:admin] == nil
       redirect_to rooms_path
@@ -134,10 +132,9 @@ class RoomsController < ApplicationController
           res = Room.find_all_by_roomname(old_name)
           @room = res.select do |r|  r.day == day  end
           @room[0].update_attributes!(temp_room)
-          ##@room = temp_room
         end
         @droom.update_attributes!(params[:droom])
-        flash[:notice] = "#{old_name} can update room---#{@room}"
+        flash[:notice] = "update room sucessfully"
         redirect_to staff_path(@droom)
       else
         flash[:notice] = "can not update room"
@@ -146,8 +143,8 @@ class RoomsController < ApplicationController
     end
   end
 
-  # DELETE /rooms/1
-  # DELETE /rooms/1.json
+  
+  # delete room
   def destroy
     if session[:admin] == nil
       redirect_to rooms_path
@@ -168,13 +165,14 @@ class RoomsController < ApplicationController
     end
   end
   
-  
+  #search page
   def search
   @time = Room.all_times
   @time.push("All Free Time")
   @day_list = Room.all_days
   end
 
+  #search result and show result
   def search_result
     @time = Room.all_times
     @time.push("All Free Time")
