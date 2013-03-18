@@ -9,16 +9,15 @@ Background: Startup with Homepage
   | roomname     | amount    | 
   | ENGR303      | 30        |
   | ENGR304      | 30        |
+  | ENGR305      | 30        |
+  | ENGR306      | 50        |
   
   Given the following rooms exist:
-  | roomname     | day       | 
-  | ENGR303      | monday    |
-  | ENGR303      | tuesday   |
-  | ENGR303      | wednesday |
-  | ENGR303      | thursday  |
-  | ENGR303      | friday    |
-  | ENGR303      | saturday  |
-  | ENGR303      | sunday    |
+  | roomname     | day       | first | second | third | fourth | fifth | sixth | seventh | eighth |
+  | ENGR303      | monday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR304      | monday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR305      | monday    | busy  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR306      | monday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
 
   And I am on the home page
   And I should see "ค้นหาห้องว่าง"
@@ -26,25 +25,18 @@ Background: Startup with Homepage
   Then I should be on the search page
 
 Scenario: Search base on volume
-  When I fill in "Volume" with "20"
+  When I fill in "Amount" with "45"
+  And I select "day_monday" from Day"
   And I press "ค้นหา"
   Then I should be on the search_result page
   And I should see "engr303"
   And I should see "engr304"
 
 Scenario: Not fill all data
-  When I fill in "Volume" with ""
-  And I fill in "Room_id" with ""
-  And I press "ค้นหา"
-  Then I should be on the search page
-  And I should see "please insert room name or volume"
+  
 
 Scenario: Not found room with match volume
-  When I fill in "Volume" with "100"
-  And I fill in "Room_id" with ""
-  And I press "ค้นหา"
-  Then I should be on the search page
-  And I should see "Not found"
+ 
 
 
 

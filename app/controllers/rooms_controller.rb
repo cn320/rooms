@@ -191,9 +191,9 @@ class RoomsController < ApplicationController
     else
       @size_select = "Undefine"
     end
-    @free_rooms.each do |room|
-      size = DetailRoom.find_by_roomname(room.roomname).amount
-      room["amount"] = size
+    @size = []
+    @free_rooms.each_with_index do |room,i|
+      @size[i] = DetailRoom.find_by_roomname(room.roomname).amount
     end
   end
 

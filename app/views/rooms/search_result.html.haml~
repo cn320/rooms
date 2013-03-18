@@ -1,6 +1,6 @@
 %h1 Show search room
 
-%p แสดงผล time : #{@time_select} , day : #{@day_select}
+%p แสดงผล time : #{@time_select} , day : #{@day_select} ,amount : #{@size_select}
 
 %table#rooms
   %thead
@@ -9,7 +9,7 @@
       %th amount
       %th more info
   %tbody
-    - @free_rooms.each do |room|
+    - @free_rooms.each_with_index do |room,i|
       %tr
         %td= room.roomname
         %td= room.amount

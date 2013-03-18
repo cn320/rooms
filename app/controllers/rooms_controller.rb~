@@ -160,7 +160,7 @@ class RoomsController < ApplicationController
         @room[0].destroy
       end
       @droom.destroy
-      flash[:notice] = "Delete room #{roomname} success"
+      flash[:notice] = "Delete success"
       redirect_to room_list_staffs_path
     end
   end

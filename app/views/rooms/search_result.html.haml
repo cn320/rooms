@@ -9,10 +9,10 @@
       %th amount
       %th more info
   %tbody
-    - @free_rooms.each do |room|
+    - @free_rooms.each_with_index do |room,i|
       %tr
         %td= room.roomname
-        %td= room.amount
+        %td= @size[i]
         - if @admin == nil
           %td= link_to "ดูสถานะห้อง #{room.roomname}", room_path(room)
         - else
