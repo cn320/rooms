@@ -53,6 +53,7 @@ class FormsController < ApplicationController
       if params[:form]["position"] != nil
         temp_form[:position] = params[:form]["position"][pos.keys[0]]
       end
+      temp_form[:require_tool] = params[:form][:require_tool].join(",")
       @form = Form.new(temp_form)
       if @form.valid? && @form.save 
         reserf = {}
@@ -69,7 +70,7 @@ class FormsController < ApplicationController
           session[:id_room]=nil
           session[:time_select]=nil
           #redirect_to rooms_path
-          redirect_to form_path(@form)
+          redirect_to form_path(@form
         else
           flash[:notice] = "Can not create reserve"
           redirect_to rooms_path

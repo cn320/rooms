@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-detail = [{:roomname => "ENGR301", :amount => 200, :room_type=>"classroom"},{:roomname => "ENGR302", :amount => 100, :room_type=>"classroom"},{:roomname => "ENGR303", :amount => 100, :room_type=>"classroom"},{:roomname => "ENGR304", :amount => 50, :room_type=>"classroom"},{:roomname => "LAB1", :amount => 50, :type=>"auditorium"}]
+detail = [{:roomname => "ENGR301", :amount => 200, :room_type=>"classroom"},{:roomname => "ENGR302", :amount => 100, :room_type=>"classroom"},{:roomname => "ENGR303", :amount => 100, :room_type=>"classroom"},{:roomname => "ENGR304", :amount => 50, :room_type=>"classroom"},{:roomname => "LAB1", :amount => 50, :room_type=>"auditorium"}]
 
 
 detail.each do |d|
@@ -60,3 +60,13 @@ tools.each do |u|
 	Tool.create!(u)
 end
 
+forms = Form.create!([{position: "student", name: "Ploypailin", surname: "Sirimujalin", institution: "engr", tel: "0878168055", email: "liberty_zero@hotmail.com", roomtype: "classroom", roomname: "ENGR304", date_to_reserve: "2013-03-26", start_time: "8.00", finish_time: "9.30", because: "study", subject: "study", amount_of_people: 22, require_tool: "video_recorder,voice_recorder,visualizer,television..."},
+{ position: "other", name: "Naidkub", surname: "honhon", institution: "hon", tel: "191", email: "naidkub@hotmail.com", roomtype: "classroom", roomname: "ENGR304", date_to_reserve: "2013-03-25", start_time: "8.00", finish_time: "9.30", because: "play game", subject: "hon", amount_of_people: 20, require_tool: "television,computer"},
+{ position: "student", name: "Nadcharin", surname: "Milkwarm", institution: "engr", tel: "0545455455", email: "milkwarm@hotmail.com", roomtype: "classroom", roomname: "ENGR304", date_to_reserve: "2013-03-27", start_time: "8.00", finish_time: "9.30", because: "study", subject: "study", amount_of_people: 22, require_tool: "video_recorder,voice_recorder,visualizer"}])
+
+
+
+
+
+
+ roomname: "ENGR304", date_to_reserve: "2013-03-26", start_time: "8.00", finish_time: "9.30", tel: "0878168055", email: "liberty_zero@hotmail.com", status: nil>

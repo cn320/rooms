@@ -71,7 +71,7 @@ class RoomsController < ApplicationController
         droom["amount"] = params[:droom]["amount"]
         droom["room_type"] = params[:droom]["room_type"]
         @detail_room_obj = DetailRoom.new(droom)
-        if @detail_room_obj.save
+        if @detail_room_obj.valid? && @detail_room_obj.save
           all_day = Room.all_days
           all_times = Room.all_times
           time_to_section = Room.time_to_section
@@ -100,7 +100,7 @@ class RoomsController < ApplicationController
             redirect_to staffs_path
           end
         else
-          flash[:notice] = "can not add new room"
+          flash[:notice] = "can not add new room, please insert all value"
           redirect_to staffs_path 
         end
       else

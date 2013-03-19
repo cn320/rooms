@@ -1,6 +1,8 @@
-%h1 ตรงนี้อยากแปะโลโก้ไอ้กลมๆ อ่า #{@room}
-
-
+%center
+  %img{:alt => "logo", :src => "/images/Engtu.jpg"}/
+  %br
+  %h3 แบบฟอร์มการขอใช้ห้อง คณะวิศวกรรมศาสตร์ 
+%br
 = form_tag forms_path do
   Position :
   = succeed "Teacher" do
