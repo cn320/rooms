@@ -9,7 +9,7 @@ class Form < ActiveRecord::Base
     ["amplifier","microphone","computer","overhead_projector","lcd_projector","television","voice_recorder","video_recorder","visualizer"]
   end
 
-  validates :position,  :presence => true
+  validates :position,  :presence => true 
   validates :name,  :presence => true, :length => { :minimum => 3 }
   validates :surname,  :presence => true, :length => { :minimum => 3 }
   validates :institution,  :presence => true
@@ -24,4 +24,13 @@ class Form < ActiveRecord::Base
   validates :amount_of_people,  :presence => true
 
   validates :email,  :presence => true
+
+  def self.find_result_submit(roomname,date,start,finish)
+    forms = Form.find_all_date_to_reserve(date)
+    forms.each do |f|
+      if f.roomname==roomname && f.start_time == start && f.finish_time == finish
+        return f
+      end
+    end
+  end
 end

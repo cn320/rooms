@@ -39,6 +39,45 @@ Scenario: reserve the engr303 with day is not today
   Then I should be on the form page
   When I fill in "form[name]" with "Ploypailin"
   And I fill in "form[surname]" with "Sirimujalin"
-  And I check "Teacher"
+  And I fill in "form[institution]" with "Student TU"
+  And I fill in "form[tel]" with "0878168055"
+  And I fill in "form[email]" with "liberty_zero@hotmail.com"
+  And I fill in "form[date_to_reserve]" with "2013-03-13"
+  And I fill in "form[because]" with "Study"
+  And I fill in "form[subject]" with "CN200"
+  And I fill in "form[amount_of_people]" with "20"
+  And I fill in "form[roomtype]" with "classroom"
+  And I fill in "form[roomname]" with "ENGR303"
+  And I fill in "form[start_time]" with "8.00"
+  And I fill in "form[finish_time]" with "9.30"
+  And I check "form[position][teacher]"
+  And I press "submit"
+  Then I should be on the print page
+  And I should see "Create form and reserve success"
+  And I should see all of word '"ENGR303" "teacher" "2033-03-13" "8.00" "9.30"'
+  
+  
 Scenario: reserve the engr303 with date is today
+
+  When I follow "ทำรายการจองห้อง ENGR303"
+  Then I should be on the form page
+  When I fill in "form[name]" with "Ploypailin"
+  And I fill in "form[surname]" with "Sirimujalin"
+  And I fill in "form[institution]" with "Student TU"
+  And I fill in "form[tel]" with "0878168055"
+  And I fill in "form[email]" with "liberty_zero@hotmail.com"
+  And I fill in "form[date_to_reserve]" with today
+  And I fill in "form[because]" with "Study"
+  And I fill in "form[subject]" with "CN200"
+  And I fill in "form[amount_of_people]" with "20"
+  And I fill in "form[roomtype]" with "classroom"
+  And I fill in "form[roomname]" with "ENGR303"
+  And I fill in "form[start_time]" with "8.00"
+  And I fill in "form[finish_time]" with "9.30"
+  And I check "form[position][teacher]"
+  And I press "submit"
+  Then I should be on the form page
+  And I should see "Can not reserve in today, Please Contact Staff by yourself"
+
+
   

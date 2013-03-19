@@ -1,19 +1,18 @@
 %h1 ตรงนี้อยากแปะโลโก้ไอ้กลมๆ อ่า #{@room}
 
-
 = form_tag forms_path do
   Position :
   = succeed "Teacher" do
-    %input{:name => 'form[position]', :type => "checkbox", :value => "teacher"}/
+    %input{:name => 'form[position][teacher]', :type => "checkbox", :value => "teacher"}/
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   = succeed "Official" do
-    %input{:name => 'form[position]', :type => "checkbox", :value => "official"}/
+    %input{:name => 'form[position][official]', :type => "checkbox", :value => "official"}/
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   = succeed "Student" do
-    %input{:name => 'form[position]', :type => "checkbox", :value => "student"}/
+    %input{:name => 'form[position][student]', :type => "checkbox", :value => "student"}/
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   = succeed "Other" do
-    %input{:name => 'form[position]', :type => "checkbox", :value => "other"}/
+    %input{:name => 'form[position][other]', :type => "checkbox", :value => "other"}/
   %br
   %br
   First name :
@@ -31,8 +30,9 @@
   Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
   %input{:name => "form[email]", :type => "text"}/
   %br
-  มีความประสงค์จะขอใช้&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #{@this_type}
-  = hidden_field_tag "form[roomtype]", @this_type
+  มีความประสงค์จะขอใช้&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  %input{:name => "form[roomtype]", :type => "text", :value => "#{@this_type}"}/
+  
   %br
   ห้อง ENGR&nbsp :
   %input{:name => "form[roomname]", :type => "text", :value => "#{@room.roomname}"}/

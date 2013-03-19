@@ -47,10 +47,10 @@ ActiveRecord::Schema.define(:version => 20130318173630) do
   end
 
   create_table "reserves", :force => true do |t|
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "roomname"
-    t.date     "day_to_reserve"
+    t.date     "date_to_reserve"
     t.string   "start_time"
     t.string   "finish_time"
     t.string   "tel"

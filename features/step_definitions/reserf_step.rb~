@@ -21,7 +21,7 @@ When /I (un)?check the following section: "(.*)" in "(.*)"/ do |uncheck, section
   #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
   section = section.split(", ")
   section.each do |sec|
-    step %{I #{uncheck}check "#{day}_#{sec}"}
+    step %{I #{uncheck}check "#{day}[#{sec}]"}
   end
   
 end

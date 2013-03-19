@@ -189,7 +189,7 @@ class RoomsController < ApplicationController
     @time = Room.all_times
     @time.push("All Free Time")
     @day_list = Room.all_days
-    @time_select = Room.time_to_section[0][params[:section][:section][0]]
+    @time_select = Room.time_to_section[0][params[:section][0]]
     @day_select = params[:day]["day"]
     @size_select = params[:amount][0]
     @free_rooms = DetailRoom.find_with_type(params[:room_type]["type"])
@@ -208,7 +208,7 @@ class RoomsController < ApplicationController
     @free_rooms.each_with_index do |room,i|
       @size[i] = DetailRoom.find_by_roomname(room.roomname).amount
     end
-    @time_select = params[:section][:section][0]
+    @time_select = params[:section][0]
     session[:time_select] = @time_select
   end
 

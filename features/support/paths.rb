@@ -31,6 +31,8 @@ module NavigationHelpers
       room_path(Room.find($1))
     when /^the form page$/
       new_form_path
+    when /^the print page$/
+      form_path(Form.find(1))
 
     when /^the search page$/
       search_path

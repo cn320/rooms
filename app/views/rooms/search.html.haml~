@@ -12,7 +12,7 @@
   = label :day, :day, 'Day'
   = select :day, :day, @day_list
 
-  = select_date Time.now+6.days,:order=>[:day,:month,:year]_
+  = select_date Time.now+6.days, :prompt => {:day => 'Choose day', :month => 'Choose month', :year => 'Choose year'}
 
   = label :section, 'Section'
   = select :section, nil, @time

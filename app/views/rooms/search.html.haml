@@ -12,7 +12,8 @@
   = label :day, :day, 'Day'
   = select :day, :day, @day_list
 
-  
+  = select_date Time.now+1.days
+
   = label :section, 'Section'
   = select :section, nil, @time
   %br
