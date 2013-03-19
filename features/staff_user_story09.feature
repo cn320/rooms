@@ -6,9 +6,9 @@ Feature: See all room list
 Background: Startup with Homepage
 
   Given the following detail_rooms exist:
-  | roomname     | amount    | 
-  | ENGR303      | 30        |
-  | ENGR304      | 30        | 
+  | roomname     | amount    | room_type |
+  | ENGR303      | 30        | classroom |
+  | ENGR304      | 30        | classroom |
 
   Given the following staff exist:
   | username     | password |
@@ -19,7 +19,7 @@ Background: Startup with Homepage
   Then I should be on the staff page
 
 Scenario: See list of all room
-  When I follow "Room list"
+  When I follow "รายชื่อห้องที่มีทั้งหมดในระบบ"
   Then I should be on the room list page
   And I should see "ENGR303"
   And I should see "ENGR304"

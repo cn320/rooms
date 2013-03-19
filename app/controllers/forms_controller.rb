@@ -10,8 +10,7 @@ class FormsController < ApplicationController
     @day_list = Room.all_days
   end
 
-  # GET /forms/1
-  # GET /forms/1.json
+  #print form
   def show
     @form = Form.find(params[:id])
 
@@ -21,15 +20,20 @@ class FormsController < ApplicationController
     @day_list = Room.all_days
   end
 
-  # GET /forms/new
-  # GET /forms/new.json
+  #create form
   def new
     @form = Form.new
-
+    @room = Room.find(session[:id_room])
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @time.push("All Free Time")
     @day_list = Room.all_days
+    time_arr = session[:time_select].split("-")
+    @starttime = time_arr[0]
+    @endtime = time_arr[1]
+    @this_type = DetailRoom.find_by_roomname(@room.roomname).room_type
+    session[:id_room]=nil
+    session[:time_select]=nil
   end
 
   # GET /forms/1/edit
@@ -37,23 +41,34 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id])
   end
 
-  # POST /forms
-  # POST /forms.json
+  #create form
   def create
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @time.push("All Free Time")
     @day_list = Room.all_days
     @form = Form.new(params[:form])
-
-    respond_to do |format|
-      if @form.save
-        format.html { redirect_to @form, notice: 'Form was successfully created.' }
-        format.json { render json: @form, status: :created, location: @form }
+    if @form.save
+      reserf = []
+      reserf["roomname"] = @form.roomname
+      reserf["day_to_reserve"] = @form.day_to_reserve
+      reserf["start_time"] = @form.start_time
+      reserf["finish_time"] = @form.finish_time
+      reserf["tel"] = @form.tel
+      reserf["email"] = @form.email
+      reserf["status"] = nil
+      @reserve = Reserve.new(reserf)
+      if @reserve.save
+        flash[:notice] = "Create form and reserve success"
+        redirect_to rooms_path
+        #redirect_to form_path(@form)
       else
-        format.html { render action: "new" }
-        format.json { render json: @form.errors, status: :unprocessable_entity }
+        flash[:notice] = "Can not create reserve"
+        redirect_to rooms_path
       end
+    else
+        flash[:notice] = "Can not create form "
+        redirect_to rooms_path
     end
   end
 

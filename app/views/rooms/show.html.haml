@@ -1,5 +1,5 @@
 %p#notice= notice
-%h3 ข้อมูลห้อง #{@room.roomname}  Date: #{@room.day} 
+%h3 ข้อมูลห้อง #{@room.roomname}  Date: #{@room.day} Time : #{@time_select}
 - if @admin != nil
   %h5สวัสดี คุณ #{@admin}
 %br
@@ -18,5 +18,5 @@
 %p loudspeaker #{@room_tool.loudspeaker} เครื่อง
 
 
-= link_to "ทำรายการจองห้อง #{@room.roomname}", new_reserve_path(@room)
+= link_to "ทำรายการจองห้อง #{@room.roomname}", new_form_path
 

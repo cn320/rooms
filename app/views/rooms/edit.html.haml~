@@ -8,6 +8,9 @@
   = label :droom, :amount, 'Amount'
   = text_field :droom, 'amount'
 
+  = label :droom, :room_type, 'Roomtype'
+  = select :droom, :room_type, DetailRoom.all_types
+
   %br
   - @rooms.each do |room|
     = room.day
@@ -22,7 +25,7 @@
       %br
     %br  
 
-  = submit_tag 'แก้ไขข้อมูลห้อง'
+  = submit_tag 'ยืนยันการแก้ไขข้อมูลห้อง'
 
 = link_to 'Back', staffs_path
 \|

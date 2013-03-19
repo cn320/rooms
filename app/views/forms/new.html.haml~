@@ -39,7 +39,6 @@
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   ในวันที่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
   %input{:name => "form[date_to_reserve]", :type => "date"}/
-  (ตัวอย่าง 2013-03-13)
   %br
   เวลา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
   %input{:name => "form[start_time]", :type => "text" ,:value => "#{@starttime}"}/

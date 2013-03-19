@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20130318173630) do
     t.string   "email"
     t.string   "roomtype"
     t.string   "roomname"
-    t.date     "date_to_reverse"
+    t.date     "date_to_reserve"
     t.string   "start_time"
     t.string   "finish_time"
     t.string   "because"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20130318173630) do
     t.datetime "updated_at",     :null => false
     t.string   "roomname"
     t.date     "day_to_reserve"
-    t.string   "strat_time"
+    t.string   "start_time"
     t.string   "finish_time"
     t.string   "tel"
     t.string   "email"

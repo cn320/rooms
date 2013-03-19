@@ -6,14 +6,16 @@
   = label :amount, nil, 'Amount'
   = text_field :amount, nil
 
-  = label :room_type, nil, 'Day'
-  = select :room_type, nil, @roomtype
+  = label :room_type, :type, 'Type'
+  = select :room_type, :type, @roomtype
 
-  = label :day, nil, 'Day'
-  = select :day, nil, @day_list
+  = label :day, :day, 'Day'
+  = select :day, :day, @day_list
+
+  = select_date Time.now+6.days,:order=>[:day,:month,:year]_
 
   = label :section, 'Section'
   = select :section, nil, @time
   %br
-  = submit_tag 'ค้นหา'
+  = submit_tag 'search room'
 

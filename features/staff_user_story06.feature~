@@ -7,9 +7,19 @@ Feature: delete room data
 Background: Startup with Homepage
   
   Given the following detail_rooms exist:
-  | roomname     | amount    | 
-  | ENGR303      | 30        |
-  | ENGR304      | 30        | 
+  | roomname     | amount    | room_type |
+  | ENGR303      | 30        | classroom |
+  | ENGR304      | 30        | classroom |
+
+   Given the following rooms exist:
+  | roomname     | day       | first | second | third | fourth | fifth | sixth | seventh | eighth |
+  | ENGR303      | monday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | tuesday   | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | wednesday | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | thursday  | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | friday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | saturday  | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | sunday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  | 
 
   Given the following staff exist:
   | username     | password |

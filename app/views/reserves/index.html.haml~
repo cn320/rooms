@@ -1,11 +1,11 @@
-%h1 Listing reserves
+%h3 ข้อมูลการจองที่มีทั้งหมดในระบบ
 
 %table
   %tr
-    %th name
-    %th room_id
-    %th more info
-
+    %th ชื่อห้อง
+    %th วันที่จอง
+    %th เวลาเริ่ม
+    %th 
   - @reserves.each do |reserf|
     %tr
       %td= reserf.name

@@ -3,11 +3,15 @@
 
 = form_tag rooms_path do
 
-  = label :room, :roomname, 'Roomname'
-  = text_field :room, 'roomname'
+  = label :droom, :roomname, 'Roomname'
+  = text_field :droom, 'roomname'
 
-  = label :detail_rooms, :amount, 'Amount'
-  = text_field :detail_rooms, 'Amount'
+  = label :droom, :amount, 'Amount'
+  = text_field :droom, 'amount'
+
+  = label :droom, :room_type, 'Roomtype'
+  = select :droom, :room_type, DetailRoom.all_types
+
   %br
   - @day_list.each do |day|
     = day
@@ -19,6 +23,37 @@
       = check_box_tag "#{day}[#{time}]",1
     %br  
 
+  = label :tool, :amplifier, 'Amplifier'
+  = text_field :tool, 'amplifier'
+
+  = label :tool, :microphone, 'Microphone'
+  = text_field :tool, 'microphone'
+
+  = label :tool, :computer, 'Computer'
+  = text_field :tool, 'computer'
+
+  = label :tool, :overhead_projector, 'Overhead_projector'
+  = text_field :tool, 'overhead_projector'
+
+  = label :tool, :lcd_projector, 'Lcd_projector'
+  = text_field :tool, 'lcd_projector'
+
+  = label :tool, :television, 'Television'
+  = text_field :tool, 'television'
+
+  = label :tool, :voice_recorder, 'Voice_recorder'
+  = text_field :tool, 'voice_recorder'
+
+  = label :tool, :video_recorder, 'Video_recorder'
+  = text_field :tool, 'video_recorder'
+
+  = label :tool, :visualizer, 'Visualizer'
+  = text_field :tool, 'visualizer'
+
+  = label :tool, :loudspeaker, 'Loudspeaker'
+  = text_field :tool, 'loudspeaker'
+  
+  %br
   = submit_tag 'เพิ่มห้องใหม่'
 
 = link_to 'Back', staffs_path

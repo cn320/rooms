@@ -26,7 +26,7 @@ class Room < ActiveRecord::Base
     return free_result
   end
 
-  def self.find_with_day_and_time(obj,day,time)
+  def self.find_with_time(obj,time)
     free_day = obj
     free_result = []
     free_day.each_with_index do |item,i|
@@ -40,9 +40,10 @@ class Room < ActiveRecord::Base
   def self.find_with_amount(free,amount)
     max = 0
     free_result = []
+    free.sort_by! {|i| DetailRoom.find_by_roomname(i.roomname).amount}
     free.each do |i|
       s = DetailRoom.find_by_roomname(i["roomname"]).amount
-      if free_result!= [] && s>max
+      if free_result.count==1 
         break 
       end
       if s >= amount.to_i

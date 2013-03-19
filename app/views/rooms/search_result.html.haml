@@ -11,9 +11,7 @@
       %tr
         %td{:width => "100px"}= room.roomname
         %td{:width => "100px",:align => "center"}= @size[i]
-        - if @admin == nil
-          %td= link_to "จองห้อง", room_path(room)
-        - else
-          %td= link_to "จองห้อง", staff_path(room)
+        %td= link_to "จองห้อง", room_path(room)
+       
         
 

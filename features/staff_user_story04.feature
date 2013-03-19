@@ -7,9 +7,9 @@ Feature: Modify room data
 Background: Startup with Staffpage
 
   Given the following detail_rooms exist:
-  | roomname     | amount    | 
-  | ENGR303      | 30        |
-  | ENGR304      | 30        |
+  | roomname     | amount    | room_type |
+  | ENGR303      | 30        | classroom |
+  | ENGR304      | 30        | classroom |
 
   Given the following staff exist:
   | username     | password |
@@ -32,11 +32,11 @@ Background: Startup with Staffpage
   And I am on the log in page
   When I login with "naidkub" and "honhon"
   Then I should be on the staff page
-  When I follow "Room list"
+  When I follow "รายชื่อห้องที่มีทั้งหมดในระบบ"
   Then I should be on the room list page
 
 Scenario: Modify room data in database 
-  When I follow "ดูสถานะห้อง ENGR303"
+  When I follow "ดูข้อมูลห้อง ENGR303"
   Then I should be on the "ENGR303" room detail page
   When I follow "แก้ไขข้อมูลห้อง ENGR303"
   Then I should be on the edit room "ENGR303" page

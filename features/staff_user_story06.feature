@@ -7,9 +7,9 @@ Feature: delete room data
 Background: Startup with Homepage
   
   Given the following detail_rooms exist:
-  | roomname     | amount    | 
-  | ENGR303      | 30        |
-  | ENGR304      | 30        |
+  | roomname     | amount    | room_type |
+  | ENGR303      | 30        | classroom |
+  | ENGR304      | 30        | classroom |
 
    Given the following rooms exist:
   | roomname     | day       | first | second | third | fourth | fifth | sixth | seventh | eighth |
@@ -28,9 +28,9 @@ Background: Startup with Homepage
   And I am on the log in page
   When I login with "naidkub" and "honhon"
   Then I should be on the staff page
-  When I follow "Room list"
+  When I follow "รายชื่อห้องที่มีทั้งหมดในระบบ"
   Then I should be on the room list page
-  When I follow "ดูสถานะห้อง ENGR303"
+  When I follow "ดูข้อมูลห้อง ENGR303"
   Then I should be on the "ENGR303" room detail page
 
 Scenario: can delete room data that want to delete

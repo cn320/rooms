@@ -40,9 +40,10 @@ class Room < ActiveRecord::Base
   def self.find_with_amount(free,amount)
     max = 0
     free_result = []
+    free.sort_by! {|i| DetailRoom.find_by_roomname(i.roomname).amount}
     free.each do |i|
       s = DetailRoom.find_by_roomname(i["roomname"]).amount
-      if free_result!= [] && s>max
+      if free_result.count!=0 && s>max 
         break 
       end
       if s >= amount.to_i

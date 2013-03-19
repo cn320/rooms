@@ -20,9 +20,10 @@ class RoomsController < ApplicationController
     @time.push("All Free Time")
     @day_list = Room.all_days
     @room = Room.find(params[:id])
-    @size = DetailRoom.find_by_roomname(@room.roomname)
+    @size = DetailRoom.find_by_roomname(@room.roomname).amount
     @room_tool = Tool.find_by_roomname(@room.roomname)
-    
+    session[:id_room] = @room.id
+    @time_select = session[:time_select]
   end
 
   #new room page
@@ -65,9 +66,10 @@ class RoomsController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else
-      droom = params[:room]
+      droom = params[:droom]
       if DetailRoom.find_by_roomname(droom["roomname"]) == nil
-        droom["amount"] = params[:detail_rooms]["Amount"]
+        droom["amount"] = params[:droom]["amount"]
+        droom["room_type"] = params[:droom]["room_type"]
         @detail_room_obj = DetailRoom.new(droom)
         if @detail_room_obj.save
           all_day = Room.all_days
@@ -83,22 +85,26 @@ class RoomsController < ApplicationController
                 room[time_to_section[0][t]] = "free"
               end
             end
-            room["roomname"] = params[:room]["roomname"]
+            room["roomname"] = params[:droom]["roomname"]
             @room_obj = Room.new(room)
             @room_obj.save
-            #tool = params[:tool]
-            #tool["roomname"] = params[:room]["roomname"]
-            #@room_tool = Tool.new(tool)
-            #@room_tool.save
           end
-          flash[:notice] = "add new room successess"
-          redirect_to staffs_path
+          tool = params[:tool]
+          tool["roomname"] = params[:droom]["roomname"]
+          @room_tool = Tool.new(tool)
+          if @room_tool.save
+            flash[:notice] = "add new room successess"
+            redirect_to staffs_path
+          else
+            flash[:notice] = "can not add new tool"
+            redirect_to staffs_path
+          end
         else
           flash[:notice] = "can not add new room"
           redirect_to staffs_path 
         end
       else
-        flash[:notice] = "can not add new room"
+        flash[:notice] = "can not add new droom"
         redirect_to staffs_path 
       end
     end
@@ -183,10 +189,10 @@ class RoomsController < ApplicationController
     @time = Room.all_times
     @time.push("All Free Time")
     @day_list = Room.all_days
-    @time_select = Room.time_to_section[0][params[:section][0]]
-    @day_select = params[:day][0]
+    @time_select = Room.time_to_section[0][params[:section][:section][0]]
+    @day_select = params[:day]["day"]
     @size_select = params[:amount][0]
-    @free_rooms = DetailRoom.find_with_type(params[:room_type][0])
+    @free_rooms = DetailRoom.find_with_type(params[:room_type]["type"])
     @free_rooms = Room.find_with_day(@free_rooms,@day_select)
     if @time_select != nil
       @free_rooms = Room.find_with_time(@free_rooms,@time_select)
@@ -202,8 +208,8 @@ class RoomsController < ApplicationController
     @free_rooms.each_with_index do |room,i|
       @size[i] = DetailRoom.find_by_roomname(room.roomname).amount
     end
-    @time_select = params[:section][0]
-    
+    @time_select = params[:section][:section][0]
+    session[:time_select] = @time_select
   end
 
   

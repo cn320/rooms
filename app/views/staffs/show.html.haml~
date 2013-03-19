@@ -12,7 +12,7 @@
       %th 15.00-16.30
       %th 16.30-18.00
       %th 18.00-21.00
-      %th reserve
+      %th จองห้อง
   %tbody
     - @rooms.each do |room|
       %tr
@@ -25,7 +25,10 @@
         %td= room.sixth
         %td= room.seventh
         %td= room.eighth
-        %td=link_to "reserve", room_path(room)
-       
+        %td=link_to "จองห้อง", room_path(room)
+
+%br 
+
+%br
 = link_to "แก้ไขข้อมูลห้อง #{@droom.roomname}", edit_room_path(@droom)
 = link_to "ลบข้อมูลห้อง #{@droom.roomname}", room_path(@droom), method: :delete, data: { confirm: 'Are you sure?' }

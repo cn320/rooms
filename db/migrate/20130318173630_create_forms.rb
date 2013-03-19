@@ -9,7 +9,7 @@ class CreateForms < ActiveRecord::Migration
       t.string :email
       t.string :roomtype
       t.string :roomname
-      t.date :date_to_reverse
+      t.date :date_to_reserve
       t.string :start_time
       t.string :finish_time
       t.string :because

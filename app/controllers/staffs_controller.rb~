@@ -100,7 +100,7 @@ class StaffsController < ApplicationController
       redirect_to rooms_path
     end
     @admin = session[:admin]
-    @rooms = [] 
+    @rooms = {} 
     @roomtype.each do |type|
       @rooms[type] = DetailRoom.find_all_by_room_type(type)
     end 

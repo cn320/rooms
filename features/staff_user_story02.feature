@@ -22,6 +22,16 @@ Background: Startup with Staffpage
 
 Scenario: Add new room data that doesn’t exists in database to database
   When I fill in "Roomname" with "ENGR301"
+  And I fill in "Amount" with "100"
+  And I select "classroom" from "droom_room_type"
+  And I check the following section: "8.00-9.30, 9.30-11.00, 11.00-12.30, 12.30-13.00, 13.30-15.00, 15.00-16.30, 16.30-18.00, 18.00-21.00" in "monday"
+  And I check the following section: "8.00-9.30, 9.30-11.00, 11.00-12.30, 12.30-13.00, 13.30-15.00, 15.00-16.30, 16.30-18.00, 18.00-21.00" in "tuesday"
+  And I check the following section: "8.00-9.30, 9.30-11.00, 11.00-12.30, 12.30-13.00, 13.30-15.00, 15.00-16.30, 16.30-18.00, 18.00-21.00" in "wednesday"
+  And I check the following section: "8.00-9.30, 9.30-11.00, 11.00-12.30, 12.30-13.00, 13.30-15.00, 15.00-16.30, 16.30-18.00, 18.00-21.00" in "thursday"
+  And I check the following section: "8.00-9.30, 9.30-11.00, 11.00-12.30, 12.30-13.00, 13.30-15.00, 15.00-16.30, 16.30-18.00, 18.00-21.00" in "friday"
+  And I check the following section: "8.00-9.30, 9.30-11.00, 11.00-12.30, 12.30-13.00, 13.30-15.00, 15.00-16.30, 16.30-18.00, 18.00-21.00" in "saturday"
+  And I check the following section: "8.00-9.30, 9.30-11.00, 11.00-12.30, 12.30-13.00, 13.30-15.00, 15.00-16.30, 16.30-18.00, 18.00-21.00" in "sunday"
+  And I fill in "Loudspeaker" with "2"
   And I press "เพิ่มห้องใหม่"
   Then I should be on the staff page
   And I should see "add new room successess"
@@ -30,6 +40,6 @@ Scenario: Add room data that exists in database to database
   When I fill in "Roomname" with "ENGR303"
   And I press "เพิ่มห้องใหม่"
   Then I should be on the staff page
-  And I should see "can not add new room"
+  And I should see "can not add new droom"
 
 

@@ -6,11 +6,11 @@ Feature: Searching for room status and free time
 Background: Startup with Homepage
 
  Given the following detail_rooms exist:
-  | roomname     | amount    | 
-  | ENGR303      | 30        |
-  | ENGR304      | 30        |
-  | ENGR305      | 30        |
-  | ENGR306      | 50        |
+  | roomname     | amount    | room_type |
+  | ENGR303      | 30        | classroom |
+  | ENGR304      | 30        | classroom |
+  | ENGR305      | 30        | classroom |
+  | ENGR306      | 50        | classroom |
   
   Given the following rooms exist:
   | roomname     | day       | first | second | third | fourth | fifth | sixth | seventh | eighth |
@@ -24,18 +24,27 @@ Background: Startup with Homepage
   When I follow "ค้นหาห้องว่าง"
   Then I should be on the search page
 
-Scenario: Search base on volume
-  When I fill in "Amount" with "45"
-  And I select "day_monday" from "day_list"
-  And I press "ค้นหา"
+Scenario: Search base on amount
+  When I fill in "Amount" with "25"
+  And I select "classroom" from "room_type_type"
+  And I select "monday" from "day_day"
+  And I press "search room"
   Then I should be on the search_result page
-  And I should see "engr303"
-  And I should see "engr304"
+  And I should see "ENGR303"
+  And I should see "ENGR304"
+  And I should not see "ENGR305"
+  And I should not see "ENGR306"
 
-Scenario: Not fill all data
-  
+Scenario: Not fill amount
+  When I select "classroom" from "room_type_type"
+  And I select "monday" from "day_day"
+  And I press "search room"
+  Then I should be on the search_result page
+  And I should see "ENGR303"
+  And I should see "ENGR304"
+  And I should not see "ENGR305"
+  And I should see "ENGR306"
 
-Scenario: Not found room with match volume
  
 
 

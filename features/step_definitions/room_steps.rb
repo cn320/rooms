@@ -30,11 +30,6 @@ end
 #  "When I uncheck the following ratings: PG, G, R"
 #  "When I check the following ratings: G"
 
-When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
-  # HINT: use String#split to split up the rating_list, then
-  #   iterate over the ratings and reuse the "When I check..." or
-  #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
-end
 
 Then /I should see all the movies/ do
   # use page.body
@@ -66,3 +61,9 @@ Then /I should see all of word '(.*)'/ do |text|
   end
 end
 
+When /I search with type:"(.*)" , amount:"(.*)" , day:"(.*)" , time:"(.*)"/ do |type,amount,day,section|
+  step %{I fill in "Amount" with "#{amount}"}
+  step %{I select "#{type}" from "room_type_type"}
+  step %{I select "#{day}" from "day_day"}
+  step %{I press "search room"}
+end
