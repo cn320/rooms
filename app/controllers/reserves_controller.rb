@@ -6,7 +6,10 @@ class ReservesController < ApplicationController
       redirect_to rooms_path
     else
       @reserves = Reserve.all
-
+      @roomtype = DetailRoom.all_types
+      @time = Room.all_times
+      @time.push("All Free Time")
+      @day_list = Room.all_days
       respond_to do |format|
         format.html # index.html.erb
         format.json { render json: @reserves }
@@ -21,7 +24,10 @@ class ReservesController < ApplicationController
       redirect_to rooms_path
     else
       @reserf = Reserve.find(params[:id])
-
+      @roomtype = DetailRoom.all_types
+      @time = Room.all_times
+      @time.push("All Free Time")
+      @day_list = Room.all_days
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @reserf }
@@ -32,6 +38,10 @@ class ReservesController < ApplicationController
   # GET /reserves/new
   # GET /reserves/new.json
   def new
+    @roomtype = DetailRoom.all_types
+    @time = Room.all_times
+    @time.push("All Free Time")
+    @day_list = Room.all_days
     @room = Room.find(params[:id])
     @reserf = Reserve.new
     @timescope = ["08.00-09.30","09.30-11.00","11.00-12.30","13.30-15.00"]
@@ -52,7 +62,10 @@ class ReservesController < ApplicationController
     temp = params[:reserf]
     temp["roomname"] = params[:room]["roomname"]
     @reserf = Reserve.new(temp)
-
+    @roomtype = DetailRoom.all_types
+    @time = Room.all_times
+    @time.push("All Free Time")
+    @day_list = Room.all_days
     respond_to do |format|
       if @reserf.save
         format.html { redirect_to result_path(@reserf), notice: 'Reserve was successfully created.' }
@@ -88,7 +101,10 @@ class ReservesController < ApplicationController
     else
       @reserf = Reserve.find(params[:id])
       @reserf.destroy
-
+      @roomtype = DetailRoom.all_types
+      @time = Room.all_times
+      @time.push("All Free Time")
+      @day_list = Room.all_days
       respond_to do |format|
         format.html { redirect_to reserves_url, notice: 'Reserve was successfully deleted.' }
         format.json { head :no_content }
@@ -100,6 +116,10 @@ class ReservesController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else
+      @roomtype = DetailRoom.all_types
+      @time = Room.all_times
+      @time.push("All Free Time")
+      @day_list = Room.all_days
       @reserf = Reserve.find(params[:id])
     end
   end

@@ -3,6 +3,7 @@ class CreateDetailRooms < ActiveRecord::Migration
     create_table :detail_rooms do |t|
       t.string :roomname , :null => false 
       t.integer :amount
+      t.string :room_type
       t.timestamps
     end
    

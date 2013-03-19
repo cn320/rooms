@@ -6,6 +6,9 @@
   = label :amount, nil, 'Amount'
   = text_field :amount, nil
 
+  = label :room_type, nil, 'Type'
+  = select :room_type, nil, @roomtype
+
   = label :day, nil, 'Day'
   = select :day, nil, @day_list
 

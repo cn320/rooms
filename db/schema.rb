@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(:version => 20130318173630) do
   create_table "detail_rooms", :force => true do |t|
     t.string   "roomname",   :null => false
     t.integer  "amount"
-    t.string   "type"
+    t.string   "room_type"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -49,7 +49,6 @@ ActiveRecord::Schema.define(:version => 20130318173630) do
   create_table "reserves", :force => true do |t|
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-    t.string   "section"
     t.string   "roomname"
     t.date     "day_to_reserve"
     t.string   "strat_time"

@@ -62,7 +62,7 @@
         %ul.breadcrumb
           %li.active
             %i.icon-home.icon-white
-            =link_to 'หน้าแรก' , '/rooms'
+            =link_to 'หน้าแรก' , '/'
             %span.divider |
           %li
             %i.icon-wrench

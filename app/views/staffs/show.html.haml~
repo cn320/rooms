@@ -1,9 +1,9 @@
 %h2 DetailRoom : #{@droom.roomname} size : #{@droom.amount}
 
-%table#rooms
+%table{:border => "1" }
   %thead
     %tr
-      %th day
+      %th วัน/เวลา
       %th 8.00-9.30
       %th 9.30-11.00
       %th 11.00-12.30
@@ -28,4 +28,4 @@
         %td=link_to "reserve", room_path(room)
        
 = link_to "แก้ไขข้อมูลห้อง #{@droom.roomname}", edit_room_path(@droom)
-= link_to 'ลบข้อมูลห้อง #{@droom.roomname}', room_path(@droom), method: :delete, data: { confirm: 'Are you sure?' }
+= link_to "ลบข้อมูลห้อง #{@droom.roomname}", room_path(@droom), method: :delete, data: { confirm: 'Are you sure?' }

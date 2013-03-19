@@ -2,11 +2,7 @@ class RoomsController < ApplicationController
   
   # welcome page 
   def index
-    @rooms = Room.all
-    @rooms.each do |room|
-      size = DetailRoom.find_by_roomname(room.roomname).amount
-      room["amount"] = size
-    end
+    @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @time.push("All Free Time")
     @day_list = Room.all_days
@@ -18,15 +14,15 @@ class RoomsController < ApplicationController
 
   #show one room from search_result page
   def show
+    @roomtype = DetailRoom.all_types
     @admin = session[:admin]
-    @room = Room.find(params[:id])
     @time = Room.all_times
     @time.push("All Free Time")
     @day_list = Room.all_days
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @room }
-    end
+    @room = Room.find(params[:id])
+    @size = DetailRoom.find_by_roomname(@room.roomname)
+    @room_tool = Tool.find_by_roomname(@room.roomname)
+    
   end
 
   #new room page
@@ -34,6 +30,7 @@ class RoomsController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else
+      @roomtype = DetailRoom.all_types
       @box_times = Room.all_times
       @time = Room.all_times
       @time.push("All Free Time")
@@ -52,6 +49,7 @@ class RoomsController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else
+      @roomtype = DetailRoom.all_types
       @droom = DetailRoom.find(params[:id])
       @rooms= Room.find_all_by_roomname(@droom.roomname)
       @time = Room.all_times
@@ -88,6 +86,10 @@ class RoomsController < ApplicationController
             room["roomname"] = params[:room]["roomname"]
             @room_obj = Room.new(room)
             @room_obj.save
+            #tool = params[:tool]
+            #tool["roomname"] = params[:room]["roomname"]
+            #@room_tool = Tool.new(tool)
+            #@room_tool.save
           end
           flash[:notice] = "add new room successess"
           redirect_to staffs_path
@@ -109,6 +111,7 @@ class RoomsController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else
+      @roomtype = DetailRoom.all_types
       @time = Room.all_times
       @time.push("All Free Time")
       @day_list = Room.all_days
@@ -149,6 +152,7 @@ class RoomsController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else
+      @roomtype = DetailRoom.all_types
       @time = Room.all_times
       @time.push("All Free Time")
       @day_list = Room.all_days
@@ -170,19 +174,22 @@ class RoomsController < ApplicationController
   @time = Room.all_times
   @time.push("All Free Time")
   @day_list = Room.all_days
+  @roomtype = DetailRoom.all_types
   end
 
   #search result and show result
   def search_result
+    @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @time.push("All Free Time")
     @day_list = Room.all_days
     @time_select = Room.time_to_section[0][params[:section][0]]
     @day_select = params[:day][0]
     @size_select = params[:amount][0]
-    @free_rooms = Room.find_all_by_day(@day_select)
+    @free_rooms = DetailRoom.find_with_type(params[:room_type][0])
+    @free_rooms = Room.find_with_day(@free_rooms,@day_select)
     if @time_select != nil
-      @free_rooms = Room.find_with_day_and_time(@day_select,@time_select)
+      @free_rooms = Room.find_with_time(@free_rooms,@time_select)
     else 
       @time_select = "All Free Time"
     end
@@ -195,6 +202,8 @@ class RoomsController < ApplicationController
     @free_rooms.each_with_index do |room,i|
       @size[i] = DetailRoom.find_by_roomname(room.roomname).amount
     end
+    @time_select = params[:section][0]
+    
   end
 
   

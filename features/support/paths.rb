@@ -27,11 +27,11 @@ module NavigationHelpers
       staff_path(DetailRoom.find_by_roomname($1))
     when /^the edit room "(.*)" page/
       edit_room_path(DetailRoom.find_by_roomname($1))
+    when /^the room id "(.*)" status page$/
+      room_path(Room.find($1))
 
     when /^the reserve page for "(.*)" room$/
       new_reserve_path(Room.find_by_room_id($1))
-    when /^the room "(.*)" status page$/
-      room_path(Room.find_by_room_id($1))
     when /^the search page$/
       search_path
     when /^the search_result page$/

@@ -1,14 +1,17 @@
-%h1 Room List
+%h1 รายชื่อห้องที่มีทั้งหมดในระบบ
 
-%table#rooms
-  %thead
-    %tr
-      %th roomname
-      %th amount
-      %th more info
-  %tbody
-    - @rooms.each do |room|
+- @roomtype.each do |type|
+  %h4 ประเภทของห้อง #{type}
+  %table{:border => "1" ,:width => "400px"}
+    %thead
       %tr
-        %td= room.roomname
-        %td= room.amount
-        %td= link_to "ดูสถานะห้อง #{room.roomname}", staff_path(room)
+        %th ชื่อห้อง
+        %th จำนวนคน
+        %th ข้อมูลเพิ่มเติม
+    %tbody
+      - @rooms[type].each do |room|
+        %tr
+          %td{:width => "100px"}= room.roomname
+          %td{:width => "100px",:align => "center"}= room.amount
+          %td= link_to "ดูข้อมูลห้อง #{room.roomname}", staff_path(room)
+  %br

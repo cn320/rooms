@@ -1,28 +1,37 @@
-Feature: See status of available room
+Feature: See status of available room that 
   As a Staff’s
   So that I can making an online reservation
   I want to filling reservation data and sending requests
 
 Background: Startup with Homepage
+  Given the following detail_rooms exist:
+  | roomname     | amount    | room_type |
+  | ENGR303      | 100       | classroom |
+ 
   Given the following rooms exist:
-  | room_id      | status      |  volume  |
-  | engr303      | available   |  30      |
-  | engr304      | available   |  30      |
-  | engr305      | unavailable |  30      |
-  | engr313      | unavailable |  50      |
+  | roomname     | day       | first | second | third | fourth | fifth | sixth | seventh | eighth |
+  | ENGR303      | monday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | tuesday   | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | wednesday | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | thursday  | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | friday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | saturday  | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | sunday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
 
-  And I am on the search page
+  Given the following tools exist:
+  | roomname     | amplifier | microphone | computer | overhead_projector | lcd_projector | television | voice_recorder | video_recorder | visualizer | loudspeaker |
+  | ENGR303      | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+  
+  Given the following staff exist:
+  | username     | password |
+  | naidkub      | honhon   |
 
-  When I fill in "Volume" with "20"
-  And I press "ค้นหา"
-  Then I should be on the search_result page
-  And I should see "engr303"
-  And I should see "ดูสถานะห้อง engr303"
+  And I am on the log in page
+  When I login with "naidkub" and "honhon"
+  Then I should be on the staff page
 
 Scenario: See the engr303 status
-  When I follow "ดูสถานะห้อง engr303"
-  Then I should be on the room "engr303" status page
-  And I should see "engr303"
-  And I should see "Status : available"
-  And I should see "Volume : 30"
+  Given I am on the room id "1" status page
+  Then I should see all of word '"ENGR303" "monday" "amplifier" "แก้ไขข้อมูลห้อง"'
+  
 

@@ -14,8 +14,20 @@ class Room < ActiveRecord::Base
     ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
   end
 
-  def self.find_with_day_and_time(day,time)
-    free_day = Room.find_all_by_day(day)
+ 
+  def self.find_with_day(obj,day)
+    free_day = obj
+    free_result = []
+    free_day.each_with_index do |item,i|
+      if free_day[i]["day"] == day
+        free_result.push(free_day[i])
+      end
+    end
+    return free_result
+  end
+
+  def self.find_with_time(obj,time)
+    free_day = obj
     free_result = []
     free_day.each_with_index do |item,i|
       if free_day[i][time] == "free"

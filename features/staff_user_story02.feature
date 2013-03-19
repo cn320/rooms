@@ -11,8 +11,8 @@ Background: Startup with Staffpage
   | naidkub      | honhon   |
 
   Given the following detail_rooms exist:
-  | roomname     | amount     | 
-  | ENGR303      | 30         | 
+  | roomname     | amount     | room_type |
+  | ENGR303      | 30         | classroom |
 
   And I am on the log in page
   When I login with "naidkub" and "honhon"

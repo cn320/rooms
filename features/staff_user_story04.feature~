@@ -15,6 +15,16 @@ Background: Startup with Staffpage
   | username     | password |
   | naidkub      | honhon   |
 
+  Given the following rooms exist:
+  | roomname     | day       | first | second | third | fourth | fifth | sixth | seventh | eighth |
+  | ENGR303      | monday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | tuesday   | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | wednesday | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | thursday  | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | friday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | saturday  | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR303      | sunday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+
   And I am on the log in page
   When I login with "naidkub" and "honhon"
   Then I should be on the staff page

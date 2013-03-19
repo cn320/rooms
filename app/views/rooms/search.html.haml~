@@ -1,9 +1,13 @@
-
+%h3 กรุณาระบุข้อมูลที่จำเป็นสำหรับการค้นหาห้องว่าง
+%h5 (หากไม่ทราบจำนวนคน กรุณาเว้นว่างไว้)
 
 = form_tag search_result_path ,:method=>:get do
 
   = label :amount, nil, 'Amount'
   = text_field :amount, nil
+
+  = label :room_type, nil, 'Day'
+  = select :room_type, nil, @roomtype
 
   = label :day, nil, 'Day'
   = select :day, nil, @day_list

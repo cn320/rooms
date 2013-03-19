@@ -7,5 +7,5 @@
 
   = label :staff,:password, 'Password'
   = text_field :staff, 'password'
-  %br%br
+  %br
   = submit_tag 'Log In'

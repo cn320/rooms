@@ -11,6 +11,12 @@ Given /the following detail_rooms exist/ do |rooms_table|
     DetailRoom.create!(att)
   end
 end
+
+Given /the following tools exist/ do |rooms_table|
+  rooms_table.hashes.each do |att|
+    Tool.create!(att)
+  end
+end
 # Make sure that one string (regexp) occurs before or after another one
 #   on the same page
 
@@ -52,3 +58,11 @@ end
 
 Then /I should see room status/ do
 end
+
+Then /I should see all of word '(.*)'/ do |text|
+  word = text.split(" ")
+  word.each do |w|
+    step %{I should see #{w}}
+  end
+end
+

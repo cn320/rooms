@@ -6,9 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-detail = [{:roomname => "ENGR301", :amount => 200, :type=>"classroom"},{:roomname => "ENGR302", :amount => 100, :type=>"classroom"},{:roomname => "ENGR303", :amount => 100, :type=>"classroom"},{:roomname => "ENGR304", :amount => 50, :type=>"classroom"},
-          {:roomname => "ENGR305", :amount => 50, :type=>"classroom"},{:roomname => "ENGR306", :amount => 50, :type=>"classroom"},{:roomname => "ENGR307", :amount => 20, :type=>"classroom"},{:roomname => "ENGR308", :amount => 100, :type=>"classroom"},
-           {:roomname => "ENGR309", :amount => 100, :type=>"classroom"},{:roomname => "ENGR310", :amount => 100, :type=>"classroom"}]
+detail = [{:roomname => "ENGR301", :amount => 200, :room_type=>"classroom"},{:roomname => "ENGR302", :amount => 100, :room_type=>"classroom"},{:roomname => "ENGR303", :amount => 100, :room_type=>"classroom"},{:roomname => "ENGR304", :amount => 50, :room_type=>"classroom"},{:roomname => "LAB1", :amount => 50, :type=>"auditorium"}]
 
 
 detail.each do |d|
@@ -56,15 +54,9 @@ rooms = Room.create!([
 tools = [{:roomname=>"ENGR301",:amplifier=>1,:microphone=>1,:computer=>1,:visualizer=>1,:loudspeaker=>4},
          {:roomname=>"ENGR302",:amplifier=>1,:microphone=>1,:computer=>1,:visualizer=>1,:loudspeaker=>4},
          {:roomname=>"ENGR303",:amplifier=>1,:microphone=>1,:computer=>1,:loudspeaker=>4,:overhead_projector=>1},
-         {:roomname=>"ENGR304",:amplifier=>1,:microphone=>1,:computer=>1,:overhead_projector=>1,:loudspeaker=>2},
-         {:roomname=>"ENGR305",:amplifier=>1,:microphone=>1,:computer=>1,:overhead_projector=>1,:loudspeaker=>2},
-         {:roomname=>"ENGR306",:amplifier=>1,:microphone=>1,:computer=>1,:overhead_projector=>1,:loudspeaker=>2},
-         {:roomname=>"ENGR307",:amplifier=>1,:microphone=>1,:computer=>1,:overhead_projector=>1,:loudspeaker=>1},
-         {:roomname=>"ENGR308",:amplifier=>1,:microphone=>1,:computer=>1,:visualizer=>1,:loudspeaker=>4,:overhead_projector=>1},
-         {:roomname=>"ENGR309",:amplifier=>1,:microphone=>1,:computer=>1,:overhead_projector=>1,:loudspeaker=>4},
-         {:roomname=>"ENGR310",:amplifier=>1,:microphone=>1,:computer=>1,:visualizer=>1,:loudspeaker=>4,:overhead_projector=>1}]
+         {:roomname=>"ENGR304",:amplifier=>1,:microphone=>1,:computer=>1,:overhead_projector=>1,:loudspeaker=>2}]
 
 tools.each do |u|
-	RoomTool.create!(u)
+	Tool.create!(u)
 end
 

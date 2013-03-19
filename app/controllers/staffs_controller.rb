@@ -5,7 +5,7 @@ class StaffsController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else  
-      
+      @roomtype = DetailRoom.all_types
       @admin = session[:admin]
       @time = Room.all_times
       @time.push("All Free Time")
@@ -15,6 +15,7 @@ class StaffsController < ApplicationController
 
   #show DetailRoom (1room 7day) (Staff only)
   def show
+    @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @time.push("All Free Time")
     @day_list = Room.all_days
@@ -59,6 +60,7 @@ class StaffsController < ApplicationController
   
   #login page
   def login
+    @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @time.push("All Free Time")
     @day_list = Room.all_days
@@ -72,10 +74,7 @@ class StaffsController < ApplicationController
     @user = params[:staff]
     @uname = Staff.find_by_username(@user["username"])
   
-    if @user["username"]==""
-      redirect_to login_path
-    end
-    if @uname == nil || @uname.password != @user["password"]
+    if @user["username"]=="" || @uname == nil || @uname.password != @user["password"]
       flash[:notice] = "can not login"
       redirect_to login_path
     else
@@ -93,14 +92,18 @@ class StaffsController < ApplicationController
 
   #show list for DetailRoom
   def room_list
+    @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @time.push("All Free Time")
     @day_list = Room.all_days
     if session[:admin] == nil
       redirect_to rooms_path
     end
-    @admin = session[:admin] 
-    @rooms = DetailRoom.all   
+    @admin = session[:admin]
+    @rooms = {} 
+    @roomtype.each do |type|
+      @rooms[type] = DetailRoom.find_all_by_room_type(type)
+    end 
   end
 
   

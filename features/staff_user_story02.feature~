@@ -11,8 +11,8 @@ Background: Startup with Staffpage
   | naidkub      | honhon   |
 
   Given the following detail_rooms exist:
-  | roomname     | amount     | 
-  | ENGR303      | 30         | 
+  | roomname     | amount     | room_type |
+  | ENGR303      | 30         | classroom |
 
   And I am on the log in page
   When I login with "naidkub" and "honhon"
@@ -29,7 +29,7 @@ Scenario: Add new room data that doesn’t exists in database to database
 Scenario: Add room data that exists in database to database
   When I fill in "Roomname" with "ENGR303"
   And I press "เพิ่มห้องใหม่"
-  Then I should be on the new room page
+  Then I should be on the staff page
   And I should see "can not add new room"
 
 

@@ -1,6 +1,6 @@
 %h3 ผลการค้นหาห้องว่าง  #{@day_select} => #{@time_select}  จำนวนคน : #{@size_select}
 
-%table{"text-align" => "center", :border => "1" ,:width => "300px"}
+%table{:border => "1" ,:width => "300px"}
   %thead
     %tr
       %th{:width => "100px"} ชื่อห้อง

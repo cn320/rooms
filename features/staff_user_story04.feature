@@ -25,6 +25,10 @@ Background: Startup with Staffpage
   | ENGR303      | saturday  | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
   | ENGR303      | sunday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
 
+  Given the following tools exist:
+  | roomname     | amplifier | microphone | computer | overhead_projector | lcd_projector | television | voice_recorder | video_recorder | visualizer | loudspeaker |
+  | ENGR303      | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+
   And I am on the log in page
   When I login with "naidkub" and "honhon"
   Then I should be on the staff page
