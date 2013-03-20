@@ -1,10 +1,34 @@
 %p#notice= notice
 
-%h2 Details about #{@reserf.room_id}
+%h3{:align => "center"} ข้อมูลการจองห้อง #{@reserf.roomname} 
+%h3{:align => "center"}ณ. วันที่ #{@reserf.date_to_reserve} ตั้งแต่เวลา #{@reserf.start_time} ถึง #{@reserf.finish_time}
+%br
 
-%p Name : #{@reserf.name}
+- if @reserf.status == "nonconsidered"
+  %h2 สถานะ : รอการยืนยันจากเจ้าหน้าที่ 
+- else
+  %h2 สถานะ : ได้ยันการยืนยันแล้ว
 
+%h5 รายละเอียดของการจอง
+%p ชื่อผู้จอง : #{@form.name}  #{@form.surname}
+%p ตำแหน่ง : #{@form.position}
+%p หน่วยงาน : #{@form.institution}
+%p เบอร์โทรศัพท์ :  #{@form.tel}    
+%p Email : #{@form.email}
+%p มีความประสงค์จะขอใช้ ห้อง : #{@reserf.roomname} ณ. วันที่ #{@reserf.date_to_reserve} ตั้งแต่เวลา #{@reserf.start_time} ถึง #{@reserf.finish_time}
+%p เพื่อใช้ใน : #{@form.because} 
+%p เรื่อง : #{@form.subject}
+%p จำนวนของผู้เข้าร่วม :  #{@form.amount_of_people}
+%br
 
-= link_to 'Destroy', @reserf, method: :delete, data: { confirm: 'Are you sure?' }
+%h5 รายชื่ออุปกรณ์ที่ต้องการจะขอใช้ :  
+%p #{@form.require_tool}
+%br
 
+- if @reserf.status == "nonconsidered"
+  = link_to 'ยืนยันคำร้องขอการจองห้อง', reserves_path
+  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  = link_to 'ปฏิเสธคำร้องขอการจองห้อง', @reserf, method: :delete, data: { confirm: 'Are you sure?' }
+%br
+%br
 = link_to 'Back', reserves_path

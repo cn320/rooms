@@ -26,3 +26,7 @@ When /I (un)?check the following section: "(.*)" in "(.*)"/ do |uncheck, section
   
 end
 
+When /I fill in "(.*)" with today/ do |field|
+  date_today = Date.today.to_s
+  step %{I fill in "#{field}" with "#{date_today}"}
+end

@@ -1,16 +1,26 @@
 %h3 ข้อมูลการจองที่มีทั้งหมดในระบบ
 
-%table
+%table{:border => "1" ,:width => "600px"}
   %tr
-    %th ชื่อห้อง
     %th วันที่จอง
     %th เวลาเริ่ม
+    %th เวลาสิ้นสุด
+    %th ชื่อห้อง
+    %th สถานะ
+    %th พิจารณาการจอง
 
   - @reserves.each do |reserf|
     %tr
-      %td= reserf.name
-      %td= reserf.room_id
-      %td= link_to "ดูรายละเอียดการจองห้อง #{reserf.room_id} โดย #{reserf.name}", reserf_path(reserf)
+      %td= reserf.date_to_reserve
+      %td= reserf.start_time
+      %td= reserf.finish_time
+      %td= reserf.roomname
+      %td= reserf.status
+      - if reserf.status == "nonconsidered"
+        %td= link_to "พิจารณาการจองห้อง #{reserf.roomname}", reserf_path(reserf)
+      - else
+        %td= link_to "ดูข้อมูลการจองห้อง #{reserf.roomname}", reserf_path(reserf)
+
 
 %br
 

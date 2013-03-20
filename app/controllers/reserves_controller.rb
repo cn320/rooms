@@ -28,6 +28,7 @@ class ReservesController < ApplicationController
       @time = Room.all_times
       @time.push("All Free Time")
       @day_list = Room.all_days
+      @form = Form.find(params[:id])
       respond_to do |format|
         format.html # show.html.erb
         format.json { render json: @reserf }
@@ -112,16 +113,5 @@ class ReservesController < ApplicationController
     end
   end
 
-  def result
-    if session[:admin] == nil
-      redirect_to rooms_path
-    else
-      @roomtype = DetailRoom.all_types
-      @time = Room.all_times
-      @time.push("All Free Time")
-      @day_list = Room.all_days
-      @reserf = Reserve.find(params[:id])
-    end
-  end
 
 end

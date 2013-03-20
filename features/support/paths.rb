@@ -33,17 +33,14 @@ module NavigationHelpers
       new_form_path
     when /^the print page$/
       form_path(Form.find(1))
-
     when /^the search page$/
       search_path
     when /^the search_result page$/
       search_result_path
     when /^the reserve detail page$/
       reserves_path
-    when /^the reserve detail for "(.*)" page$/
-      reserf_path(Reserve.find_by_room_id($1))
-    when /^the reserve submit for "(.*)" page$/
-      result_path(Reserve.find_by_room_id($1))
+    when /^the reserve detail id:"(.*)" page$/
+      reserf_path(Reserve.find($1))
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -61,7 +61,7 @@ Then /I should see all of word '(.*)'/ do |text|
   end
 end
 
-When /I search with type:"(.*)" , amount:"(.*)" , day:"(.*)" , time:"(.*)" / do |type,amount,day,section|
+When /I search with type:"(.*)" , amount:"(.*)" , day:"(.*)" , time:"(.*)"/ do |type,amount,day,section|
   step %{I fill in "Amount" with "#{amount}"}
   step %{I select "#{type}" from "room_type_type"}
   step %{I select "#{day}" from "day_day"}
