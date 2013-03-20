@@ -3,5 +3,8 @@ class Tool < ActiveRecord::Base
   attr_accessible :amplifier, :computer, :lcd_projector, :loudspeaker, :microphone, :overhead_projector, :roomname, :television, :video_recorder, :visualizer, :voice_recorder
   # set_primary_key :roomname
   # belongs_to :detail_room
-  
+
+  def self.all_tools
+  ["amplifier","computer","lcd_projector","loudspeaker","microphone","overhead_projector","television","video_recorder","visualizer","voice_recorder"]
+  end  
 end

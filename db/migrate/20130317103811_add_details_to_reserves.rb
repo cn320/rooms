@@ -6,6 +6,6 @@ class AddDetailsToReserves < ActiveRecord::Migration
     add_column :reserves, :finish_time, :string
     add_column :reserves, :tel, :string
     add_column :reserves, :email, :string
-    add_column :reserves, :status, :boolean
+    add_column :reserves, :status, :string
   end
 end

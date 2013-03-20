@@ -5,7 +5,7 @@ class ReservesController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else
-      @reserves = Reserve.all
+      @reserves = Reserve.find(:all, :order => "date_to_reserve")
       @roomtype = DetailRoom.all_types
       @time = Room.all_times
       @time.push("All Free Time")

@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20130318173630) do
     t.string   "finish_time"
     t.string   "tel"
     t.string   "email"
-    t.boolean  "status"
+    t.string   "status"
   end
 
   create_table "rooms", :force => true do |t|

@@ -117,9 +117,9 @@ class ReservesController < ApplicationController
       redirect_to rooms_path
     else
       @roomtype = DetailRoom.all_types
-    @time = Room.all_times
-    @time.push("All Free Time")
-    @day_list = Room.all_days
+      @time = Room.all_times
+      @time.push("All Free Time")
+      @day_list = Room.all_days
       @reserf = Reserve.find(params[:id])
     end
   end

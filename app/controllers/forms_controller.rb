@@ -53,7 +53,8 @@ class FormsController < ApplicationController
       if params[:form]["position"] != nil
         temp_form[:position] = params[:form]["position"][pos.keys[0]]
       end
-      temp_form[:require_tool] = params[:form][:require_tool].join(",")
+      tools_str = params[:form][:require_tool].keys
+      temp_form[:require_tool] = tools_str.join(",")
       @form = Form.new(temp_form)
       if @form.valid? && @form.save 
         reserf = {}
@@ -63,7 +64,7 @@ class FormsController < ApplicationController
         reserf["finish_time"] = @form.finish_time
         reserf["tel"] = @form.tel
         reserf["email"] = @form.email
-        reserf["status"] = nil
+        reserf["status"] = "nonconsidered"
         @reserve = Reserve.new(reserf)
         if @reserve.save
           flash[:notice] = "Create form and reserve success"

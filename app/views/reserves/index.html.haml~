@@ -5,7 +5,7 @@
     %th ชื่อห้อง
     %th วันที่จอง
     %th เวลาเริ่ม
-    %th 
+
   - @reserves.each do |reserf|
     %tr
       %td= reserf.name
