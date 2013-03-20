@@ -62,3 +62,10 @@ When /I search with type:"(.*)" , amount:"(.*)" , day:"(.*)" , time:"(.*)"/ do |
   step %{I select "#{day}" from "day_day"}
   step %{I press "search room"}
 end
+
+Then /I fill 1 in all of tools/ do
+  Tool.all_tools.each do |tool|
+    tool_str = tool.to_s.capitalize
+    step %{I fill in "#{tool_str}" with "1"}
+  end
+end

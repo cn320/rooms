@@ -24,7 +24,7 @@ Given the following staff exist:
   Then I should be on the staff page
   When I follow "ข้อมูลการจองที่มีทั้งหมดในระบบ"
   Then I should be on the reserve detail page
-  And I should see "ENGR303"
+  And I should see "พิจารณาการจองห้อง ENGR303"
   And I should see "ดูข้อมูลการจองห้อง ENGR304"
   When I follow "ดูข้อมูลการจองห้อง ENGR304"
   Then I should be on the reserve detail id:"2" page
@@ -32,10 +32,7 @@ Given the following staff exist:
 
 Scenario: delete reserve
   
-  When I follow "ลบคำร้องขอการจองห้อง"
-  Then I should be on the reserve detail page
-  And I should see "ENGR303"
-  And I should not see "ENGR304"
+
 
  
 

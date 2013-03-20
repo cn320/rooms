@@ -5,6 +5,7 @@ class RoomsController < ApplicationController
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @day_list = Room.all_days
+    @admin = session[:admin]
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @rooms }
@@ -120,8 +121,8 @@ class RoomsController < ApplicationController
       @box_times = Room.time_to_section
       @droom = DetailRoom.find(params[:id])
       old_name = DetailRoom.find(params[:id]).roomname
-      #if DetailRoom.find_by_roomname(params[:droom]["roomname"]) == nil
-      if true
+      if DetailRoom.find_by_roomname(params[:droom]["roomname"]) == nil
+      #if true
         #@droom.update_attributes!(params[:droom])
         @day_list.each do |day|
           temp_room = {}
@@ -138,6 +139,10 @@ class RoomsController < ApplicationController
           @room = res.select do |r|  r.day == day  end
           @room[0].update_attributes!(temp_room)
         end
+        tool = params[:tool]
+        tool["roomname"] = params[:droom]["roomname"]
+        @room_tool = Tool.find_by_roomname(old_name)
+        @room_tool.update_attributes!(tool)
         @droom.update_attributes!(params[:droom])
         flash[:notice] = "update room sucessfully"
         redirect_to staff_path(@droom)

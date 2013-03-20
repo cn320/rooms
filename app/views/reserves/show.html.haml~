@@ -7,7 +7,7 @@
 - if @reserf.status == "nonconsidered"
   %h2 สถานะ : รอการยืนยันจากเจ้าหน้าที่ 
 - else
-  %h2 สถานะ : ได้ยันการยืนยันแล้ว
+  %h2 สถานะ : ได้รับการยืนยันแล้ว
 
 %h5 รายละเอียดของการจอง
 %p ชื่อผู้จอง : #{@form.name}  #{@form.surname}
@@ -28,7 +28,8 @@
 - if @reserf.status == "nonconsidered"
   = link_to 'ยืนยันคำร้องขอการจองห้อง', reserves_path
   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-  = link_to 'ปฏิเสธคำร้องขอการจองห้อง', @reserf, method: :delete, data: { confirm: 'Are you sure?' }
+  = link_to 'ปฏิเสธคำร้องขอการจองห้อง',  reserves_path
 %br
 %br
+= link_to 'ปฏิเสธคำร้องขอการจองห้อง', @reserf, method: :delete, data: { confirm: 'Are you sure?' }
 = link_to 'Back', reserves_path

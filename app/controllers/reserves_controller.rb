@@ -93,10 +93,8 @@ class ReservesController < ApplicationController
    # end
   end
 
-  # DELETE /reserves/1
-  # DELETE /reserves/1.json
+  #delete reserve and form (same id)
   def destroy
-=begin
     if session[:admin] == nil
       redirect_to rooms_path
     else
@@ -105,12 +103,13 @@ class ReservesController < ApplicationController
       @roomtype = DetailRoom.all_types
       @time = Room.all_times
       @day_list = Room.all_days
+      @form = Form.find(params[:id])
+      @form.destroy
       respond_to do |format|
-        format.html { redirect_to reserves_url, notice: 'Reserve was successfully deleted.' }
+        format.html { redirect_to reserves_path, notice: 'Reserve was successfully deleted.' }
         format.json { head :no_content }
       end
     end
-=end
   end
 
 

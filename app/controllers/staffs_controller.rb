@@ -6,7 +6,7 @@ class StaffsController < ApplicationController
       redirect_to rooms_path
     else  
       @roomtype = DetailRoom.all_types
-      @admin = session[:admin]
+      @admin = Staff.find_by_username(session[:admin])
       @time = Room.all_times
       @day_list = Room.all_days
     end
@@ -42,14 +42,36 @@ class StaffsController < ApplicationController
  
   end
 
- 
+  #reset all room data
   def update
-  
+    if session[:admin] == nil
+      redirect_to rooms_path
+    else
+      @roomtype = DetailRoom.all_types
+      @time = Room.all_times
+      @day_list = Room.all_days
+      @rooms = Room.all
+      @rooms.each do |room|
+        r={}
+        r["roomname"] = room.roomname
+        r["first"] = "free"
+        r["second"] = "free"
+        r["third"] = "free"
+        r["fourth"] = "free"
+        r["fifth"] = "free"
+        r["sixth"] = "free"
+        r["seventh"] = "free"
+        r["eighth"] = "free"
+        r["day"] = room.day
+        room.update_attributes!(r)
+      end
+      redirect_to staffs_path
+    end 
   end
 
   
   def destroy
-   
+    
   end
   
   #login page
@@ -98,5 +120,7 @@ class StaffsController < ApplicationController
     end 
   end
 
-  
+  def reset_all
+    redirect_to rooms_path
+  end
 end
