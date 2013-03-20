@@ -6,7 +6,6 @@ class FormsController < ApplicationController
 
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
   end
 
@@ -16,7 +15,6 @@ class FormsController < ApplicationController
     
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
   end
 
@@ -26,11 +24,11 @@ class FormsController < ApplicationController
     @room = Room.find(session[:id_room])
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
     time_arr = session[:time_select].split("-")
     @starttime = time_arr[0]
     @endtime = time_arr[1]
+    @dateselect = session[:date_select]
     @this_type = DetailRoom.find_by_roomname(@room.roomname).room_type
     
   end
@@ -44,7 +42,6 @@ class FormsController < ApplicationController
   def create
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
     temp_form = params[:form]
     #staff can reserve in today 
@@ -71,6 +68,7 @@ class FormsController < ApplicationController
           flash[:notice] = "Create form and reserve success"
           session[:id_room]=nil
           session[:time_select]=nil
+          session[:date_select] = nil
           #redirect_to rooms_path
           redirect_to form_path(@form)
         else
@@ -93,7 +91,6 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id])
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
     respond_to do |format|
       if @form.update_attributes(params[:form])
@@ -113,7 +110,6 @@ class FormsController < ApplicationController
     @form.destroy
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
     respond_to do |format|
       format.html { redirect_to forms_url }

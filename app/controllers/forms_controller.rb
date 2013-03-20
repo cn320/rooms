@@ -28,6 +28,7 @@ class FormsController < ApplicationController
     time_arr = session[:time_select].split("-")
     @starttime = time_arr[0]
     @endtime = time_arr[1]
+    @date_select = session[:date_select]
     @this_type = DetailRoom.find_by_roomname(@room.roomname).room_type
     
   end
@@ -67,6 +68,7 @@ class FormsController < ApplicationController
           flash[:notice] = "Create form and reserve success"
           session[:id_room]=nil
           session[:time_select]=nil
+          session[:date_select] = nil
           #redirect_to rooms_path
           redirect_to form_path(@form)
         else

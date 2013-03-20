@@ -21,6 +21,7 @@ class RoomsController < ApplicationController
     @size = DetailRoom.find_by_roomname(@room.roomname).amount
     @room_tool = Tool.find_by_roomname(@room.roomname)
     session[:id_room] = @room.id
+    @date_select = session[:date_select]
     @time_select = session[:time_select]
   end
 
@@ -220,6 +221,7 @@ class RoomsController < ApplicationController
         end
     #@time_select = params[:section][0]
         session[:time_select] = @time_select
+        session[:date_select] = @date_select
       end
     end
   end
