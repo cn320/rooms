@@ -65,6 +65,6 @@ forms = Form.create!([{position: "student", name: "Ploypailin", surname: "Sirimu
 { position: "student", name: "Nadcharin", surname: "Milkwarm", institution: "engr", tel: "0545455455", email: "milkwarm@hotmail.com", roomtype: "classroom", roomname: "ENGR304", date_to_reserve: "2013-03-27", start_time: "8.00", finish_time: "9.30", because: "study", subject: "study", amount_of_people: 22, require_tool: "video_recorder,voice_recorder,visualizer"}])
 
 
-reserf = Reserve.create!([{roomname: "ENGR304", date_to_reserve: "2013-03-26", start_time: "8.00", finish_time: "9.30", tel: "0878168055", email: "liberty_zero@hotmail.com", status: nil},
+reserf = Reserve.create!([{roomname: "ENGR304", date_to_reserve: "2013-03-26", start_time: "8.00", finish_time: "9.30", tel: "0878168055", email: "liberty_zero@hotmail.com", status: "nonconsidered"},
 {roomname: "ENGR304", date_to_reserve: "2013-03-25", start_time: "8.00", finish_time: "9.30", tel: "191", email: "naidkub@hotmail.com", status: "confirm"},
 {roomname: "ENGR304", date_to_reserve: "2013-03-27", start_time: "8.00", finish_time: "9.30", tel: "0545455455", email: "milkwarm@hotmail.com", status: "refuse"}])
