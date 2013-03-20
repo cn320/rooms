@@ -1,5 +1,6 @@
 source 'http://rubygems.org'
 
+gem 'twitter-bootstrap-rails'
 gem 'rails', '3.2.11'
 gem 'simplecov', :require => false, :group => :test
 # Bundle edge Rails instead:
@@ -30,7 +31,6 @@ group :assets do
   gem 'sass-rails', "  ~> 3.2.0"
   gem 'coffee-rails', "~> 3.2.0"
   gem 'uglifier'
-  gem 'twitter-bootstrap-rails'
 end
 
 gem 'jquery-rails'

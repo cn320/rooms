@@ -56,10 +56,11 @@ Scenario: reserve the engr303 with day is not today
   And I fill in "form[finish_time]" with "9.30"
   And I check "form[position][teacher]"
   And I check "form[require_tool][microphone]"
+  And I check "form[require_tool][visualizer]"
   And I press "submit"
   Then I should be on the print page
   And I should see "Create form and reserve success"
-  And I should see all of word '"ENGR303" "teacher" "2033-03-13" "8.00" "9.30" "microphone"'
+  And I should see all of word '"ENGR303" "teacher" "2033-03-13" "8.00" "9.30" "microphone" "visualizer"'
   
   
 Scenario: reserve the engr303 with date is today
