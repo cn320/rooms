@@ -8,7 +8,6 @@ class StaffsController < ApplicationController
       @roomtype = DetailRoom.all_types
       @admin = session[:admin]
       @time = Room.all_times
-      @time.push("All Free Time")
       @day_list = Room.all_days
     end
   end
@@ -17,7 +16,6 @@ class StaffsController < ApplicationController
   def show
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
     if session[:admin] == nil
       redirect_to rooms_path
@@ -36,12 +34,7 @@ class StaffsController < ApplicationController
 
   
   def edit
-    if session[:admin] == nil
-      redirect_to rooms_path
-    else   
-      @room = Room.find(params[:id])
-    end
-   
+  
   end
 
  
@@ -63,7 +56,6 @@ class StaffsController < ApplicationController
   def login
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
     if session[:admin] != nil
       redirect_to staffs_path
@@ -95,7 +87,6 @@ class StaffsController < ApplicationController
   def room_list
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
     if session[:admin] == nil
       redirect_to rooms_path

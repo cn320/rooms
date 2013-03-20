@@ -1,5 +1,5 @@
 Feature: Searching for room status and free time
-  As a user’s and staff
+  As a users
   So that I can see every room status
   I want to see room details and free time from database
 
@@ -35,10 +35,15 @@ Background: Startup with Homepage
   When I follow "ค้นหาห้องว่าง"
   Then I should be on the search page
 
-Scenario: Search base on amount
+Scenario: Search date today
   
 
-Scenario: Not fill amount
+Scenario: Search date yesterday
+
+Scenario: Search not found
+  
+
+Scenario: Search found
   
 
  

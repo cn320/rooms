@@ -2,34 +2,40 @@ class ToolsController < ApplicationController
   # GET /tools
   # GET /tools.json
   def index
+=begin
     @tools = Tool.all
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tools }
     end
+=end
   end
 
   # GET /tools/1
   # GET /tools/1.json
   def show
+=begin
     @tool = Tool.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @tool }
     end
+=end
   end
 
   # GET /tools/new
   # GET /tools/new.json
   def new
+=begin
     @tool = Tool.new
 
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @tool }
     end
+=end
   end
 
   # GET /tools/1/edit
@@ -40,6 +46,7 @@ class ToolsController < ApplicationController
   # POST /tools
   # POST /tools.json
   def create
+=begin
     @tool = Tool.new(params[:tool])
 
     respond_to do |format|
@@ -51,11 +58,13 @@ class ToolsController < ApplicationController
         format.json { render json: @tool.errors, status: :unprocessable_entity }
       end
     end
+=end
   end
 
   # PUT /tools/1
   # PUT /tools/1.json
   def update
+=begin
     @tool = Tool.find(params[:id])
 
     respond_to do |format|
@@ -67,11 +76,13 @@ class ToolsController < ApplicationController
         format.json { render json: @tool.errors, status: :unprocessable_entity }
       end
     end
+=end
   end
 
   # DELETE /tools/1
   # DELETE /tools/1.json
   def destroy
+=begin
     @tool = Tool.find(params[:id])
     @tool.destroy
 
@@ -79,5 +90,6 @@ class ToolsController < ApplicationController
       format.html { redirect_to tools_url }
       format.json { head :no_content }
     end
+=end
   end
 end

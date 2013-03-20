@@ -1,5 +1,5 @@
 class Form < ActiveRecord::Base
-  attr_accessible :amount_of_people, :because, :date_to_reserve, :email, :finish_time, :institution, :name, :position, :require_tool, :roomname, :roomtype, :start_time, :subject, :surname, :tel
+ attr_accessible :amount_of_people, :because, :date_to_reserve, :email, :finish_time, :institution, :name, :position, :require_tool, :roomname, :roomtype, :start_time, :subject, :surname, :tel
   
   def self.all_positions
     ["teacher","official","student","other"]
@@ -25,12 +25,24 @@ class Form < ActiveRecord::Base
 
   validates :email,  :presence => true
 
-  def self.find_result_submit(roomname,date,start,finish)
-    forms = Form.find_all_date_to_reserve(date)
-    forms.each do |f|
-      if f.roomname==roomname && f.start_time == start && f.finish_time == finish
-        return f
+  def self.find_with_datetime(obj,date,time)
+    time = time.split("-")
+    free_result=[]
+    obj.each_with_index do |room,i|
+      f = Form.find_by_roomname(room.roomname)
+      if f !=nil && f.date_to_reserve.to_s == date
+        if  f.start_time.to_s != time[0].to_s
+          free_result.push(room)
+        end
+      else
+        d = Date.parse date
+        if obj.day == d.strftime("%A").downcase
+          free_result.push(room)
+        end
       end
     end
+    return free_result      
   end
+  
+  
 end

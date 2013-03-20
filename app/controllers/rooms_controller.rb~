@@ -4,7 +4,6 @@ class RoomsController < ApplicationController
   def index
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
     respond_to do |format|
       format.html # index.html.erb
@@ -17,7 +16,6 @@ class RoomsController < ApplicationController
     @roomtype = DetailRoom.all_types
     @admin = session[:admin]
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
     @room = Room.find(params[:id])
     @size = DetailRoom.find_by_roomname(@room.roomname).amount
@@ -34,7 +32,6 @@ class RoomsController < ApplicationController
       @roomtype = DetailRoom.all_types
       @box_times = Room.all_times
       @time = Room.all_times
-      @time.push("All Free Time")
       @day_list = Room.all_days
       @room = Room.new
  
@@ -54,7 +51,6 @@ class RoomsController < ApplicationController
       @droom = DetailRoom.find(params[:id])
       @rooms= Room.find_all_by_roomname(@droom.roomname)
       @time = Room.all_times
-      @time.push("All Free Time")
       @day_list = Room.all_days
       @box_times = Room.time_to_section
     end
@@ -101,7 +97,7 @@ class RoomsController < ApplicationController
           end
         else
           flash[:notice] = "can not add new room, please insert all value"
-          redirect_to staffs_path 
+          redirect_to new_rooms_path 
         end
       else
         flash[:notice] = "can not add new droom"
@@ -119,7 +115,6 @@ class RoomsController < ApplicationController
     else
       @roomtype = DetailRoom.all_types
       @time = Room.all_times
-      @time.push("All Free Time")
       @day_list = Room.all_days
       @box_times = Room.time_to_section
       @droom = DetailRoom.find(params[:id])
@@ -160,7 +155,6 @@ class RoomsController < ApplicationController
     else
       @roomtype = DetailRoom.all_types
       @time = Room.all_times
-      @time.push("All Free Time")
       @day_list = Room.all_days
       @droom = DetailRoom.find(params[:id])
       roomname = @droom.roomname
@@ -178,7 +172,6 @@ class RoomsController < ApplicationController
   #search page
   def search
   @time = Room.all_times
-  @time.push("All Free Time")
   @day_list = Room.all_days
   @roomtype = DetailRoom.all_types
   end
@@ -187,29 +180,46 @@ class RoomsController < ApplicationController
   def search_result
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
-    @time_select = Room.time_to_section[0][params[:section][0]]
+    #@time_select = Room.time_to_section[0][params[:section][0]]
+    @time_select = params[:section][0]
     @day_select = params[:day]["day"]
     @size_select = params[:amount][0]
-    @free_rooms = DetailRoom.find_with_type(params[:room_type]["type"])
-    @free_rooms = Room.find_with_day(@free_rooms,@day_select)
-    if @time_select != nil
-      @free_rooms = Room.find_with_time(@free_rooms,@time_select)
-    else 
-      @time_select = "All Free Time"
-    end
-    if @size_select != ""
-      @free_rooms = Room.find_with_amount(@free_rooms,@size_select)
+    day = params[:date]["day"]
+    month = params[:date]["month"]
+    date_str = params[:date]["year"]+"-"+ month.rjust(2,'0')+"-"+day.rjust(2,'0')
+    if date_str < Date.today.to_s
+      flash[:notice] = "Can not reserve room with date past"
+      redirect_to search_path
+    elsif date_str == Date.today.to_s && session[:admin] == nil
+      flash[:notice] = "Can not reserve room with date today, please contact staff"
+      redirect_to search_path
     else
-      @size_select = "-"
+      @free_rooms = DetailRoom.find_with_type(params[:room_type]["type"])
+      @free_rooms = Form.find_with_datetime(@free_rooms,date_str,@time_select)
+    #@free_rooms = Room.find_with_day(@free_rooms,@day_select)
+    #if @time_select != nil
+      #@free_rooms = Room.find_with_time(@free_rooms,@time_select)
+    #else 
+    #  @time_select = "All Free Time"
+    #end
+      if @size_select != ""
+        @free_rooms = Room.find_with_amount(@free_rooms,@size_select)
+      else
+        @size_select = "-"
+      end
+      if @free_rooms == []
+        flash[:notice] = "Can not found available room"
+        redirect_to search_path
+      else
+        @size = []
+        @free_rooms.each_with_index do |room,i|
+          @size[i] = DetailRoom.find_by_roomname(room.roomname).amount
+        end
+    #@time_select = params[:section][0]
+        session[:time_select] = @time_select
+      end
     end
-    @size = []
-    @free_rooms.each_with_index do |room,i|
-      @size[i] = DetailRoom.find_by_roomname(room.roomname).amount
-    end
-    @time_select = params[:section][0]
-    session[:time_select] = @time_select
   end
 
   

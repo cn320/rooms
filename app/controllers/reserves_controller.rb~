@@ -1,6 +1,5 @@
 class ReservesController < ApplicationController
-  # GET /reserves
-  # GET /reserves.json
+  #Show all reserve list
   def index
     if session[:admin] == nil
       redirect_to rooms_path
@@ -8,7 +7,6 @@ class ReservesController < ApplicationController
       @reserves = Reserve.find(:all, :order => "date_to_reserve")
       @roomtype = DetailRoom.all_types
       @time = Room.all_times
-      @time.push("All Free Time")
       @day_list = Room.all_days
       respond_to do |format|
         format.html # index.html.erb
@@ -17,8 +15,8 @@ class ReservesController < ApplicationController
     end
   end
 
-  # GET /reserves/1
-  # GET /reserves/1.json
+  
+  # show one reserve data
   def show
     if session[:admin] == nil
       redirect_to rooms_path
@@ -26,7 +24,6 @@ class ReservesController < ApplicationController
       @reserf = Reserve.find(params[:id])
       @roomtype = DetailRoom.all_types
       @time = Room.all_times
-      @time.push("All Free Time")
       @day_list = Room.all_days
       @form = Form.find(params[:id])
       respond_to do |format|
@@ -39,6 +36,7 @@ class ReservesController < ApplicationController
   # GET /reserves/new
   # GET /reserves/new.json
   def new
+=begin
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @time.push("All Free Time")
@@ -50,6 +48,7 @@ class ReservesController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @reserf }
     end
+=end
   end
 
   # GET /reserves/1/edit
@@ -60,12 +59,11 @@ class ReservesController < ApplicationController
   # POST /reserves
   # POST /reserves.json
   def create
-    temp = params[:reserf]
+=begin    temp = params[:reserf]
     temp["roomname"] = params[:room]["roomname"]
     @reserf = Reserve.new(temp)
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
     respond_to do |format|
       if @reserf.save
@@ -76,6 +74,7 @@ class ReservesController < ApplicationController
         format.json { render json: @reserf.errors, status: :unprocessable_entity }
       end
     end
+=end
   end
 
   # PUT /reserves/1
@@ -97,6 +96,7 @@ class ReservesController < ApplicationController
   # DELETE /reserves/1
   # DELETE /reserves/1.json
   def destroy
+=begin
     if session[:admin] == nil
       redirect_to rooms_path
     else
@@ -104,25 +104,14 @@ class ReservesController < ApplicationController
       @reserf.destroy
       @roomtype = DetailRoom.all_types
       @time = Room.all_times
-      @time.push("All Free Time")
       @day_list = Room.all_days
       respond_to do |format|
         format.html { redirect_to reserves_url, notice: 'Reserve was successfully deleted.' }
         format.json { head :no_content }
       end
     end
+=end
   end
 
-  def result
-    if session[:admin] == nil
-      redirect_to rooms_path
-    else
-      @roomtype = DetailRoom.all_types
-      @time = Room.all_times
-      @time.push("All Free Time")
-      @day_list = Room.all_days
-      @reserf = Reserve.find(params[:id])
-    end
-  end
 
 end

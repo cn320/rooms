@@ -40,7 +40,7 @@ class ToolsController < ApplicationController
 
   # GET /tools/1/edit
   def edit
-    @tool = Tool.find(params[:id])
+   # @tool = Tool.find(params[:id])
   end
 
   # POST /tools

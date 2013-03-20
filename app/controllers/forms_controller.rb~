@@ -53,8 +53,9 @@ class FormsController < ApplicationController
       if params[:form]["position"] != nil
         temp_form[:position] = params[:form]["position"][pos.keys[0]]
       end
-      tools_str = params[:form][:require_tool].keys
-      temp_form[:require_tool] = tools_str.join(",")
+      if tools_str = params[:form][:require_tool].keys
+        temp_form[:require_tool] = tools_str.join(",")
+      end
       @form = Form.new(temp_form)
       if @form.valid? && @form.save 
         reserf = {}

@@ -6,7 +6,6 @@ class FormsController < ApplicationController
 
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
   end
 
@@ -16,7 +15,6 @@ class FormsController < ApplicationController
     
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
   end
 
@@ -26,7 +24,6 @@ class FormsController < ApplicationController
     @room = Room.find(session[:id_room])
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
     time_arr = session[:time_select].split("-")
     @starttime = time_arr[0]
@@ -44,7 +41,6 @@ class FormsController < ApplicationController
   def create
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
     temp_form = params[:form]
     #staff can reserve in today 
@@ -93,7 +89,6 @@ class FormsController < ApplicationController
     @form = Form.find(params[:id])
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
     respond_to do |format|
       if @form.update_attributes(params[:form])
@@ -113,7 +108,6 @@ class FormsController < ApplicationController
     @form.destroy
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
-    @time.push("All Free Time")
     @day_list = Room.all_days
     respond_to do |format|
       format.html { redirect_to forms_url }

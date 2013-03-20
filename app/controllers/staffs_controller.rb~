@@ -24,6 +24,7 @@ class StaffsController < ApplicationController
     else
       @droom = DetailRoom.find(params[:id])
       @rooms = Room.find_all_by_roomname(@droom.roomname)
+      @room_tool = Tool.find_by_roomname(@droom.roomname)
     end
   
   end

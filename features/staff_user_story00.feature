@@ -1,5 +1,5 @@
 Feature: Searching for room status and free time
-  As a user’s and staff
+  As a staff
   So that I can see every room status
   I want to see room details and free time from database
 
@@ -29,16 +29,28 @@ Background: Startup with Homepage
   | teacher | naidkub | honhon | superhon | 0878908766 | hon@hon.com | classroom | ENGR303 | 2013-03-13 | 16.30 | 18.00 | play game | hon | 20 | microphone,television |
   | teacher | naidkub | honhon | superhon | 0878908766 | hon@hon.com | classroom | ENGR304 | 2013-03-13 | 16.30 | 18.00 | play game | hon | 20 | microphone,television |
 
+  Given the following staff exist:
+  | username     | password |
+  | naidkub      | honhon   |
 
-  And I am on the home page
+  And I am on the log in page
+  When I login with "naidkub" and "honhon"
+  Then I should be on the staff page
+
+  Given I am on the home page
   And I should see "ค้นหาห้องว่าง"
   When I follow "ค้นหาห้องว่าง"
   Then I should be on the search page
 
-Scenario: Search base on amount
+Scenario: Search date today
   
 
-Scenario: Not fill amount
+Scenario: Search date yesterday
+
+Scenario: Search not found
+  
+
+Scenario: Search found
   
 
  
