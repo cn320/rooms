@@ -95,8 +95,12 @@
                   = label :room_type, nil, 'Type'
                   = select :room_type, nil, @roomtype
 
-                  = label :day, nil, 'Day'
-                  = select :day, nil, @day_list
+                  = label :day, :day, 'Day'
+
+                  - if @admin == nil
+                    = select_date Time.now+1.days
+                  - else
+                    = select_date Time.now
 
                   = label :section, 'Section'
                   = select :section, nil, @time

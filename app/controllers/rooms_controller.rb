@@ -184,11 +184,12 @@ class RoomsController < ApplicationController
     @day_list = Room.all_days
     #@time_select = Room.time_to_section[0][params[:section][0]]
     @time_select = params[:section][0]
-    @day_select = params[:day]["day"]
     @size_select = params[:amount][0]
     day = params[:date]["day"]
     month = params[:date]["month"]
     date_str = params[:date]["year"]+"-"+ month.rjust(2,'0')+"-"+day.rjust(2,'0')
+    @date_select = date_str
+    #@day_select = (Date.parse date_str).strftime("%A").downcase
     if date_str < Date.today.to_s
       flash[:notice] = "Can not reserve room with date past"
       redirect_to search_path
