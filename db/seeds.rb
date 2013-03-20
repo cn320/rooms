@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-detail = [{:roomname => "ENGR301", :amount => 200, :room_type=>"classroom"},{:roomname => "ENGR302", :amount => 100, :room_type=>"classroom"},{:roomname => "ENGR303", :amount => 100, :room_type=>"classroom"},{:roomname => "ENGR304", :amount => 50, :room_type=>"classroom"},{:roomname => "LAB1", :amount => 50, :room_type=>"auditorium"}]
+detail = [{:roomname => "ENGR301", :amount => 200, :room_type=>"classroom"},{:roomname => "ENGR302", :amount => 100, :room_type=>"classroom"},{:roomname => "ENGR303", :amount => 100, :room_type=>"classroom"},{:roomname => "ENGR304", :amount => 50, :room_type=>"classroom"},{:roomname => "ENGR418", :amount => 20, :room_type=>"auditorium"}]
 
 
 detail.each do |d|
@@ -47,14 +47,22 @@ rooms = Room.create!([
 {roomname: "ENGR304", first: "busy", second: "busy", third: "busy", fourth: "free", fifth: "busy", sixth: "busy", day: "thursday", seventh: "busy", eighth: "free"},
 {roomname: "ENGR304", first: "free", second: "busy", third: "busy", fourth: "free", fifth: "busy", sixth: "busy", day: "friday", seventh: "busy", eighth: "free"},
 {roomname: "ENGR304", first: "busy", second: "busy", third: "busy", fourth: "free", fifth: "free", sixth: "free", day: "saturday", seventh: "free", eighth: "free"},
-{roomname: "ENGR304", first: "free", second: "free", third: "free", fourth: "free", fifth: "free", sixth: "free", day: "sunday", seventh: "free", eighth: "free"}
+{roomname: "ENGR304", first: "free", second: "free", third: "free", fourth: "free", fifth: "free", sixth: "free", day: "sunday", seventh: "free", eighth: "free"},
+{roomname: "ENGR418", first: "free", second: "busy", third: "busy", fourth: "free", fifth: "busy", sixth: "free", day: "monday", seventh: "free", eighth: "busy"},
+{roomname: "ENGR418", first: "busy", second: "busy", third: "busy", fourth: "free", fifth: "busy", sixth: "busy", day: "tuesday", seventh: "busy", eighth: "free"},
+{roomname: "ENGR418", first: "free", second: "busy", third: "busy", fourth: "free", fifth: "busy", sixth: "free", day: "wednesday", seventh: "busy", eighth: "free"},
+{roomname: "ENGR418", first: "busy", second: "busy", third: "busy", fourth: "free", fifth: "busy", sixth: "busy", day: "thursday", seventh: "busy", eighth: "free"},
+{roomname: "ENGR418", first: "free", second: "busy", third: "busy", fourth: "free", fifth: "busy", sixth: "busy", day: "friday", seventh: "busy", eighth: "free"},
+{roomname: "ENGR418", first: "busy", second: "busy", third: "busy", fourth: "free", fifth: "free", sixth: "free", day: "saturday", seventh: "free", eighth: "free"},
+{roomname: "ENGR418", first: "free", second: "free", third: "free", fourth: "free", fifth: "free", sixth: "free", day: "sunday", seventh: "free", eighth: "free"}
 ])
 
 
 tools = [{:roomname=>"ENGR301",:amplifier=>1,:microphone=>1,:computer=>1,:visualizer=>1,:loudspeaker=>4},
          {:roomname=>"ENGR302",:amplifier=>1,:microphone=>1,:computer=>1,:visualizer=>1,:loudspeaker=>4},
          {:roomname=>"ENGR303",:amplifier=>1,:microphone=>1,:computer=>1,:loudspeaker=>4,:overhead_projector=>1},
-         {:roomname=>"ENGR304",:amplifier=>1,:microphone=>1,:computer=>1,:overhead_projector=>1,:loudspeaker=>2}]
+         {:roomname=>"ENGR304",:amplifier=>1,:microphone=>1,:computer=>1,:overhead_projector=>1,:loudspeaker=>2},
+{:roomname=>"ENGR418",:amplifier=>1,:microphone=>20,:computer=>1,:overhead_projector=>1,:loudspeaker=>2,:lcd_projector=>1}]
 
 tools.each do |u|
 	Tool.create!(u)
