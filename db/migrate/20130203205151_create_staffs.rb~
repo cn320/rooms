@@ -1,13 +1,9 @@
 class CreateStaffs < ActiveRecord::Migration
-  def up
+  def change
     create_table :staffs do |t|
+      t.string :username
+      t.string :password
       t.timestamps
     end
-    add_column :staffs, :username, :string
-    add_column :staffs, :password, :string
-  end
-
-  def down
-    drop_table :staffs
   end
 end
