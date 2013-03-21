@@ -13,7 +13,7 @@ detail.each do |d|
   DetailRoom.create!(d)
 end
 
-user = [{:username => 'naidkub' , :password => 'honhon', :firstname => 'Naidkub', :surname => 'Masterhon'}]
+user = [{:username => 'naidkub' , :password => 'honhon', :firstname => 'Naidkub', :lastname => 'Masterhon'}]
 
 user.each do |u|
   Staff.create!(u)

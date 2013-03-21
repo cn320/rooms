@@ -4,7 +4,7 @@ class CreateStaffs < ActiveRecord::Migration
       t.string :username
       t.string :password
       t.string :firstname
-      t.string :surname
+      t.string :lastname
       t.timestamps
     end
   end
