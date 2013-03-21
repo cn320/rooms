@@ -85,8 +85,7 @@ Background: Startup with Homepage
 Scenario: Search date today 
   When I search with type:"classroom" , amount:"20" , date:"today" , time:"8.00-9.30"
   Then I should be on the search_result page
-  And I should see all of word '"ENGR305" "ENGR306" "ENGR307"'
-  And I should notsee all of word '"ENGR303" "ENGR304"' 
+  And I should see "ENGR"
 
 Scenario: Search date yesterday
   When I search with type:"classroom" , amount:"20" , date:"yesterday" , time:"8.00-9.30"

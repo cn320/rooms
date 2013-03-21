@@ -89,8 +89,8 @@
                   Search Room
                 = form_tag search_box_path ,:method=>:get do
 
-                  = label :amount, :a, 'Amount-box'
-                  = text_field :amount, 'amount-box'
+                  = label :amount_box, :amount_box, 'People to use'
+                  = text_field :amount_box, 'amount_box'
                   
                   = label :room_type, :type_box, 'Type-box'
                   = select :room_type, :type_box, @roomtype
@@ -98,12 +98,12 @@
                   = label :day, :day, 'Day'
 
                   - if @admin == nil
-                    = select_date Time.now+1.days,:prefix => 'date-box'
+                    = select_date Time.now+1.days,:prefix => 'date_box'
                   - else
-                    = select_date Time.now,:prefix => 'date-box'
+                    = select_date Time.now,:prefix => 'date_box'
 
                   = label :section, 'Section'
-                  = select :section, nil, @time
+                  = select :section, :sec_box, @time
 
                   = submit_tag 'Search'
           .span9

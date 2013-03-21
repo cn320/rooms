@@ -1,11 +1,11 @@
 %h3 กรุณาระบุข้อมูลที่จำเป็นสำหรับการค้นหาห้องว่าง
 %h5 (หากไม่ทราบจำนวนคน กรุณาเว้นว่างไว้)
 %br
-%h5 คุณไม่สามารถทำการขอจองภายในวันปัจจุบัน,หากต้องการจองภายในวันปัจจุบัน โปรดติดต่อสต๊าฟ
+%h5 คุณไม่สามารถทำการขอจองภายในวันปัจจุบัน,หากต้องการจองภายในวันปัจจุบัน โปรดติดต่อENGR501
 
 = form_tag search_result_path ,:method=>:get do
 
-  = label :amount, :amount, 'Amount'
+  = label :amount, :amount, 'Amount of people'
   = text_field :amount, 'amount'
 
   = label :room_type, :type, 'Type'

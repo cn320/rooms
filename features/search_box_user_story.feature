@@ -76,27 +76,18 @@ Background: Startup with Homepage
 
 Scenario: As users
   Given I am on the home page
-  And I should see "ค้นหาห้องว่าง"
-  When I follow "ค้นหาห้องว่าง"
-  Then I should be on the search page
-  When I search with type:"classroom" , amount:"20" , y-m-d:"2015-March-13" , time:"18.00-21.00"
+  When I search in box with type:"classroom" , amount:"20" , y-m-d:"2015-March-13" , time:"18.00-21.00"
   Then I should be on the search_result page
-  And I should see all of word '"ENGR305" "ENGR307"'
+  And I should see all of word '"ENGR305" "ENGR307" "2015-03-13" "18.00-21.00"'
   And I should notsee all of word '"ENGR303" "ENGR304" "ENGR306"' 
 
 Scenario: As Staff
   And I am on the log in page
   When I login with "naidkub" and "honhon"
   Then I should be on the staff page
-
-  Given I am on the home page
-  And I should see "ค้นหาห้องว่าง"
-  When I follow "ค้นหาห้องว่าง"
-  Then I should be on the search page
-
-  When I search with type:"classroom" , amount:"20" , date:"today" , time:"18.00-21.00"
+  When I search in box with type:"classroom" , amount:"20" , date:"today" , time:"18.00-21.00"
   Then I should be on the search_result page
-  And I should see "ENGR"
+  And I should see all of word '"ENGR" "18.00-21.00"'
 
  
 
