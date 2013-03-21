@@ -233,8 +233,11 @@ class RoomsController < ApplicationController
   end
 
   def search_box
+=begin
     @temp_params = { "amount"=>{"amount"=>params[:amount_box][:amount_box]}, "room_type"=>{"type"=>params[:room_type]["type_box"]}, "date"=>{"year"=>params[:date_box]["year"], "month"=>params[:date_box]["month"], "day"=>params[:date_box]["day"]}, "section"=>{"sec"=>params[:section][:sec_box]}, "commit"=>"search room"}
     redirect_to search_result_path(@temp_params)
+=end
+    redirect_to about_path
   end
   
 end
