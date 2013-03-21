@@ -52,6 +52,7 @@ class RoomsController < ApplicationController
       @roomtype = DetailRoom.all_types
       @droom = DetailRoom.find(params[:id])
       @rooms= Room.find_all_by_roomname(@droom.roomname)
+      @tool = Tool.find(params[:id])
       @time = Room.all_times
       @day_list = Room.all_days
       @box_times = Room.time_to_section
