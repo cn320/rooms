@@ -231,5 +231,9 @@ class RoomsController < ApplicationController
       end
     end
   end
+
+  def search_box
+    redirect_to login_path
+  end
   
 end

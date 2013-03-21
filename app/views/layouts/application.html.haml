@@ -87,20 +87,20 @@
                 %legend
                   %i.icon-search
                   Search Room
-                = form_tag search_result_path ,:method=>:get do
+                = form_tag search_box_path ,:method=>:get do
 
                   = label :amount, :a, 'Amount-box'
                   = text_field :amount, 'amount-box'
                   
-                  = label :room_type, :t, 'Type-box'
-                  = select :room_type, :tl, @roomtype
+                  = label :room_type, :type_box, 'Type-box'
+                  = select :room_type, :type_box, @roomtype
 
                   = label :day, :day, 'Day'
 
                   - if @admin == nil
-                    = select_date Time.now+1.days,:field_name => 'due'
+                    = select_date Time.now+1.days,:prefix => 'date-box'
                   - else
-                    = select_date Time.now,:field_name => 'due'
+                    = select_date Time.now,:prefix => 'date-box'
 
                   = label :section, 'Section'
                   = select :section, nil, @time

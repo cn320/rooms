@@ -38,7 +38,7 @@ RoomManagement::Application.routes.draw do
   match '/login' => 'staffs#login', :as => :login , :via=>:get
   match '/logout' => 'staffs#logout', :as => :logout , :via=>:get
   match "/reserves/new/:id" => "reserves#new" , :as=>:new_reserve , :via=>:get
-  
+  match '/search_box' => 'rooms#search_box', :via => :get
   #match "/rooms/:roomname" => "rooms#show" , :as=>:show_room ,:via=>:get
  # match "/movies/same_director/:id" => "movies#same_director" , :as=>:same_director , :via=>:get
   #match "/movies/same_director/:id" => "movies#same_director" , :as=>:same_director , :via=>:get

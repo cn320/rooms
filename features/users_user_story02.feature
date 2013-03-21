@@ -30,7 +30,7 @@ Background: Startup with Homepage
   Then I should be on the search_result page
   And I should see "ENGR303"
   When I follow "จองห้อง"
-  Then I should be on the room id "5" status page
+  Then I should be on the room id "6" status page
   And I should see all of word '"ENGR303" "8.00-9.30"'
 
 Scenario: reserve the engr303 with day is not today

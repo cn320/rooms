@@ -16,7 +16,7 @@ RoomManagement::Application.routes.draw do
 
   get "staffs/reserve"
 
-  resources :staffs , :except => [:index, :show, :update,:login,:logout] do
+  resources :staffs do
     collection do
       post 'submit'
       get 'room_list'

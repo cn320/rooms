@@ -1,19 +1,17 @@
-%h3 ผลการค้นหาห้องว่าง  #{@free_rooms.count}
+%h3 ผลการค้นหาห้องว่าง  พบห้องว่าง : #{@free_rooms.count} ห้อง
+%h4 ณ.วันที่ #{@date_str} เวลา: #{@time_select} จำนวนคน: #{@size_select}
 
 %table{:border => "1" ,:width => "300px"}
   %thead
     %tr
       %th{:width => "100px"} ชื่อห้อง
-      %th{:width => "100px"} จำนวนคน
-      %th วันเวลา
+      %th{:width => "100px"} จำนวนคนที่รองรับ
       %th จองห้อง
   %tbody
     - @free_rooms.each_with_index do |room,i|
       %tr
         %td{:width => "100px"}= room.roomname
         %td{:width => "100px",:align => "center"}= @size[i]
-        %td= room.day 
-        %td= room.eighth
         %td= link_to "จองห้อง", room_path(room)
        
         

@@ -44,7 +44,7 @@ Background: Startup with Homepage
   | ENGR306      | tuesday   | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
   | ENGR306      | wednesday | free  |  free  | busy  | free   | busy  | busy  | free    |  free  |
   | ENGR306      | thursday  | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
-  | ENGR306      | friday    | busy  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR306      | friday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
   | ENGR306      | saturday  | free  |  free  | busy  | free   | free  | busy  | busy    |  free  |
   | ENGR306      | sunday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
   | ENGR307      | monday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
@@ -82,9 +82,10 @@ Background: Startup with Homepage
   When I follow "ค้นหาห้องว่าง"
   Then I should be on the search page
 
-Scenario: Search date today
+Scenario: Search date today 
   When I search with type:"classroom" , amount:"20" , date:"today" , time:"8.00-9.30"
   Then I should be on the search_result page
+  And I should see "ENGR"
 
 Scenario: Search date yesterday
   When I search with type:"classroom" , amount:"20" , date:"yesterday" , time:"8.00-9.30"

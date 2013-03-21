@@ -30,7 +30,7 @@ Background: Startup with Homepage
   When I login with "naidkub" and "honhon"
   Then I should be on the staff page
   Given I am on the search page
-  When I search with type:"classroom" , amount:"25" , date:"not today" , time:"8.00-9.30"
+  When I search with type:"classroom" , amount:"25" , date:"tomorrow" , time:"8.00-9.30"
   Then I should be on the search_result page
   And I should see "ENGR303"
   When I follow "จองห้อง"

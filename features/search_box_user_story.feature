@@ -1,5 +1,5 @@
-Feature: Searching for room status and free time
-  As a staff
+Feature: Searching for room status and free time in search-box
+  As a Users And Staff
   So that I can see every room status
   I want to see room details and free time from database
 
@@ -44,7 +44,7 @@ Background: Startup with Homepage
   | ENGR306      | tuesday   | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
   | ENGR306      | wednesday | free  |  free  | busy  | free   | busy  | busy  | free    |  free  |
   | ENGR306      | thursday  | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
-  | ENGR306      | friday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
+  | ENGR306      | friday    | busy  |  free  | busy  | free   | free  | busy  | free    |  free  |
   | ENGR306      | saturday  | free  |  free  | busy  | free   | free  | busy  | busy    |  free  |
   | ENGR306      | sunday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
   | ENGR307      | monday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
@@ -73,6 +73,18 @@ Background: Startup with Homepage
   | teacher | naidkub | honhon | superhon | 0878908766 | hon@hon.com | classroom | ENGR305 | 2015-03-13 | 11.00 | 12.30 | play game | hon | 20 | microphone,television |
   | teacher | naidkub | honhon | superhon | 0878908766 | hon@hon.com | classroom | ENGR306 | 2015-03-13 | 11.00 | 12.30 | play game | hon | 20 | microphone,television |
 
+
+Scenario: As users
+  Given I am on the home page
+  And I should see "ค้นหาห้องว่าง"
+  When I follow "ค้นหาห้องว่าง"
+  Then I should be on the search page
+  When I search with type:"classroom" , amount:"20" , y-m-d:"2015-March-13" , time:"18.00-21.00"
+  Then I should be on the search_result page
+  And I should see all of word '"ENGR305" "ENGR307"'
+  And I should notsee all of word '"ENGR303" "ENGR304" "ENGR306"' 
+
+Scenario: As Staff
   And I am on the log in page
   When I login with "naidkub" and "honhon"
   Then I should be on the staff page
@@ -82,34 +94,9 @@ Background: Startup with Homepage
   When I follow "ค้นหาห้องว่าง"
   Then I should be on the search page
 
-Scenario: Search date today 
-  When I search with type:"classroom" , amount:"20" , date:"today" , time:"8.00-9.30"
+  When I search with type:"classroom" , amount:"20" , date:"today" , time:"18.00-21.00"
   Then I should be on the search_result page
-  And I should see all of word '"ENGR305" "ENGR306" "ENGR307"'
-  And I should notsee all of word '"ENGR303" "ENGR304"' 
-
-Scenario: Search date yesterday
-  When I search with type:"classroom" , amount:"20" , date:"yesterday" , time:"8.00-9.30"
-  Then I should be on the search page
-  And I should see "Can not reserve room with date past"
-
-Scenario: Search not found
-  When I search with type:"classroom" , amount:"" , y-m-d:"2015-March-13" , time:"11.00-12.30"
-  Then I should be on the search page
-  And I should see "Can not found available room"
-  
-
-Scenario: Search found with out amount
-  When I search with type:"classroom" , amount:"" , y-m-d:"2015-March-13" , time:"18.00-21.00"
-  Then I should be on the search_result page
-  And I should see all of word '"ENGR305" "ENGR306" "ENGR307"'
-  And I should notsee all of word '"ENGR303" "ENGR304"' 
-
-Scenario: Search found with amount
-  When I search with type:"classroom" , amount:"20" , y-m-d:"2015-March-13" , time:"18.00-21.00"
-  Then I should be on the search_result page
-  And I should see all of word '"ENGR305" "ENGR307"'
-  And I should notsee all of word '"ENGR303" "ENGR304" "ENGR306"' 
+  And I should see "ENGR"
 
  
 
