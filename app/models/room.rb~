@@ -18,13 +18,36 @@ class Room < ActiveRecord::Base
     str = arr["year"]+"-"+arr["month"]+"-"+arr["day"]
     return Date.parse str
   end
+  
  
-  def self.find_with_day(obj,day)
+  def self.find_with_day_sec(obj,day,sec)
     free_day = obj
     free_result = []
     free_day.each_with_index do |item,i|
-      if free_day[i]["day"] == day
+      if free_day[i]["day"] == day && free_day[i][sec] == "free"
         free_result.push(free_day[i])
+      end
+    end
+    return free_result
+  end
+
+  def self.find_with_datetime(obj,date,start,finish)
+    free_result =[]
+    obj.each_with_index do |item,i|
+      reserf = Reserve.find_all_by_date_to_reserve(date)
+      if reserf != []
+        flag = false
+        reserf.each_with_index do |r,j|
+          if obj[i]["roomname"] == reserf[j]["roomname"] && start == reserf[j]["start_time"]
+          else
+            flag = true
+          end
+        end
+        if flag == true
+          free_result.push(obj[i])
+        end
+      else
+          free_result.push(obj[i])
       end
     end
     return free_result

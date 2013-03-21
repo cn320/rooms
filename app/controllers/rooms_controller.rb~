@@ -139,12 +139,16 @@ class RoomsController < ApplicationController
           @room = res.select do |r|  r.day == day  end
           @room[0].update_attributes!(temp_room)
         end
+        tool = params[:tool]
+        tool["roomname"] = params[:droom]["roomname"]
+        @room_tool = Tool.find_by_roomname(old_name)
+        @room_tool.update_attributes!(tool)
         @droom.update_attributes!(params[:droom])
         flash[:notice] = "update room sucessfully"
         redirect_to staff_path(@droom)
       else
-        flash[:notice] = "can not update room"
-        redirect_to staffs_path
+        flash[:notice] = "Can not modify roomname,Already roomname in database"
+        redirect_to room_list_staffs_path
       end
     end
   end
@@ -165,6 +169,8 @@ class RoomsController < ApplicationController
         @room = @room.select do |i| i.day==day end
         @room[0].destroy
       end
+      @tool = Tool.find(params[:id])
+      @tool.destroy
       @droom.destroy
       flash[:notice] = "Delete success"
       redirect_to room_list_staffs_path
@@ -179,19 +185,19 @@ class RoomsController < ApplicationController
   @admin = session[:admin]
   end
 
-  #search result and show result
+
   def search_result
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @day_list = Room.all_days
-    #@time_select = Room.time_to_section[0][params[:section][0]]
-    @time_select = params[:section][0]
-    @size_select = params[:amount][0]
+    time_index = Room.time_to_section
+    time_index = time_index[0][params[:section]["sec"]]
+    @time_select = params[:section]["sec"]
+    @size_select = params[:amount][:amount]
     day = params[:date]["day"]
     month = params[:date]["month"]
     date_str = params[:date]["year"]+"-"+ month.rjust(2,'0')+"-"+day.rjust(2,'0')
     @date_select = date_str
-    #@day_select = (Date.parse date_str).strftime("%A").downcase
     if date_str < Date.today.to_s
       flash[:notice] = "Can not reserve room with date past"
       redirect_to search_path
@@ -199,14 +205,12 @@ class RoomsController < ApplicationController
       flash[:notice] = "Can not reserve room with date today, please contact staff"
       redirect_to search_path
     else
+      day_str = Date.parse date_str
+      day_str = day_str.strftime("%A")
+      time_str = @time_select.split("-")
       @free_rooms = DetailRoom.find_with_type(params[:room_type]["type"])
-      @free_rooms = Form.find_with_datetime(@free_rooms,date_str,@time_select)
-    #@free_rooms = Room.find_with_day(@free_rooms,@day_select)
-    #if @time_select != nil
-      #@free_rooms = Room.find_with_time(@free_rooms,@time_select)
-    #else 
-    #  @time_select = "All Free Time"
-    #end
+      @free_rooms = Room.find_with_day_sec(@free_rooms,day_str.downcase,time_index)
+      @free_rooms = Room.find_with_datetime(@free_rooms,date_str,time_str[0],time_str[1])
       if @size_select != ""
         @free_rooms = Room.find_with_amount(@free_rooms,@size_select)
       else
@@ -220,12 +224,11 @@ class RoomsController < ApplicationController
         @free_rooms.each_with_index do |room,i|
           @size[i] = DetailRoom.find_by_roomname(room.roomname).amount
         end
-    #@time_select = params[:section][0]
         session[:time_select] = @time_select
         session[:date_select] = @date_select
+ 
       end
     end
   end
-
   
 end

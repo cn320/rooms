@@ -3,14 +3,13 @@
 
 = form_tag search_result_path ,:method=>:get do
 
-  = label :amount, nil, 'Amount'
-  = text_field :amount, nil
+  = label :amount, :amount, 'Amount'
+  = text_field :amount, 'amount'
 
   = label :room_type, :type, 'Type'
   = select :room_type, :type, @roomtype
 
   = label :day, :day, 'Day'
-  = select :day, :day, @day_list
 
   - if @admin == nil
     = select_date Time.now+1.days
@@ -18,7 +17,7 @@
     = select_date Time.now
 
   = label :section, 'Section'
-  = select :section, nil, @time
+  = select :section, :sec, @time
   %br
   = submit_tag 'search room'
 

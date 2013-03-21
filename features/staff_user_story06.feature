@@ -20,6 +20,11 @@ Background: Startup with Homepage
   | ENGR303      | friday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
   | ENGR303      | saturday  | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
   | ENGR303      | sunday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  | 
+ 
+  Given the following tools exist:
+  | roomname     | amplifier | microphone | computer | overhead_projector | lcd_projector | television | voice_recorder | video_recorder | visualizer | loudspeaker |
+  | ENGR303      | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+
 
   Given the following staff exist:
   | username     | password |
@@ -30,6 +35,7 @@ Background: Startup with Homepage
   Then I should be on the staff page
   When I follow "รายชื่อห้องที่มีทั้งหมดในระบบ"
   Then I should be on the room list page
+  And I should see "ดูข้อมูลห้อง ENGR303"
   When I follow "ดูข้อมูลห้อง ENGR303"
   Then I should be on the "ENGR303" room detail page
 

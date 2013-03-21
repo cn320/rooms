@@ -20,27 +20,41 @@ class Room < ActiveRecord::Base
   end
   
  
-  def self.find_with_day(obj,day)
+  def self.find_with_day_sec(obj,day,sec)
     free_day = obj
     free_result = []
     free_day.each_with_index do |item,i|
-      if free_day[i]["day"] == day
+      if free_day[i]["day"] == day && free_day[i][sec] == "free"
         free_result.push(free_day[i])
       end
     end
     return free_result
   end
 
-  def self.find_with_time(obj,time)
-    free_day = obj
+  def self.find_with_datetime(obj,date,start,finish)
     free_result = []
-    free_day.each_with_index do |item,i|
-      if free_day[i][time] == "free"
-        free_result.push(free_day[i])
+    obj.each_with_index do |room,i|
+        reserf = Reserve.find_all_by_roomname(obj[i]["roomname"])
+        if reserf == [] || reserf == nil
+          free_result.push(obj[i])
+        else
+          flag = true
+          reserf.each_with_index do |r,j|
+            if reserf[j]["date_to_reserve"].to_s == date
+              if reserf[j]["start_time"].to_s == start.to_s && reserf[j]["finish_time"].to_s == finish.to_s
+                flag = false
+              end
+            end
+          end
+          if flag == true
+            free_result.push(obj[i])
+          end
+        end    
       end
-    end
-    return free_result
+      return free_result
   end
+
+ 
 
   def self.find_with_amount(free,amount)
     max = 0

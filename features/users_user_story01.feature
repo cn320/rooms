@@ -26,12 +26,12 @@ Background: Startup with Homepage
   And I should see "ค้นหาห้องว่าง"
   When I follow "ค้นหาห้องว่าง"
   Then I should be on the search page
-  When I search with type:"classroom" , amount:"25" , day:"monday" , time:"8.00-9.30"
+  When I search with type:"classroom" , amount:"" , y-m-d:"2015-March-13" , time:"18.00-21.00"
   Then I should be on the search_result page
   And I should see "ENGR303"
 
 Scenario: See the engr303 status
   When I follow "จองห้อง"
-  Then I should be on the room id "1" status page
-  And I should see all of word '"ENGR303" "monday" "amplifier"'
+  Then I should be on the room id "5" status page
+  And I should see all of word '"ENGR303" "18.00-21.00" "amplifier" "2015-03-13"'
   And I should not see "สวัสดี คุณ"

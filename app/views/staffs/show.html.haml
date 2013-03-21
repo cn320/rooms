@@ -12,7 +12,7 @@
       %th 15.00-16.30
       %th 16.30-18.00
       %th 18.00-21.00
-      %th จองห้อง
+      
   %tbody
     - @rooms.each do |room|
       %tr
@@ -25,7 +25,7 @@
         %td= room.sixth
         %td= room.seventh
         %td= room.eighth
-        %td=link_to "จองห้อง", room_path(room)
+        
 
 %br 
 %h5 รายชื่ออุปกรณ์ประจำห้อง : #{@room_tool.roomname}

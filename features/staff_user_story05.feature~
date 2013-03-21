@@ -32,6 +32,6 @@ Background: Startup with Homepage
 
 Scenario: See the engr303 status
   Given I am on the room id "1" status page
-  Then I should see all of word '"ENGR303" "monday" "amplifier" "แก้ไขข้อมูลห้อง"'
+  Then I should see all of word '"ENGR303" "monday" "amplifier"'
   
 

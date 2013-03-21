@@ -30,12 +30,12 @@ Background: Startup with Homepage
   When I login with "naidkub" and "honhon"
   Then I should be on the staff page
   Given I am on the search page
-  When I search with type:"classroom" , amount:"25" , day:"monday" , time:"8.00-9.30"
+  When I search with type:"classroom" , amount:"25" , date:"tomorrow" , time:"8.00-9.30"
   Then I should be on the search_result page
   And I should see "ENGR303"
   When I follow "จองห้อง"
-  Then I should be on the room id "1" status page
-  And I should see all of word '"ENGR303" "monday" "amplifier"'
+  Then I should be on the room id "5" status page
+  And I should see all of word '"ENGR303" "8.00-9.30"'
 
 Scenario: reserve the engr303 with day is not today
   

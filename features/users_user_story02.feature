@@ -26,12 +26,12 @@ Background: Startup with Homepage
   And I should see "ค้นหาห้องว่าง"
   When I follow "ค้นหาห้องว่าง"
   Then I should be on the search page
-  When I search with type:"classroom" , amount:"25" , day:"monday" , time:"8.00-9.30"
+  When I search with type:"classroom" , amount:"25" , date:"tomorrow" , time:"8.00-9.30"
   Then I should be on the search_result page
   And I should see "ENGR303"
   When I follow "จองห้อง"
-  Then I should be on the room id "1" status page
-  And I should see all of word '"ENGR303" "monday" "amplifier"'
+  Then I should be on the room id "5" status page
+  And I should see all of word '"ENGR303" "8.00-9.30"'
 
 Scenario: reserve the engr303 with day is not today
   
@@ -55,7 +55,7 @@ Scenario: reserve the engr303 with day is not today
   And I press "submit"
   Then I should be on the print page
   And I should see "Create form and reserve success"
-  And I should see all of word '"ENGR303" "teacher" "2033-03-13" "8.00" "9.30" "microphone"'
+  And I should see all of word '"ENGR303" "8.00" "9.30"'
   
   
 Scenario: reserve the engr303 with date is today

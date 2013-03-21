@@ -9,7 +9,7 @@ Background: Startup with Staffpage
   Given the following detail_rooms exist:
   | roomname     | amount    | room_type |
   | ENGR303      | 30        | classroom |
-  | ENGR304      | 30        | classroom |
+  
 
   Given the following staff exist:
   | username     | password |
@@ -48,18 +48,19 @@ Scenario: Modify room data that not the same name exist in database
   Then I should be on the "ENGR305" room detail page
   And I should not see "ENGR303"
 
-  Scenario: Modify room data that have the same name exist in database 
+Scenario: Modify room data that have the same name exist in database 
   When I follow "ดูข้อมูลห้อง ENGR303"
   Then I should be on the "ENGR303" room detail page
   When I follow "แก้ไขข้อมูลห้อง ENGR303"
   Then I should be on the edit room "ENGR303" page
   And I should see "ENGR303"
-  When I fill in "Roomname" with "ENGR305"
+  When I fill in "Roomname" with "ENGR304"
   And I fill in "Amount" with "100"
-  And I select "classroom" from "droom_room_type"
   And I fill 1 in all of tools
   And I press "ยืนยันการแก้ไขข้อมูลห้อง"
   Then I should be on the room list page
-  And I should see "Can not modify to this roomname"
-
+  And I should see "ENGR303"
+  And I should see "ENGR304"
+  And I should see "Can not modify roomname,Already roomname in database"
+  
   

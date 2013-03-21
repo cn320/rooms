@@ -89,18 +89,18 @@
                   Search Room
                 = form_tag search_result_path ,:method=>:get do
 
-                  = label :amount, nil, 'Amount'
-                  = text_field :amount, 'amount'
+                  = label :amount, :a, 'Amount-box'
+                  = text_field :amount, 'amount-box'
                   
-                  = label :room_type, nil, 'Type'
-                  = select :room_type, nil, @roomtype
+                  = label :room_type, :t, 'Type-box'
+                  = select :room_type, :tl, @roomtype
 
                   = label :day, :day, 'Day'
 
                   - if @admin == nil
-                    = select_date Time.now+1.days
+                    = select_date Time.now+1.days,:field_name => 'due'
                   - else
-                    = select_date Time.now
+                    = select_date Time.now,:field_name => 'due'
 
                   = label :section, 'Section'
                   = select :section, nil, @time

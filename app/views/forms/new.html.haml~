@@ -39,16 +39,16 @@
   
   %br
   ห้อง ENGR&nbsp :
-  %input{:name => "form[roomname]", :type => "text", :value => "#{@room.roomname}"}/
+  %input{:name => "form[roomname]", :type => "text", :value => "#{@room.roomname}",:readonly => "readonly"}/
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   ในวันที่&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-  %input{:name => "form[date_to_reserve]", :type => "date", ,:value => "#{@date_select}"}/
+  %input{:name => "form[date_to_reserve]", :type => "date", :value => "#{@date_select}",:readonly => "readonly"}/
 
   %br
   เวลา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-  %input{:name => "form[start_time]", :type => "text" ,:value => "#{@starttime}"}/
+  %input{:name => "form[start_time]", :type => "text" ,:value => "#{@starttime}",:readonly => "readonly"}/
   น.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ถึงเวลา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-  %input{:name => "form[finish_time]", :type => "text",:value => "#{@endtime}"}/
+  %input{:name => "form[finish_time]", :type => "text",:value => "#{@endtime}",:readonly => "readonly"}/
   น.
   %br 
   เพื่อใช้ใน &nbsp;&nbsp;&nbsp;:

@@ -49,17 +49,48 @@ end
 Then /I should see room status/ do
 end
 
-Then /I should see all of word '(.*)'/ do |text|
+Then /I should (not)?see all of word '(.*)'/ do |no,text|
   word = text.split(" ")
   word.each do |w|
-    step %{I should see #{w}}
+    if no == "not"
+      step %{I should #{no} see #{w}}
+    else
+      step %{I should see #{w}}
+    end
   end
 end
 
-When /I search with type:"(.*)" , amount:"(.*)" , day:"(.*)" , time:"(.*)"/ do |type,amount,day,section|
+When /I search with type:"(.*)" , amount:"(.*)" , date:"(.*)" , time:"(.*)"/ do |type,amount,date,section|
+  if date == "today"
+    d = Date.today
+  elsif date == "tomorrow"
+    d = Date.today+1
+  else
+    d = Date.today-1
+  end
+  day = d.day.to_s
+  month = d.strftime("%B")
+  year = d.strftime("%G")
   step %{I fill in "Amount" with "#{amount}"}
   step %{I select "#{type}" from "room_type_type"}
-  step %{I select "#{day}" from "day_day"}
+  step %{I select "#{day}" from "date_day"}
+  step %{I select "#{month}" from "date_month"}
+  step %{I select "#{year}" from "date_year"}
+  step %{I select "#{section}" from "section_sec"}
+  step %{I press "search room"}
+end
+
+When /I search with type:"(.*)" , amount:"(.*)" , y-m-d:"(.*)" , time:"(.*)"/ do |type,amount,date,section|
+  date = date.split("-")
+  day = date[2]
+  month = date[1]
+  year = date[0]
+  step %{I fill in "Amount" with "#{amount}"}
+  step %{I select "#{type}" from "room_type_type"}
+  step %{I select "#{day}" from "date_day"}
+  step %{I select "#{month}" from "date_month"}
+  step %{I select "#{year}" from "date_year"}
+  step %{I select "#{section}" from "section_sec"}
   step %{I press "search room"}
 end
 
