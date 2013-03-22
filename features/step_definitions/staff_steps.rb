@@ -27,3 +27,6 @@ Then /I should see 7 days/ do
   step %{I should see "saturday"}
   step %{I should see "sunday"}
 end
+
+
+

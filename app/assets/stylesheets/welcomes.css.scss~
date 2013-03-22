@@ -4,8 +4,8 @@
 
 #cf {
   position:relative;
-  height:281px;
-  width:450px;
+  height:500px;
+  width:700px;
   margin:0 auto;
 }
 
@@ -79,8 +79,8 @@
 
 #cf2 {
   position:relative;
-  height:281px;
-  width:450px;
+  height:500px;
+  width:700px;
   margin:0 auto;
 }
 #cf2 img {
@@ -247,10 +247,10 @@
  0% {
    opacity:1;
  }
- 37% {
+ 30% {
    opacity:1;
  }
- 62% {
+ 60% {
    opacity:0;
  }
  100% {
@@ -262,10 +262,10 @@
  0% {
    opacity:1;
  }
- 37% {
+ 30% {
    opacity:1;
  }
- 62% {
+ 60% {
    opacity:0;
  }
  100% {
@@ -277,14 +277,14 @@
  0% {
    opacity:1;
  }
- 37% {
+ 30% {
    opacity:1;
  }
- 62% {
+ 60% {
    opacity:0;
  }
  100% {
-   opacity:0;
+   opacity:1;
  }
 }
 
@@ -292,14 +292,14 @@
  0% {
    opacity:1;
  }
- 37% {
+ 30% {
    opacity:1;
  }
- 62% {
+ 60% {
    opacity:0;
  }
  100% {
-   opacity:0;
+   opacity:1;
  }
 }
 

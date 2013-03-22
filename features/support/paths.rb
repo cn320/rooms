@@ -41,7 +41,12 @@ module NavigationHelpers
       reserves_path
     when /^the reserve detail id:"(.*)" page$/
       reserf_path(Reserve.find($1))
-
+    when /^the pic list page$/
+      welcomes_path
+    when /^the add new pic page$/
+      new_welcome_path
+    when /^the pic id "(.*)" change state page$/
+      edit_welcome_path(Welcome.find($1))
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
