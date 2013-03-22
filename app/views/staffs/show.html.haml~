@@ -17,9 +17,19 @@
     - @rooms.each do |room|
       %tr
         - if room.day == "monday"
-          %td= วันจันทร์
-        -else
-          %td= room.day
+          %td= "วันจันทร์"
+        - elsif room.day == "tuesday"
+          %td= "วันอังคาร"
+        - elsif room.day == "wednesday"
+          %td= "วันพุธ"
+        - elsif room.day == "thursday"
+          %td= "วันพฤหัสบดี"
+        - elsif room.day == "friday"
+          %td= "วันศุกร์"
+        - elsif room.day ==  "saturday"
+          %td= "วันเสาร์"
+        - else 
+          %td= "วันอาทิตย์"        
         %td= room.first
         %td= room.second
         %td= room.third
@@ -32,16 +42,17 @@
 
 %br 
 %h5 รายชื่ออุปกรณ์ประจำห้อง : #{@room_tool.roomname}
-%p amplifier #{@room_tool.amplifier} เครื่อง
-%p microphone #{@room_tool.microphone} เครื่อง
-%p computer #{@room_tool.computer} เครื่อง
-%p overhead_projector #{@room_tool.overhead_projector} เครื่อง
-%p lcd_projector #{@room_tool.lcd_projector} เครื่อง
-%p television #{@room_tool.television} เครื่อง
-%p voice_recorder #{@room_tool.voice_recorder} เครื่อง
-%p video_recorder #{@room_tool.video_recorder} เครื่อง
-%p visualizer #{@room_tool.visualizer} เครื่อง
-%p loudspeaker #{@room_tool.loudspeaker} เครื่อง
+%p เครื่องขยายเสียง (amplifier) #{@room_tool.amplifier} เครื่อง
+%p ไมโครโฟน (microphone) #{@room_tool.microphone} เครื่อง
+%p เครื่องคอมพิวเตอร์ (computer) #{@room_tool.computer} เครื่อง
+%p โอเวอร์เฮด โปรเจกเตอร์ (overhead_projector) #{@room_tool.overhead_projector} เครื่อง
+%p เครื่องฉาย LCD (lcd_projector) #{@room_tool.lcd_projector} เครื่อง
+%p โทรทัศน์ (television) #{@room_tool.television} เครื่อง
+%p เครื่องเล่นและบันทึกเสียง (voice_recorder) #{@room_tool.voice_recorder} เครื่อง
+%p ครื่องเล่นวิดีโอเทป (video_recorder) #{@room_tool.video_recorder} เครื่อง
+%p เครื่องวิชั่วไรเซอร์ (visualizer) #{@room_tool.visualizer} เครื่อง
+%p ลำโพง (loudspeaker) #{@room_tool.loudspeaker} เครื่อง
 %br
 = link_to "แก้ไขข้อมูลห้อง #{@droom.roomname}", edit_room_path(@droom)
+===========================================
 = link_to "ลบข้อมูลห้อง #{@droom.roomname}", room_path(@droom), method: :delete, data: { confirm: 'Are you sure?' }

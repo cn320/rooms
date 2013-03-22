@@ -71,7 +71,7 @@ When /I search with type:"(.*)" , amount:"(.*)" , date:"(.*)" , time:"(.*)"/ do 
   day = d.day.to_s
   month = d.strftime("%B")
   year = d.strftime("%G")
-  step %{I fill in "Amount" with "#{amount}"}
+  step %{I fill in "Amount of people" with "#{amount}"}
   step %{I select "#{type}" from "room_type_type"}
   step %{I select "#{day}" from "date_day"}
   step %{I select "#{month}" from "date_month"}
@@ -85,7 +85,7 @@ When /I search with type:"(.*)" , amount:"(.*)" , y-m-d:"(.*)" , time:"(.*)"/ do
   day = date[2]
   month = date[1]
   year = date[0]
-  step %{I fill in "Amount" with "#{amount}"}
+  step %{I fill in "Amount of people" with "#{amount}"}
   step %{I select "#{type}" from "room_type_type"}
   step %{I select "#{day}" from "date_day"}
   step %{I select "#{month}" from "date_month"}
@@ -130,7 +130,6 @@ end
 
 Then /I fill 1 in all of tools/ do
   Tool.all_tools.each do |tool|
-    tool_str = tool.to_s.capitalize
-    step %{I fill in "#{tool_str}" with "1"}
+    step %{I fill in "tool[#{tool}]" with "1"}
   end
 end

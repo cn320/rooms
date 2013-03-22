@@ -128,9 +128,8 @@ When /I search in box with type:"(.*)" , amount:"(.*)" , y-m-d:"(.*)" , time:"(.
   step %{I press "Search"}
 end
 
-Then /I fill 1 in all of tools/ do
+Then /I fill "(.*)" in all of tools/ do |value|
   Tool.all_tools.each do |tool|
-    tool_str = tool.to_s.capitalize
-    step %{I fill in "#{tool_str}" with "1"}
+    step %{I fill in "tool[#{tool}]" with "#{value}"}
   end
 end

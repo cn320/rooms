@@ -1,21 +1,21 @@
 %p#notice= notice
-%h3 ข้อมูลห้อง #{@room.roomname}  Date: #{@date_select} Time : #{@time_select}
+%h3 ข้อมูลห้อง #{@room.roomname}  ณ.วันที่ : #{@date_select} เวลา : #{@time_select}
 - if @admin != nil
   %h5สวัสดี คุณ #{@admin}
 %br
-%h5 จำนวนคน : #{@size}
+%h5 จำนวนคน : #{@size} คน
 %br
 %h5 รายชื่ออุปกรณ์ประจำห้อง : #{@room_tool.roomname}
-%p amplifier #{@room_tool.amplifier} เครื่อง
-%p microphone #{@room_tool.microphone} เครื่อง
-%p computer #{@room_tool.computer} เครื่อง
-%p overhead_projector #{@room_tool.overhead_projector} เครื่อง
-%p lcd_projector #{@room_tool.lcd_projector} เครื่อง
-%p television #{@room_tool.television} เครื่อง
-%p voice_recorder #{@room_tool.voice_recorder} เครื่อง
-%p video_recorder #{@room_tool.video_recorder} เครื่อง
-%p visualizer #{@room_tool.visualizer} เครื่อง
-%p loudspeaker #{@room_tool.loudspeaker} เครื่อง
+%p เครื่องขยายเสียง (amplifier) #{@room_tool.amplifier} เครื่อง
+%p ไมโครโฟน (microphone) #{@room_tool.microphone} เครื่อง
+%p เครื่องคอมพิวเตอร์ (computer) #{@room_tool.computer} เครื่อง
+%p โอเวอร์เฮด โปรเจกเตอร์ (overhead_projector) #{@room_tool.overhead_projector} เครื่อง
+%p เครื่องฉาย LCD (lcd_projector) #{@room_tool.lcd_projector} เครื่อง
+%p โทรทัศน์ (television) #{@room_tool.television} เครื่อง
+%p เครื่องเล่นและบันทึกเสียง (voice_recorder) #{@room_tool.voice_recorder} เครื่อง
+%p เครื่องเล่นวิดีโอเทป (video_recorder) #{@room_tool.video_recorder} เครื่อง
+%p เครื่องวิชั่วไรเซอร์ (visualizer) #{@room_tool.visualizer} เครื่อง
+%p ลำโพง (loudspeaker) #{@room_tool.loudspeaker} เครื่อง
 
 
 = link_to "ทำรายการจองห้อง #{@room.roomname}", new_form_path

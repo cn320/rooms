@@ -41,12 +41,13 @@ Scenario: Modify room data that not the same name exist in database
   When I follow "แก้ไขข้อมูลห้อง ENGR303"
   Then I should be on the edit room "ENGR303" page
   And I should see "ENGR303"
-  When I fill in "Roomname" with "ENGR305"
-  And I fill in "Amount" with "100"
-  And I fill 1 in all of tools
+  When I fill in "droom[roomname]" with "ENGR305"
+  And I fill in "droom[amount]" with "100"
+  And I fill "2" in all of tools
   And I press "ยืนยันการแก้ไขข้อมูลห้อง"
   Then I should be on the "ENGR305" room detail page
   And I should not see "ENGR303"
+  And I should see "2"
 
 Scenario: Modify room data that have the same name exist in database 
   When I follow "ดูข้อมูลห้อง ENGR303"
@@ -54,9 +55,9 @@ Scenario: Modify room data that have the same name exist in database
   When I follow "แก้ไขข้อมูลห้อง ENGR303"
   Then I should be on the edit room "ENGR303" page
   And I should see "ENGR303"
-  When I fill in "Roomname" with "ENGR304"
-  And I fill in "Amount" with "100"
-  And I fill 1 in all of tools
+  When I fill in "droom[roomname]" with "ENGR304"
+  And I fill in "droom[amount]" with "100"
+  And I fill "2" in all of tools
   And I press "ยืนยันการแก้ไขข้อมูลห้อง"
   Then I should be on the room list page
   And I should see "ENGR303"

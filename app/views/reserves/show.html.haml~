@@ -31,5 +31,7 @@
   = link_to 'ปฏิเสธคำร้องขอการจองห้อง',  reserves_path
 %br
 %br
-= link_to 'ปฏิเสธคำร้องขอการจองห้อง', @reserf, method: :delete, data: { confirm: 'Are you sure?' }
+= link_to 'ลบคำร้องขอการจองห้อง', @reserf, method: :delete, data: { confirm: 'Are you sure?' }
+%br
+%br
 = link_to 'Back', reserves_path

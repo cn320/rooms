@@ -39,7 +39,13 @@ Background: Startup with Homepage
 Scenario: See room detail
   When I am on the "ENGR303" room detail page
   Then I should see "ENGR303"
-  And I should see 7 days
+  And I should see "วันจันทร์"
+  And I should see "วันอังคาร"
+  And I should see "วันพุธ"
+  And I should see "วันพฤหัสบดี"
+  And I should see "วันศุกร์"
+  And I should see "วันเสาร์"
+  And I should see "วันอาทิตย์"
  
 
 

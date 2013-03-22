@@ -15,7 +15,12 @@
       %td= reserf.start_time
       %td= reserf.finish_time
       %td= reserf.roomname
-      %td= reserf.status
+      - if reserf.status == "nonconsidered"
+        %td= "ยังไม่พิจารณา"
+      - elsif reserf.status == "confirm"
+        %td= "อนุมัติแล้ว"
+      - else
+        %td= "ไม่อนุมัติ"
       - if reserf.status == "nonconsidered"
         %td= link_to "พิจารณาการจองห้อง #{reserf.roomname}", reserf_path(reserf)
       - else

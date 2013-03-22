@@ -1,5 +1,5 @@
 %p#notice= notice
-%h3 ข้อมูลห้อง #{@room.roomname}  Date: #{@room.day} Time : #{@time_select}
+%h3 ข้อมูลห้อง #{@room.roomname}  Date: #{@date_select} Time : #{@time_select}
 - if @admin != nil
   %h5สวัสดี คุณ #{@admin}
 %br

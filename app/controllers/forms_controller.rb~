@@ -28,7 +28,7 @@ class FormsController < ApplicationController
     time_arr = session[:time_select].split("-")
     @starttime = time_arr[0]
     @endtime = time_arr[1]
-    @dateselect = session[:date_select]
+    @date_select = session[:date_select]
     @this_type = DetailRoom.find_by_roomname(@room.roomname).room_type
     
   end

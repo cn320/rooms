@@ -1,4 +1,25 @@
-%p แสดงผลข้อมูลที่กรอกไป 
-%p ปริ๊นหน้านี้
+%h3{:align => "center"} ข้อมูลการจองห้อง #{@form.roomname} 
+%h3{:align => "center"}ณ. วันที่ #{@form.date_to_reserve} ตั้งแต่เวลา #{@form.start_time} ถึง #{@form.finish_time}
+%br
 
-%h3 #{@form}  #{@form.roomname} #{@form.position} #{@form.date_to_reserve} #{@form.start_time} #{@form.finish_time} #{@form.require_tool}
+%h2 สถานะ : รอการยืนยันจากเจ้าหน้าที่ 
+
+%h5 รายละเอียดของการจอง
+%p ชื่อผู้จอง : #{@form.name}  #{@form.surname}
+%p ตำแหน่ง : #{@form.position}
+%p หน่วยงาน : #{@form.institution}
+%p เบอร์โทรศัพท์ :  #{@form.tel}    
+%p Email : #{@form.email}
+%p มีความประสงค์จะขอใช้ ห้อง : #{@form.roomname} ณ. วันที่ #{@form.date_to_reserve} ตั้งแต่เวลา #{@form.start_time} ถึง #{@form.finish_time}
+%p เพื่อใช้ใน : #{@form.because} 
+%p เรื่อง : #{@form.subject}
+%p จำนวนของผู้เข้าร่วม :  #{@form.amount_of_people}
+%br
+
+%h5 รายชื่ออุปกรณ์ที่ต้องการจะขอใช้ :  
+%p #{@form.require_tool}
+
+
+%h3 เมื่อเจ้าหน้าที่อนุมัติคำขอจองห้องของคุณ ระบบจะทำการส่งอีเมล์แจ้งกลับไปยังอีเมล์ที่ได้ระบุมา
+%h4 ขอบคุณที่ใช้บริการ หากมีข้อสงสัยหรือปัญหาใดๆ โปรดติดต่อห้องENGR501
+

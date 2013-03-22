@@ -1,7 +1,11 @@
 %h1 รายชื่อห้องที่มีทั้งหมดในระบบ
 
 - @roomtype.each do |type|
-  %h4 ประเภทของห้อง #{type}
+  - if type == "classroom" 
+    %h4 ประเภทของห้อง: ห้องเรียน
+  - else 
+    %h4 ประเภทของห้อง: ห้องประชุม
+
   %table{:border => "1" ,:width => "400px"}
     %thead
       %tr

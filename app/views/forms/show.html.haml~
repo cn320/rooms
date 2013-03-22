@@ -1,4 +1,14 @@
-%p แสดงผลข้อมูลที่กรอกไป 
-%p ปริ๊นหน้านี้
+%h3{:align => "center"} ข้อมูลการจองห้อง #{@form.roomname} 
+%h3{:align => "center"}ณ. วันที่ #{@form.date_to_reserve} ตั้งแต่เวลา #{@form.start_time} ถึง #{@form.finish_time}
+%br
 
-%h3 #{@form}  #{@form.roomname} #{@form.position} #{@form.date_to_reserve} #{@form.start_time} #{@form.finish_time}
+%h2 สถานะ : รอการยืนยันจากเจ้าหน้าที่ 
+
+%h5 รายละเอียดของการจอง
+%p ชื่อผู้จอง : #{@form.name}  #{@form.surname}
+%p ตำแหน่ง : #{@form.position}
+%p หน่วยงาน : #{@form.institution}
+%p เบอร์โทรศัพท์ :  #{@form.tel}   
+%p Email : #{@form.email}
+%p มีความประสงค์จะขอใช้ ห้อง : #{form.roomname} ณ. วันที่ #{@form.date_to_reserve} ตั้งแต่เวลา #{@form.start_time} ถึง #{@form.finish_time}
+

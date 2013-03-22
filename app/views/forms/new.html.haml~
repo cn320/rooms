@@ -35,7 +35,7 @@
   %input{:name => "form[email]", :type => "text"}/
   %br
   มีความประสงค์จะขอใช้&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  %input{:name => "form[roomtype]", :type => "text", :value => "#{@this_type}"}/
+  %input{:name => "form[roomtype]", :type => "text", :value => "#{@this_type}" ,:readonly => "readonly"}/
   
   %br
   ห้อง ENGR&nbsp :

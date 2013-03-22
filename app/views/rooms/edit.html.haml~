@@ -2,15 +2,21 @@
 
 = form_tag room_path(@droom), :method => :put do
 
-  = label :droom, :roomname, 'Roomname'
-  = text_field :droom, 'roomname'
-  
-  = label :droom, :amount, 'Amount'
-  = text_field :droom, 'amount'
-
-  = label :droom, :room_type, 'Roomtype'
-  = select :droom, :room_type, DetailRoom.all_types
-
+  ชื่อห้อง
+  %input{:name => 'droom[roomname]', :type => "text",:value => @droom.roomname}/
+  %br
+  ความจุของห้อง (คน)
+  %input{:name => 'droom[amount]', :type => "text",:value => @droom.amount}/
+  %br
+  ประเภทของห้อง
+  %select{:name => "droom[room_type]"}
+    - if @droom.room_type == "auduotorium"
+      %option{:value => "auditorium",:selected => "selected"} ห้องประชุม
+      %option{:value => "classroom"} ห้องเรียน
+    - else
+      %option{:value => "auditorium"} ห้องประชุม
+      %option{:value => "classroom",:selected => "selected"} ห้องเรียน
+ 
   %br
   - @rooms.each do |room|
     = room.day
@@ -23,8 +29,41 @@
       = hidden_field_tag "#{room.day}[#{time[1]}]",0
       = check_box_tag "#{room.day}[#{time[1]}]",1, room[time[1]] == "busy" ? true:false
       %br
-    %br  
-
+    %br
+ %br
+  รายการอุปรณ์ภายในห้อง: 
+  %br
+  เครื่องขยายเสียง (amplifier)
+  %input{:name => 'tool[amplifier]', :type => "text",:value => @tool.amplifier}/
+  %br
+  ไมโครโฟน (microphone)
+  %input{:name => 'tool[microphone]', :type => "text",:value => @tool.microphone}/
+  %br
+  เครื่องคอมพิวเตอร์ (computer)
+  %input{:name => 'tool[computer]', :type => "text",:value => @tool.computer}/
+  %br
+  โอเวอร์เฮด โปรเจกเตอร์ (overhead_projector)
+  %input{:name => 'tool[overhead_projector]', :type => "text",:value => @tool.overhead_projector}/
+  %br
+  เครื่องฉาย LCD (lcd_projector)
+  %input{:name => 'tool[lcd_projector]', :type => "text",:value => @tool.lcd_projector}/
+  %br
+  โทรทัศน์ (television)
+  %input{:name => 'tool[television]', :type => "text",:value => @tool.television}/
+  %br
+  เครื่องเล่นและบันทึกเสียง
+  %input{:name => 'tool[voice_recorder]', :type => "text",:value => @tool.voice_recorder}/
+  %br
+  เครื่องเล่นวิดีโอเทป (video_recorder)
+  %input{:name => 'tool[video_recorder]', :type => "text",:value => @tool.video_recorder}/
+  %br
+  เครื่องวิชั่วไรเซอร์
+  %input{:name => 'tool[visualizer]', :type => "text",:value => @tool.visualizer}/
+  %br
+  ลำโพง (loudspeaker)
+  %input{:name => 'tool[loudspeaker]', :type => "text",:value => @tool.loudspeaker}/
+  %br
+  %br
   = submit_tag 'ยืนยันการแก้ไขข้อมูลห้อง'
 
 = link_to 'Back', staffs_path

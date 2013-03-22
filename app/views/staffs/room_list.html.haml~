@@ -1,7 +1,12 @@
 %h1 รายชื่อห้องที่มีทั้งหมดในระบบ
 
 - @roomtype.each do |type|
-  %h4 ประเภทของห้อง #{type}
+  %h4 ประเภทของห้อง
+  - if type == "classroom" 
+    %h4 ประเภทของห้อง: ห้องเรียน
+  - else 
+    %h4 ประเภทของห้อง: ห้องประชุม
+
   %table{:border => "1" ,:width => "400px"}
     %thead
       %tr
@@ -13,5 +18,5 @@
         %tr
           %td{:width => "100px"}= room.roomname
           %td{:width => "100px",:align => "center"}= room.amount
-          %td= link_to "ดูข้อมูลห้อง #{room.roomname}", room_path(room)
+          %td= link_to "ดูข้อมูลห้อง #{room.roomname}", staff_path(room)
   %br

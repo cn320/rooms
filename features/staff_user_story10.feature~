@@ -39,7 +39,7 @@ Background: Startup with Homepage
 Scenario: See room detail
   When I am on the "ENGR303" room detail page
   Then I should see "ENGR303"
-  And I should see 7 days
-  And I should see "สวัสดี คุณ"
+  And I should see "วันจันทร์"
+ 
 
 
