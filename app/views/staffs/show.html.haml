@@ -1,4 +1,4 @@
-%h2 DetailRoom : #{@droom.roomname} size : #{@droom.amount}
+%h2 ข้อมูลของห้อง : #{@droom.roomname} ความจุ : #{@droom.amount} คน
 
 %table{:border => "1" }
   %thead
@@ -16,7 +16,10 @@
   %tbody
     - @rooms.each do |room|
       %tr
-        %td= room.day
+        - if room.day == "monday"
+          %td= "วันจันทร์"
+        -else
+          %td= room.day
         %td= room.first
         %td= room.second
         %td= room.third

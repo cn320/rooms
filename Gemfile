@@ -5,7 +5,7 @@ gem 'rails', '3.2.11'
 gem 'simplecov', :require => false, :group => :test
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
+gem 'rails-i18n'
 
 group :development, :test do
   gem 'sqlite3'

@@ -14,6 +14,18 @@ class Room < ActiveRecord::Base
     ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
   end
 
+  def self.days_to_thai
+    ["monday"=>"999","tuesday"=>"วันอังคาร","wednesday"=>"วันพุธ","thursday"=>"วันพฤหัสบดี","friday"=>"วันศุกร์","saturday"=>"วันเสาร์","sunday"=>"วันอาทิตย์"]
+  end
+
+  def self.map_day_to_thai(obj)
+    result = obj
+    result.each_with_index do |room,i|
+      result[i]["day"] = Room.days_to_thai[0][result[i]["day"]]
+    end
+    return result
+  end
+
   def self.to_date(arr)
     str = arr["year"]+"-"+arr["month"]+"-"+arr["day"]
     return Date.parse str
@@ -32,37 +44,29 @@ class Room < ActiveRecord::Base
   end
 
   def self.find_with_datetime(obj,date,start,finish)
-    free_result =[]
-    obj.each_with_index do |item,i|
-      reserf = Reserve.find_all_by_date_to_reserve(date)
-      if reserf != []
-        flag = false
-        reserf.each_with_index do |r,j|
-          if obj[i]["roomname"] == reserf[j]["roomname"] && start == reserf[j]["start_time"]
-          else
-            flag = true
+    free_result = []
+    obj.each_with_index do |room,i|
+        reserf = Reserve.find_all_by_roomname(obj[i]["roomname"])
+        if reserf == [] || reserf == nil
+          free_result.push(obj[i])
+        else
+          flag = true
+          reserf.each_with_index do |r,j|
+            if reserf[j]["date_to_reserve"].to_s == date
+              if reserf[j]["start_time"].to_s == start.to_s && reserf[j]["finish_time"].to_s == finish.to_s
+                flag = false
+              end
+            end
           end
-        end
-        if flag == true
-          free_result.push(obj[i])
-        end
-      else
-          free_result.push(obj[i])
+          if flag == true
+            free_result.push(obj[i])
+          end
+        end    
       end
-    end
-    return free_result
+      return free_result
   end
 
-  def self.find_with_time(obj,time)
-    free_day = obj
-    free_result = []
-    free_day.each_with_index do |item,i|
-      if free_day[i][time] == "free"
-        free_result.push(free_day[i])
-      end
-    end
-    return free_result
-  end
+ 
 
   def self.find_with_amount(free,amount)
     max = 0

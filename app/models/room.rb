@@ -14,6 +14,8 @@ class Room < ActiveRecord::Base
     ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
   end
 
+  
+
   def self.to_date(arr)
     str = arr["year"]+"-"+arr["month"]+"-"+arr["day"]
     return Date.parse str
