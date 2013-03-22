@@ -6,6 +6,6 @@
   = text_field :staff, 'username'
 
   = label :staff,:password, 'Password'
-  = text_field :staff, 'password'
+  = password_field :staff, 'password'
   %br
   = submit_tag 'Log In'
