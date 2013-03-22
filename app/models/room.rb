@@ -13,13 +13,6 @@ class Room < ActiveRecord::Base
   def self.all_days
     ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
   end
-
-  
-
-  def self.to_date(arr)
-    str = arr["year"]+"-"+arr["month"]+"-"+arr["day"]
-    return Date.parse str
-  end
   
  
   def self.find_with_day_sec(obj,day,sec)

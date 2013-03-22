@@ -2,11 +2,7 @@ class FormsController < ApplicationController
   # GET /forms
   # GET /forms.json
   def index
-    @forms = Form.all
-
-    @roomtype = DetailRoom.all_types
-    @time = Room.all_times
-    @day_list = Room.all_days
+ 
   end
 
   #print form
@@ -35,7 +31,7 @@ class FormsController < ApplicationController
 
   # GET /forms/1/edit
   def edit
-    @form = Form.find(params[:id])
+
   end
 
   #create form
@@ -85,35 +81,13 @@ class FormsController < ApplicationController
     end
   end
 
-  # PUT /forms/1
-  # PUT /forms/1.json
+  
   def update
-    @form = Form.find(params[:id])
-    @roomtype = DetailRoom.all_types
-    @time = Room.all_times
-    @day_list = Room.all_days
-    respond_to do |format|
-      if @form.update_attributes(params[:form])
-        format.html { redirect_to @form, notice: 'Form was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @form.errors, status: :unprocessable_entity }
-      end
-    end
+    
   end
 
-  # DELETE /forms/1
-  # DELETE /forms/1.json
+  
   def destroy
-    @form = Form.find(params[:id])
-    @form.destroy
-    @roomtype = DetailRoom.all_types
-    @time = Room.all_times
-    @day_list = Room.all_days
-    respond_to do |format|
-      format.html { redirect_to forms_url }
-      format.json { head :no_content }
-    end
+   
   end
 end

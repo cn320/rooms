@@ -133,3 +133,9 @@ Then /I fill "(.*)" in all of tools/ do |value|
     step %{I fill in "tool[#{tool}]" with "#{value}"}
   end
 end
+
+Then /I should see "(.*)" equal to "(.*)"/ do |text,num|
+  page.body
+  rows = page.body.scan(/#{text}/).size
+  rows.should == num.to_i
+end

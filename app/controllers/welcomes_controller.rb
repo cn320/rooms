@@ -14,15 +14,7 @@ class WelcomesController < ApplicationController
 
   
   def show
-    @welcome = Welcome.find(params[:id])
-    @roomtype = DetailRoom.all_types
-    @time = Room.all_times
-    @day_list = Room.all_days
-    @admin = session[:admin]
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @welcome }
-    end
+   
   end
 
   #Form add new pic

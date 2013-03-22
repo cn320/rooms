@@ -26,15 +26,15 @@ Background: Startup with Homepage
   And I should see "ค้นหาห้องว่าง"
   When I follow "ค้นหาห้องว่าง"
   Then I should be on the search page
-  When I search with type:"classroom" , amount:"25" , date:"tomorrow" , time:"8.00-9.30"
+
+
+Scenario: reserve the engr303 with day is not today
+  When I search with type:"classroom" , amount:"25" , y-m-d:"2015-March-13" , time:"8.00-9.30"
   Then I should be on the search_result page
   And I should see "ENGR303"
   When I follow "จองห้อง"
-  Then I should be on the room id "6" status page
+  Then I should be on the room id "5" status page
   And I should see all of word '"ENGR303" "8.00-9.30"'
-
-Scenario: reserve the engr303 with day is not today
-  
   When I follow "ทำรายการจองห้อง ENGR303"
   Then I should be on the form page
   When I fill in "form[name]" with "Ploypailin"
@@ -42,7 +42,7 @@ Scenario: reserve the engr303 with day is not today
   And I fill in "form[institution]" with "Student TU"
   And I fill in "form[tel]" with "0878168055"
   And I fill in "form[email]" with "liberty_zero@hotmail.com"
-  And I fill in "form[date_to_reserve]" with "2033-03-13"
+  And I fill in "form[date_to_reserve]" with "2015-03-13"
   And I fill in "form[because]" with "Study"
   And I fill in "form[subject]" with "CN200"
   And I fill in "form[amount_of_people]" with "20"
@@ -52,34 +52,17 @@ Scenario: reserve the engr303 with day is not today
   And I fill in "form[finish_time]" with "9.30"
   And I check "form[position][teacher]"
   And I check "form[require_tool][microphone]"
+  And I check "form[require_tool][notebook]"
   And I press "submit"
   Then I should be on the print page
   And I should see "Create form and reserve success"
-  And I should see all of word '"ENGR303" "8.00" "9.30"'
+  And I should see all of word '"ENGR303" "8.00" "9.30" "notebook"'
   
   
 Scenario: reserve the engr303 with date is today
-
-  When I follow "ทำรายการจองห้อง ENGR303"
-  Then I should be on the form page
-  When I fill in "form[name]" with "Ploypailin"
-  And I fill in "form[surname]" with "Sirimujalin"
-  And I fill in "form[institution]" with "Student TU"
-  And I fill in "form[tel]" with "0878168055"
-  And I fill in "form[email]" with "liberty_zero@hotmail.com"
-  And I fill in "form[date_to_reserve]" with today
-  And I fill in "form[because]" with "Study"
-  And I fill in "form[subject]" with "CN200"
-  And I fill in "form[amount_of_people]" with "20"
-  And I fill in "form[roomtype]" with "classroom"
-  And I fill in "form[roomname]" with "ENGR303"
-  And I fill in "form[start_time]" with "8.00"
-  And I fill in "form[finish_time]" with "9.30"
-  And I check "form[position][teacher]"
-  And I check "form[require_tool][microphone]"
-  And I press "submit"
-  Then I should be on the form page
-  And I should see "Can not reserve in today, Please Contact Staff by yourself"
+  When I search with type:"classroom" , amount:"25" , date:"today" , time:"8.00-9.30"
+  Then I should be on the search page
+  And I should see "Can not reserve room with date today, please contact staff"
 
 
   

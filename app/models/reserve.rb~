@@ -16,6 +16,7 @@ class Reserve < ActiveRecord::Base
     reserf.each_with_index do |r,i|
       if r.date != date || r.start_time != time[0]
         free_result.push(r)
+      end
     end
     return free_result
   end

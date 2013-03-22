@@ -39,8 +39,8 @@ Scenario: check all scheduler is free
   When I follow "รายชื่อห้องที่มีทั้งหมดในระบบ"
   And I should see "ดูข้อมูลห้อง ENGR303"
   When I follow "ดูข้อมูลห้อง ENGR303"
-  Then I should see "free"
-  And I should not see "busy"
+  Then I should see "ว่าง" 
+  And I should see "ไม่ว่าง" equal to "1"
   
 
 

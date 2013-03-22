@@ -14,17 +14,7 @@ class Room < ActiveRecord::Base
     ["monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
   end
 
-  def self.days_to_thai
-    ["monday"=>"999","tuesday"=>"วันอังคาร","wednesday"=>"วันพุธ","thursday"=>"วันพฤหัสบดี","friday"=>"วันศุกร์","saturday"=>"วันเสาร์","sunday"=>"วันอาทิตย์"]
-  end
-
-  def self.map_day_to_thai(obj)
-    result = obj
-    result.each_with_index do |room,i|
-      result[i]["day"] = Room.days_to_thai[0][result[i]["day"]]
-    end
-    return result
-  end
+  
 
   def self.to_date(arr)
     str = arr["year"]+"-"+arr["month"]+"-"+arr["day"]

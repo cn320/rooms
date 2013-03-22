@@ -5,7 +5,7 @@
   %h3 แบบฟอร์มการขอใช้ห้อง คณะวิศวกรรมศาสตร์ 
 %br
 = form_tag forms_path do
-  Position :
+  สถานะ :
   = succeed "Teacher" do
     %input{:name => 'form[position][teacher]', :type => "checkbox", :value => "teacher"}/
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -19,10 +19,10 @@
     %input{:name => 'form[position][other]', :type => "checkbox", :value => "other"}/
   %br
   %br
-  First name :
+  ชื่อจริง :
   %input{:name => 'form[name]', :type => "text"}/
   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  Last name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+  นามสกุล &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
   %input{:name => "form[surname]", :type => "text"}/
   %br
   สังกัด &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
