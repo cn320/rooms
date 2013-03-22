@@ -5,6 +5,7 @@ gem 'rails', '3.2.11'
 gem 'simplecov', :require => false, :group => :test
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
+gem "paperclip", "~> 3.0"
 
 
 group :development, :test do

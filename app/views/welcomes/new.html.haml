@@ -1,0 +1,10 @@
+%h1 New welcome
+
+= form_tag welcomes_path ,:multipart=> true do
+
+  = file_field :welcome,:img
+
+  = submit_tag 'submit'
+
+
+= link_to 'Back', welcomes_path

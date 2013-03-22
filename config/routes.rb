@@ -2,10 +2,10 @@ RoomManagement::Application.routes.draw do
   
   
 
+  resources :welcomes
+
+
   resources :forms
-
-
-  resources :news
 
 
   resources :tools

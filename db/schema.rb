@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130318173630) do
+ActiveRecord::Schema.define(:version => 20130322101618) do
 
   create_table "detail_rooms", :force => true do |t|
     t.string   "roomname",   :null => false
@@ -41,7 +41,8 @@ ActiveRecord::Schema.define(:version => 20130318173630) do
     t.datetime "updated_at",       :null => false
   end
 
-  create_table "news", :force => true do |t|
+  create_table "messages", :force => true do |t|
+    t.string   "message"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -106,6 +107,15 @@ ActiveRecord::Schema.define(:version => 20130318173630) do
     t.integer  "loudspeaker",        :default => 0
     t.datetime "created_at",                          :null => false
     t.datetime "updated_at",                          :null => false
+  end
+
+  create_table "welcomes", :force => true do |t|
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "img_file_name"
+    t.string   "img_content_type"
+    t.integer  "img_file_size"
+    t.datetime "img_updated_at"
   end
 
 end
