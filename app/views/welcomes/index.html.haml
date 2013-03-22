@@ -26,25 +26,25 @@
 %br
 %br
 
-- if @welcomes_choose.count >= 4
-  #cf4a.shadow
+%center
+  - if @welcomes_choose.count >= 4
+    #cf4a.shadow
+      = image_tag @welcomes_choose[0].img 
+      = image_tag @welcomes_choose[1].img 
+      = image_tag @welcomes_choose[2].img 
+      = image_tag @welcomes_choose[3].img 
+
+  - elsif @welcomes_choose.count == 3
+    #cf3a.shadow
+      = image_tag @welcomes_choose[0].img 
+      = image_tag @welcomes_choose[1].img 
+      = image_tag @welcomes_choose[2].img 
+
+  - elsif @welcomes_choose.count == 2
+    #cf2.shadow
+      = image_tag @welcomes_choose[0].img , :class => "bottom"
+      = image_tag @welcomes_choose[1].img , :class => "top"
+
+  - elsif @welcomes_choose.count == 1
     = image_tag @welcomes_choose[0].img 
-    = image_tag @welcomes_choose[1].img 
-    = image_tag @welcomes_choose[2].img 
-    = image_tag @welcomes_choose[3].img 
-
-- elsif @welcomes_choose.count == 3
-  #cf3a.shadow
-    = image_tag @welcomes_choose[0].img 
-    = image_tag @welcomes_choose[1].img 
-    = image_tag @welcomes_choose[2].img 
-
-- elsif @welcomes_choose.count == 2
-  #cf2.shadow
-    = image_tag @welcomes_choose[0].img , :class => "bottom"
-    = image_tag @welcomes_choose[1].img , :class => "top"
-
-- elsif @welcomes_choose.count == 1
-  = image_tag @welcomes_choose[0].img 
-
 

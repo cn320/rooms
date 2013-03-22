@@ -4,6 +4,12 @@ Given /the following staff exist/ do |staffs_table|
   end
 end
 
+Given /the following welcomes exist/ do |wels_table|
+  wels_table.hashes.each do |att|
+    Welcome.create!(att)
+  end
+end
+
 When /I login with "(.*)" and "(.*)"/ do |username,password|
   step %{I am on the log in page}
   step %{I fill in "Username" with "#{username}"}

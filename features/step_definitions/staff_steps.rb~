@@ -12,4 +12,12 @@ When /I login with "(.*)" and "(.*)"/ do |username,password|
   
 end
 
-
+Then /I should see 7 days/ do
+  step %{I should see "monday"}
+  step %{I should see "tuesday"}
+  step %{I should see "wednesday"}
+  step %{I should see "thursday"}
+  step %{I should see "friday"}
+  step %{I should see "saturday"}
+  step %{I should see "sunday"}
+end

@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
   
   # welcome page 
   def index
-    @welcomes = Welcome.find_all_by_choose(true)
+    @welcomes_choose = Welcome.find_all_by_choose(true)
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @day_list = Room.all_days
