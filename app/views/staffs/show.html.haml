@@ -1,4 +1,4 @@
-%h2 ข้อมูลของห้อง : #{@droom.roomname} ความจุ : #{@droom.amount} คน
+%h3 ข้อมูลตามตารางสอนของห้อง : #{@droom.roomname} ความจุ : #{@droom.amount} คน
 
 %table{:border => "1" }
   %thead
@@ -29,17 +29,41 @@
         - elsif room.day ==  "saturday"
           %td= "วันเสาร์"
         - else 
-          %td= "วันอาทิตย์"        
-        %td= room.first
-        %td= room.second
-        %td= room.third
-        %td= room.fourth
-        %td= room.fifth
-        %td= room.sixth
-        %td= room.seventh
-        %td= room.eighth
+          %td= "วันอาทิตย์"  
+        - if room.first == "free"
+          %td= "ว่าง"
+        - else
+          %td= "ไม่ว่าง"
+        - if room.second == "free"
+          %td= "ว่าง"
+        - else
+          %td= "ไม่ว่าง"
+        - if room.third == "free"
+          %td= "ว่าง"
+        - else
+          %td= "ไม่ว่าง"
+        - if room.fourth == "free"
+          %td= "ว่าง"
+        - else
+          %td= "ไม่ว่าง"
+        - if room.fifth == "free"
+          %td= "ว่าง"
+        - else
+          %td= "ไม่ว่าง"
+        - if room.sixth == "free"
+          %td= "ว่าง"
+        - else
+          %td= "ไม่ว่าง"
+        - if room.seventh == "free"
+          %td= "ว่าง"
+        - else
+          %td= "ไม่ว่าง"
+        - if room.eighth == "free"
+          %td= "ว่าง"
+        - else
+          %td= "ไม่ว่าง"
         
-
+%h5 ***** "ไม่ว่าง" คือณ.เวลานั้นๆมีการเรียนการสอน  "ว่าง" คือณ.เวลานั้นๆไม่มีการเรียนการสอน
 %br 
 %h5 รายชื่ออุปกรณ์ประจำห้อง : #{@room_tool.roomname}
 %p เครื่องขยายเสียง (amplifier) #{@room_tool.amplifier} เครื่อง
