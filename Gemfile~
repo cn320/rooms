@@ -7,7 +7,7 @@ gem 'simplecov', :require => false, :group => :test
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 
-group :development, :test do
+group :development, :test,:production do
   gem 'sqlite3'
   gem 'debugger'
   gem 'cucumber', ">= 1.1.9"
