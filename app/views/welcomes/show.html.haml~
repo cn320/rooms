@@ -1,5 +1,15 @@
-%p#notice= notice
-
+%table
+  %tr
+    %th Choose
+    %th Picture Name
+    %th Update at
+    %th
+  - @welcomes.each do |welcome|
+    %tr
+      %td= welcome.choose
+      %td= welcome.img_file_name
+      %td=
+      %td= link_to 'Destroy', welcome, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 = link_to 'Edit', edit_welcome_path(@welcome)
 \|

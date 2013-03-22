@@ -1,24 +1,34 @@
-%h1 Listing welcomes
+%h3 ส่วนการจัดการข่าวสารที่แสดงออกทางหน้าเว็บไซต์
 
-%table
+%table{:width=>"700px",:border=>"1"}
   %tr
-    %th
-    %th
-    %th
-
+    %th สถานะ
+    %th ชื่อรูปภาพ
+    %th แก้ไขครั้งล่าสุด
+    %th เปลี่ยนสถานะ
+    %th ลบรูปภาพ
   - @welcomes.each do |welcome|
     %tr
-      %td= link_to 'Show', welcome
-      %td= link_to 'Edit', edit_welcome_path(welcome)
-      %td= link_to 'Destroy', welcome, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      - if welcome.choose == true
+        %td= "แสดงผล"
+      - else
+        %td= "ไม่แสดงผล"
+      %td= welcome.img_file_name
+      %td= welcome.img_updated_at
+      %td= link_to 'เปลี่ยนสถานะ', edit_welcome_path(welcome)
+      %td= link_to 'ลบรูปภาพ', welcome, :method => :delete, :data => { :confirm => 'คุณต้องการลบรูปภาพนี้ใช่หรือไม่?' }
+%br
 
+= link_to 'เพิ่มรูปข่าวสาร', new_welcome_path
+%br
+%br
+%br
 %br
 - if @welcomes.count >= 4
   #cf4a.shadow
-    = image_tag @welcomes[0].img , :width => "100%"
-    = image_tag @welcomes[1].img , :width => "100%"
-    = image_tag @welcomes[2].img , :width => "100%"
-    = image_tag @welcomes[3].img , :width => "100%"
+    = image_tag @welcomes[0].img 
+    = image_tag @welcomes[1].img 
+    = image_tag @welcomes[2].img 
+    = image_tag @welcomes[3].img 
 
 
-= link_to 'New Welcome', new_welcome_path

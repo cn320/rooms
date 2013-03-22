@@ -1,20 +1,17 @@
 class WelcomesController < ApplicationController
-  # GET /welcomes
-  # GET /welcomes.json
+  #main page 
   def index
     @welcomes = Welcome.all
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @day_list = Room.all_days
     @admin = session[:admin]
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @welcomes }
+    if @admin == nil
+      redirect_to rooms_path
     end
   end
 
-  # GET /welcomes/1
-  # GET /welcomes/1.json
+  
   def show
     @welcome = Welcome.find(params[:id])
     @roomtype = DetailRoom.all_types
@@ -27,41 +24,43 @@ class WelcomesController < ApplicationController
     end
   end
 
-  # GET /welcomes/new
-  # GET /welcomes/new.json
+  #Form add new pic
   def new
     @welcome = Welcome.new
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @day_list = Room.all_days
     @admin = session[:admin]
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @welcome }
+    if @admin == nil
+      redirect_to rooms_path
     end
   end
 
-  # GET /welcomes/1/edit
+  #Form Change state of pic
   def edit
     @welcome = Welcome.find(params[:id])
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @day_list = Room.all_days
     @admin = session[:admin]
+    if @admin == nil
+      redirect_to rooms_path
+    end
   end
 
-  # POST /welcomes
-  # POST /welcomes.json
+  # Create new pic
   def create
-    @welcome = Welcome.new(params[:welcome])
+    temp_welcome = params[:welcome]
+    temp_welcome["choose"] = 0
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @day_list = Room.all_days
     @admin = session[:admin]
+    @welcome = Welcome.new(temp_welcome)
     respond_to do |format|
       if @welcome.save
-        format.html { redirect_to @welcome, notice: 'Welcome was successfully created.' }
-        format.json { render json: @welcome, status: :created, location: @welcome }
+        format.html { redirect_to welcomes_path, notice: 'Welcome was successfully created.' }
+        format.json { render json: welcomes_path, status: :created, location: @welcome }
       else
         format.html { render action: "new" }
         format.json { render json: @welcome.errors, status: :unprocessable_entity }
@@ -69,8 +68,7 @@ class WelcomesController < ApplicationController
     end
   end
 
-  # PUT /welcomes/1
-  # PUT /welcomes/1.json
+  #Edit state of pic
   def update
     @welcome = Welcome.find(params[:id])
     @roomtype = DetailRoom.all_types
@@ -79,7 +77,7 @@ class WelcomesController < ApplicationController
     @admin = session[:admin]
     respond_to do |format|
       if @welcome.update_attributes(params[:welcome])
-        format.html { redirect_to @welcome, notice: 'Welcome was successfully updated.' }
+        format.html { redirect_to welcomes_path, notice: 'Welcome was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -88,8 +86,7 @@ class WelcomesController < ApplicationController
     end
   end
 
-  # DELETE /welcomes/1
-  # DELETE /welcomes/1.json
+  #delete pic
   def destroy
     @time = Room.all_times
     @day_list = Room.all_days

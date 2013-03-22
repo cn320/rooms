@@ -17,7 +17,7 @@
 %br
 = link_to 'เพิ่มห้องใหม่', new_room_path
 &nbsp;&nbsp;&nbsp;
-= link_to 'กำหนดข้อมูลห้องสำหรับเทอมใหม่', @admin, method: :put, data: { confirm: 'Are you sure?' }
+= link_to 'กำหนดข้อมูลห้องสำหรับเทอมใหม่', @admin, method: :put, data: { confirm: 'คุณต้องการล้างข้อมูลห้องทั้งหมดใช่หรือไม่?' }
 &nbsp;&nbsp;&nbsp;
 = link_to 'รายชื่อห้องที่มีทั้งหมดในระบบ', room_list_staffs_path
 &nbsp;&nbsp;&nbsp;
