@@ -188,16 +188,28 @@ class RoomsController < ApplicationController
 
 
   def search_result
+    if params[:commit] == "Search"
+      time_index = Room.time_to_section
+      time_index = time_index[0][params[:section]["sec_box"]]
+      @time_select = params[:section]["sec_box"]
+      @size_select = params[:amount_box][:amount_box]
+      day = params[:date_box]["day"]
+      month = params[:date_box]["month"]
+      date_str = params[:date_box]["year"]+"-"+ month.rjust(2,'0')+"-"+day.rjust(2,'0')
+      type_select = params[:room_type]["type_box"]
+    else
+      time_index = Room.time_to_section
+      time_index = time_index[0][params[:section]["sec"]]
+      @time_select = params[:section]["sec"]
+      @size_select = params[:amount][:amount]
+      day = params[:date]["day"]
+      month = params[:date]["month"]
+      date_str = params[:date]["year"]+"-"+ month.rjust(2,'0')+"-"+day.rjust(2,'0')
+      type_select = params[:room_type]["type"]
+    end
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @day_list = Room.all_days
-    time_index = Room.time_to_section
-    time_index = time_index[0][params[:section]["sec"]]
-    @time_select = params[:section]["sec"]
-    @size_select = params[:amount][:amount]
-    day = params[:date]["day"]
-    month = params[:date]["month"]
-    date_str = params[:date]["year"]+"-"+ month.rjust(2,'0')+"-"+day.rjust(2,'0')
     @date_select = date_str
     if date_str < Date.today.to_s
       flash[:notice] = "Can not reserve room with date past"
@@ -209,7 +221,7 @@ class RoomsController < ApplicationController
       day_str = Date.parse date_str
       day_str = day_str.strftime("%A")
       time_str = @time_select.split("-")
-      @free_rooms = DetailRoom.find_with_type(params[:room_type]["type"])
+      @free_rooms = DetailRoom.find_with_type(type_select)
       @free_rooms = Room.find_with_day_sec(@free_rooms,day_str.downcase,time_index)
       @free_rooms = Room.find_with_datetime(@free_rooms,date_str,time_str[0],time_str[1])
       if @size_select != ""
@@ -233,8 +245,11 @@ class RoomsController < ApplicationController
   end
 
   def search_box
+
     @temp_params = { "amount"=>{"amount"=>params[:amount_box][:amount_box]}, "room_type"=>{"type"=>params[:room_type]["type_box"]}, "date"=>{"year"=>params[:date_box]["year"], "month"=>params[:date_box]["month"], "day"=>params[:date_box]["day"]}, "section"=>{"sec"=>params[:section][:sec_box]}, "commit"=>"search room"}
     redirect_to search_result_path(@temp_params)
+
+    #redirect_to about_path
   end
   
 end

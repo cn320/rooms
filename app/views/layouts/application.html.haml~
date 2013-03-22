@@ -86,27 +86,26 @@
               %fieldset
                 %legend
                   %i.icon-search
-                  Search Room
-                = link_to 'Link' , rooms_path
-                = form_tag search_box_path ,:method=>:get do
+                  Search Room                
+            = form_tag search_box_path ,:method=>:put do
 
-                  = label :amount_box, :amount_box, 'People to use'
-                  = text_field :amount_box, 'amount_box'
+              = label :amount_box, :amount_box, 'People to use'
+              = text_field :amount_box, 'amount_box'
                   
-                  = label :room_type, :type_box, 'Type-box'
-                  = select :room_type, :type_box, @roomtype
+              = label :room_type, :type_box, 'Type-box'
+              = select :room_type, :type_box, @roomtype
 
-                  = label :day, :day, 'Day'
+              = label :day, :day, 'Day'
 
-                  - if @admin == nil
-                    = select_date Time.now+1.days,:prefix => 'date_box'
-                  - else
-                    = select_date Time.now,:prefix => 'date_box'
+              - if @admin == nil
+                = select_date Time.now+1.days,:prefix => 'date_box'
+              - else
+                = select_date Time.now,:prefix => 'date_box'
 
-                  = label :section, 'Section'
-                  = select :section, :sec_box, @time
+              = label :section, 'Section'
+              = select :section, :sec_box, @time
 
-                  = submit_tag 'Search'
+              = submit_tag 'Search'
           .span9
             - if flash[:notice]
               #notice.message= flash[:notice]

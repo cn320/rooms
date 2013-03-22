@@ -1,4 +1,4 @@
 class Staff < ActiveRecord::Base
-  attr_accessor :username, :username_confirmation
-  attr_accessor :password, :password_confirmation
+  attr_accessible :username
+  attr_accessible :password
 end

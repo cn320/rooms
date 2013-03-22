@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(:version => 20130318173630) do
   create_table "staffs", :force => true do |t|
     t.string   "username"
     t.string   "password"
+    t.string   "firstname"
+    t.string   "lastname"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
