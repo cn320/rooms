@@ -22,6 +22,9 @@ group :development, :test do
 end
 group :production do
   gem 'pg'
+  gem 'cucumber', ">= 1.1.9"
+  gem 'cucumber-rails', 'require' => false
+  gem 'cucumber-rails-training-wheels'
 end
 
 # Gems used only for assets and not required
