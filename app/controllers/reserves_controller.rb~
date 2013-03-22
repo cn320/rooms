@@ -98,7 +98,17 @@ class ReservesController < ApplicationController
     if session[:admin] == nil
       redirect_to rooms_path
     else
-      redirect_to rooms_path
+      @reserf = Reserve.find(params[:id])
+      @reserf.destroy
+      @roomtype = DetailRoom.all_types
+      @time = Room.all_times
+      @day_list = Room.all_days
+      @form = Form.find(params[:id])
+      @form.destroy
+      respond_to do |format|
+        format.html { redirect_to reserves_path, notice: 'Reserve was successfully deleted.' }
+        format.json { head :no_content }
+      end
     end
   end
 

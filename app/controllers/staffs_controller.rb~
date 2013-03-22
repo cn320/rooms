@@ -121,7 +121,4 @@ class StaffsController < ApplicationController
     end 
   end
 
-  def reset_all
-    redirect_to rooms_path
-  end
 end

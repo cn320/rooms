@@ -29,6 +29,15 @@ module NavigationHelpers
       edit_room_path(DetailRoom.find_by_roomname($1))
     when /^the room id "(.*)" status page$/
       room_path(Room.find($1))
+    when /^the room id of date:"(.*)" status page$/
+      if ($1) == "today"
+        d = Date.today
+      elsif date == "tomorrow"
+        d = Date.today+1
+      else
+        d = Date.today-1
+      end
+      room_path(Room.find(d.cwday))
     when /^the form page$/
       new_form_path
     when /^the print page$/

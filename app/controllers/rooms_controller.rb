@@ -63,120 +63,109 @@ class RoomsController < ApplicationController
   
   # Add new room
   def create
-    if session[:admin] == nil
-      redirect_to rooms_path
-    else
-      droom = params[:droom]
-      if DetailRoom.find_by_roomname(droom["roomname"]) == nil
-        droom["amount"] = params[:droom]["amount"]
-        droom["room_type"] = params[:droom]["room_type"]
-        @detail_room_obj = DetailRoom.new(droom)
-        if @detail_room_obj.valid? && @detail_room_obj.save
-          all_day = Room.all_days
-          all_times = Room.all_times
-          time_to_section = Room.time_to_section
-          all_day.each do |d|
-            room = {}
-            room["day"] = d
-            all_times.each do |t|
-              if params[d][t] == "1"
-                room[time_to_section[0][t]] = "busy"
-              else
-                room[time_to_section[0][t]] = "free"
-              end
+    droom = params[:droom]
+    if DetailRoom.find_by_roomname(droom["roomname"]) == nil
+      droom["amount"] = params[:droom]["amount"]
+      droom["room_type"] = params[:droom]["room_type"]
+      @detail_room_obj = DetailRoom.new(droom)
+      if @detail_room_obj.valid? && @detail_room_obj.save
+        all_day = Room.all_days
+        all_times = Room.all_times
+        time_to_section = Room.time_to_section
+        all_day.each do |d|
+          room = {}
+          room["day"] = d
+          all_times.each do |t|
+            if params[d][t] == "1"
+              room[time_to_section[0][t]] = "busy"
+            else
+              room[time_to_section[0][t]] = "free"
             end
-            room["roomname"] = params[:droom]["roomname"]
-            @room_obj = Room.new(room)
-            @room_obj.save
           end
-          tool = params[:tool]
-          tool["roomname"] = params[:droom]["roomname"]
-          @room_tool = Tool.new(tool)
-          if @room_tool.save
-            flash[:notice] = "add new room successess"
-            redirect_to staffs_path
-          else
-            flash[:notice] = "can not add new tool"
-            redirect_to staffs_path
-          end
+          room["roomname"] = params[:droom]["roomname"]
+          @room_obj = Room.new(room)
+          @room_obj.save
+        end
+        tool = params[:tool]
+        tool["roomname"] = params[:droom]["roomname"]
+        @room_tool = Tool.new(tool)
+        if @room_tool.save
+          flash[:notice] = "add new room successess"
+          redirect_to staffs_path
         else
-          flash[:notice] = "can not add new room, please insert all value"
-          redirect_to new_rooms_path 
+          flash[:notice] = "can not add new tool"
+          redirect_to staffs_path
         end
       else
-        flash[:notice] = "can not add new droom"
-        redirect_to staffs_path 
+        flash[:notice] = "can not add new room, please insert all value"
+        redirect_to new_rooms_path 
       end
+    else
+      flash[:notice] = "can not add new droom"
+      redirect_to staffs_path 
     end
+   
   end
 
  
   
   # update room
   def update
-    if session[:admin] == nil
-      redirect_to rooms_path
-    else
-      @roomtype = DetailRoom.all_types
-      @time = Room.all_times
-      @day_list = Room.all_days
-      @box_times = Room.time_to_section
-      @droom = DetailRoom.find(params[:id])
-      old_name = DetailRoom.find(params[:id]).roomname
-      if DetailRoom.find_by_roomname(params[:droom]["roomname"]) == nil
-      #if true
-        #@droom.update_attributes!(params[:droom])
-        @day_list.each do |day|
-          temp_room = {}
-          temp_room["roomname"] = params[:droom]["roomname"]
-          temp_room["day"] = day
-          @box_times[0].each do |time|
-            if params[day][time[1]] == "1"
-              temp_room[time[1]] = "busy"
-            else
-              temp_room[time[1]] = "free"
-            end
+    @roomtype = DetailRoom.all_types
+    @time = Room.all_times
+    @day_list = Room.all_days
+    @box_times = Room.time_to_section
+    @droom = DetailRoom.find(params[:id])
+    old_name = DetailRoom.find(params[:id]).roomname
+    if DetailRoom.find_by_roomname(params[:droom]["roomname"]) == nil
+      @day_list.each do |day|
+        temp_room = {}
+        temp_room["roomname"] = params[:droom]["roomname"]
+        temp_room["day"] = day
+        @box_times[0].each do |time|
+          if params[day][time[1]] == "1"
+            temp_room[time[1]] = "busy"
+          else
+            temp_room[time[1]] = "free"
           end
-          res = Room.find_all_by_roomname(old_name)
-          @room = res.select do |r|  r.day == day  end
-          @room[0].update_attributes!(temp_room)
         end
-        tool = params[:tool]
-        tool["roomname"] = params[:droom]["roomname"]
-        @room_tool = Tool.find_by_roomname(old_name)
-        @room_tool.update_attributes!(tool)
-        @droom.update_attributes!(params[:droom])
-        flash[:notice] = "update room sucessfully"
-        redirect_to staff_path(@droom)
-      else
-        flash[:notice] = "Can not modify roomname,Already roomname in database"
-        redirect_to room_list_staffs_path
+        res = Room.find_all_by_roomname(old_name)
+        @room = res.select do |r|  r.day == day  end
+        @room[0].update_attributes!(temp_room)
       end
+      tool = params[:tool]
+      tool["roomname"] = params[:droom]["roomname"]
+      @room_tool = Tool.find_by_roomname(old_name)
+      @room_tool.update_attributes!(tool)
+      @droom.update_attributes!(params[:droom])
+      flash[:notice] = "update room sucessfully"
+      redirect_to staff_path(@droom)
+    else
+      flash[:notice] = "Can not modify roomname,Already roomname in database"
+      redirect_to room_list_staffs_path
     end
+    
   end
 
   
   # delete room
   def destroy
-    if session[:admin] == nil
-      redirect_to rooms_path
-    else
-      @roomtype = DetailRoom.all_types
-      @time = Room.all_times
-      @day_list = Room.all_days
-      @droom = DetailRoom.find(params[:id])
-      roomname = @droom.roomname
-      @day_list.each do |day|
-        @room = Room.find_all_by_roomname(@droom.roomname)
-        @room = @room.select do |i| i.day==day end
-        @room[0].destroy
-      end
-      @tool = Tool.find(params[:id])
-      @tool.destroy
-      @droom.destroy
-      flash[:notice] = "Delete success"
-      redirect_to room_list_staffs_path
+    @roomtype = DetailRoom.all_types
+    @time = Room.all_times
+    @day_list = Room.all_days
+    @droom = DetailRoom.find(params[:id])
+    roomname = @droom.roomname
+    @day_list.each do |day|
+      @room = Room.find_all_by_roomname(@droom.roomname)
+      @room = @room.select do |i| i.day==day end
+      @room[0].destroy
     end
+    @tool = Tool.find(params[:id])
+    @tool.destroy
+    @droom.destroy
+    flash[:notice] = "Delete success"
+    redirect_to room_list_staffs_path
+    
   end
   
   #search page

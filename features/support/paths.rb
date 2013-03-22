@@ -15,6 +15,8 @@ module NavigationHelpers
 
     when /^the home page$/
       rooms_path
+    when /^the about page$/
+      static_pages_about_path
     when /^the log in page$/
       login_path
     when /^the staff page$/

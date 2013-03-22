@@ -33,8 +33,8 @@ Background: Startup with Homepage
   | teacher | naidkub | honhon | superhon | 0878908766 | hon@hon.com | classroom | ENGR303 | 2015-03-13 | 18.00 | 21.00 | play game | hon | 20 | microphone,television |
 
   Given the following welcomes exist:
-  | choose  | img_file_name | 
-  | false   | test.jpg      |
+  | choose  | 
+  | false   | 
 Scenario: user can not go to staff zone page
   Given I am on the staff page
   Then I should be on the home page
