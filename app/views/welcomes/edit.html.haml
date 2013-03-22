@@ -1,10 +1,10 @@
-%h3 กรุณาทำเครื่องหมาย หากต้องการเลือกรูป #{#welcome.img_filr_name} แสดงผล
+%h3 กรุณาทำเครื่องหมาย หากต้องการเลือกรูป #{@welcome.img_file_name} แสดงผล
 
 = form_tag welcome_path(@welcome), :method => :put do
 
   = "คุณต้องการแสดงผลรูปนี้"
   = hidden_field_tag "welcome[choose]",0
-  = check_box_tag "welcome[choose]",1, @welcome.choose == 1 ? true:false
+  = check_box_tag "welcome[choose]",1, @welcome.choose == true ? true:false
 
   = submit_tag "ยืนยัน"
 

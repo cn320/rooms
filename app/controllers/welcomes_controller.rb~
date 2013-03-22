@@ -6,9 +6,8 @@ class WelcomesController < ApplicationController
     @time = Room.all_times
     @day_list = Room.all_days
     @admin = session[:admin]
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @welcomes }
+    if @admin == nil
+      redirect_to rooms_path
     end
   end
 
@@ -32,9 +31,8 @@ class WelcomesController < ApplicationController
     @time = Room.all_times
     @day_list = Room.all_days
     @admin = session[:admin]
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @welcome }
+    if @admin == nil
+      redirect_to rooms_path
     end
   end
 
@@ -45,6 +43,9 @@ class WelcomesController < ApplicationController
     @time = Room.all_times
     @day_list = Room.all_days
     @admin = session[:admin]
+    if @admin == nil
+      redirect_to rooms_path
+    end
   end
 
   # Create new pic

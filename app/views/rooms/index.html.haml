@@ -4,11 +4,25 @@
 - if @admin != nil
   %h5 สวัสดี คุณ#{@admin}
 
-- if @welcomes.count >= 4
+- if @welcomes_choose.count >= 4
   #cf4a.shadow
-    = image_tag @welcomes[0].img , :width => "800px"
-    = image_tag @welcomes[1].img , :width => "800px"
-    = image_tag @welcomes[2].img , :width => "800px"
-    = image_tag @welcomes[3].img , :width => "800px"
+    = image_tag @welcomes_choose[0].img 
+    = image_tag @welcomes_choose[1].img 
+    = image_tag @welcomes_choose[2].img 
+    = image_tag @welcomes_choose[3].img 
+
+- elsif @welcomes_choose.count == 3
+  #cf3a.shadow
+    = image_tag @welcomes_choose[0].img 
+    = image_tag @welcomes_choose[1].img 
+    = image_tag @welcomes_choose[2].img 
+
+- elsif @welcomes_choose.count == 2
+  #cf2.shadow
+    = image_tag @welcomes_choose[0].img , :class => "bottom"
+    = image_tag @welcomes_choose[1].img , :class => "top"
+
+- elsif @welcomes_choose.count == 1
+  = image_tag @welcomes_choose[0].img 
 
 

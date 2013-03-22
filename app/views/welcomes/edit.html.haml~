@@ -1,4 +1,4 @@
-%h3 กรุณาทำเครื่องหมาย หากต้องการเลือกรูป #{#welcome.img_filr_name} แสดงผล
+%h3 กรุณาทำเครื่องหมาย หากต้องการเลือกรูป #{@welcome.img_file_name} แสดงผล
 
 = form_tag welcome_path(@welcome), :method => :put do
 
@@ -9,4 +9,7 @@
   = submit_tag "ยืนยัน"
 
 %br
-= link_to 'Back', welcomes_path
+%br
+= link_to 'กลับไปหน้าหลักของส่วนจัดการข่าวสาร', welcomes_path
+%br
+= link_to 'กลับไปหน้าหลักของผู้ดูแลระบบ', staffs_path
