@@ -2,6 +2,9 @@ RoomManagement::Application.routes.draw do
   
   
 
+  resources :users
+
+
   resources :welcomes
 
 

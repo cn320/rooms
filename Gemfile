@@ -3,6 +3,9 @@ source 'http://rubygems.org'
 gem 'twitter-bootstrap-rails'
 gem 'rails', '3.2.11'
 gem 'simplecov', :require => false, :group => :test
+gem 'nokogiri'
+gem 'premailer-rails3'
+gem 'roadie'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 gem "paperclip", "~> 3.0"

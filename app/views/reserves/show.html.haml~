@@ -28,7 +28,7 @@
 - if @reserf.status == "nonconsidered"
   = link_to 'ยืนยันคำร้องขอการจองห้อง', reserf_path(@reserf) ,method: :put
   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-  = link_to 'ปฏิเสธคำร้องขอการจองห้อง',  reserves_path
+  = link_to 'ปฏิเสธคำร้องขอการจองห้อง',  @reserf, method: :delete, data: { confirm: 'คุณต้องการปฏิเสธคำร้องขอนี้ใช่หรือไม่?' }
 %br
 %br
 = link_to 'ปริ๊นใบคำร้องขอจองห้อง',forms_path(@form)
