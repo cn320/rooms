@@ -29,6 +29,8 @@ Scenario: can see all detail of user who reserve room
   And I should see "ENGR306" before "ENGR303" 
   And I should see "8.00" before "16.30"
   And I should see "พิจารณาการจองห้อง ENGR303"
+  And I should see "พิจารณาการจองห้อง ENGR306"
+  And I should see "ดูข้อมูลการจองห้อง ENGR303"
   And I should see "ดูข้อมูลการจองห้อง ENGR305"
   
 

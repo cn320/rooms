@@ -21,7 +21,7 @@ Scenario: Add picture to list if pic
   When I attach the file "public/images/engr-slide-header-01.jpg" to "welcome[img]"
   And I press "เพิ่มรูป"
   Then I should be on the pic list page
-  And I should see "engr-slide-header-01.jpg""
+  And I should see "engr-slide-header-01.jpg"
   And I should see "ไม่แสดงผล"
  
 

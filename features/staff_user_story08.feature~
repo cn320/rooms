@@ -33,7 +33,7 @@ Scenario: can see all detail of user who reserve room that nonconsidered
   And I should see all of word '"ENGR303" "2013-03-13" "hon@hon.com" "classroom" "naidkub" "honhon" "รอการยืนยันจากเจ้าหน้าที่" "ยืนยันคำร้องขอการจองห้อง" "ปฏิเสธคำร้องขอการจองห้อง"'
  
 Scenario: can see all detail of user who reserve room that confirm
-  When I follow "พิจารณาการจองห้อง ENGR304"
+  When I follow "ดูข้อมูลการจองห้อง ENGR304"
   Then I should be on the reserve detail id:"2" page
   And I should see all of word '"ENGR304" "2013-03-13" "hon@hon.com" "classroom" "naidkub" "honhon" "ได้รับการยืนยันแล้ว"'
   And I should not see "ยืนยันคำร้องขอการจองห้อง"

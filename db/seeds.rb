@@ -5,6 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'digest/md5'
+
 
 detail = [{:roomname => "ENGR301", :amount => 200, :room_type=>"classroom"},{:roomname => "ENGR302", :amount => 100, :room_type=>"classroom"},{:roomname => "ENGR303", :amount => 100, :room_type=>"classroom"},{:roomname => "ENGR304", :amount => 50, :room_type=>"classroom"},{:roomname => "ENGR418", :amount => 20, :room_type=>"auditorium"}]
 
@@ -13,13 +15,10 @@ detail.each do |d|
   DetailRoom.create!(d)
 end
 
-user = [{:username => 'naidkub' , :password => 'honhon', :firstname => 'Naidkub', :lastname => 'Masterhon'}]
-
+user = [{:username => 'naidkub' , :password => Digest::MD5.hexdigest('honhon'), :firstname => 'Naidkub', :lastname => 'Masterhon'}]
 user.each do |u|
   Staff.create!(u)
 end
-
-
 
 rooms = Room.create!([
 {roomname: "ENGR301", first: "free", second: "busy", third: "busy", fourth: "free", fifth: "busy", sixth: "busy", day: "monday", seventh: "free", eighth: "free"},
@@ -78,8 +77,4 @@ forms = Form.create!([{position: "student", name: "Ploypailin", surname: "Sirimu
 reserf = Reserve.create!([{roomname: "ENGR304", date_to_reserve: "2013-03-26", start_time: "8.00", finish_time: "9.30", tel: "0878168055", email: "liberty_zero@hotmail.com", status: "nonconsidered"},
 {roomname: "ENGR304", date_to_reserve: "2013-03-25", start_time: "8.00", finish_time: "9.30", tel: "191", email: "naidkub@hotmail.com", status: "confirm"},
 {roomname: "ENGR304", date_to_reserve: "2013-03-27", start_time: "8.00", finish_time: "9.30", tel: "0545455455", email: "milkwarm@hotmail.com", status: "refuse"}])
-
-
-
-
 

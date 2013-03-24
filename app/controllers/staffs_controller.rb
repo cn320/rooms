@@ -1,3 +1,4 @@
+require 'digest/md5'
 class StaffsController < ApplicationController
   
   # Staff index page, welcome staff
@@ -45,26 +46,29 @@ class StaffsController < ApplicationController
 
   #reset all room data
   def update
-    @roomtype = DetailRoom.all_types
-    @time = Room.all_times
-    @day_list = Room.all_days
-    @rooms = Room.all
-    @rooms.each do |room|
-      r={}
-      r["roomname"] = room.roomname
-      r["first"] = "free"
-      r["second"] = "free"
-      r["third"] = "free"
-      r["fourth"] = "free"
-      r["fifth"] = "free"
-      r["sixth"] = "free"
-      r["seventh"] = "free"
-      r["eighth"] = "free"
-      r["day"] = room.day
-      room.update_attributes!(r)
-    end
-    redirect_to staffs_path
-     
+    if session[:admin] == nil
+      redirect_to rooms_path
+    else
+      @roomtype = DetailRoom.all_types
+      @time = Room.all_times
+      @day_list = Room.all_days
+      @rooms = Room.all
+      @rooms.each do |room|
+        r={}
+        r["roomname"] = room.roomname
+        r["first"] = "free"
+        r["second"] = "free"
+        r["third"] = "free"
+        r["fourth"] = "free"
+        r["fifth"] = "free"
+        r["sixth"] = "free"
+        r["seventh"] = "free"
+        r["eighth"] = "free"
+        r["day"] = room.day
+        room.update_attributes!(r)
+      end
+      redirect_to staffs_path
+    end 
   end
 
   
@@ -87,7 +91,7 @@ class StaffsController < ApplicationController
     @user = params[:staff]
     @uname = Staff.find_by_username(@user["username"])
   
-    if @user["username"]=="" || @uname == nil || @uname.password != @user["password"]
+    if @user["username"]=="" || @uname == nil || @uname.password != Digest::MD5.hexdigest(@user["password"])
       flash[:notice] = "can not login"
       redirect_to login_path
     else
@@ -118,4 +122,8 @@ class StaffsController < ApplicationController
     end 
   end
 
+  def reset_all
+    redirect_to rooms_path
+  end
 end
+

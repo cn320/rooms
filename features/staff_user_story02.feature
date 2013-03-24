@@ -7,8 +7,8 @@ Feature: Adding new room
 Background: Startup with Staffpage
 
   Given the following staff exist:
-  | username     | password |
-  | naidkub      | honhon   |
+  | username     | password                           |
+  | naidkub      | a128290498a21ed6a3fc8a2e4c011ebc   |
 
   Given the following detail_rooms exist:
   | roomname     | amount    | room_type  |

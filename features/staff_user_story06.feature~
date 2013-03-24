@@ -20,6 +20,11 @@ Background: Startup with Homepage
   | ENGR303      | friday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
   | ENGR303      | saturday  | free  |  free  | busy  | free   | free  | busy  | free    |  free  |
   | ENGR303      | sunday    | free  |  free  | busy  | free   | free  | busy  | free    |  free  | 
+ 
+  Given the following tools exist:
+  | roomname     | amplifier | microphone | computer | overhead_projector | lcd_projector | television | voice_recorder | video_recorder | visualizer | loudspeaker |
+  | ENGR303      | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+
 
   Given the following staff exist:
   | username     | password |

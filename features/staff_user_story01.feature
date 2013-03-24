@@ -7,9 +7,8 @@ Feature: Log In to the staff page
 Background: Startup with Homepage
 
   Given the following staff exist:
-  | username     | password |
-  | naidkub      | honhon   |
-  | koonnongchay | milkwarm |
+  | username     | password                           |
+  | naidkub      | a128290498a21ed6a3fc8a2e4c011ebc   |
 
   And I am on the home page
   Then I should see "สำหรับเจ้าหน้าที่"
