@@ -152,7 +152,7 @@ class FormsController < ApplicationController
       end
     #File.delete(@file)
     end
-
+  end
 =begin
       respond_to do |format|
         format.pdf do
