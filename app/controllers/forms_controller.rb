@@ -5,33 +5,9 @@ class FormsController < ApplicationController
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @day_list = Room.all_days
-    if params[:format] == nil
-      @form = Form.find_all_by_status("confirm")
-    else
-      @form = Form.find(params[:format])
-    end
-    if @form == nil || @form == []
-      flash[:notice] = "Don't have Form in database"
-      redirect_to staffs_path
-    else
-      @html_temp = Form.create_html_temp(@form)
-      kit = PDFKit.new(File.new('./public/temp_pdf.html'))
-      PDFKit.configure do |config|
-        config.default_options = {
-          :encoding=>"UTF-8",
-          :page_size=>"A4",
-          :print_media_type => true
-       }
-      end
-      kit.to_file("./public/printpdf.pdf")
-      File.delete(@html_temp)
-      @file = File.open("./public/printpdf.pdf", "r")
-      #send_file("./public/printpdf.pdf",:type=>'application/pdf',:filename => "printpdf.pdf",:stream => false,:disposition  =>  'attachment')
-      File.open(@file) do |f|
-        send_data f.read, :type => "application/pdf", :disposition => "inline"
-      end
-    #File.delete(@file)
-    end
+    html = "<p> Hello world </p>"  
+    pdfkit_instance = PDFKit.new(html)  
+    send_data(pdfkit_instance.to_pdf)
   end
 
   #print form

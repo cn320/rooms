@@ -134,7 +134,7 @@ class FormsController < ApplicationController
       redirect_to staffs_path
     else
       @html_temp = Form.create_html_temp(@form)
-      kit = PDFKit.new(File.new('#{Rails.root}/tmp/temp_pdf.html'))
+      kit = PDFKit.new(File.new("#{Rails.root}/tmp/temp_pdf.html"))
       PDFKit.configure do |config|
         config.default_options = {
           :encoding=>"UTF-8",
