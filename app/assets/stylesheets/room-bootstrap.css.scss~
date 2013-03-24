@@ -1,9 +1,6 @@
 @import "bootstrap";
 @import "bootstrap-responsive";
 
-container.nav{
-   color:red;
-}
 div.navbar-inner{
 	border-radius: 0px;
 }
@@ -13,7 +10,6 @@ div.span3{
 }
 div.span9{
 	/*padding-left:10px;*/
-   font-size:110%;
 }
 legend{
 	padding: 0;
@@ -44,11 +40,9 @@ div.container-fluid{
    padding-left: 5px;
 }
 .breadcrumb{
-   font-size:115%;
    border-radius: 0px;
    height:20px;
 }
-
 /* IE 6 */
 * html #footer {
    position:absolute;

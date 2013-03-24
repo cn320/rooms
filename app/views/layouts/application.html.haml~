@@ -87,7 +87,7 @@
                 %legend
                   %i.icon-search
                   Search Room                
-            = form_tag search_box_path ,:method=>:put do
+            = form_tag search_box_path ,:method=>:get do
 
               = label :amount_box, :amount_box, 'People to use'
               = text_field :amount_box, 'amount_box'
