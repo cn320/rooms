@@ -252,4 +252,64 @@ class Form < ActiveRecord::Base
     return fileHtml
   end
   
+
+  def self.create_email_pdf(form)
+    fileHtml = File.new("./public/email_pdf.html", "w+")
+    fileHtml.puts '<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="printpdf.css" rel="stylesheet" type="text/css">  
+</head>
+<body>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<div id="printpdf">
+<h1 align ="left"> แบบฟอร์มตอบรับการจองห้อง คณะวิศวกรรมศาสตร์ </h1>
+<br>
+<br>
+<br>
+<br>
+<p>ชื่อผู้ขอใช้ : '+ form.name + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+form.surname+' </p>
+<br>
+<br>
+<br>
+<br>
+<p> ตำแหน่ง : '+form.position+' หน่วยงาน : '+form.institution+' </p>
+<br>
+<br>
+<br>
+<br>
+<p> ประเภทห้องที่ขอใช้ : '+form.roomtype+'  ชื่อห้องที่ขอใช้ : '+form.roomname+'    </p> 
+<br>
+<br>
+<br>
+<br>
+<p> วันที่ขอใช้ '+form.date_to_reserve.to_s+' เวลา '+form.start_time+' ถึง '+form.finish_time+' </p>
+<br>
+<br>
+<br>
+<br>
+<p align="center" > ลงชื่อ : ................................ </p>
+<br>
+<br>
+<h6 align= "center"> วันที่ : ................................</h6>
+<br>
+<br>
+<br>
+<h6 align = "center"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;( เจ้าหน้าที่หน่วยโสต ) </h6>
+<br>
+<br>
+<br>
+<h6 align = "left"> หมายเหตุ ( &nbsp;&nbsp;)แม่บ้าน ( &nbsp;&nbsp;)รปภ . การเปิด-ปิด และดูแลความเรียบร้อย </h6>
+
+
+</div>
+</body>
+</html>'
+  fileHtml.close();
+  return './public/email_pdf.html'
 end
