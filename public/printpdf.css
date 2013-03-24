@@ -1,11 +1,11 @@
 @media print {  
-  body { background-color: yellow;}
+ 
   #printpdf {  
         width: auto;  
         margin: 0;  
         padding: 0;  
         border: none;
-        
+        display: inline;
     }
   #printpdf pre {
     font-size: 70px;
@@ -15,8 +15,10 @@
   #printpdf h3 {
     font-size: 100px;
     color: #222;
+    display: inline;
   } 
-  #printpdf h1 { font-size: 45px;}
+  #printpdf h1 { font-size: 47px;}
   #printpdf p { display: inline;
                 font-size: 35px;}
+  #printpdf center { text-align: center;}
 }  

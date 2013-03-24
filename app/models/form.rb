@@ -21,7 +21,9 @@ class Form < ActiveRecord::Base
 
   def self.create_html_temp(data)
     fileHtml = File.new("./public/temp_pdf.html", "w+")
-    fileHtml.puts fileHtml.puts '<!DOCTYPE html>
+    
+    if data.class == Form
+      fileHtml.puts '<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -29,6 +31,117 @@ class Form < ActiveRecord::Base
 </head>
 <body>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+<img alt="logo" src="images/Engtu.jpg">
+<br>
+<br>
+<br>
+<br>
+<div id="printpdf">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<center><h1>แบบฟอร์มการขอใช้ห้อง คณะวิศวกรรมศาสตร์</h1></center>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>สถานะ : '+ data.position+'</p>
+<br>
+<br>
+<br>
+<br>
+<p>ชื่อจริง : '+data.name+' </p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<p>นามสกุล : '+data.surname+' </p>
+<br>
+<br>
+<br>
+<br>
+<p>Email : '+data.email+' </p>
+<br>
+<br>
+<br>
+<br>
+<p>สังกัด : '+data.institution+' </p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>
+<br>
+<br>
+<br>
+<p>เบอร์โทรศัพท์ : '+data.tel+' </p> 
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>มีความประสงค์จะขอใช้ : </p>
+<p>'+data.roomtype+'</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<p>ห้อง ENGR : '+data.roomname+' </p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>ในวันที่: '+data.date_to_reserve.to_s+' </p>
+<p>เวลา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+'+data.start_time+' น.&nbsp;&nbsp;&nbsp;ถึงเวลา : '+data.finish_time+'  น.</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>เพื่อใช้ใน &nbsp;&nbsp;&nbsp;: '+data.because+' </p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>วิชา/เรื่อง : '+data.subject+'</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>ผู้เข้าร่วมประชุม/สัมนา/ฟังบรรยาย จำนวน:&nbsp;&nbsp;&nbsp; '+data.amount_of_people.to_s+'  คน</p>
+<br>
+<br>
+<br>
+<br>
+<p>**********************************************************************************************************************************************************</p>
+<br>
+<br>
+<br>
+<br>
+<b><p>อุปกรณ์โสตฯ ที่ต้องการ</p></b>
+<br>
+<br>
+<br>
+<br>
+<p>'+data.require_tool+'</p>
+
+'  
+    else
+      data.each_with_index do |d,i|
+        fileHtml.puts '<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="printpdf.css" rel="stylesheet" type="text/css">  
+</head>
+<body>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -51,62 +164,66 @@ class Form < ActiveRecord::Base
 <br>
 <br>
 <br>
-<p>สถานะ : Student</p>
+<p>สถานะ : '+ data[i]["position"]+'</p>
 <br>
 <br>
 <br>
 <br>
-<p>ชื่อจริง : Ploypailin</p>
+<p>ชื่อจริง : '+data[i]["name"]+' </p>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<p>นามสกุล : Sirimujalin </p>
+<p>นามสกุล : '+data[i]["surname"]+' </p>
 <br>
 <br>
 <br>
 <br>
-<p>สังกัด : ENGR </p>
+<p>Email : '+data[i]["email"]+' </p>
+<br>
+<br>
+<br>
+<br>
+<p>สังกัด : '+data[i]["institution"]+' </p>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <br>
 <br>
 <br>
 <br>
-<p>เบอร์โทรศัพท์ : 0897888888 </p> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<p>Email : liberty@gioi.com</p>
+<p>เบอร์โทรศัพท์ : '+data[i]["tel"]+' </p>
 <br>
 <br>
 <br>
 <br>
 <br>
 <p>มีความประสงค์จะขอใช้ : </p>
-<p>ห้องเรียน</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<p>ห้อง ENGR : ENGR301 </p>
+<p>'+data[i]["roomtype"]+'</p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<p>ห้อง ENGR : '+data[i]["roomname"]+' </p>
 <br>
 <br>
 <br>
 <br>
 <br>
-<p>ในวันที่: 2013-03-13</p>
+<p>ในวันที่: '+data[i]["date_to_reserve"].to_s+' </p>
 <p>เวลา&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-8.00 น.&nbsp;&nbsp;&nbsp;ถึงเวลา : 9.30  น.</p>
+'+data[i]["start_time"]+' น.&nbsp;&nbsp;&nbsp;ถึงเวลา : '+data[i]["finish_time"]+'  น.</p>
 <br>
 <br>
 <br>
 <br>
 <br>
-<p>เพื่อใช้ใน &nbsp;&nbsp;&nbsp;: นอน </p>
+<p>เพื่อใช้ใน &nbsp;&nbsp;&nbsp;: '+data[i]["because"]+' </p>
 <br>
 <br>
 <br>
 <br>
 <br>
-<p>วิชา/เรื่อง : การนอน</p>
+<p>วิชา/เรื่อง : '+data[i]["subject"]+'</p>
 <br>
 <br>
 <br>
 <br>
 <br>
-<p>ผู้เข้าร่วมประชุม/สัมนา/ฟังบรรยาย จำนวน:&nbsp;&nbsp;&nbsp;1  คน</p>
+<p>ผู้เข้าร่วมประชุม/สัมนา/ฟังบรรยาย จำนวน:&nbsp;&nbsp;&nbsp; '+data[i]["amount_of_people"].to_s+'  คน</p>
 <br>
 <br>
 <br>
@@ -121,13 +238,16 @@ class Form < ActiveRecord::Base
 <br>
 <br>
 <br>
-<p>บลาๆๆๆๆๆๆๆ</p>
-<p>skldsaldasldkas;k</p>
-<p>wkd;akdlakdlaskdlsakdlsajld</p><br>
+<p>'+data[i]["require_tool"]+'</p>
 
-</div>
+'  
+        fileHtml.puts '<br><br><br><br><br><br><br><br><br><br>'
+      end
+    end
+    fileHtml.puts '</div>
 </body>
 </html>'
+
     fileHtml.close()
     return fileHtml
   end

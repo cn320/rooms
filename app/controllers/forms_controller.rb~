@@ -5,24 +5,30 @@ class FormsController < ApplicationController
     @roomtype = DetailRoom.all_types
     @time = Room.all_times
     @day_list = Room.all_days
-
-    form = Form.find(1)
-    @html_temp = Form.create_html_temp(form)
-    kit = PDFKit.new(File.new('./public/temp_pdf.html'))
-    PDFKit.configure do |config|
-      config.wkhtmltopdf = `which wkhtmltopdf`.to_s.strip
-      config.default_options = {
-        :encoding=>"UTF-8",
-        :page_size=>"A4",
-        :print_media_type => true
-     }
+    if params[:format] == nil
+      @form = Form.all
+    else
+      @form = Form.find(params[:id])
     end
-    kit.to_file("./public/printpdf.pdf")
-    File.delete(@html_temp)
-    @file = File.open("./public/printpdf.pdf", "r")
-    send_file("./public/printpdf.pdf",:type=>'application/pdf',:filename => "printpdf.pdf",:stream => false,:disposition  =>  'attachment')
+    if @form == nil || @form == []
+      flash[:notice] = "Don't have Form in database"
+      redirect_to staffs_path
+    else
+      @html_temp = Form.create_html_temp(@form)
+      kit = PDFKit.new(File.new('./public/temp_pdf.html')
+      PDFKit.configure do |config|
+        config.default_options = {
+          :encoding=>"UTF-8",
+          :page_size=>"A4",
+          :print_media_type => true
+       }
+      end
+      kit.to_file("./public/printpdf.pdf")
+      File.delete(@html_temp)
+      @file = File.open("./public/printpdf.pdf", "r")
+      send_file("./public/printpdf.pdf",:type=>'application/pdf',:filename => "printpdf.pdf",:stream => false,:disposition  =>  'attachment')
     #File.delete(@file)
-
+    end
   end
 
   #print form
