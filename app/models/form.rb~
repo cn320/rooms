@@ -273,22 +273,22 @@ class Form < ActiveRecord::Base
 <br>
 <br>
 <br>
-<p>ชื่อผู้ขอใช้ : #{@form.name}  #{@form.surname} </p>
+<p>ชื่อผู้ขอใช้ : '+ form.name + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'+form.surname+' </p>
 <br>
 <br>
 <br>
 <br>
-<p> ตำแหน่ง : #{@form.position} หน่วยงาน : #{@form.institution} </p>
+<p> ตำแหน่ง : '+form.position+' หน่วยงาน : '+form.institution+' </p>
 <br>
 <br>
 <br>
 <br>
-<p> ประเภทห้องที่ขอใช้ : #{@form.roomtype}  ชื่อห้องที่ขอใช้ : #{@form.roomname}    </p> 
+<p> ประเภทห้องที่ขอใช้ : '+form.roomtype+'  ชื่อห้องที่ขอใช้ : '+form.roomname+'    </p> 
 <br>
 <br>
 <br>
 <br>
-<p> วันที่ขอใช้ #{@form.date_to_reserve} เวลา #{@form.start_time} ถึง #{@form.finish_time} </p>
+<p> วันที่ขอใช้ '+form.date_to_reserve.to_s+' เวลา '+form.start_time+' ถึง '+form.finish_time+' </p>
 <br>
 <br>
 <br>
