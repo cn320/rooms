@@ -6,8 +6,8 @@ Feature: see detail of each user who reserve room
 
 Background: Startup with Homepage
   Given the following staff exist:
-  | username     | password |
-  | naidkub      | honhon   |
+  | username     | password                           |
+  | naidkub      | a128290498a21ed6a3fc8a2e4c011ebc   |
 
   Given the following reserves exist:
   | roomname | date_to_reserve | start_time | finish_time | tel        | email       | status        |

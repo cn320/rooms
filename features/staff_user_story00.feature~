@@ -85,7 +85,7 @@ Background: Startup with Homepage
 Scenario: Search date today 
   When I search with type:"classroom" , amount:"20" , date:"today" , time:"8.00-9.30"
   Then I should be on the search_result page
-  And I should see "ENGR"
+  And I should see all of word '"ENGR" "18.00-21.00"'
 
 Scenario: Search date yesterday
   When I search with type:"classroom" , amount:"20" , date:"yesterday" , time:"8.00-9.30"
@@ -101,13 +101,13 @@ Scenario: Search not found
 Scenario: Search found with out amount
   When I search with type:"classroom" , amount:"" , y-m-d:"2015-March-13" , time:"18.00-21.00"
   Then I should be on the search_result page
-  And I should see all of word '"ENGR305" "ENGR306" "ENGR307"'
+  And I should see all of word '"ENGR305" "ENGR306" "ENGR307" "2015-03-13" "18.00-21.00"'
   And I should notsee all of word '"ENGR303" "ENGR304"' 
 
 Scenario: Search found with amount
   When I search with type:"classroom" , amount:"20" , y-m-d:"2015-March-13" , time:"18.00-21.00"
   Then I should be on the search_result page
-  And I should see all of word '"ENGR305" "ENGR307"'
+  And I should see all of word '"ENGR305" "ENGR307" "2015-03-13" "18.00-21.00"'
   And I should notsee all of word '"ENGR303" "ENGR304" "ENGR306"' 
 
  

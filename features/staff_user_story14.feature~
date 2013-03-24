@@ -40,7 +40,7 @@ Scenario: check all scheduler is free
   And I should see "ดูข้อมูลห้อง ENGR303"
   When I follow "ดูข้อมูลห้อง ENGR303"
   Then I should see "ว่าง" 
-  And I should see .ไม่ว่าง" equal to "1"
+  And I should see "ไม่ว่าง" equal to "1"
   
 
 

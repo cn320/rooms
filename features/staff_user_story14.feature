@@ -10,8 +10,8 @@ Background: Startup with Homepage
   | ENGR303      | 100       | classroom  | 
 
   Given the following staff exist:
-  | username     | password |
-  | naidkub      | honhon   |
+  | username     | password                           |
+  | naidkub      | a128290498a21ed6a3fc8a2e4c011ebc   |
 
   Given the following rooms exist:
   | roomname     | day       | first | second | third | fourth | fifth | sixth | seventh | eighth |

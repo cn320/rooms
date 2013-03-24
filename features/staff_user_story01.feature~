@@ -23,7 +23,9 @@ Scenario: Can Log In to the staff page (Happy Path)
    And I press "Log In"
    Then I should be on the staff page
    And I should see "login successfully"
-
+   Given I am on the home page
+   And I follow "สำหรับเจ้าหน้าที่"
+   Then I should be on the staff page
 
 Scenario: Can not Log In to the staff page (Sad Path)
    When I fill in "Username" with "username"
