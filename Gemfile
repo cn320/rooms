@@ -9,6 +9,9 @@ gem "paperclip", "~> 3.0"
 gem 'pdfkit'
 gem "doc_raptor", "0.1.1"
 gem 'carrierwave', '0.5.4'
+gem "wicked_pdf"
+gem "wkhtmltopdf-heroku", :git => 'git://github.com/camdez/wkhtmltopdf-heroku.git'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'debugger'
@@ -21,6 +24,7 @@ group :development, :test do
   gem "rspec-rails", "~> 2.12.2"
   gem 'simplecov'
   gem 'factory_girl_rails'
+  
 end
 group :production do
   gem 'pg'
