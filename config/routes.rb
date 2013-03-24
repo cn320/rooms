@@ -5,8 +5,12 @@ RoomManagement::Application.routes.draw do
   resources :welcomes
 
 
-  resources :forms
-
+  resources :forms do
+    collection do
+      get 'pdfreport'
+      
+    end
+  end
 
   resources :tools
 
@@ -21,6 +25,7 @@ RoomManagement::Application.routes.draw do
       post 'submit'
       get 'room_list'
       put 'reset_all'
+      
     end
   end
   #post "staffs/submit"

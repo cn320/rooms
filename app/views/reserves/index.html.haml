@@ -31,3 +31,4 @@
 
 
 = link_to 'ปริ๊นฟอร์มการจองที่อนุมัติแล้วทั้งหมด', forms_path
+= link_to "Report", {:action => "pdfreport", :controller => "forms",:format => :pdf}, :target => '_blank'

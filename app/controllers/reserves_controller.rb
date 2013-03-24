@@ -80,17 +80,19 @@ class ReservesController < ApplicationController
   # PUT /reserves/1
   # PUT /reserves/1.json
   def update
-#    @reserf = Reserve.find(params[:id])
+    @reserf = Reserve.find(params[:id])
+    @reserf.status = "confirm"
+    respond_to do |format|
+     if @reserf.update_attributes(params[:reserf])
+       format.html { redirect_to reserves_path, notice: 'Reserve was successfully updated.' }
+       format.json { head :no_content }
+     else
+       format.html { render action: "edit" }
+       format.json { render json: @reserf.errors, status: :unprocessable_entity }
+      end
+    end
 
-#    respond_to do |format|
- #     if @reserf.update_attributes(params[:reserf])
-  #      format.html { redirect_to @reserf, notice: 'Reserve was successfully updated.' }
-  #      format.json { head :no_content }
-  #    else
-   #     format.html { render action: "edit" }
-    #    format.json { render json: @reserf.errors, status: :unprocessable_entity }
-    #  end
-   # end
+    #redirect_to reserves_path
   end
 
   #delete reserve and form (same id)
