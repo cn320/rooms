@@ -311,6 +311,16 @@ class Form < ActiveRecord::Base
 </body>
 </html>'
     fileHtml.close();
-    return './public/email_pdf.html'
+    kit = PDFKit.new(File.new('./public/email_pdf.html'))
+      PDFKit.configure do |config|
+        config.default_options = {
+          :encoding=>"UTF-8",
+          :page_size=>"A4",
+          :print_media_type => true
+       }
+      end
+      kit.to_file("./public/emailpdf.pdf")
+      File.delete('./public/email_pdf.html')
+    return './public/emailpdf.pdf'
   end
 end

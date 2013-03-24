@@ -310,6 +310,7 @@ class Form < ActiveRecord::Base
 </div>
 </body>
 </html>'
-  fileHtml.close();
-  return './public/email_pdf.html'
+    fileHtml.close();
+    return './public/email_pdf.html'
+  end
 end
