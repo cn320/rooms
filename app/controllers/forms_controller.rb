@@ -2,7 +2,26 @@ class FormsController < ApplicationController
   # GET /forms
   # GET /forms.json
   def index
- 
+    @roomtype = DetailRoom.all_types
+    @time = Room.all_times
+    @day_list = Room.all_days
+
+    form = Form.find(1)
+    @html_temp = Form.create_html_temp(form)
+    kit = PDFKit.new(File.new('./public/temp_pdf.html'))
+    PDFKit.configure do |config|
+      config.default_options = {
+        :encoding=>"UTF-8",
+        :page_size=>"A4",
+        :print_media_type => true
+     }
+    end
+    kit.to_file("./public/printpdf.pdf")
+    File.delete(@html_temp)
+    @file = File.open("./public/printpdf.pdf", "r")
+    send_file("./public/printpdf.pdf",:type=>'application/pdf',:filename => "printpdf.pdf",:stream => false,:disposition  =>  'attachment')
+    #File.delete(@file)
+
   end
 
   #print form

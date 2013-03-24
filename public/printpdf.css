@@ -1,0 +1,22 @@
+@media print {  
+  body { background-color: yellow;}
+  #printpdf {  
+        width: auto;  
+        margin: 0;  
+        padding: 0;  
+        border: none;
+        
+    }
+  #printpdf pre {
+    font-size: 70px;
+    font-family: "Times New Roman", Times, serif;
+    color: red;
+  }
+  #printpdf h3 {
+    font-size: 100px;
+    color: #222;
+  } 
+  #printpdf h1 { font-size: 45px;}
+  #printpdf p { display: inline;
+                font-size: 35px;}
+}  

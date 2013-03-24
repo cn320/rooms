@@ -6,7 +6,7 @@ gem 'simplecov', :require => false, :group => :test
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 gem "paperclip", "~> 3.0"
-
+gem 'pdfkit'
 
 group :development, :test do
   gem 'sqlite3'
