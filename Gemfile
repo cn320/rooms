@@ -8,7 +8,7 @@ gem 'simplecov', :require => false, :group => :test
 gem "paperclip", "~> 3.0"
 gem 'pdfkit'
 gem "doc_raptor", "0.1.1"
-
+gem 'carrierwave', '0.5.4'
 group :development, :test do
   gem 'sqlite3'
   gem 'debugger'

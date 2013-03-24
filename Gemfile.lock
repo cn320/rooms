@@ -40,6 +40,8 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 1.0.0)
+    carrierwave (0.5.4)
+      activesupport (~> 3.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     climate_control (0.0.3)
@@ -216,6 +218,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass (~> 2.2.2.0)
   capybara
+  carrierwave (= 0.5.4)
   coffee-rails (~> 3.2.0)
   cucumber (>= 1.1.9)
   cucumber-rails
