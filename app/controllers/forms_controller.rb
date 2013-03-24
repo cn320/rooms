@@ -26,7 +26,10 @@ class FormsController < ApplicationController
       kit.to_file("./public/printpdf.pdf")
       File.delete(@html_temp)
       @file = File.open("./public/printpdf.pdf", "r")
-      send_file("./public/printpdf.pdf",:type=>'application/pdf',:filename => "printpdf.pdf",:stream => false,:disposition  =>  'attachment')
+      #send_file("./public/printpdf.pdf",:type=>'application/pdf',:filename => "printpdf.pdf",:stream => false,:disposition  =>  'attachment')
+      File.open(@file) do |f|
+        send_data f.read, :type => "application/pdf", :disposition => "inline"
+      end
     #File.delete(@file)
     end
   end
