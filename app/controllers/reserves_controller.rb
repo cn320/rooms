@@ -82,7 +82,7 @@ class ReservesController < ApplicationController
   def update
     @reserf = Reserve.find(params[:id])
     @reserf.status = "confirm"
-    SendackMailer.accept_request(@reserf.email).deliver
+    SendackMailer.accept_request(@reserf).deliver
     respond_to do |format|
      if @reserf.update_attributes(params[:reserf])
        format.html { redirect_to reserves_path, notice: 'Reserve was successfully updated.' }

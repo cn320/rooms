@@ -11,9 +11,10 @@ class SendackMailer < ActionMailer::Base
 
   #   mail to: "to@example.org"
   # end
-  def accept_request(email)
-  @greeting = "Hi"
-
-  mail to: email, subject: "RailsCasts Weekly"
+  def accept_request(uu)
+    @ss = uu
+    @reserf = Form.find_by_email(@ss.email,@ss.date_to_reserve)
+    @greeting = " rommname #{@reserf.roomname} and date to reserved is #{@reserf.date_to_reserve} "
+  mail to: @ss.email, subject: "congraturation cun #{@reserf.name} you can reserved room success"
 end
 end
