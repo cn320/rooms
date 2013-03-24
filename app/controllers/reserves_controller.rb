@@ -82,6 +82,7 @@ class ReservesController < ApplicationController
   def update
     @reserf = Reserve.find(params[:id])
     @reserf.status = "confirm"
+    SendackMailer.accept_request(@reserf).deliver
     respond_to do |format|
      if @reserf.update_attributes(params[:reserf])
        format.html { redirect_to reserves_path, notice: 'Reserve was successfully updated.' }
@@ -110,6 +111,20 @@ class ReservesController < ApplicationController
     
     end
   end
+  
+  # def send_mail
+  #      @reserf = Reserve.find(params[:id])
 
+  #     respond_to do |format|
+  #    if @reserf.update_attributes(params[:reserf])
+  #      format.html { redirect_to reserves_path, notice: 'Reserve was successfully updated.' }
+  #      format.json { head :no_content }
+  #    else
+  #      format.html { render action: "edit" }
+  #      format.json { render json: @reserf.errors, status: :unprocessable_entity }
+  #     end
+
+
+  # end
 
 end
