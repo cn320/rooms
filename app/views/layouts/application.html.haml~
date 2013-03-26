@@ -18,40 +18,34 @@
             .nav-collapse.collapse.navbar-inverse-collapse
               %ul.nav
                 %li.active
-                  %a{:href => "#"} Main
+                  %a{:href => "#"} ส่วนของผู้ดูแลระบบ
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                    Room
+                    จัดการห้องเรียน
                     %b.caret
                   %ul.dropdown-menu
-                    %li
-                      %a{:href => "#"} List Room
-                    %li
-                      %a{:href => "#"} Add Room
-                    %li
-                      %a{:href => "#"} Edit Room
                     %li.divider
-                    %li.nav-header Nav header
-                    %li
-                      %a{:href => "#"} Separated link
-                    %li
-                      %a{:href => "#"} One more separated link
+                    %li.nav-header การเพิ่มข้อมูล
+                    %li= link_to 'เพิ่มห้องใหม่', new_room_path
+                    %li= link_to "เปลี่ยนแปลงข่าวสาร",welcomes_path
+                    %li.divider
+                    %li.nav-header ข้อมูลในระบบ
+                    %li= link_to 'รายชื่อห้องที่มีทั้งหมดในระบบ', room_list_staffs_path
+                    %li= link_to 'ข้อมูลการจองที่มีทั้งหมดในระบบ', reserves_path
+                    %li.divider
+                    %li.nav-header การล้างข้อมุล
+                    %li= link_to 'กำหนดข้อมูลห้องสำหรับเทอมใหม่', @admin, method: :put, data: { confirm: 'คุณต้องการล้างข้อมูลห้องทั้งหมดใช่หรือไม่?' } 
               %ul.nav.pull-right
                 %li
-                  %a{:href => "#"} Welcome! admin
+                  %a{:href => "#"} Welcome! #{@admin.username}
                 %li.divider-vertical
                 %li.dropdown
                   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                    Setting
+                    ออกจากระบบ
                     %b.caret
                   %ul.dropdown-menu
-                    %li
-                      %a{:href => "#"} Change Password
-                    %li
-                      %a{:href => "#"} Login History
                     %li.divider
-                    %li
-                      %a{:href => "#"} Logout
+                    %li= link_to 'ออกจากระบบ', logout_path
             / /.nav-collapse
         / /navbar-inner
     / - head and navbar
@@ -121,3 +115,4 @@
 
     
    
+
