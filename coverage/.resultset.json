@@ -1,45 +1,45 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/controllers/application_controller.rb": [
+      "/home/cn/project_sw/app/controllers/application_controller.rb": [
         1,
         1,
         null,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/helpers/application_helper.rb": [
+      "/home/cn/project_sw/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/helpers/forms_helper.rb": [
+      "/home/cn/project_sw/app/helpers/forms_helper.rb": [
         1,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/helpers/reserves_helper.rb": [
+      "/home/cn/project_sw/app/helpers/reserves_helper.rb": [
         1,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/helpers/rooms_helper.rb": [
+      "/home/cn/project_sw/app/helpers/rooms_helper.rb": [
         1,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/helpers/staffs_helper.rb": [
+      "/home/cn/project_sw/app/helpers/staffs_helper.rb": [
         1,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/helpers/static_pages_helper.rb": [
+      "/home/cn/project_sw/app/helpers/static_pages_helper.rb": [
         1,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/helpers/tools_helper.rb": [
+      "/home/cn/project_sw/app/helpers/tools_helper.rb": [
         1,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/helpers/welcomes_helper.rb": [
+      "/home/cn/project_sw/app/helpers/welcomes_helper.rb": [
         1,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/controllers/forms_controller.rb": [
+      "/home/cn/project_sw/app/controllers/forms_controller.rb": [
         1,
         null,
         null,
@@ -207,7 +207,7 @@
         null,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/models/form.rb": [
+      "/home/cn/project_sw/app/models/form.rb": [
         null,
         null,
         1,
@@ -535,7 +535,7 @@
         null,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/controllers/reserves_controller.rb": [
+      "/home/cn/project_sw/app/controllers/reserves_controller.rb": [
         1,
         null,
         1,
@@ -652,7 +652,7 @@
         null,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/controllers/rooms_controller.rb": [
+      "/home/cn/project_sw/app/controllers/rooms_controller.rb": [
         1,
         null,
         null,
@@ -887,7 +887,7 @@
         null,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/models/room.rb": [
+      "/home/cn/project_sw/app/models/room.rb": [
         1,
         null,
         1,
@@ -959,7 +959,7 @@
         null,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/controllers/staffs_controller.rb": [
+      "/home/cn/project_sw/app/controllers/staffs_controller.rb": [
         1,
         1,
         null,
@@ -1090,13 +1090,13 @@
         null,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/models/staff.rb": [
+      "/home/cn/project_sw/app/models/staff.rb": [
         1,
         1,
         1,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/controllers/static_pages_controller.rb": [
+      "/home/cn/project_sw/app/controllers/static_pages_controller.rb": [
         1,
         1,
         0,
@@ -1105,7 +1105,7 @@
         null,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/controllers/tools_controller.rb": [
+      "/home/cn/project_sw/app/controllers/tools_controller.rb": [
         1,
         null,
         null,
@@ -1202,7 +1202,7 @@
         null,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/models/tool.rb": [
+      "/home/cn/project_sw/app/models/tool.rb": [
         1,
         null,
         1,
@@ -1214,7 +1214,7 @@
         null,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/controllers/welcomes_controller.rb": [
+      "/home/cn/project_sw/app/controllers/welcomes_controller.rb": [
         1,
         null,
         1,
@@ -1311,13 +1311,13 @@
         null,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/models/welcome.rb": [
+      "/home/cn/project_sw/app/models/welcome.rb": [
         1,
         1,
         1,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/models/detail_room.rb": [
+      "/home/cn/project_sw/app/models/detail_room.rb": [
         1,
         1,
         null,
@@ -1343,7 +1343,7 @@
         null,
         null
       ],
-      "/home/cn/Documents/RUBY/project/test1/testpdf/htmlpdf/project_sw/app/models/reserve.rb": [
+      "/home/cn/project_sw/app/models/reserve.rb": [
         1,
         1,
         null,
@@ -1359,7 +1359,7 @@
         null
       ]
     },
-    "timestamp": 1364345716
+    "timestamp": 1364304435
   },
   "RSpec": {
     "coverage": {
