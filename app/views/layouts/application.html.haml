@@ -26,15 +26,15 @@
                   %ul.dropdown-menu
                     %li.divider
                     %li.nav-header การเพิ่มข้อมูล
-                    %li= link_to 'เพิ่มห้องใหม่', new_room_path
-                    %li= link_to "เปลี่ยนแปลงข่าวสาร",welcomes_path
+                    %li= link_to 'เพิ่มห้อง', new_room_path
+                    %li= link_to "เปลี่ยนข่าวสาร",welcomes_path
                     %li.divider
                     %li.nav-header ข้อมูลในระบบ
-                    %li= link_to 'รายชื่อห้องที่มีทั้งหมดในระบบ', room_list_staffs_path
-                    %li= link_to 'ข้อมูลการจองที่มีทั้งหมดในระบบ', reserves_path
+                    %li= link_to 'รายชื่อห้องทั้งหมดในระบบ', room_list_staffs_path
+                    %li= link_to 'ข้อมูลการจองทั้งหมดในระบบ', reserves_path
                     %li.divider
                     %li.nav-header การล้างข้อมุล
-                    %li= link_to 'กำหนดข้อมูลห้องสำหรับเทอมใหม่', @admin, method: :put, data: { confirm: 'คุณต้องการล้างข้อมูลห้องทั้งหมดใช่หรือไม่?' } 
+                    %li= link_to 'กำหนดข้อมูลสำหรับเทอมใหม่', @admin, method: :put, data: { confirm: 'คุณต้องการล้างข้อมูลห้องทั้งหมดใช่หรือไม่?' } 
               %ul.nav.pull-right
                 %li
                   %a{:href => "#"} Welcome! #{@admin.username}
